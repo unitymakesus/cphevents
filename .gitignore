@@ -9,6 +9,7 @@ Thumbs.db
 adminer.php
 searchreplacedb2.php
 rrrreplace/*
+wp-config.php
 
 # wordpress specific
 wp-content/advanced-cache.php
