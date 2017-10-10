@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  		<script type="text/javascript">
+		var ajaxurl = 'https://humanities.unc.edu/wp-admin/admin-ajax.php';
+		</script>
+		<link rel='dns-prefetch' href='//its2.unc.edu' />
+<link rel='dns-prefetch' href='//humanities.sites.unc.edu' />
+<link rel='dns-prefetch' href='//s.w.org' />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.6"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" href="/wp-content/plugins/events-calendar-pro/src/resources/css/widget-calendar-full.css?ver=4.4.17">
+<link rel="stylesheet" href="/wp-content/plugins/events-calendar-pro/src/resources/css/widget-calendar-theme.css?ver=4.4.17">
+<link rel="stylesheet" href="/wp-content/plugins/events-calendar-pro/src/resources/css/widget-calendar-theme.css?ver=4.4.17">
+<link rel="stylesheet" href="/wp-content/plugins/events-calendar-pro/src/resources/css/widget-calendar-theme.css?ver=4.4.17">
+<link rel="stylesheet" href="/wp-content/plugins/revolutionslider/public/assets/css/settings.css?ver=5.4.5.1">
+<style id='rs-plugin-settings-inline-css' type='text/css'>
+#rs-demo-id {}
+</style>
+<link rel="stylesheet" href="/wp-content/plugins/events-calendar-pro/src/resources/css/tribe-events-pro-full.css?ver=4.4.17">
+<link rel="stylesheet" href="/wp-content/plugins/events-calendar-pro/src/resources/css/tribe-events-pro-theme.css?ver=4.4.17">
+<link rel="stylesheet" href="/wp-content/plugins/events-calendar-pro/src/resources/css/tribe-events-pro-full-mobile.css?ver=4.4.17" media="only screen and (max-width: 768px)">
+<link rel="stylesheet" href="/wp-content/plugins/events-calendar-pro/src/resources/css/tribe-events-pro-theme-mobile.css?ver=4.4.17" media="only screen and (max-width: 768px)">
+<link rel="stylesheet" href="/wp-content/plugins/easy-bootstrap-shortcodes/styles/ebs_dynamic_css.php?ver=4.7.6">
+<link rel="stylesheet" href="https://humanities.sites.unc.edu/wp-content/themes/heelium/assets/css/main.min.css?ver=259fc31ac0ece324d8c3a19fc0aa5463">
+<style id='roots_main-inline-css' type='text/css'>
+
+body{
+background-color:#ffffff;
+background-image: url();
+background-attachment: fixed;
+background-size: cover;
+}
+.abovefold {
+background-color:#ffffff;
+background-image: url(https://humanities.unc.edu/files/2014/12/arclines.png);
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+width: 100%;
+}
+.abovefold a{color:#ffffff;}
+</style>
+<script type='text/javascript' src='/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var TribeMiniCalendar = {"ajaxurl":"https:\/\/humanities.unc.edu\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/plugins/events-calendar-pro/src/resources/js/widget-calendar.js?ver=4.4.17'></script>
+<script type='text/javascript' src='https://its2.unc.edu/unc-feeds/alertFeed.js.php?ver=4.7.6'></script>
+<script type='text/javascript' src='/wp-content/plugins/revolutionslider/public/assets/js/jquery.themepunch.tools.min.js?ver=5.4.5.1'></script>
+<script type='text/javascript' src='/wp-content/plugins/revolutionslider/public/assets/js/jquery.themepunch.revolution.min.js?ver=5.4.5.1'></script>
+<script type='text/javascript' src='https://humanities.sites.unc.edu/wp-content/themes/heelium/assets/js/vendor/modernizr-2.7.0.min.js'></script>
+<script type='text/javascript' src='https://humanities.sites.unc.edu/wp-content/themes/heelium/assets/js/sticky_nav.js'></script>
+<link rel='https://api.w.org/' href='https://humanities.unc.edu/wp-json/' />
+<link rel="alternate" type="application/json+oembed" href="https://humanities.unc.edu/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhumanities.unc.edu%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://humanities.unc.edu/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fhumanities.unc.edu%2F&#038;format=xml" />
+
+            <script>
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','gaplusu');
+
+                                                            gaplusu('create', 'UA-32420241-1', 'auto', {'allowLinker': true});
+                    
+                                        
+                    gaplusu('send', 'pageview');
+                
+                            </script>
+
+			<style>
+	#wp-admin-bar-asu_support_enabled {
+		background-color: #E00000!important;
+	}
+	</style>
+<meta name="tec-api-version" content="v1"><meta name="tec-api-origin" content="https://humanities.unc.edu"><link rel="https://theeventscalendar.com" href="https://humanities.unc.edu/wp-json/tribe/events/v1/" /><script type="text/javascript" id="unc-ub-script" data-color="" src="https://its.unc.edu/web-assets/utility-bar/utility-bar.min.js"></script>                
+        <style type="text/css">
+            .single #feat-img-h, article.media #feat-img-h {}
+            .abovefold-container .search-form {}
+        </style>
+
+        <style type="text/css">
+
+        .bg-primary, .btn-primary, .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus, .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus, .label-primary, .btn-primary, .nav-tabs li a:hover, footer.content-info .widget ul li a:hover {
+            background-color: ;
+        }
+        .panel-primary {
+            border-color: ;
+        }
+        .btn-primary.disabled, .btn-primary[disabled], fieldset[disabled] .btn-primary, .btn-primary.disabled:hover, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary:hover, .btn-primary.disabled:focus, .btn-primary[disabled]:focus, fieldset[disabled] .btn-primary:focus, .btn-primary.disabled:active, .btn-primary[disabled]:active, fieldset[disabled] .btn-primary:active, .btn-primary.disabled.active, .btn-primary[disabled].active, fieldset[disabled] .btn-primary.active, .progress-bar, .pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus, a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus, .panel-primary>.panel-heading {
+            background-color:;
+            border-color:;
+        }
+
+        .navbar-default {
+            background-color:#56a0d3;
+            border-color:#56a0d3;
+        }
+
+        a, .text-primary, .btn-primary .badge, .btn-link, .pagination>li>a, .pagination>li>span, a.list-group-item.active>.badge, .nav-pills>.active>a>.badge, .navbar-inverse .navbar-brand, .navbar-inverse .caret, .header-logo a:hover, .brand-logo a:hover, footer .widget ul>li:last-child a, footer ol.vcalendar li a, footer .widget ul li a, footer .widget ul li a:link, .widget ul li a:hover, .widget ul.dropdown-menu li.active a:hover, footer.content-info a:hover, footer.content-info a {
+            color:;
+        }
+
+        .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+            border-top-color: #56a0d3;
+            border-right-color-value: #56a0d3;
+            border-bottom-color: #56a0d3;
+            border-left-color-value: #56a0d3;
+        }
+
+        footer .widget ul>li a:hover, footer .widget ul>li:last-child a:hover {color: #fff;}
+
+        .btn-primary:hover {
+            background-color:#331af2;
+        }
+
+        .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li.active > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+            background-color:#ddaa33;
+        }
+
+        .navbar-default .navbar-toggle {
+            border-color: #ddaa33;
+        }
+
+        a:hover, a:focus, footer.content-info a:hover {
+            color: #331af2;
+        }
+
+
+
+
+    </style>
+	<link rel="canonical" href="https://humanities.unc.edu/">
+<meta name="generator" content="Powered by Slider Revolution 5.4.5.1 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface." />
+<link rel="icon" href="https://humanities.unc.edu/files/2017/05/cropped-PZ01322-CPH_wordmarkrings_4C-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://humanities.unc.edu/files/2017/05/cropped-PZ01322-CPH_wordmarkrings_4C-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://humanities.unc.edu/files/2017/05/cropped-PZ01322-CPH_wordmarkrings_4C-180x180.png" />
+<meta name="msapplication-TileImage" content="https://humanities.unc.edu/files/2017/05/cropped-PZ01322-CPH_wordmarkrings_4C-270x270.png" />
+<script type="text/javascript">function setREVStartSize(e){
+				try{ var i=jQuery(window).width(),t=9999,r=0,n=0,l=0,f=0,s=0,h=0;					
+					if(e.responsiveLevels&&(jQuery.each(e.responsiveLevels,function(e,f){f>i&&(t=r=f,l=e),i>f&&f>r&&(r=f,n=e)}),t>r&&(l=n)),f=e.gridheight[l]||e.gridheight[0]||e.gridheight,s=e.gridwidth[l]||e.gridwidth[0]||e.gridwidth,h=i/s,h=h>1?1:h,f=Math.round(h*f),"fullscreen"==e.sliderLayout){var u=(e.c.width(),jQuery(window).height());if(void 0!=e.fullScreenOffsetContainer){var c=e.fullScreenOffsetContainer.split(",");if (c) jQuery.each(c,function(e,i){u=jQuery(i).length>0?u-jQuery(i).outerHeight(!0):u}),e.fullScreenOffset.split("%").length>1&&void 0!=e.fullScreenOffset&&e.fullScreenOffset.length>0?u-=jQuery(window).height()*parseInt(e.fullScreenOffset,0)/100:void 0!=e.fullScreenOffset&&e.fullScreenOffset.length>0&&(u-=parseInt(e.fullScreenOffset,0))}f=u}else void 0!=e.minHeight&&f<e.minHeight&&(f=e.minHeight);e.c.closest(".rev_slider_wrapper").css({height:f})					
+				}catch(d){console.log("Failure at Presize of Slider:"+d)}
+			};</script>
+<!-- Begin Custom CSS -->
+<style type="text/css">
+.wp-caption.alignleft{margin-right:15px}</style><!-- End Custom CSS -->
+
+  <link rel="alternate" type="application/rss+xml" title=" Feed" href="https://humanities.unc.edu/feed/">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://humanities.sites.unc.edu/wp-content/themes/heelium/assets/img/ss_img_unc_favicon.ico" />
+
+</head>
+
+<body class="home page tribe-no-js">
+
+
+
+<!--[if lt IE 8]>
+<div class="alert alert-warning">
+    You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+<div class="container-fluid">
+    <div class="row">
+        
+
+
+<div id="abovefold" class="abovefold">
+    <div class="abovefold-container container">
+
+        <div class="row">
+                            <div class="col-sm-8">
+            
+                <div class="header-logo">
+                                            <a href='https://humanities.unc.edu' title='' rel='home'><img src='https://humanities.unc.edu/files/2017/05/CPH_wordmarktag2_RGB.png' alt=''></a>
+                                    </div>
+
+                
+            </div>
+
+
+                                            <div class="col-sm-4">
+                                                            <form role="search" method="get" class="search-form form-inline" action="https://humanities.unc.edu/">
+  <div class="input-group" >
+    <label class="hide" for="search">Search_for:</label>
+    <input type="search" id="search" value="" name="s" class="search-field form-control" placeholder="Search this site...">
+        <span class="input-group-btn">
+      <button aria-labelledby="header-search" id="Submit" class="search-submit btn btn-default"><span class="glyphicon glyphicon-search"></span><span id="header-search" class="hidden">Submit Search</span></button>
+    </span>
+  </div>
+</form>                                                        <div id="text-5" class="widget widget_text">			<div class="textwidget"><a href="https://www.facebook.com/uncphhv/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/F_icon.svg/1024px-F_icon.svg.png" alt="some_text" style="width:45px;height:45px"></a>
+
+<a href="https://twitter.com/UNChumanities"><img src="https://www.seeklogo.net/wp-content/uploads/2011/06/Twitter-icon-vector-400x400.png" alt="some_text" style="width:45px;height:45px"></a>
+
+<a href="https://www.instagram.com/unchumanities/"><img src="https://cdn0.iconfinder.com/data/icons/shift-logotypes/32/Instagram-512.png" alt="some_text" style="width:45px;height:45px"></a>
+
+<a href="https://www.youtube.com/user/TheUNChumanities"><img src="http://www.arct.cam.ac.uk/images/youtube-icon/image" alt="some_text" style="width:45px;height:45px"></a>
+
+</div>
+		</div>                        </div>
+                    
+
+
+
+        </div>
+    </div>
+</div>
+
+
+<header id="nav" class="dualheader banner navbar navbar-default navbar-static-top " role="banner">
+    <div class="navbar-container container">
+
+        <div class="">
+
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+                            <a class="navbar-brand navbar-brand-logo" href='https://humanities.unc.edu' title='' rel='home'><img src='http://igt.sites.unc.edu/files/2014/12/small_white_300px.png' alt=''></a>
+            
+
+        </div>
+
+
+        <div class="row">
+            <nav class="collapse navbar-collapse" role="navigation">
+                <ul id="menu-primary-navigation" class="nav navbar-nav"><li class="menu-home"><a href="https://humanities.sites.unc.edu/">Home</a></li>
+<li class="dropdown menu-about-us"><a class="dropdown-toggle disabled" data-target="#" href="https://humanities.unc.edu/about-us/">About Us<b class="fa caret-dropdown"></b></a>
+<ul class="dropdown-menu">
+	<li class="menu-program-staff"><a href="https://humanities.unc.edu/about-us/staff/">Program Staff</a></li>
+	<li class="menu-media"><a href="https://humanities.unc.edu/cph-in-the-news/">Media</a></li>
+	<li class="menu-commitment-to-diversity"><a href="https://humanities.unc.edu/about-us/commitment-to-diversity/">Commitment to Diversity</a></li>
+	<li class="dropdown-submenu menu-general-information"><a class="dropdown-toggle disabled" data-target="#" href="https://humanities.unc.edu/about-us/general-information/">General Information<b class="fa caret-dropdown"></b></a>
+<ul class="dropdown-menu">
+		<li class="menu-university-partners"><a href="https://humanities.unc.edu/about-us/university-partners/">University Partners</a></li>
+		<li class="menu-friends-program"><a href="https://humanities.unc.edu/make-a-gift/donors-and-friends/friends-program/">Friends Program</a></li>
+		<li class="menu-seminar-locations"><a href="https://humanities.unc.edu/about-us/general-information/seminar-locations/">Seminar Locations</a></li>
+		<li class="menu-lodging"><a href="https://humanities.unc.edu/about-us/general-information/lodging/">Lodging</a></li>
+		<li class="menu-unc-student-staff-faculty-registration-policy"><a href="https://humanities.unc.edu/unc-student-staff-faculty-discounted-registration-policy/">UNC Student, Staff, &#038; Faculty Registration Policy</a></li>
+	</ul>
+</li>
+	<li class="menu-past-seminar-archives"><a href="https://humanities.unc.edu/about-us/archives/">Past Seminar Archives</a></li>
+</ul>
+</li>
+<li class="dropdown menu-adams-fellows-for-the-public-humanities"><a class="dropdown-toggle disabled" data-target="#" href="https://humanities.unc.edu/the-maynard-adams-fellowship-for-the-public-humanities/">Adams Fellows for the Public Humanities<b class="fa caret-dropdown"></b></a>
+<ul class="dropdown-menu">
+	<li class="menu-adams-fellows-application"><a href="https://humanities.unc.edu/adams-fellows-for-the-public-humanities-application/">Adams Fellows Application</a></li>
+	<li class="menu-past-fellows"><a href="https://humanities.unc.edu/2017-adams-fellows-for-the-public-humanities/">Past Fellows</a></li>
+</ul>
+</li>
+<li class="menu-calendar"><a href="/events">Calendar</a></li>
+<li class="dropdown menu-events"><a class="dropdown-toggle disabled" data-target="#" href="https://humanities.sites.unc.edu/programs/">Events<b class="fa caret-dropdown"></b></a>
+<ul class="dropdown-menu">
+	<li class="menu-download-the-fall-2017-brochure"><a href="https://www.dropbox.com/s/z8dlt909l7vnrat/Brochure%20Fall%202017%20FINAL.pdf?dl=0">Download the Fall 2017 Brochure</a></li>
+	<li class="dropdown-submenu menu-weekend-seminars"><a class="dropdown-toggle disabled" data-target="#" href="https://humanities.unc.edu/programs/adventures-in-ideas/">Weekend Seminars<b class="fa caret-dropdown"></b></a>
+<ul class="dropdown-menu">
+		<li class="menu-north-carolina-politics-and-policies-then-now-a-dialogues-seminar"><a href="https://humanities.unc.edu/event/nc-politics-and-policies-then-and-now-a-dialogues-seminar/">North Carolina Politics and Policies: Then &amp; Now &#8211; A Dialogues Seminar</a></li>
+		<li class="menu-the-triumph-of-christianity-in-the-ancient-world"><a href="https://humanities.unc.edu/event/the-triumph-of-christianity-in-the-ancient-world/">The Triumph of Christianity in the Ancient World</a></li>
+		<li class="menu-scientific-revolutions-and-changing-human-values"><a href="https://humanities.unc.edu/event/scientific-revolutions-and-changing-human-values-2/">Scientific Revolutions and Changing Human Values</a></li>
+		<li class="menu-sea-power-and-its-influence-in-modern-warfare"><a href="https://humanities.unc.edu/event/sea-power-and-its-influence-in-modern-warfare/">Sea Power and Its Influence in Modern Warfare</a></li>
+		<li class="menu-tradition-and-resistance-transitions-in-indigenous-cultures-a-dialogues-seminar"><a href="https://humanities.unc.edu/event/indigenous-people-and-cultures-in-a-globalizing-era-a-dialogues-seminar/">Tradition and Resistance: Transitions in Indigenous Cultures &#8211; A Dialogues Seminar</a></li>
+		<li class="menu-in-times-of-war-and-peace-american-musicals-of-the-1940s"><a href="https://humanities.unc.edu/event/in-times-of-war-and-peace-american-musicals-of-the-1940s/">In Times of War and Peace: American Musicals of the 1940s</a></li>
+		<li class="menu-representing-the-sacred-world-religions-and-artistic-expression"><a href="https://humanities.unc.edu/event/representing-the-sacred-world-religions-and-artistic-expression/">Representing the Sacred: World Religions and Artistic Expression</a></li>
+		<li class="menu-women-in-fiction-and-film"><a href="https://humanities.unc.edu/event/women-in-fiction-and-film/">Women in Fiction and Film</a></li>
+		<li class="menu-sweatshops-and-robots-transitions-in-global-labor-a-dialogues-seminar"><a href="https://humanities.unc.edu/event/sweat-shops-and-robots-transitions-in-global-labor/">Sweatshops and Robots: Transitions in Global Labor &#8211; A Dialogues Seminar</a></li>
+		<li class="menu-italy-then-and-now-a-dialogues-seminar"><a href="https://humanities.unc.edu/event/italy-then-now-a-dialogues-seminar/">Italy: Then and Now &#8211; A Dialogues Seminar</a></li>
+		<li class="menu-seminar-recordings"><a href="https://humanities.unc.edu/programs/seminar-recordings/">Seminar Recordings</a></li>
+	</ul>
+</li>
+	<li class="dropdown-submenu menu-flyleaf-weekday-series-humanities-in-action"><a class="dropdown-toggle disabled" data-target="#" href="https://humanities.unc.edu/programs/flyleaf-books-lecture-series/humanities-in-action/">Flyleaf Weekday Series: Humanities in Action<b class="fa caret-dropdown"></b></a>
+<ul class="dropdown-menu">
+		<li class="menu-can-we-find-a-cure-for-cancer-new-challenges-and-new-opportunities"><a href="https://humanities.unc.edu/event/can-we-find-a-cure-for-cancer-new-challenges-and-new-opportunities/">Can We Find a Cure for Cancer? New Challenges and New Opportunities</a></li>
+		<li class="menu-from-obamacare-to-trumpcare-and-beyond-healthcare-reform-in-the-united-states"><a href="https://humanities.unc.edu/event/from-obamacare-to-trumpcare-and-beyond-healthcare-reform-in-the-united-states/">From Obamacare to Trumpcare and Beyond: Healthcare Reform in the United States</a></li>
+		<li class="menu-digital-health-hope-hype-and-amaras-law"><a href="https://humanities.unc.edu/event/digital-health-hope-hype-and-amaras-law/">Digital Health: Hope, Hype, and &#8220;Amara&#8217;s Law&#8221;</a></li>
+		<li class="menu-cigarette-warning-labels-the-battle-between-the-fda-and-the-tobacco-industry"><a href="https://humanities.unc.edu/event/cigarette-warning-labels-the-battle-between-the-fda-and-the-tobacco-industry/">Cigarette Warning Labels: The Battle between the FDA and the Tobacco Industry</a></li>
+		<li class="menu-food-and-health-in-america"><a href="https://humanities.unc.edu/event/food-and-health-in-america/">Food and Health in America</a></li>
+		<li class="menu-natural-disasters-and-social-vulnerability-a-global-and-local-perspective"><a href="https://humanities.unc.edu/event/natural-disasters-and-social-vulnerability-a-global-and-local-perspective/">Natural Disasters and Social Vulnerability: A Global and Local Perspective</a></li>
+		<li class="menu-precarious-work-in-a-changing-world-economy"><a href="https://humanities.unc.edu/event/precarious-work-in-a-changing-world-economy/">Precarious Work in a Changing World Economy</a></li>
+		<li class="menu-counterterrorism-in-the-age-of-trump"><a href="https://humanities.unc.edu/event/counterterrorism-in-the-age-of-trump/">Counterterrorism in the Age of Trump</a></li>
+		<li class="menu-how-should-we-inhabit-the-earth-reconciling-biodiversity-conservation-and-environmental-sustainability"><a href="https://humanities.unc.edu/event/how-should-we-inhabit-the-earth-reconciling-biodiversity-conservation-and-environmental-sustainability/">How Should We Inhabit the Earth? Reconciling Biodiversity Conservation and Environmental Sustainability</a></li>
+	</ul>
+</li>
+	<li class="dropdown-submenu menu-great-books-reading-groups"><a class="dropdown-toggle disabled" data-target="#" href="https://humanities.unc.edu/programs/weekday-programs/great-books/">Great Books Reading Groups<b class="fa caret-dropdown"></b></a>
+<ul class="dropdown-menu">
+		<li class="menu-robert-frosts-poems"><a href="https://humanities.unc.edu/event/robert-frosts-poems/">Robert Frost&#8217;s Poems</a></li>
+		<li class="menu-death-in-venice-by-thomas-mann"><a href="https://humanities.unc.edu/event/death-in-venice-by-thomas-mann/">Death in Venice by Thomas Mann</a></li>
+		<li class="menu-the-last-thing-he-wanted-by-joan-didion"><a href="https://humanities.unc.edu/event/the-last-thing-he-wanted-by-joan-didion/all/">The Last Thing He Wanted by Joan Didion</a></li>
+		<li class="menu-lincoln-speeches-by-abraham-lincoln"><a href="https://humanities.unc.edu/event/speeches-by-abraham-lincoln/all/">Lincoln Speeches by Abraham Lincoln</a></li>
+		<li class="menu-thus-spoke-zarathustra-by-friedrich-nietzsche"><a href="https://humanities.unc.edu/event/thus-spoke-zarathustra-by-friedrich-nietzsche/all/">Thus Spoke Zarathustra by Friedrich Nietzsche</a></li>
+		<li class="menu-nada-by-carmen-laforet"><a href="https://humanities.unc.edu/event/nada-by-carmen-laforet/all/">Nada by Carmen Laforet</a></li>
+	</ul>
+</li>
+	<li class="dropdown-submenu menu-humanities-happy-hour"><a class="dropdown-toggle disabled" data-target="#" href="https://humanities.unc.edu/programs/humanities-happy-hour/">Humanities Happy Hour<b class="fa caret-dropdown"></b></a>
+<ul class="dropdown-menu">
+		<li class="menu-all-senses-kickoff-next-level-and-the-multisensory-experiences-of-hip-hop-diplomacy"><a href="https://humanities.unc.edu/event/all-senses-kickoff-next-level-and-the-multisensory-experiences-of-hip-hop-diplomacy/">All Senses Kickoff: Next Level and the Multisensory Experiences of Hip-Hop Diplomacy</a></li>
+		<li class="menu-sight-seeing-trash"><a href="https://humanities.unc.edu/event/sight-seeing-trash/">Sight: Seeing Trash</a></li>
+		<li class="menu-taste-chinese-cuisine-and-taiwanese-identity"><a href="https://humanities.unc.edu/event/taste-chinese-cuisine-and-taiwanese-identity/">Taste: Chinese Cuisine and Taiwanese Identity</a></li>
+		<li class="menu-smell-courtly-perfumes-in-mughal-india"><a href="https://humanities.unc.edu/event/smell-courtly-perfumes-in-mughal-india/">Smell: Courtly Perfumes in Mughal India</a></li>
+	</ul>
+</li>
+	<li class="dropdown-submenu menu-language-lunches"><a class="dropdown-toggle disabled" data-target="#" href="https://humanities.unc.edu/programs/weekday-programs/language-lunches/">Language Lunches<b class="fa caret-dropdown"></b></a>
+<ul class="dropdown-menu">
+		<li class="menu-advanced-french-lunch"><a href="https://humanities.unc.edu/event/advanced-french-lunch/all/">Advanced French Lunch</a></li>
+		<li class="menu-intermediate-french-lunch"><a href="https://humanities.unc.edu/event/intermediate-french-lunch/all/">Intermediate French Lunch</a></li>
+		<li class="menu-german-language-lunch"><a href="https://humanities.sites.unc.edu/event/german-language-lunch/all/">German Language Lunch</a></li>
+		<li class="menu-italian-language-lunch"><a href="https://humanities.unc.edu/event/italian-language-lunch/all/">Italian Language Lunch</a></li>
+		<li class="menu-spanish-language-lunch"><a href="https://humanities.unc.edu/event/spanish-language-lunch-2/">Spanish Language Lunch</a></li>
+	</ul>
+</li>
+	<li class="dropdown-submenu menu-thursdays-at-the-friday-center"><a class="dropdown-toggle disabled" data-target="#" href="https://humanities.unc.edu/programs/weekday-programs/thursdays-2/">Thursdays at the Friday Center<b class="fa caret-dropdown"></b></a>
+<ul class="dropdown-menu">
+		<li class="menu-european-isms-and-modern-cultural-identities"><a href="https://humanities.unc.edu/event/european-isms-and-modern-cultural-identities/">European &#8220;Isms&#8221; and Modern Cultural Identities</a></li>
+		<li class="menu-the-bonaparte-family-part-i-from-corsicans-to-court"><a href="https://humanities.unc.edu/event/the-bonaparte-family-part-i-from-corsicans-to-court/">The Bonaparte Family, Part I: From Corsicans to Court</a></li>
+	</ul>
+</li>
+	<li class="dropdown-submenu menu-humanities-on-the-road"><a class="dropdown-toggle disabled" data-target="#" href="https://humanities.unc.edu/programs/regional-events/">Humanities on the Road<b class="fa caret-dropdown"></b></a>
+<ul class="dropdown-menu">
+		<li class="menu-north-carolina-then-now"><a href="https://humanities.unc.edu/event/north-carolina-then-now/">North Carolina: Then &amp; Now</a></li>
+		<li class="menu-southern-sounds-our-music-culture"><a href="https://humanities.unc.edu/event/southern-sounds-our-music-culture/">Southern Sounds: Our Music &amp; Culture</a></li>
+		<li class="menu-russia-then-now"><a href="https://humanities.unc.edu/event/russia-then-now/">Russia: Then &amp; Now</a></li>
+		<li class="menu-remembering-kristallnacht-with-dr-gerhard-weinberg"><a href="https://humanities.unc.edu/event/remembering-kristallnacht-with-dr-gerhard-weinberg/">Remembering Kristallnacht with Dr. Gerhard Weinberg</a></li>
+	</ul>
+</li>
+	<li class="dropdown-submenu menu-special-events"><a class="dropdown-toggle disabled" data-target="#" href="https://humanities.unc.edu/programs/special-event/">Special Events<b class="fa caret-dropdown"></b></a>
+<ul class="dropdown-menu">
+		<li class="menu-beyond-the-headlines-confederate-monuments-historical-memory-free-speech"><a href="https://humanities.unc.edu/event/beyond-the-headlines-confederate-monuments-historical-memory-free-speech/">Beyond the Headlines: Confederate Monuments, Historical Memory, &#038; Free Speech</a></li>
+	</ul>
+</li>
+	<li class="dropdown-submenu menu-adams-symposium"><a class="dropdown-toggle disabled" data-target="#" href="https://humanities.unc.edu/programs/adams-lecture/">Adams Symposium<b class="fa caret-dropdown"></b></a>
+<ul class="dropdown-menu">
+		<li class="menu-2017-adams-symposium"><a href="https://humanities.unc.edu/about-us/2017-e-maynard-adams-symposium-for-the-humanities/">2017 Adams Symposium</a></li>
+		<li class="menu-april-21st-event"><a href="https://humanities.unc.edu/event/the-maynard-adams-symposium-on-the-humanities-the-power-of-emotions-in-personal-and-public-life/">April 21st Event</a></li>
+		<li class="menu-april-22nd-event"><a href="https://humanities.unc.edu/event/the-maynard-adams-symposium-on-the-humanities-the-power-of-emotions-in-personal-and-public-life-2/">April 22nd Event</a></li>
+	</ul>
+</li>
+</ul>
+</li>
+<li class="dropdown menu-carolina-k-12"><a class="dropdown-toggle disabled" data-target="#" href="https://humanities.unc.edu/ck12/">Carolina K-12<b class="fa caret-dropdown"></b></a>
+<ul class="dropdown-menu">
+	<li class="menu-ck12-news-september"><a href="https://humanities.unc.edu/ck12/ck12news/">CK12 News | September</a></li>
+	<li class="menu-database-of-k-12-resources"><a target="_blank" href="http://database.civics.unc.edu#new_tab">Database of K-12 Resources</a></li>
+	<li class="menu-upcoming-trainings"><a href="https://humanities.unc.edu/ck12/upcoming-trainings/">Upcoming Trainings</a></li>
+	<li class="menu-the-daisy-edmister-teacher-support-fund"><a href="https://humanities.unc.edu/ck12/the-daisy-edmister-teacher-support-fund/">The Daisy Edmister Teacher Support Fund</a></li>
+	<li class="menu-the-william-friday-teacher-education-initiative"><a href="https://humanities.unc.edu/ck12/the-william-friday-teacher-education-initiative/">The William Friday Teacher Education Initiative</a></li>
+	<li class="menu-the-warren-a-nord-teachers-seminar"><a href="https://humanities.unc.edu/ck12/the-warren-a-nord-techers-seminar/">The Warren A. Nord Teachers&#8217; Seminar</a></li>
+	<li class="menu-library-of-congress-us-history-timebook"><a href="https://humanities.unc.edu/ck12/library-of-congress-us-history-timebook/">Library of Congress US History TimeBook</a></li>
+	<li class="menu-partner-projects"><a href="https://humanities.unc.edu/ck12/projects-partners/">Partner Projects</a></li>
+	<li class="menu-additional-resources-for-teachers"><a href="https://humanities.unc.edu/ck12/additional-resources-for-teachers/">Additional Resources for Teachers</a></li>
+</ul>
+</li>
+<li class="menu-registration"><a href="https://humanities.unc.edu/register/">Registration</a></li>
+<li class="menu-make-a-gift"><a href="https://humanities.unc.edu/make-a-gift/">Make a Gift</a></li>
+<li class="menu-contact-us"><a href="https://humanities.unc.edu/about-us/contact-us/">Contact Us</a></li>
+</ul>            </nav>
+        </div>
+    </div>
+</header>
+
+
+
+
+    </div>
+        <div class="row">
+            
+
+  
+    
+        
+    <title>Carolina Public Humanities is the outreach arm of UNC's College of Arts &amp; Sciences. We offer various types of events that are open to the public. </title>
+            </div>
+
+    <div class="wrap row" role="document">
+
+        <div class="content container">
+                        <div class="row ">
+                <main class="main col-sm-9" role="main">
+                        <div class="page-header">
+        <h1>
+            Welcome to Carolina Public Humanities        </h1>
+    </div>
+  <h2 style="text-align: center"><code id="soliloquy-slug-shortcode" class="soliloquy-code"><div class="soliloquy-outer-container" data-soliloquy-loaded="0"><div aria-live="off" id="soliloquy-container-9498" class="soliloquy-container soliloquy-transition-fade soliloquy-fade soliloquy-controls-active soliloquy-arrows-active soliloquy-default-slider soliloquy-theme-karisma" style="max-width:800px;max-height:420px;margin:0 auto 5px;"><ul id="soliloquy-9498" class="soliloquy-slider soliloquy-slides soliloquy-wrap soliloquy-clear"><li aria-hidden="true" class="soliloquy-item soliloquy-item-1 soliloquy-id-10158 soliloquy-image-slide" draggable="false" style="list-style:none;"><a href="https://humanities.unc.edu/event/sea-power-and-its-influence-in-modern-warfare/" class="soliloquy-link" title="seapower (2)"><img id="soliloquy-image-10158" class="soliloquy-image soliloquy-image-1" src="https://humanities.unc.edu/files/2017/05/seapower-2-800x420.png" width="800" height="420" alt="seapower (2)" /></a></li><li aria-hidden="true" class="soliloquy-item soliloquy-item-2 soliloquy-id-10166 soliloquy-image-slide" draggable="false" style="list-style:none;"><a href="https://humanities.unc.edu/event/women-in-fiction-and-film/" class="soliloquy-link" title="Women in Fiction &amp; Film"><img id="soliloquy-image-10166" class="soliloquy-image soliloquy-image-2 soliloquy-preload" src="https://humanities.unc.edu/wp-content/plugins/soliloquy/assets/css/images/holder.gif" width="800" height="420" data-soliloquy-src="https://humanities.unc.edu/files/2017/05/Women-in-Fiction-Film-800x420.png" alt="Women in Fiction &amp; Film" /></a></li><li aria-hidden="true" class="soliloquy-item soliloquy-item-3 soliloquy-id-10127 soliloquy-image-slide" draggable="false" style="list-style:none;"><a href="http://www.dailytarheel.com/article/2017/09/connecting-campus-community-and-state-through-the-humanities" class="soliloquy-link" title="Connecting campus, community and state through the humanities"><img id="soliloquy-image-10127" class="soliloquy-image soliloquy-image-3 soliloquy-preload" src="https://humanities.unc.edu/wp-content/plugins/soliloquy/assets/css/images/holder.gif" width="800" height="420" data-soliloquy-src="https://humanities.unc.edu/files/2017/05/Connecting-campus-community-and-state-through-the-humanities-800x420.png" alt="Connecting campus, community and state through the humanities" /></a></li><li aria-hidden="true" class="soliloquy-item soliloquy-item-4 soliloquy-id-10122 soliloquy-image-slide" draggable="false" style="list-style:none;"><a href="https://www.youtube.com/watch?v=YYGZs2QOM_Q" class="soliloquy-link" title="bth youtube"><img id="soliloquy-image-10122" class="soliloquy-image soliloquy-image-4 soliloquy-preload" src="https://humanities.unc.edu/wp-content/plugins/soliloquy/assets/css/images/holder.gif" width="800" height="420" data-soliloquy-src="https://humanities.unc.edu/files/2017/05/bth-youtube-800x420.png" alt="bth youtube" /></a></li><li aria-hidden="true" class="soliloquy-item soliloquy-item-5 soliloquy-id-9965 soliloquy-image-slide" draggable="false" style="list-style:none;"><a href="https://humanities.unc.edu/files/2017/05/fall17-reg-open.png" class="soliloquy-link" title="fall17 reg open" rel="soliloquybox9498"><img id="soliloquy-image-9965" class="soliloquy-image soliloquy-image-5 soliloquy-preload" src="https://humanities.unc.edu/wp-content/plugins/soliloquy/assets/css/images/holder.gif" width="800" height="420" data-soliloquy-src="https://humanities.unc.edu/files/2017/05/fall17-reg-open-800x420.png" alt="fall17 reg open" /></a></li><li aria-hidden="true" class="soliloquy-item soliloquy-item-6 soliloquy-id-9782 soliloquy-image-slide" draggable="false" style="list-style:none;"><a href="http://www.unc.edu/spotlight/continuity-people-purpose/" class="soliloquy-link" title="BOT"><img id="soliloquy-image-9782" class="soliloquy-image soliloquy-image-6 soliloquy-preload" src="https://humanities.unc.edu/wp-content/plugins/soliloquy/assets/css/images/holder.gif" width="800" height="420" data-soliloquy-src="https://humanities.unc.edu/files/2017/05/BOT-800x420.png" alt="BOT" /></a></li></ul></div><noscript><style type="text/css" scoped>#soliloquy-container-9498{opacity:1}#soliloquy-container-9498 li > .soliloquy-caption{display:none}#soliloquy-container-9498 li:first-child > .soliloquy-caption{display:block}</style><div class="soliloquy-no-js" style="display:none;visibility:hidden;height:0;line-height:0;opacity:0;"><img class="soliloquy-image soliloquy-no-js-image" src="https://humanities.unc.edu/files/2017/05/seapower-2-800x420.png" alt="seapower (2)" /><img class="soliloquy-image soliloquy-no-js-image" src="https://humanities.unc.edu/files/2017/05/Women-in-Fiction-Film-800x420.png" alt="Women in Fiction &amp; Film" /><img class="soliloquy-image soliloquy-no-js-image" src="https://humanities.unc.edu/files/2017/05/Connecting-campus-community-and-state-through-the-humanities-800x420.png" alt="Connecting campus, community and state through the humanities" /><img class="soliloquy-image soliloquy-no-js-image" src="https://humanities.unc.edu/files/2017/05/bth-youtube-800x420.png" alt="bth youtube" /><img class="soliloquy-image soliloquy-no-js-image" src="https://humanities.unc.edu/files/2017/05/fall17-reg-open-800x420.png" alt="fall17 reg open" /><img class="soliloquy-image soliloquy-no-js-image" src="https://humanities.unc.edu/files/2017/05/BOT-800x420.png" alt="BOT" /></div></noscript></div></code></h2>
+<h3 style="text-align: center"><hr class=" rule-shadow osc-rule" /></h3>
+<div class="row ">
+<div class="col-lg-4 col-md-12 col-xs-12 col-sm-12">
+<h4><strong><a href="http://humanities.unc.edu/programs/">Attend a Program</a></strong></h4>
+<p><a href="https://humanities.unc.edu/files/2013/07/Spelling-Bee43.jpg"><img class="alignnone wp-image-4996 size-medium" src="https://humanities.unc.edu/files/2013/07/Spelling-Bee43-300x200.jpg" alt="Spelling Bee43" width="300" height="200" /></a></p>
+<p>Embodying the university&#8217;s mission to extend the resources of the University to all citizens and community members of North Carolina, Carolina Public Humanities offers engaging and innovative public seminars and lectures on a variety of topics and themes throughout the year. Our programs draw upon the humanities to nurture a deeper understanding of history and culture, enrich the life of the mind, and contribute to the development of a more humane world. To learn more about our upcoming events and access registration information, visit <a title="Programs." href="http://humanities.unc.edu/programs/"><strong>Programs</strong></a>.</div>
+<div class="col-lg-4 col-md-12 col-xs-12 col-sm-12">
+<h4><strong><a title="Explore Our K-12 Resources" href="http://humanities.unc.edu/civics/">Explore Our K-12 Resources</a><br />
+</strong></h4>
+<p><a href="https://humanities.unc.edu/files/2011/04/IMG_6138.jpg"><img class="alignnone wp-image-7507 size-medium" src="https://humanities.unc.edu/files/2011/04/IMG_6138-300x200.jpg" alt="img_6138" width="300" height="200" srcset="https://humanities.unc.edu/files/2011/04/IMG_6138-300x200.jpg 300w, https://humanities.unc.edu/files/2011/04/IMG_6138-768x512.jpg 768w, https://humanities.unc.edu/files/2011/04/IMG_6138-1024x683.jpg 1024w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p><a href="http://carolinak12.org/"><strong>Carolina K-12</strong></a>, Carolina Public Humanities&#8217; teacher outreach project, offers quality professional development programs and curriculum to North Carolina educators. Our teacher-centered events include access to scholars on key topics, innovative lesson plans, and interactive pedagogical training. We also offer an online <strong><a href="http://k12database.unc.edu/">Database of K-12 Resources</a></strong>, featuring hundreds of ready-to-implement lessons, Power Points and activities. To learn more about our opportunities for teachers and to browse our K-12 resources, click <strong><a href="http://humanities.unc.edu/civics/">here</a></strong>.</div>
+<div class="col-lg-4 col-md-12 col-xs-12 col-sm-12">
+<h4><strong><a title="Support Our Work" href="http://humanities.unc.edu/make-a-gift/">Support Our Work</a><br />
+</strong></h4>
+<p><a href="https://humanities.unc.edu/files/2011/04/oct10eventfoltkramer.jpg"><img class="alignnone size-medium wp-image-8714" src="https://humanities.unc.edu/files/2011/04/oct10eventfoltkramer-300x200.jpg" alt="oct10eventfoltkramer" width="300" height="200" srcset="https://humanities.unc.edu/files/2011/04/oct10eventfoltkramer-300x200.jpg 300w, https://humanities.unc.edu/files/2011/04/oct10eventfoltkramer-768x512.jpg 768w, https://humanities.unc.edu/files/2011/04/oct10eventfoltkramer-1024x683.jpg 1024w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>Our programs would not be possible without your generous support. Gifts of all sizes help ensure our programs remain accessible, providing all North Carolinian&#8217;s access to engaging scholarship and quality opportunities for life-long learning at Carolina. In addition, private funds are crucial in supporting the high-quality professional development and curriculum we provide at no cost for our state’s K-12 teachers. For more information regarding giving to the Program, or to inquire about volunteer opportunities, click <strong><a title="here." href="http://humanities.unc.edu/make-a-gift/">here</a></strong>.</div>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+  
+
+
+                </main><!-- /.main -->
+                                                    <aside class="sidebar col-sm-3" role="complementary">
+                        <section class="widget tribe-mini-calendar-4 tribe_mini_calendar_widget"><h3>Events Calendar</h3>
+<!-- Removing this wrapper class will break the calendar JavaScript, please avoid and extend as needed -->
+
+<div class="tribe-mini-calendar-wrapper">
+
+	<!-- Grid -->
+	
+<div class="tribe-mini-calendar-grid-wrapper">
+	<table class="tribe-mini-calendar"  data-count="3" data-eventDate="2017-10-01" data-tax-query="" data-nonce="54c8c5ea74">
+				<thead class="tribe-mini-calendar-nav">
+		<tr>
+			<td colspan="7">
+				<div>
+					<a class="tribe-mini-calendar-nav-link prev-month" href="#" data-month="2017-09-01" title="September"><span>&laquo;</span></a>					<span id="tribe-mini-calendar-month-0">October 2017</span>
+					<a class="tribe-mini-calendar-nav-link next-month" href="#" data-month="2017-11-01" title="November"><span>&raquo;</span></a>					<img id="ajax-loading-mini" src="https://humanities.unc.edu/wp-content/plugins/the-events-calendar/src/resources/images/tribe-loading.gif" alt="loading..." />
+				</div>
+			</td>
+		</tr>
+		</thead>
+						<thead>
+		<tr>
+							<th class="tribe-mini-calendar-dayofweek">S</th>
+							<th class="tribe-mini-calendar-dayofweek">M</th>
+							<th class="tribe-mini-calendar-dayofweek">T</th>
+							<th class="tribe-mini-calendar-dayofweek">W</th>
+							<th class="tribe-mini-calendar-dayofweek">T</th>
+							<th class="tribe-mini-calendar-dayofweek">F</th>
+							<th class="tribe-mini-calendar-dayofweek">S</th>
+			
+		</tr>
+		</thead>
+
+
+		<tbody>
+
+		<tr>
+									<td class="tribe-events-thismonth tribe-events-past mobile-trigger tribe-event-day-01">
+				
+
+
+	<div id="daynum-1-0">
+		<span class="tribe-mini-calendar-no-event">1</span>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-past tribe-events-has-events mobile-trigger tribe-event-day-02">
+				
+
+
+	<div id="daynum-2-0">
+		<a href="#" data-day="2017-10-02" class="tribe-mini-calendar-day-link">2</a>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-past tribe-events-has-events mobile-trigger tribe-event-day-03">
+				
+
+
+	<div id="daynum-3-0">
+		<a href="#" data-day="2017-10-03" class="tribe-mini-calendar-day-link">3</a>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-past mobile-trigger tribe-event-day-04">
+				
+
+
+	<div id="daynum-4-0">
+		<span class="tribe-mini-calendar-no-event">4</span>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-past mobile-trigger tribe-event-day-05 tribe-events-right">
+				
+
+
+	<div id="daynum-5-0">
+		<span class="tribe-mini-calendar-no-event">5</span>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-present tribe-events-has-events mobile-trigger tribe-event-day-06 tribe-events-right">
+				
+
+
+	<div id="daynum-6-0">
+		<a href="#" data-day="2017-10-06" class="tribe-mini-calendar-day-link">6</a>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future tribe-events-has-events mobile-trigger tribe-event-day-07 tribe-events-right">
+				
+
+
+	<div id="daynum-7-0">
+		<a href="#" data-day="2017-10-07" class="tribe-mini-calendar-day-link">7</a>	</div>
+
+			</td>
+								</tr>
+		<tr>
+						<td class="tribe-events-thismonth tribe-events-future mobile-trigger tribe-event-day-08">
+				
+
+
+	<div id="daynum-8-0">
+		<span class="tribe-mini-calendar-no-event">8</span>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future mobile-trigger tribe-event-day-09">
+				
+
+
+	<div id="daynum-9-0">
+		<span class="tribe-mini-calendar-no-event">9</span>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future tribe-events-has-events mobile-trigger tribe-event-day-10">
+				
+
+
+	<div id="daynum-10-0">
+		<a href="#" data-day="2017-10-10" class="tribe-mini-calendar-day-link">10</a>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future tribe-events-has-events mobile-trigger tribe-event-day-11">
+				
+
+
+	<div id="daynum-11-0">
+		<a href="#" data-day="2017-10-11" class="tribe-mini-calendar-day-link">11</a>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future mobile-trigger tribe-event-day-12 tribe-events-right">
+				
+
+
+	<div id="daynum-12-0">
+		<span class="tribe-mini-calendar-no-event">12</span>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future tribe-events-has-events mobile-trigger tribe-event-day-13 tribe-events-right">
+				
+
+
+	<div id="daynum-13-0">
+		<a href="#" data-day="2017-10-13" class="tribe-mini-calendar-day-link">13</a>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future tribe-events-has-events mobile-trigger tribe-event-day-14 tribe-events-right">
+				
+
+
+	<div id="daynum-14-0">
+		<a href="#" data-day="2017-10-14" class="tribe-mini-calendar-day-link">14</a>	</div>
+
+			</td>
+								</tr>
+		<tr>
+						<td class="tribe-events-thismonth tribe-events-future mobile-trigger tribe-event-day-15">
+				
+
+
+	<div id="daynum-15-0">
+		<span class="tribe-mini-calendar-no-event">15</span>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future mobile-trigger tribe-event-day-16">
+				
+
+
+	<div id="daynum-16-0">
+		<span class="tribe-mini-calendar-no-event">16</span>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future tribe-events-has-events mobile-trigger tribe-event-day-17">
+				
+
+
+	<div id="daynum-17-0">
+		<a href="#" data-day="2017-10-17" class="tribe-mini-calendar-day-link">17</a>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future tribe-events-has-events mobile-trigger tribe-event-day-18">
+				
+
+
+	<div id="daynum-18-0">
+		<a href="#" data-day="2017-10-18" class="tribe-mini-calendar-day-link">18</a>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future tribe-events-has-events mobile-trigger tribe-event-day-19 tribe-events-right">
+				
+
+
+	<div id="daynum-19-0">
+		<a href="#" data-day="2017-10-19" class="tribe-mini-calendar-day-link">19</a>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future mobile-trigger tribe-event-day-20 tribe-events-right">
+				
+
+
+	<div id="daynum-20-0">
+		<span class="tribe-mini-calendar-no-event">20</span>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future tribe-events-has-events mobile-trigger tribe-event-day-21 tribe-events-right">
+				
+
+
+	<div id="daynum-21-0">
+		<a href="#" data-day="2017-10-21" class="tribe-mini-calendar-day-link">21</a>	</div>
+
+			</td>
+								</tr>
+		<tr>
+						<td class="tribe-events-thismonth tribe-events-future mobile-trigger tribe-event-day-22">
+				
+
+
+	<div id="daynum-22-0">
+		<span class="tribe-mini-calendar-no-event">22</span>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future mobile-trigger tribe-event-day-23">
+				
+
+
+	<div id="daynum-23-0">
+		<span class="tribe-mini-calendar-no-event">23</span>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future tribe-events-has-events mobile-trigger tribe-event-day-24">
+				
+
+
+	<div id="daynum-24-0">
+		<a href="#" data-day="2017-10-24" class="tribe-mini-calendar-day-link">24</a>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future tribe-events-has-events mobile-trigger tribe-event-day-25">
+				
+
+
+	<div id="daynum-25-0">
+		<a href="#" data-day="2017-10-25" class="tribe-mini-calendar-day-link">25</a>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future mobile-trigger tribe-event-day-26 tribe-events-right">
+				
+
+
+	<div id="daynum-26-0">
+		<span class="tribe-mini-calendar-no-event">26</span>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future mobile-trigger tribe-event-day-27 tribe-events-right">
+				
+
+
+	<div id="daynum-27-0">
+		<span class="tribe-mini-calendar-no-event">27</span>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future tribe-events-has-events mobile-trigger tribe-event-day-28 tribe-events-right">
+				
+
+
+	<div id="daynum-28-0">
+		<a href="#" data-day="2017-10-28" class="tribe-mini-calendar-day-link">28</a>	</div>
+
+			</td>
+								</tr>
+		<tr>
+						<td class="tribe-events-thismonth tribe-events-future mobile-trigger tribe-event-day-29">
+				
+
+
+	<div id="daynum-29-0">
+		<span class="tribe-mini-calendar-no-event">29</span>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future tribe-events-has-events mobile-trigger tribe-event-day-30">
+				
+
+
+	<div id="daynum-30-0">
+		<a href="#" data-day="2017-10-30" class="tribe-mini-calendar-day-link">30</a>	</div>
+
+			</td>
+									<td class="tribe-events-thismonth tribe-events-future mobile-trigger tribe-event-day-31">
+				
+
+
+	<div id="daynum-31-0">
+		<span class="tribe-mini-calendar-no-event">31</span>	</div>
+
+			</td>
+									<td class="tribe-events-othermonth tribe-events-future tribe-events-has-events mobile-trigger tribe-event-day-01">
+				
+
+
+	<div id="daynum-1-1">
+		<a href="#" data-day="2017-11-01" class="tribe-mini-calendar-day-link">1</a>	</div>
+
+			</td>
+									<td class="tribe-events-othermonth tribe-events-future mobile-trigger tribe-event-day-02 tribe-events-right">
+				
+
+
+	<div id="daynum-2-1">
+		<span class="tribe-mini-calendar-no-event">2</span>	</div>
+
+			</td>
+									<td class="tribe-events-othermonth tribe-events-future mobile-trigger tribe-event-day-03 tribe-events-right">
+				
+
+
+	<div id="daynum-3-1">
+		<span class="tribe-mini-calendar-no-event">3</span>	</div>
+
+			</td>
+									<td class="tribe-events-othermonth tribe-events-future tribe-events-has-events mobile-trigger tribe-event-day-04 tribe-events-right">
+				
+
+
+	<div id="daynum-4-1">
+		<a href="#" data-day="2017-11-04" class="tribe-mini-calendar-day-link">4</a>	</div>
+
+			</td>
+					</tr>
+		</tbody>
+			</table>
+</div> <!-- .tribe-mini-calendar-grid-wrapper -->
+<script type="application/ld+json">
+[{"@context":"http://schema.org","@type":"Event","name":"Advanced French Lunch","description":"&lt;p&gt;Featuring Jessica Tanner, Assistant Professor of French Interested in polishing or refreshing your foreign language speaking skills in a warm and welcoming environment? Join UNC faculty discussion leaders at Weathervane restaurant in Chapel Hill for a lunch where participants are &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/advanced-french-lunch/2017-10-02/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","image":"https://humanities.unc.edu/files/2016/11/eiffel-tower-e1501364512437.jpg","url":"https://humanities.unc.edu/event/advanced-french-lunch/2017-10-02/","startDate":"2017-10-02 17:00:00","endDate":"2017-10-02 18:30:00","location":{"@type":"Place","name":"Weathervane Restaurant","description":"","url":"https://humanities.unc.edu/venue/weathervane-restaurant/","address":{"streetAddress":"201 S Estes Dr","addressLocality":"Chapel Hill","addressRegion":"NC","postalCode":"27514","addressCountry":"United States"},"geo":{"@type":"GeoCoordinates","latitude":35.9278462,"longitude":-79.0268783},"telephone":"(919) 929-9466","sameAs":"http://www.southernseason.com/restaurant/chapel-hill/"},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"The Last Thing He Wanted by Joan Didion","description":"&lt;p&gt;featuring Henry Veggian, Senior Lecturer in English and Comparative Literature &quot;The legendary author of Play It As It Lays and Slouching Toward Bethlehem trains her eye on the far frontiers of the Monroe Doctrine, where history dissolves into conspiracy (Dallas &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/the-last-thing-he-wanted-by-joan-didion/2017-10-03/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","image":"https://humanities.unc.edu/files/2017/07/Didion.jpg","url":"https://humanities.unc.edu/event/the-last-thing-he-wanted-by-joan-didion/2017-10-03/","startDate":"2017-10-03 14:00:00","endDate":"2017-10-03 16:00:00","location":{"@type":"Place","name":"Flyleaf Books","description":"","url":"https://humanities.unc.edu/venue/flyleaf-books/","address":{"streetAddress":"752 Martin Luther King Jr. Blvd","addressLocality":"Chapel Hill","addressRegion":"NC","postalCode":"27514","addressCountry":"United States"},"geo":{"@type":"GeoCoordinates","latitude":35.9243634,"longitude":-79.0533364},"telephone":"(919) 942-7373","sameAs":"http://www.flyleafbooks.com/"},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"Cigarette Warning Labels: The Battle between the FDA and the Tobacco Industry","description":"&lt;p&gt;Seth M. Noar, Professor, School of Media and Journalism and Lineberger Comprehensive Cancer Center Over 100 countries and jurisdictions throughout the world have implemented graphic warnings on cigarette packs to reduce tobacco use. In the US, the FDA has been &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/cigarette-warning-labels-the-battle-between-the-fda-and-the-tobacco-industry/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","image":"https://humanities.unc.edu/files/2017/07/Pack-of-cigarettes.jpg","url":"https://humanities.unc.edu/event/cigarette-warning-labels-the-battle-between-the-fda-and-the-tobacco-industry/","startDate":"2017-10-03 20:30:00","endDate":"2017-10-03 22:00:00","location":{"@type":"Place","name":"Flyleaf Books","description":"","url":"https://humanities.unc.edu/venue/flyleaf-books/","address":{"streetAddress":"752 Martin Luther King Jr. Blvd","addressLocality":"Chapel Hill","addressRegion":"NC","postalCode":"27514","addressCountry":"United States"},"geo":{"@type":"GeoCoordinates","latitude":35.9243634,"longitude":-79.0533364},"telephone":"(919) 942-7373","sameAs":"http://www.flyleafbooks.com/"},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"Scientific Revolutions and Changing Human Values","description":"&lt;p&gt;Revolutions in scientific knowledge and technologies have profoundly influenced modern human lives, ideas, and ethical values. This seminar will examine how scientific revolutions have transformed human identities and traditional beliefs. Philosopher Marc Lange will introduce the general concept of scientific &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/scientific-revolutions-and-changing-human-values-2/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","image":"https://humanities.unc.edu/files/2017/07/copernicus21.jpg","url":"https://humanities.unc.edu/event/scientific-revolutions-and-changing-human-values-2/","startDate":"2017-10-06 20:30:00","endDate":"2017-10-07 17:00:00","location":{"@type":"Place","name":"Archie K. Davis Conference Center","description":"","url":"https://humanities.unc.edu/venue/archie-k-davis-conference-center/","address":{"streetAddress":"12 Davis Dr","addressLocality":"Durham ","addressRegion":"NC","postalCode":"27709","addressCountry":"United States"},"geo":{"@type":"GeoCoordinates","latitude":35.8969712,"longitude":-78.8605469},"telephone":"(919) 549-8181","sameAs":"http://www.rtp.org/events/reserve-conference-room/"},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"Food and Health in America","description":"&lt;p&gt;Alice Ammerman, Mildred Kaufman Professor of Nutrition and Director, Center for Health Promotion and Disease Prevention Everyone eats, but access to good food often depends on the eater\u2019s community, income, and age. In this talk, a leading expert on food &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/food-and-health-in-america/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","image":"https://humanities.unc.edu/files/2017/07/healthyfood.jpg","url":"https://humanities.unc.edu/event/food-and-health-in-america/","startDate":"2017-10-10 20:30:00","endDate":"2017-10-10 22:00:00","location":{"@type":"Place","name":"Flyleaf Books","description":"","url":"https://humanities.unc.edu/venue/flyleaf-books/","address":{"streetAddress":"752 Martin Luther King Jr. Blvd","addressLocality":"Chapel Hill","addressRegion":"NC","postalCode":"27514","addressCountry":"United States"},"geo":{"@type":"GeoCoordinates","latitude":35.9243634,"longitude":-79.0533364},"telephone":"(919) 942-7373","sameAs":"http://www.flyleafbooks.com/"},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"Speeches by Abraham Lincoln","description":"&lt;p&gt;featuring Rachel Gurvich, Clinical Assistant Professor of Law &quot;Ranging from finely honed legal argument to wry and sometimes savage humor, the writings collected in this volume are at once a literary testament of the greatest writer ever to occupy the &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/speeches-by-abraham-lincoln/2017-10-11/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","image":"https://humanities.unc.edu/files/2017/07/Lincoln-2-e1502918805517.jpg","url":"https://humanities.unc.edu/event/speeches-by-abraham-lincoln/2017-10-11/","startDate":"2017-10-11 14:00:00","endDate":"2017-10-11 16:00:00","location":{"@type":"Place","name":"Flyleaf Books","description":"","url":"https://humanities.unc.edu/venue/flyleaf-books/","address":{"streetAddress":"752 Martin Luther King Jr. Blvd","addressLocality":"Chapel Hill","addressRegion":"NC","postalCode":"27514","addressCountry":"United States"},"geo":{"@type":"GeoCoordinates","latitude":35.9243634,"longitude":-79.0533364},"telephone":"(919) 942-7373","sameAs":"http://www.flyleafbooks.com/"},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"Sea Power and its Influence in Modern Warfare","description":"&lt;p&gt;The military significance of sea power evolved rapidly after modern navies changed from sailing ships to ships that were powered by steam and other fuels. This seminar will focus on the naval aspects of modern warfare, with particular attention to &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/sea-power-and-its-influence-in-modern-warfare/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","image":"https://humanities.unc.edu/files/2017/07/seapower.jpg","url":"https://humanities.unc.edu/event/sea-power-and-its-influence-in-modern-warfare/","startDate":"2017-10-13 20:30:00","endDate":"2017-10-14 17:00:00","location":{"@type":"Place","name":"Chapel Hill Campus","description":"","url":"https://humanities.unc.edu/venue/chapel-hill-campus/","address":{"streetAddress":"Please Contact Humanities Program for exact location"},"telephone":"","sameAs":""},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"Italian Language Lunch","description":"&lt;p&gt;Featuring Amy Chambless, Teaching Associate Professor of Italian Interested in polishing or refreshing your foreign language speaking skills in a warm and welcoming environment? Join UNC faculty discussion leaders at Weathervane restaurant in Chapel Hill for a lunch where participants &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/italian-language-lunch/2017-10-17/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","image":"https://humanities.unc.edu/files/2016/11/coliseum_of_rome_italy-e1480534326258.jpg","url":"https://humanities.unc.edu/event/italian-language-lunch/2017-10-17/","startDate":"2017-10-17 12:00:00","endDate":"2017-10-17 13:30:00","location":{"@type":"Place","name":"Weathervane Restaurant","description":"","url":"https://humanities.unc.edu/venue/weathervane-restaurant/","address":{"streetAddress":"201 S Estes Dr","addressLocality":"Chapel Hill","addressRegion":"NC","postalCode":"27514","addressCountry":"United States"},"geo":{"@type":"GeoCoordinates","latitude":35.9278462,"longitude":-79.0268783},"telephone":"(919) 929-9466","sameAs":"http://www.southernseason.com/restaurant/chapel-hill/"},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"Natural Disasters and Social Vulnerability: A Global and Local Perspective","description":"&lt;p&gt;Gavin Smith, Research Professor of City and Regional Planning and Director, US Department of Homeland Security\\'s Coastal Resilience Center of Excellence With climate change predicted to increase the incidence of natural disasters, communities need to prepare to face the challenges &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/natural-disasters-and-social-vulnerability-a-global-and-local-perspective/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","image":"https://humanities.unc.edu/files/2017/07/AP_Hurricane_Matthew_NC1_MEM_161011_4x3_992-e1501346191138.jpg","url":"https://humanities.unc.edu/event/natural-disasters-and-social-vulnerability-a-global-and-local-perspective/","startDate":"2017-10-17 20:30:00","endDate":"2017-10-17 22:00:00","location":{"@type":"Place","name":"Flyleaf Books","description":"","url":"https://humanities.unc.edu/venue/flyleaf-books/","address":{"streetAddress":"752 Martin Luther King Jr. Blvd","addressLocality":"Chapel Hill","addressRegion":"NC","postalCode":"27514","addressCountry":"United States"},"geo":{"@type":"GeoCoordinates","latitude":35.9243634,"longitude":-79.0533364},"telephone":"(919) 942-7373","sameAs":"http://www.flyleafbooks.com/"},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"Speeches by Abraham Lincoln","description":"&lt;p&gt;featuring Rachel Gurvich, Clinical Assistant Professor of Law &quot;Ranging from finely honed legal argument to wry and sometimes savage humor, the writings collected in this volume are at once a literary testament of the greatest writer ever to occupy the &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/speeches-by-abraham-lincoln/2017-10-18/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","image":"https://humanities.unc.edu/files/2017/07/Lincoln-2-e1502918805517.jpg","url":"https://humanities.unc.edu/event/speeches-by-abraham-lincoln/2017-10-18/","startDate":"2017-10-18 14:00:00","endDate":"2017-10-18 16:00:00","location":{"@type":"Place","name":"Flyleaf Books","description":"","url":"https://humanities.unc.edu/venue/flyleaf-books/","address":{"streetAddress":"752 Martin Luther King Jr. Blvd","addressLocality":"Chapel Hill","addressRegion":"NC","postalCode":"27514","addressCountry":"United States"},"geo":{"@type":"GeoCoordinates","latitude":35.9243634,"longitude":-79.0533364},"telephone":"(919) 942-7373","sameAs":"http://www.flyleafbooks.com/"},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"Taste: Chinese Cuisine and Taiwanese Identity","description":"&lt;p&gt;featuring Michelle King, Associate Professor of History Carolina Public Humanities and the Institute for the Arts and Humanities (IAH) are teaming up to bring you\u00a0Humanities Happy Hour. Starting this fall, Happy Hours will feature the scholars who have been IAH &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/taste-chinese-cuisine-and-taiwanese-identity/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","image":"https://humanities.unc.edu/files/2017/07/taiwan-e1501363613270.jpg","url":"https://humanities.unc.edu/event/taste-chinese-cuisine-and-taiwanese-identity/","startDate":"2017-10-18 23:00:00","endDate":"2017-10-19 00:00:00","location":{"@type":"Place","name":"Top of the Hill Back Bar","description":"","url":"https://humanities.unc.edu/venue/top-of-the-hill-back-bar/","address":{"streetAddress":"100 East Franklin St","addressLocality":"Chapel Hill","addressRegion":"NC","postalCode":"27514","addressCountry":"United States"},"geo":{"@type":"GeoCoordinates","latitude":35.9129612,"longitude":-79.0553089},"telephone":"919-929-8676","sameAs":"http://www.thetopofthehill.com/back-bar2/#back-bar"},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"Southern Sounds: Our Music &amp; Culture","description":"&lt;p&gt;In Collaboration with Carteret Community College This seminar will feature two scholars exploring one of the great cultural contributions of the South: our music! UNC Professor of Music Jocelyn Neal will present Song of the South:\u00a0 Assimilation and Secession in &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/southern-sounds-our-music-culture/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","url":"https://humanities.unc.edu/event/southern-sounds-our-music-culture/","startDate":"2017-10-19 15:00:00","endDate":"2017-10-19 20:00:00","location":{"@type":"Place","name":"Carteret Community College","description":"","url":"https://humanities.unc.edu/venue/carteret-community-college/","address":{"streetAddress":"3505 Arendell St. ","addressLocality":"Morehead City","addressRegion":"NC","postalCode":"28557","addressCountry":"United States"},"geo":{"@type":"GeoCoordinates","latitude":34.723008,"longitude":-76.756593},"telephone":"(252) 222-6000","sameAs":"http://www.carteret.edu/about-carteret/"},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"*Cancelled* Tradition and Resistance: Transitions in Indigenous Cultures &#8211; A Dialogues Seminar","description":"&lt;p&gt;*Unfortunately, due to unforeseen circumstances, this Dialogue Seminar has been cancelled* &nbsp; In collaboration with the Institute for the Study of the Americas Global economic and cultural changes have profoundly affected indigenous cultures throughout the Americas, but these changes have &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/indigenous-people-and-cultures-in-a-globalizing-era-a-dialogues-seminar/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","image":"https://humanities.unc.edu/files/2017/07/cherokee_powwow-e1501189247285.jpg","url":"https://humanities.unc.edu/event/indigenous-people-and-cultures-in-a-globalizing-era-a-dialogues-seminar/","startDate":"2017-10-21 13:00:00","endDate":"2017-10-21 16:30:00","location":{"@type":"Place","name":"Chapel Hill Campus","description":"","url":"https://humanities.unc.edu/venue/chapel-hill-campus/","address":{"streetAddress":"Please Contact Humanities Program for exact location"},"telephone":"","sameAs":""},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"Intermediate French Lunch","description":"&lt;p&gt;Interested in polishing or refreshing your foreign language speaking skills in a warm and welcoming environment? Join UNC faculty discussion leaders at Weathervane restaurant in Chapel Hill for a lunch where participants are encouraged to speak\u00a0only\u00a0in a foreign language. All &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/intermediate-french-lunch/2017-10-24/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","url":"https://humanities.unc.edu/event/intermediate-french-lunch/2017-10-24/","startDate":"2017-10-24 17:00:00","endDate":"2017-10-24 18:30:00","location":{"@type":"Place","name":"Weathervane Restaurant","description":"","url":"https://humanities.unc.edu/venue/weathervane-restaurant/","address":{"streetAddress":"201 S Estes Dr","addressLocality":"Chapel Hill","addressRegion":"NC","postalCode":"27514","addressCountry":"United States"},"geo":{"@type":"GeoCoordinates","latitude":35.9278462,"longitude":-79.0268783},"telephone":"(919) 929-9466","sameAs":"http://www.southernseason.com/restaurant/chapel-hill/"},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"Precarious Work in a Changing World Economy","description":"&lt;p&gt;Arne L. Kalleberg, Kenan Distinguished Professor of Sociology Major changes have engulfed the employment systems in virtually all advanced capitalist nations. Work has become more uncertain, unstable and insecure, and workers receive fewer social benefits. This talk will examine how &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/precarious-work-in-a-changing-world-economy/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","image":"https://humanities.unc.edu/files/2017/07/precarious-work-e1501346385172.png","url":"https://humanities.unc.edu/event/precarious-work-in-a-changing-world-economy/","startDate":"2017-10-24 20:30:00","endDate":"2017-10-24 22:00:00","location":{"@type":"Place","name":"Flyleaf Books","description":"","url":"https://humanities.unc.edu/venue/flyleaf-books/","address":{"streetAddress":"752 Martin Luther King Jr. Blvd","addressLocality":"Chapel Hill","addressRegion":"NC","postalCode":"27514","addressCountry":"United States"},"geo":{"@type":"GeoCoordinates","latitude":35.9243634,"longitude":-79.0533364},"telephone":"(919) 942-7373","sameAs":"http://www.flyleafbooks.com/"},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"Thus Spoke Zarathustra by Friedrich Nietzsche","description":"&lt;p&gt;featuring Gabriel Trop, Associate Professor of German &quot;Nietzsche was one of the most revolutionary and subversive thinkers in Western philosophy, and Thus Spoke Zarathustra remains his most famous and influential work. It describes how the ancient Persian prophet Zarathustra descends &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/thus-spoke-zarathustra-by-friedrich-nietzsche/2017-10-25/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","image":"https://humanities.unc.edu/files/2017/07/Nietzsche-1-e1501184412865.jpg","url":"https://humanities.unc.edu/event/thus-spoke-zarathustra-by-friedrich-nietzsche/2017-10-25/","startDate":"2017-10-25 15:00:00","endDate":"2017-10-25 17:00:00","location":{"@type":"Place","name":"Flyleaf Books","description":"","url":"https://humanities.unc.edu/venue/flyleaf-books/","address":{"streetAddress":"752 Martin Luther King Jr. Blvd","addressLocality":"Chapel Hill","addressRegion":"NC","postalCode":"27514","addressCountry":"United States"},"geo":{"@type":"GeoCoordinates","latitude":35.9243634,"longitude":-79.0533364},"telephone":"(919) 942-7373","sameAs":"http://www.flyleafbooks.com/"},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"In Times of War and Peace: American Musicals of the 1940s","description":"&lt;p&gt;Tim Carter returns to the Adventures in Ideas stage with the second installment of his decade-by-decade examination of American Musicals. This fall he takes on the 1940s. Whether and how American musicals on stage or screen should respond to World &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/in-times-of-war-and-peace-american-musicals-of-the-1940s/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","image":"https://humanities.unc.edu/files/2017/07/Poster-Anchors-Aweigh_01-e1501254079785.jpg","url":"https://humanities.unc.edu/event/in-times-of-war-and-peace-american-musicals-of-the-1940s/","startDate":"2017-10-28 13:00:00","endDate":"2017-10-28 20:30:00","location":{"@type":"Place","name":"Chapel Hill Campus","description":"","url":"https://humanities.unc.edu/venue/chapel-hill-campus/","address":{"streetAddress":"Please Contact Humanities Program for exact location"},"telephone":"","sameAs":""},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"Spanish Language Lunch","description":"&lt;p&gt;Featuring Cristina Carrasco, Teaching Associate Professor of Spanish\u00a0 Interested in polishing or refreshing your foreign language speaking skills in a warm and welcoming environment? Join UNC faculty discussion leaders at Weathervane restaurant in Chapel Hill for a lunch where participants &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/spanish-language-lunch-2/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","image":"https://humanities.unc.edu/files/2016/11/hola-e1480533110517.jpeg","url":"https://humanities.unc.edu/event/spanish-language-lunch-2/","startDate":"2017-10-30 17:30:00","endDate":"2017-10-30 18:30:00","location":{"@type":"Place","name":"Weathervane Restaurant","description":"","url":"https://humanities.unc.edu/venue/weathervane-restaurant/","address":{"streetAddress":"201 S Estes Dr","addressLocality":"Chapel Hill","addressRegion":"NC","postalCode":"27514","addressCountry":"United States"},"geo":{"@type":"GeoCoordinates","latitude":35.9278462,"longitude":-79.0268783},"telephone":"(919) 929-9466","sameAs":"http://www.southernseason.com/restaurant/chapel-hill/"},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"Russia: Then &amp; Now","description":"&lt;p&gt;In Collaboration with Wayne Community College What led to the collapse of the Romanov Dynasty after 300 years? Discover the social polarization that unfolded afterwards. What challenges does Russia face now? What roles do President Putin\\'s policies and the Russian &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/russia-then-now/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","url":"https://humanities.unc.edu/event/russia-then-now/","startDate":"2017-10-30 21:00:00","endDate":"2017-10-31 00:00:00","location":{"@type":"Place","name":"Wayne Community College","description":"","url":"https://humanities.unc.edu/venue/wayne-community-college/","address":{"streetAddress":"3000 Wayne Memorial Dr","addressLocality":"Goldsboro","addressRegion":"NC","postalCode":"27534","addressCountry":"United States"},"geo":{"@type":"GeoCoordinates","latitude":35.4030535,"longitude":-77.9458926},"telephone":"(919) 735-5151","sameAs":"http://www.waynecc.edu/foundation/"},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"Thus Spoke Zarathustra by Friedrich Nietzsche","description":"&lt;p&gt;featuring Gabriel Trop, Associate Professor of German &quot;Nietzsche was one of the most revolutionary and subversive thinkers in Western philosophy, and Thus Spoke Zarathustra remains his most famous and influential work. It describes how the ancient Persian prophet Zarathustra descends &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/thus-spoke-zarathustra-by-friedrich-nietzsche/2017-11-01/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","image":"https://humanities.unc.edu/files/2017/07/Nietzsche-1-e1501184412865.jpg","url":"https://humanities.unc.edu/event/thus-spoke-zarathustra-by-friedrich-nietzsche/2017-11-01/","startDate":"2017-11-01 15:00:00","endDate":"2017-11-01 17:00:00","location":{"@type":"Place","name":"Flyleaf Books","description":"","url":"https://humanities.unc.edu/venue/flyleaf-books/","address":{"streetAddress":"752 Martin Luther King Jr. Blvd","addressLocality":"Chapel Hill","addressRegion":"NC","postalCode":"27514","addressCountry":"United States"},"geo":{"@type":"GeoCoordinates","latitude":35.9243634,"longitude":-79.0533364},"telephone":"(919) 942-7373","sameAs":"http://www.flyleafbooks.com/"},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}},{"@context":"http://schema.org","@type":"Event","name":"Representing the Sacred: World Religions and Artistic Expression","description":"&lt;p&gt;Religious imagery and iconography is as old as worship itself. This seminar will take an interdisciplinary and transcultural look at the roles art and architecture have played in religious practice over time and across the world. Jennifer Gates-Foster will explain &hellip; &lt;a href=&quot;https://humanities.unc.edu/event/representing-the-sacred-world-religions-and-artistic-expression/&quot;&gt;Continued&lt;/a&gt;&lt;/p&gt;\\n","image":"https://humanities.unc.edu/files/2017/07/religiousart-e1501262108602.jpg","url":"https://humanities.unc.edu/event/representing-the-sacred-world-religions-and-artistic-expression/","startDate":"2017-11-04 13:00:00","endDate":"2017-11-04 21:30:00","location":{"@type":"Place","name":"Chapel Hill Campus","description":"","url":"https://humanities.unc.edu/venue/chapel-hill-campus/","address":{"streetAddress":"Please Contact Humanities Program for exact location"},"telephone":"","sameAs":""},"organizer":{"@type":"Person","name":"Carolina Public Humanities","description":"","url":"https://humanities.unc.edu/organizer/unc-humanities/","telephone":"","email":"","sameAs":""}}]
+</script>
+	<!-- List -->
+	
+<div class="tribe-mini-calendar-list-wrapper">
+	<div class="tribe-events-loop">
+
+					
+			<!-- Event  -->
+			<div class="type-tribe_events post-9662 tribe-clearfix tribe-events-category-adventures-in-ideas-weekend-seminars tribe-events-venue-8878 tribe-events-organizer-7386 tribe-events-first">
+				
+<div class="tribe-mini-calendar-event event-0  first ">
+	
+	<div class="list-date">
+					<span class="list-dayname">
+				Fri			</span>
+		
+		<span class="list-daynumber">06</span>
+		</div>
+
+		<div class="list-info">
+						<h2 class="tribe-events-title">
+					<a href="https://humanities.unc.edu/event/scientific-revolutions-and-changing-human-values-2/" rel="bookmark">Scientific Revolutions and Changing Human Values</a>
+			</h2>
+			
+			
+			<div class="tribe-events-duration">
+				<span class="tribe-event-date-start">October 6 @ 4:30 pm</span> - <span class="tribe-event-date-end">October 7 @ 1:00 pm</span>			</div>
+
+			
+			<!-- // Price, Venue Name, Address, City, State or Province, Postal Code, Country, Venue Phone, Organizer Name-->
+			
+					</div>
+	</div> <!-- .list-info -->
+			</div>
+
+								
+			<!-- Event  -->
+			<div class="type-tribe_events post-9756 tribe-clearfix tribe-events-category-humanities-in-action tribe-events-venue-8470 tribe-events-organizer-7386">
+				
+<div class="tribe-mini-calendar-event event-1 ">
+	
+	<div class="list-date">
+					<span class="list-dayname">
+				Tue			</span>
+		
+		<span class="list-daynumber">10</span>
+		</div>
+
+		<div class="list-info">
+						<h2 class="tribe-events-title">
+					<a href="https://humanities.unc.edu/event/food-and-health-in-america/" rel="bookmark">Food and Health in America</a>
+			</h2>
+			
+			
+			<div class="tribe-events-duration">
+				<span class="tribe-event-date-start">October 10 @ 4:30 pm</span> - <span class="tribe-event-time">6:00 pm</span>			</div>
+
+			
+			<!-- // Price, Venue Name, Address, City, State or Province, Postal Code, Country, Venue Phone, Organizer Name-->
+			
+					</div>
+	</div> <!-- .list-info -->
+			</div>
+
+								
+			<!-- Event  -->
+			<div class="type-tribe_events post-9682 tribe-clearfix tribe-events-category-great-books-reading-groups tribe-events-venue-8470 tribe-events-organizer-7386 tribe-events-last">
+				
+<div class="tribe-mini-calendar-event event-2  last ">
+	
+	<div class="list-date">
+					<span class="list-dayname">
+				Wed			</span>
+		
+		<span class="list-daynumber">11</span>
+		</div>
+
+		<div class="list-info">
+						<h2 class="tribe-events-title">
+					<a href="https://humanities.unc.edu/event/speeches-by-abraham-lincoln/2017-10-11/" rel="bookmark">Speeches by Abraham Lincoln</a>
+			</h2>
+			
+			
+			<div class="tribe-events-duration">
+				<span class="tribe-event-date-start">October 11 @ 10:00 am</span> - <span class="tribe-event-time">12:00 pm</span>			</div>
+
+			
+			<!-- // Price, Venue Name, Address, City, State or Province, Postal Code, Country, Venue Phone, Organizer Name-->
+			
+					</div>
+	</div> <!-- .list-info -->
+			</div>
+
+					
+	</div><!-- .tribe-events-loop -->
+</div> <!-- .tribe-mini-calendar-list-wrapper -->
+
+</div>
+</section><section class="widget text-19 widget_text"><h3>Sign Up for Our Newsletter</h3>			<div class="textwidget"><b><a href="mailto:human@unc.edu?subject=Newsletter%20Sign Upl">Click here to email us</a></b>
+
+<p>Include your First Name, Last Name, City, &amp; State</p></div>
+		</section><section class="widget twittertimeline-4 widget_twittertimeline"><h3>@UNCHumanities</h3><a class="twitter-timeline"  href="https://twitter.com/@unchumanities" width="514" height="200" data-theme="light" data-link-color="#7bafd4" data-border-color="#699cc6" data-chrome="noheader " data-tweet-limit="1" >Tweets by @unchumanities</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></section><section class="widget twittertimeline-2 widget_twittertimeline"><h3>@CarolinaK_12</h3><a class="twitter-timeline"  href="https://twitter.com/CarolinaK_12" width="520" height="200" data-theme="dark" data-link-color="#8fd16a" data-border-color="#ffc03f" data-chrome="noheader " data-tweet-limit="1" >Tweets by CarolinaK_12</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></section><section class="widget text-9 widget_text"><h3>Special Thanks to Our Sponsors</h3>			<div class="textwidget"><a href="http://www.morganstanleyfa.com/cottonmoehrke/"><img src="http://humanities.sites.unc.edu/files/2011/10/Morgan-Stanley-Update.jpg" alt="some_text" style="width:200px;height:78px"></a>
+
+<p></p>
+
+<a href="https://carolinameadows.org/"><img src="http://humanities.sites.unc.edu/files/2011/04/Carolina-Meadows_200x78_FINAL.jpg" alt="some_text" style="width:200px;height:78px"></a></div>
+		</section>                    </aside><!-- /.sidebar -->
+                            </div>
+        </div><!-- /.content -->
+    </div><!-- /.wrap -->
+    <div class="row">
+            </div>
+
+    <div class="row">
+        <footer class="content-info" role="contentinfo">
+  <div class="footer-container container">
+	  <div class="row">
+		<section class="widget text-12 widget_text col-md-4 col-sm-6"><h3>Proud to be part of</h3>			<div class="textwidget"><a href="http://college.unc.edu/"><img src="http://parrcenter.unc.edu/files/2016/05/UNC_CollegeArtsSciences_logo_RGB.png" alt="some_text" style="width:300px;height:96px"></a>
+
+</div>
+		</section><section class="widget text-2 widget_text col-md-4 col-sm-6"><h3>Address</h3>			<div class="textwidget"><p>Carolina Public Humanities<br />
+1700 MLK Jr Blvd<br />
+CB# 3425<br />
+Chapel Hill, NC 27599</p>
+</div>
+		</section><section class="widget text-3 widget_text col-md-4 col-sm-6"><h3>Contact</h3>			<div class="textwidget"><p>Phone: (919) 962-1544<br />
+Email: <a href="mailto:human@unc.edu">Human@unc.edu</a> | <a href="mailto:CarolinaK12@unc.edu">CarolinaK12@unc.edu</a></p>
+</div>
+		</section><section class="widget text-7 widget_text col-md-4 col-sm-6"><h3>Support Our Work</h3>			<div class="textwidget"><a href="http://humanities.unc.edu/make-a-gift/">Give a gift</a></div>
+		</section>		
+	  </div>
+  </div>
+  	<div id="copyright">
+                    <p class="copyright">&copy; 2017 Carolina Public Humanities</p>
+        	</div>
+</footer>
+		<script>
+		( function ( body ) {
+			'use strict';
+			body.className = body.className.replace( /\btribe-no-js\b/, 'tribe-js' );
+		} )( document.body );
+		</script>
+		<script type='text/javascript'> /* <![CDATA[ */var tribe_l10n_datatables = {"aria":{"sort_ascending":": activate to sort column ascending","sort_descending":": activate to sort column descending"},"length_menu":"Show _MENU_ entries","empty_table":"No data available in table","info":"Showing _START_ to _END_ of _TOTAL_ entries","info_empty":"Showing 0 to 0 of 0 entries","info_filtered":"(filtered from _MAX_ total entries)","zero_records":"No matching records found","search":"Search:","all_selected_text":"All items on this page were selected. ","select_all_link":"Select all pages","clear_selection":"Clear Selection.","pagination":{"all":"All","next":"Next","previous":"Previous"},"select":{"rows":{"0":"","_":": Selected %d rows","1":": Selected 1 row"}},"datepicker":{"dayNames":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"dayNamesShort":["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],"dayNamesMin":["S","M","T","W","T","F","S"],"monthNames":["January","February","March","April","May","June","July","August","September","October","November","December"],"monthNamesShort":["January","February","March","April","May","June","July","August","September","October","November","December"],"nextText":"Next","prevText":"Prev","currentText":"Today","closeText":"Done"}};/* ]]> */ </script><link rel="stylesheet" href="https://humanities.sites.unc.edu/wp-content/themes/heelium/assets/css/nav.min.css?ver=4.7.6">
+<link rel="stylesheet" href="/wp-content/plugins/soliloquy/assets/css/soliloquy.css?ver=2.5.3.1">
+<link rel="stylesheet" href="/wp-content/plugins/soliloquy-themes/themes/karisma/style.css?ver=2.5.3.1">
+<link rel="stylesheet" href="/wp-content/plugins/soliloquy-lightbox/themes/karisma/style.css?ver=2.5.3.1">
+<link rel="stylesheet" href="/wp-content/plugins/soliloquy-lightbox/assets/css/lightbox.css?ver=2.3.1">
+<script type='text/javascript' src='https://humanities.sites.unc.edu/wp-content/themes/heelium/assets/js/parallax.js?ver=1.0'></script>
+<script type='text/javascript' src='/wp-content/plugins/page-links-to/js/new-tab.min.js?ver=2.9.8'></script>
+<script type='text/javascript' src='https://humanities.sites.unc.edu/wp-content/themes/heelium/assets/js/scripts.min.js?ver=6317b63d0a03d9e1b3e09708ec3fff72'></script>
+<script type='text/javascript' src='/wp-includes/js/wp-embed.min.js?ver=4.7.6'></script>
+<script type='text/javascript' src='https://humanities.sites.unc.edu/wp-content/themes/heelium/assets/js/nav.min.js?ver=4.7.6'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var soliloquy_ajax = {"ajax":"https:\/\/humanities.unc.edu\/wp-admin\/admin-ajax.php","ajax_nonce":"106fdbb8fc"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/plugins/soliloquy/assets/js/min/soliloquy-min.js?ver=2.5.3.1'></script>
+<script type='text/javascript' src='/wp-content/plugins/soliloquy-lightbox/assets/js/min/lightbox-min.js?ver=2.3.1'></script>
+<script type="text/css" id="tmpl-tribe_customizer_css">.tribe-events-calendar td.tribe-events-present div[id*="tribe-events-daynum-"],
+				#tribe_events_filters_wrapper input[type=submit],
+				.tribe-events-button,
+				#tribe-events .tribe-events-button,
+				.tribe-events-button.tribe-inactive,
+				#tribe-events .tribe-events-button:hover,
+				.tribe-events-button:hover,
+				.tribe-events-button.tribe-active:hover {
+					background-color: <%= general_theme.accent_color %>;
+				}
+
+				#tribe-events-content .tribe-events-tooltip h4,
+				#tribe_events_filters_wrapper .tribe_events_slider_val,
+				.single-tribe_events a.tribe-events-ical,
+				.single-tribe_events a.tribe-events-gcal {
+					color: <%= general_theme.accent_color %>;
+				}
+
+				.tribe-grid-allday .tribe-events-week-allday-single,
+				.tribe-grid-body .tribe-events-week-hourly-single,
+				.tribe-grid-allday .tribe-events-week-allday-single:hover,
+				.tribe-grid-body .tribe-events-week-hourly-single:hover {
+					background-color: <%= general_theme.accent_color %>;
+					border-color: rgba(0, 0, 0, 0.3);
+				}
+			
+				.tribe-events-list .tribe-events-loop .tribe-event-featured,
+				.tribe-events-list #tribe-events-day.tribe-events-loop .tribe-event-featured,
+				.type-tribe_events.tribe-events-photo-event.tribe-event-featured .tribe-events-photo-event-wrap,
+				.type-tribe_events.tribe-events-photo-event.tribe-event-featured .tribe-events-photo-event-wrap:hover {
+					background-color: <%= general_theme.button_bg %>;
+				}
+
+				#tribe-events-content table.tribe-events-calendar .type-tribe_events.tribe-event-featured {
+					background-color: <%= general_theme.button_bg %>;
+				}
+
+				.tribe-events-list-widget .tribe-event-featured,
+				.tribe-events-venue-widget .tribe-event-featured,
+				.tribe-mini-calendar-list-wrapper .tribe-event-featured,
+				.tribe-events-adv-list-widget .tribe-event-featured .tribe-mini-calendar-event {
+					background-color: <%= general_theme.button_bg %>;
+				}
+
+				.tribe-grid-body .tribe-event-featured.tribe-events-week-hourly-single {
+					background-color: rgba(<%= general_theme.button_bg_hex_red %>,<%= general_theme.button_bg_hex_green %>,<%= general_theme.button_bg_hex_blue %>, .7 );
+					border-color: <%= general_theme.button_bg %>;
+				}
+
+				.tribe-grid-body .tribe-event-featured.tribe-events-week-hourly-single:hover {
+					background-color: <%= general_theme.button_bg %>;
+				}
+
+				.tribe-button {
+					background-color: <%= general_theme.button_bg %>;
+					color: <%= general_theme.button_color %>;
+				}
+
+				.tribe-button:hover,
+				.tribe-button:active,
+				.tribe-button:focus {
+					background-color: <%= general_theme.button_bg_hover %>;
+				}
+
+				#tribe-events .tribe-event-featured .tribe-button:hover {
+					color: <%= general_theme.button_color_hover %>;
+				}</script><style type="text/css" id="tribe_customizer_css">.tribe-events-calendar td.tribe-events-present div[id*="tribe-events-daynum-"],
+				#tribe_events_filters_wrapper input[type=submit],
+				.tribe-events-button,
+				#tribe-events .tribe-events-button,
+				.tribe-events-button.tribe-inactive,
+				#tribe-events .tribe-events-button:hover,
+				.tribe-events-button:hover,
+				.tribe-events-button.tribe-active:hover {
+					background-color: #7bafd4;
+				}
+
+				#tribe-events-content .tribe-events-tooltip h4,
+				#tribe_events_filters_wrapper .tribe_events_slider_val,
+				.single-tribe_events a.tribe-events-ical,
+				.single-tribe_events a.tribe-events-gcal {
+					color: #7bafd4;
+				}
+
+				.tribe-grid-allday .tribe-events-week-allday-single,
+				.tribe-grid-body .tribe-events-week-hourly-single,
+				.tribe-grid-allday .tribe-events-week-allday-single:hover,
+				.tribe-grid-body .tribe-events-week-hourly-single:hover {
+					background-color: #7bafd4;
+					border-color: rgba(0, 0, 0, 0.3);
+				}
+			
+				.tribe-events-list .tribe-events-loop .tribe-event-featured,
+				.tribe-events-list #tribe-events-day.tribe-events-loop .tribe-event-featured,
+				.type-tribe_events.tribe-events-photo-event.tribe-event-featured .tribe-events-photo-event-wrap,
+				.type-tribe_events.tribe-events-photo-event.tribe-event-featured .tribe-events-photo-event-wrap:hover {
+					background-color: #0ea0d7;
+				}
+
+				#tribe-events-content table.tribe-events-calendar .type-tribe_events.tribe-event-featured {
+					background-color: #0ea0d7;
+				}
+
+				.tribe-events-list-widget .tribe-event-featured,
+				.tribe-events-venue-widget .tribe-event-featured,
+				.tribe-mini-calendar-list-wrapper .tribe-event-featured,
+				.tribe-events-adv-list-widget .tribe-event-featured .tribe-mini-calendar-event {
+					background-color: #0ea0d7;
+				}
+
+				.tribe-grid-body .tribe-event-featured.tribe-events-week-hourly-single {
+					background-color: rgba(14,160,215, .7 );
+					border-color: #0ea0d7;
+				}
+
+				.tribe-grid-body .tribe-event-featured.tribe-events-week-hourly-single:hover {
+					background-color: #0ea0d7;
+				}
+
+				.tribe-button {
+					background-color: #0ea0d7;
+					color: #fff;
+				}
+
+				.tribe-button:hover,
+				.tribe-button:active,
+				.tribe-button:focus {
+					background-color: #096b8f;
+				}
+
+				#tribe-events .tribe-event-featured .tribe-button:hover {
+					color: #053547;
+				}</style>        <script> jQuery('.modal').on('hidden.bs.modal', function (e) {
+          // do something...
+          jQuery('.modal iframe').attr("src", jQuery(".modal  iframe").attr("src"));
+        });
+        </script>
+                    <script type="text/javascript">
+                if ( typeof soliloquy_slider === 'undefined' || false === soliloquy_slider ) {soliloquy_slider = {};}var soliloquy_width_9498 = jQuery('#soliloquy-container-9498').width() < 800 ? 800 : jQuery('#soliloquy-container-9498').width();jQuery('#soliloquy-container-9498').css('height', Math.round(soliloquy_width_9498/(800/420))).fadeTo(300, 1);jQuery(document).ready(function($){var soliloquy_container_9498 = $('#soliloquy-container-9498'),soliloquy_9498 = $('#soliloquy-9498'),soliloquy_holder_9498 = $('#soliloquy-9498').find('.soliloquy-preload');if ( 0 !== soliloquy_holder_9498.length ) {var soliloquy_src_attr = 'data-soliloquy-src';soliloquy_holder_9498.each(function() {var soliloquy_src = $(this).attr(soliloquy_src_attr);if ( typeof soliloquy_src === 'undefined' || false === soliloquy_src ) {return;}var soliloquy_image = new Image();soliloquy_image.src = soliloquy_src;$(this).attr('src', soliloquy_src).removeAttr(soliloquy_src_attr);});}soliloquy_slider['9498'] = soliloquy_9498.soliloquy({slideSelector: '.soliloquy-item',speed: 2500,pause: 2500,auto: 1,keyboard: 0,useCSS: 0,startSlide: 0,autoHover: 0,autoDelay: 2500,infiniteLoop: 1,mode: 'fade',pager: 1,controls: 1,autoControls: 0,autoControlsCombine: 0,nextText: '',prevText: '',startText: '',stopText: '',onSliderLoad: function(currentIndex){soliloquy_container_9498.find('.soliloquy-active-slide').removeClass('soliloquy-active-slide').attr('aria-hidden','true');soliloquy_container_9498.css({'height':'auto','background-image':'none'});if ( soliloquy_container_9498.find('.soliloquy-slider li').size() > 1 ) {soliloquy_container_9498.find('.soliloquy-controls').fadeTo(300, 1);} else {soliloquy_container_9498.find('.soliloquy-controls').addClass('soliloquy-hide');}soliloquy_9498.find('.soliloquy-item:not(.soliloquy-clone):eq(' + currentIndex + ')').addClass('soliloquy-active-slide').attr('aria-hidden','false');$('.soliloquy-clone .soliloquy-video-holder').remove();soliloquy_container_9498.find('.soliloquy-controls-direction').attr('aria-label','carousel buttons').attr('aria-controls', 'soliloquy-container-9498');soliloquy_container_9498.find('.soliloquy-controls-direction a.soliloquy-prev').attr('aria-label','previous');soliloquy_container_9498.find('.soliloquy-controls-direction a.soliloquy-next').attr('aria-label','next');$(window).trigger('resize');soliloquy_container_9498.parent().attr('data-soliloquy-loaded', 1);$('#soliloquy-container-9498').find('.soliloquy-clone > a').removeAttr('rel');},onSlideBefore: function(element, oldIndex, newIndex, oldelm ){soliloquy_container_9498.find('.soliloquy-active-slide').removeClass('soliloquy-active-slide').attr('aria-hidden','true');$(element).addClass('soliloquy-active-slide').attr('aria-hidden','false');},onSlideAfter: function(element, oldIndex, newIndex){soliloquy_slider['9498'].stopAuto();soliloquy_slider['9498'].startAuto();}});if ( typeof soliloquy_lightbox === 'undefined' || false === soliloquy_lightbox ) {soliloquy_lightbox = {};}soliloquy_lightbox['9498'] = $('#soliloquy-9498 .soliloquy-link').soliloquybox({keys: 0,scrolling: 'no',arrows: 0,aspectRatio: 0,loop: 0,mouseWheel: 0,preload: 1,nextEffect: 'fade',prevEffect: 'fade',tpl: {wrap : '<div class="soliloquybox-wrap" tabIndex="-1"><div class="soliloquybox-skin soliloquybox-theme-karisma"><div class="soliloquybox-outer"><div class="soliloquybox-inner"></div></div></div></div>',image: '<img class="soliloquybox-image" src="{href}" alt="" />',iframe : '<iframe id="soliloquybox-frame{rnd}" name="soliloquybox-frame{rnd}" class="soliloquybox-iframe" frameborder="0" vspace="0" hspace="0" allowtransparency="true"\></iframe>',error: '<p class="soliloquybox-error">The requested content cannot be loaded.&lt;br/&gt;Please try again later.&lt;/p&gt;',closeBtn : '<a title="Close" class="soliloquybox-item soliloquybox-close" href="javascript:;"></a>',next : '<a title="Next" class="soliloquybox-nav soliloquybox-next" href="javascript:;"><span></span></a>',prev : '<a title="Previous" class="soliloquybox-nav soliloquybox-prev" href="javascript:;"><span></span></a>'},helpers: {media: true,title: {type: 'float'},video: {autoplay: 1,playpause: 1,progress: 1,current: 1,duration: 1,volume: 1},},beforeLoad: function(){if ( $(this.element).hasClass('soliloquy-video-link') && ! $.soliloquybox.isActive ) {return false;}this.title = $(this.element).data('soliloquy-lightbox-caption');},afterLoad: function(){},beforeShow: function(){$(window).on({'resize.soliloquybox' : function(){$.soliloquybox.update();}});soliloquy_slider['9498'].stopAuto();},afterShow: function(){$('.soliloquybox-inner').swipe( {swipe: function(event, direction, distance, duration, fingerCount, fingerData) {if (direction === 'left') {$.soliloquybox.next(direction);} else if (direction === 'right') {$.soliloquybox.prev(direction);}}} );},beforeClose: function(){},afterClose: function(){$(window).off('resize.soliloquybox');},onUpdate: function(){},onCancel: function(){},onPlayStart: function(){},onPlayEnd: function(){}});});            </script>
+                </div>
+</div>
+
+
+</body>
+</html>
