@@ -1,0 +1,700 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: YITH WooCommerce Dynamic Pricing and Discounts\n"
+"POT-Creation-Date: 2015-09-04 16:08+0100\n"
+"PO-Revision-Date: 2016-08-22 16:20+0200\n"
+"Last-Translator: \n"
+"Language-Team: Yithemes <plugins@yithemes.com>\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.8\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e;_n:1,2;__ngettext:1,2;"
+"__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;"
+"_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=n!=1;\n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-SearchPathExcluded-0: ../plugin-fw\n"
+
+#: ../includes/class-yith-wc-dynamic-pricing-admin.php:124
+msgid "Please insert a description for the rule"
+msgstr "Inserisci una descrizione della regola"
+
+#: ../includes/class-yith-wc-dynamic-pricing-admin.php:125
+msgid "Do you really want to delete this rule?"
+msgstr "Sei sicuro di voler cancellare questa regola?"
+
+#: ../includes/class-yith-wc-dynamic-pricing-admin.php:165
+#: ../includes/class-yith-wc-dynamic-pricing-admin.php:256
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: ../includes/class-yith-wc-dynamic-pricing-admin.php:169
+#: ../includes/class-yith-wc-dynamic-pricing-admin.php:258
+msgid "Premium Version"
+msgstr "Versione premium"
+
+#: ../includes/class-yith-wc-dynamic-pricing-admin.php:172
+msgid "Cart Discount"
+msgstr "Sconto carrello"
+
+#: ../includes/class-yith-wc-dynamic-pricing-admin.php:178
+#: ../includes/class-yith-wc-dynamic-pricing-admin.php:179
+msgid "Dynamic Pricing"
+msgstr "Dynamic Pricing"
+
+#: ../includes/class-yith-wc-dynamic-pricing-admin.php:284
+msgid "Plugin Documentation"
+msgstr "Documentazione plugin"
+
+#: ../includes/functions.yith-wc-dynamic-pricing.php:22
+msgid "All categories"
+msgstr "Tutte le categorie"
+
+#: ../init.php:33
+msgid ""
+"You can't activate the free version of YITH WooCommerce Dynamic Pricing and "
+"Discounts while you are using the premium one."
+msgstr ""
+"Non puoi attivare la versione free di YITH WooCommerce Dynamic Pricing and "
+"Discounts poiché stai già utilizzando la premium."
+
+#: ../init.php:54 ../init.php:126
+msgid ""
+"YITH WooCommerce Dynamic Pricing and Discounts is enabled but not effective. "
+"It requires WooCommerce in order to work."
+msgstr ""
+"YITH WooCommerce Dynamic Pricing and Discounts è abilitato ma non in "
+"funzione. Devi aver installato WooCommerce per farlo funzionare."
+
+#: ../plugin-options/general-options.php:10
+msgid "General Settings"
+msgstr "Impostazioni generali"
+
+#: ../plugin-options/general-options.php:24
+msgid "Enable Dynamic Pricing and Discounts"
+msgstr "Attiva Dynamic Pricing and Discounts"
+
+#: ../plugin-options/general-options.php:32
+msgid "Add a new rule for pricing"
+msgstr "Aggiungi una nuova regola di prezzo"
+
+#: ../templates/admin/options-pricing-rules-panel.php:32
+#: ../templates/admin/options-pricing-rules.php:50
+msgid "Apply to"
+msgstr "Applica a"
+
+#: ../templates/admin/options-pricing-rules-panel.php:36
+#: ../templates/admin/options-pricing-rules.php:54
+msgid "All products"
+msgstr "Tutti i prodotti"
+
+#: ../templates/admin/options-pricing-rules-panel.php:37
+#: ../templates/admin/options-pricing-rules.php:55
+msgid "Categories in list"
+msgstr "Categorie in elenco"
+
+#: ../templates/admin/options-pricing-rules-panel.php:39
+#: ../templates/admin/options-pricing-rules-panel.php:50
+#: ../templates/admin/options-pricing-rules.php:57
+#: ../templates/admin/options-pricing-rules.php:76
+msgid "Select the products to which applying the rule"
+msgstr "Seleziona i prodotti a cui applicare la regola"
+
+#: ../templates/admin/options-pricing-rules-panel.php:44
+#: ../templates/admin/options-pricing-rules.php:63
+msgid "Categories"
+msgstr "Categorie"
+
+#: ../templates/admin/options-pricing-rules-panel.php:47
+#: ../templates/admin/options-pricing-rules.php:66
+msgid "Search for a category"
+msgstr "Cerca una categoria"
+
+#: ../templates/admin/options-pricing-rules-panel.php:56
+msgid "Discount Rules"
+msgstr "Regole di sconto"
+
+#: ../templates/admin/options-pricing-rules-panel.php:61
+#: ../templates/admin/options-pricing-rules.php:87
+msgid "Minimum Quantity"
+msgstr "Quantità minima"
+
+#: ../templates/admin/options-pricing-rules-panel.php:62
+#: ../templates/admin/options-pricing-rules.php:82
+#: ../templates/admin/options-pricing-rules.php:88
+msgid "Discount Amount"
+msgstr "Ammontare dello sconto"
+
+#: ../templates/admin/options-pricing-rules-panel.php:65
+#: ../templates/admin/options-pricing-rules.php:91
+msgid "e.g. 5"
+msgstr "es. 5"
+
+#: ../templates/admin/options-pricing-rules-panel.php:66
+#: ../templates/admin/options-pricing-rules.php:92
+msgid "e.g. 50"
+msgstr "es. 50"
+
+#: ../templates/admin/options-pricing-rules.php:20
+msgid "Add new rule"
+msgstr "Aggiungi una nuova regola"
+
+#: ../templates/admin/premium.php:207 ../templates/admin/premium.php:401
+#, php-format
+msgid ""
+"Upgrade to %1$spremium version%2$s of %1$sYITH WooCommerce Dynamic Pricing "
+"and Discounts%2$s to benefit from all features!"
+msgstr ""
+"Aggiorna alla %1$sversione premium%2$s di %1$sYITH WooCommerce Dynamic "
+"Pricing and Discounts%2$s per usufruire di tutte le funzionalità!"
+
+#: ../templates/admin/premium.php:210 ../templates/admin/premium.php:404
+msgid "UPGRADE"
+msgstr "AGGIORNA"
+
+#: ../templates/admin/premium.php:211 ../templates/admin/premium.php:405
+msgid "to the premium version"
+msgstr "alla versione premium"
+
+#: ../templates/admin/premium.php:217
+msgid "Premium Features"
+msgstr "Funzionalità premium"
+
+#: ../templates/admin/premium.php:225
+msgid "TWO KINDS OF DISCOUNTS (PRODUCT AND CART) "
+msgstr "DUE TIPOLOGIE DI SCONTO (PRODOTTO E CARRELLO)"
+
+#: ../templates/admin/premium.php:228
+#, php-format
+msgid ""
+"There are many discount combinations you can create with the premium version "
+"of the plugin with endless options that let you create favorable and "
+"tempting purchase conditions for your users.\n"
+"                    There are two main kinds of discount: %1$sproduct%2$s "
+"one and %1$scart%2$s one.%3$s\n"
+"                    With the first one, you can configure the discount rules "
+"for the products available in the cart,\n"
+"                    while the second offers to your user a discount on the "
+"overall amount of the cart."
+msgstr ""
+"Sono tantissime le combinazioni di sconto che potrai creare con la versione "
+"premium del plugin, con innumerevoli opzioni che ti porteranno a realizzare "
+"condizioni d’acquisto vantaggiose e invitanti per i tuoi utenti.\n"
+"Lo sconto può essere di due tipologie: %1$sprodotto%2$s e %1$scarrello%2$s."
+"%3$s\n"
+"Con la prima configuri le regole di sconto sui prodotti presenti nel "
+"carrello,\n"
+"mentre con la seconda fornisci al tuo utente uno sconto sull’importo totale "
+"del carrello."
+
+#: ../templates/admin/premium.php:241
+msgid "SELECTION OF THE PRODUCT TO DISCOUNT"
+msgstr "SELEZIONE DEL PRODOTTO SU CUI APPLICARE LO SCONTO"
+
+#: ../templates/admin/premium.php:244
+#, php-format
+msgid ""
+"An advanced configuration will let you manage carefully the %1$svalidity%2$s "
+"of the discount. Offer the deal only for a small list\n"
+"                    of products you can choose, or apply it to different "
+"product categories of your store.\n"
+"                    Support purchases with a precise management of the "
+"plugin!"
+msgstr ""
+"Una configurazione avanzata per permetterti di gestire nei minimi "
+"particolari la %1$svalidità%2$s dello sconto. Riserva l’offerta solo a una "
+"lista ristretta di prodotti da te indicati,\n"
+"o estendila a intere categorie di prodotto del tuo store.\n"
+"Incentiva gli acquisti con una gestione oculata del plugin!"
+
+#: ../templates/admin/premium.php:262
+msgid "CHOOSE USERS INVOLVED"
+msgstr "SELEZIONE IN BASE AGLI UTENTI"
+
+#: ../templates/admin/premium.php:265
+#, php-format
+msgid ""
+"A tailored discount for a particular user! You can do this too with the "
+"premium version of the plugin.\n"
+"                    With the %1$s\"User Status\"%2$s option, you can limit "
+"the discount to specific groups of users indicating the names,\n"
+"                     or specifying the requested user roles to benefit from "
+"the discount."
+msgstr ""
+"Uno sconto su misura per un dato tipo di utente! Puoi fare anche questo con "
+"la versione premium del plugin.\n"
+"Con l’opzione %1$s”Stato utente”%2$s puoi limitare l’uso dello sconto a "
+"gruppi di utenti specifici,\n"
+"indicando i nomi di quelli che vuoi selezionare, o specificando il ruolo "
+"utente richiesto per poter usufruire dello sconto."
+
+#: ../templates/admin/premium.php:277
+msgid "SCHEDULE DISCOUNTS"
+msgstr "PIANIFICAZIONE SCONTI"
+
+#: ../templates/admin/premium.php:280
+#, php-format
+msgid ""
+"Plan your future discounts and %1$sset the time span in which make them "
+"available%2$s: the automatic process\n"
+"                    will make your shop even more dynamic to the eyes of "
+"your users"
+msgstr ""
+"Programma i tuoi sconti futuri e %1$sdefinisci l’intervallo temporale entro "
+"cui renderli disponibili%2$s:\n"
+"il processo sarà automatizzato e il tuo shop diventerà sempre più dinamico "
+"agli occhi dei tuoi utenti."
+
+#: ../templates/admin/premium.php:297
+msgid "COMBINED DISCOUNTS"
+msgstr "SCONTI CUMULABILI"
+
+#: ../templates/admin/premium.php:300
+#, php-format
+msgid ""
+"Does one offer exclude another one? Maybe, but it's up to you!\n"
+"                    %1$sDecide if a discount rule can be applied with others"
+"%2$s, so that users can take advantage of further facilitations for their "
+"orders. "
+msgstr ""
+"Un’offerta esclude l’altra? Forse, ma dipende solo da te!\n"
+"%1$sSpecifica per ogni regola di sconto se questa può essere applicata in "
+"combinazione con altre%2$s, così che l’utente possa beneficiare di maggiori "
+"agevolazioni per il suo ordine. "
+
+#: ../templates/admin/premium.php:311
+msgid "QUANTITY DISCOUNTS"
+msgstr "SCONTI SULLA QUANTITÀ"
+
+#: ../templates/admin/premium.php:314
+#, php-format
+msgid ""
+"The premium version of the plugin lets you create different discounts based "
+"on the available quantity of a product in the cart.\n"
+"                    Choose the %1$sminimum%2$s and the %1$smaximum%2$s "
+"amount, and give to users the freedom to benefit from different discounts,\n"
+"                    encouraging them to increase the number of items in the "
+"cart to get a better discount."
+msgstr ""
+"La versione premium del plugin ti permette di creare diversi sconti sulla "
+"base della quantità di un prodotto presente nel carrello.\n"
+"Specificando quantità %1$sminima%2$s e/o quantità %1$smassima%2$s, darai "
+"all’utente la possibilità di usufruire di sconti diversi,\n"
+"esortandolo a incrementare il numero di oggetti in carrello per avere uno "
+"sconto maggiore."
+
+#: ../templates/admin/premium.php:332
+msgid "PRICE TABLE"
+msgstr "TABELLA PREZZI"
+
+#: ../templates/admin/premium.php:335
+#, php-format
+msgid ""
+"A recap of the discounts for a product to inform users about the actual "
+"value of the product.\n"
+"                    Go to the settings panel of the plugin and select where "
+"you want to show the table in the product detail page.%3$s\n"
+"                    %1$sAn additional tool to get to your customers.%2$s"
+msgstr ""
+"Una tabella riepilogativa degli sconti previsti sul prodotto per informare "
+"gli utenti del valore effettivo a cui il prodotto viene proposto.\n"
+"Entra nel pannello impostazioni del plugin e seleziona il punto in cui "
+"mostrare la tabella all’interno della pagina dettaglio del prodotto.%3$s\n"
+"%1$sUn’arma in più per arrivare ai tuoi clienti.%2$s"
+
+#: ../templates/admin/premium.php:347
+msgid "THREE DISCOUNT MODES"
+msgstr "TRE MODALITÀ DI SCONTO"
+
+#: ../templates/admin/premium.php:350
+msgid "There are three discount modes for your products."
+msgstr "Sono tre le modalità di sconto applicabili ai tuoi prodotti."
+
+#: ../templates/admin/premium.php:353
+#, php-format
+msgid ""
+"By %1$spercentage%2$s: the price of the product receives a percentage of "
+"discount."
+msgstr ""
+"In %1$spercentuale%2$s, viene applicato uno sconto percentuale rispetto al "
+"prezzo del prodotto."
+
+#: ../templates/admin/premium.php:354
+#, php-format
+msgid "By %1$samount%2$s: the amount you set is deducted from the price."
+msgstr "A %1$simporto%2$s, viene detratto l’importo da te specificato."
+
+#: ../templates/admin/premium.php:355
+#, php-format
+msgid ""
+"By %1$sfixed value%2$s: it doesn't matter the WooCommerce price, the "
+"products influenced by the discount rule will have the same value you have "
+"set for this discount."
+msgstr ""
+"A %1$svalore fisso%2$s, a prescindere dal prezzo impostato su WooCommerce, i "
+"prodotti interessati dalla regola di sconto avranno un prezzo pari al valore "
+"indicato come sconto."
+
+#: ../templates/admin/premium.php:371
+msgid "APPLY TO / APPLY ADJUSTMENT TO"
+msgstr "APPLICA A / APPLICA MODIFICA A"
+
+#: ../templates/admin/premium.php:374
+#, php-format
+msgid ""
+"With the two options named \"Apply to\" and \"Apply adjustment to\" you can "
+"configure your discounts selecting the products\n"
+"                    users need to have in the cart to apply the discount to "
+"the selected products for the \"Apply adjustment to\" option.\n"
+"                    A strategic technique to %1$sencourage your users to "
+"purchase more products%2$s on your e-commerce."
+msgstr ""
+"Con le due opzioni \"Applica a\" e \"Applica modifica a\" hai la possibilità "
+"di configurare in maniera avanzata il tuo sconto,\n"
+"selezionando i prodotti che è necessario avere nel carrello per vedere "
+"applicato lo sconto ai prodotti indicati nell’opzione “Applica modifica a”.\n"
+"Una tecnica strategica per %1$sspingere i tuoi utenti ad acquistare più "
+"prodotti%2$s sul tuo e-commerce."
+
+#: ../templates/admin/premium.php:386
+msgid "CART COUPON"
+msgstr "CODICE PROMOZIONALE CARRELLO"
+
+#: ../templates/admin/premium.php:389
+msgid ""
+"For the discounts applied to the cart, the discounted value will be applied "
+"as a coupon directly in the checkout step."
+msgstr ""
+"Per gli sconti applicati al carrello, il valore di sconto sarà applicato "
+"sotto forma di coupon direttamente durante la fase di checkout."
+
+#~ msgid "Please, add a description for the rule"
+#~ msgstr "Aggiungi una descrizione per la regola inserita"
+
+#~ msgid "Price Rules"
+#~ msgstr "Regole di prezzo"
+
+#~ msgid "Cart Discounts"
+#~ msgstr "Sconti carrello"
+
+#~ msgid "Offer ends: %s"
+#~ msgstr "L'offerta termina: %s"
+
+#~ msgctxt "min_price"
+#~ msgid "From:"
+#~ msgstr "Da:"
+
+#~ msgid "Free!"
+#~ msgstr "Gratis!"
+
+#~ msgid ""
+#~ "YITH WooCommerce Dynamic Pricing and Discounts Premium is enabled but not "
+#~ "effective. It requires WooCommerce in order to work."
+#~ msgstr ""
+#~ "YITH WooCommerce Dynamic Pricing and Discounts Premium è abilitato ma non "
+#~ "attivo. Richiede WooCommerce per funzionare correttamente."
+
+#~ msgid "Add a new rule for cart"
+#~ msgstr "Aggiungi una nuova regola carrello"
+
+#~ msgid "Customers"
+#~ msgstr "Clienti"
+
+#~ msgid "Users in list"
+#~ msgstr "Utenti in lista"
+
+#~ msgid "Exclude users in list"
+#~ msgstr "Escludi utenti in lista"
+
+#~ msgid "Roles in list"
+#~ msgstr "Ruoli in lista"
+
+#~ msgid "Roles not in list"
+#~ msgstr "Ruoli non in lista"
+
+#~ msgid "Minimum number of orders required"
+#~ msgstr "Numero di ordini necessari"
+
+#~ msgid "Minimum past expense required"
+#~ msgstr "Spesa minima necessaria"
+
+#~ msgid "Products"
+#~ msgstr "Prodotti"
+
+#~ msgid "At least one selected product"
+#~ msgstr "Almeno uno dei prodotti selezionati"
+
+#~ msgid "All selected products in cart"
+#~ msgstr "Tutti i prodotti selezionati nel carrello"
+
+#~ msgid "Products not selected"
+#~ msgstr "Prodotti non selezionati"
+
+#~ msgid "At least a selected category"
+#~ msgstr "Almeno una categoria selezionata"
+
+#~ msgid "All selected categories in cart"
+#~ msgstr "Tutte le categorie selezionate nel carrello"
+
+#~ msgid "Categories not selected"
+#~ msgstr "Categorie non selezionate"
+
+#~ msgid "Cart Items"
+#~ msgstr "Articoli carrello"
+
+#~ msgid "Minimum quantity of product items"
+#~ msgstr "Numero minimo di articoli per prodotto"
+
+#~ msgid "Maximum quantity of product items"
+#~ msgstr "Numero massimo di articoli per prodotto"
+
+#~ msgid "Minimum quantity of cart items"
+#~ msgstr "Numero minimo di articoli nel carrello"
+
+#~ msgid "Maximum quantity of cart items"
+#~ msgstr "Numero massimo di articoli nel carrello"
+
+#~ msgid "Cart Subtotals"
+#~ msgstr "Subtotale carrello"
+
+#~ msgid "Minimum subtotal"
+#~ msgstr "Subtotale minimo"
+
+#~ msgid "Maximum subtotal"
+#~ msgstr "Subtotale massimo"
+
+#~ msgid "Percentage Discount"
+#~ msgstr "Sconto percentuale"
+
+#~ msgid "Price Discount"
+#~ msgstr "Sconto in denaro"
+
+#~ msgid "Coupon Label"
+#~ msgstr "Nome coupon"
+
+#~ msgid ""
+#~ "Name of the coupon showed in cart if there are discounts in cart (add a "
+#~ "single word)"
+#~ msgstr ""
+#~ "Nome del coupon che appare nel carrello se sono presenti sconti (usa solo "
+#~ "una parola)"
+
+#~ msgid "Display Quantity Table"
+#~ msgstr "Mostra tabella quantità"
+
+#~ msgid "Display Expiring Date In Quantity Table"
+#~ msgstr "Mostra data di scadenza nella tabella quantità"
+
+#~ msgid "Quantity Table Title"
+#~ msgstr "Titolo tabella quantità"
+
+#~ msgid "Title of the Quantity Table"
+#~ msgstr "Titolo della tabella quantità"
+
+#~ msgid "Discount per Quantity"
+#~ msgstr "Sconto quantità"
+
+#~ msgid "Label for Quantity"
+#~ msgstr "Testo per Quantità"
+
+#~ msgid "Quantity"
+#~ msgstr "Quantità"
+
+#~ msgid "Label for Price"
+#~ msgstr "Testo per Prezzo"
+
+#~ msgid "Price"
+#~ msgstr "Prezzo"
+
+#~ msgid "Before \"Add to cart\" button"
+#~ msgstr "Prima del pulsante \"Aggiungi al carrello\""
+
+#~ msgid "After \"Add to cart\" button"
+#~ msgstr "Dopo il pulsante \"Aggiungi al carrello\""
+
+#~ msgid "Before excerpt"
+#~ msgstr "Prima del riassunto"
+
+#~ msgid "After excerpt"
+#~ msgstr "Dopo il riassunto"
+
+#~ msgid "After product meta"
+#~ msgstr "Dopo i meta del prodotto"
+
+#~ msgid "Pricing Rules"
+#~ msgstr "Regole di prezzo"
+
+#~ msgid "Quantity Discount"
+#~ msgstr "Sconto quantità"
+
+#~ msgid "Special Offer"
+#~ msgstr "Offerta speciale"
+
+#~ msgid "Exclude items from rules"
+#~ msgstr "Non applicare le regole a questi articoli"
+
+#~ msgid "Item quantity in cart line"
+#~ msgstr "Quantità visualizzata per ogni riga nel carrello"
+
+#~ msgid "Single product"
+#~ msgstr "Prodotto singolo"
+
+#~ msgid "Single product variation"
+#~ msgstr "Variazione singolo prodotto"
+
+#~ msgid "Sum of all products in list or category list"
+#~ msgstr "Somma di tutti i prodotti in elenco o nell'elenco delle categorie"
+
+#~ msgid "Include a list of products"
+#~ msgstr "Includi un elenco di prodotti"
+
+#~ msgid "Exclude a list of products"
+#~ msgstr "Escludi un elenco di prodotti"
+
+#~ msgid "Include a list of categories"
+#~ msgstr "Includi un elenco di categorie"
+
+#~ msgid "Exclude a list of categories"
+#~ msgstr "Escludi un elenco di prodotti"
+
+#~ msgid "Same product"
+#~ msgstr "Stesso prodotto"
+
+#~ msgid "Fixed Price"
+#~ msgstr "Prezzo fisso"
+
+#~ msgid "Everyone"
+#~ msgstr "Tutti"
+
+#~ msgid "Include a list of roles"
+#~ msgstr "Includi un elenco di ruoli"
+
+#~ msgid "Exclude a list of roles"
+#~ msgstr "Escludi un elenco di ruoli"
+
+#~ msgid "Include a list of customers"
+#~ msgstr "Includi un elenco di clienti"
+
+#~ msgid "Exclude a list of customers"
+#~ msgstr "Escludi un elenco di clienti"
+
+#~ msgid "Discount Schedule"
+#~ msgstr "Pianifica sconti"
+
+#~ msgid "From"
+#~ msgstr "Da"
+
+#~ msgid "To"
+#~ msgstr "A"
+
+#~ msgid "Rule"
+#~ msgstr "Regola"
+
+#~ msgid "Value"
+#~ msgstr "Valore"
+
+#~ msgid "Select a role"
+#~ msgstr "Seleziona un ruolo"
+
+#~ msgid "Search for a customer"
+#~ msgstr "Cerca un cliente"
+
+#~ msgid "Search for a product"
+#~ msgstr "Cerca un prodotto"
+
+#~ msgid "Discount Type"
+#~ msgstr "Tipo di sconto"
+
+#~ msgid "Amount"
+#~ msgstr "Quantità"
+
+#~ msgid "Discount mode"
+#~ msgstr "Modalità sconto"
+
+#~ msgid "Show Price Table"
+#~ msgstr "Mostra tabella prezzi"
+
+#~ msgid "Show in loop"
+#~ msgstr "Mostra nella pagina shop"
+
+#~ msgid "Quantity Based"
+#~ msgstr "In base alla quantità"
+
+#~ msgid "User Status"
+#~ msgstr "Stato utente"
+
+#~ msgid "Select Roles"
+#~ msgstr "Seleziona ruoli"
+
+#~ msgid "Select roles to exclude"
+#~ msgstr "Seleziona i ruoli da escludere"
+
+#~ msgid "Select Customers"
+#~ msgstr "Seleziona clienti"
+
+#~ msgid "Select customers to exclude"
+#~ msgstr "Seleziona i clienti da escludere"
+
+#~ msgid "Select Products"
+#~ msgstr "Seleziona prodotti"
+
+#~ msgid "Apply adjustment to"
+#~ msgstr "Applica modifica a"
+
+#~ msgid "Select the products to which applying the adjustments"
+#~ msgstr "Seleziona i prodotti a cui applicare le modifiche"
+
+#~ msgid "Maximum Quantity"
+#~ msgstr "Quantità massima"
+
+#~ msgid "Type of Discount"
+#~ msgstr "Tipo di sconto"
+
+#~ msgid "e.g. 10 - * for unlimited items"
+#~ msgstr "es. 10 - *per infiniti articoli"
+
+#~ msgid "Notes for the Discount per Quantity table"
+#~ msgstr "Note per la tabella \"Sconti per quantità\""
+
+#~ msgid "Special Offer Rules"
+#~ msgstr "Regole offerte speciali"
+
+#~ msgid "Purchase"
+#~ msgstr "Acquista"
+
+#~ msgid "Receive"
+#~ msgstr "Riceve"
+
+#~ msgid "Repeat"
+#~ msgstr "Ripeti"
+
+#~ msgid "Apply this discount"
+#~ msgstr "Applica questo sconto"
+
+#~ msgid "With other rules"
+#~ msgstr "Con altre regole"
+
+#~ msgid "Even if the product is on sale"
+#~ msgstr "Anche se il prodotto è in saldo"
+
+#~ msgid "Show price table"
+#~ msgstr "Mostra tabella prezzi"
+
+#~ msgid "Select the products to which apply the adjustments"
+#~ msgstr "Seleziona i prodotti a cui applicare le modifiche"
+
+#~ msgid "Select the products to which apply the rule"
+#~ msgstr "Seleziona i prodotti a cui applicare la regola"
+
+#~ msgid "Valid until: %s"
+#~ msgstr "Valido fino al: %s"
+
+#~ msgid ""
+#~ "YITH WooCommerce Dynamic Pricing and Discounts Premium is enabled but not "
+#~ "effective. It requires Woocommerce in order to work."
+#~ msgstr ""
+#~ "YITH WooCommerce Dynamic Pricing and Discounts Premium è abilitato ma non "
+#~ "attivo. Richiede Woo"

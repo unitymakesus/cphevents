@@ -1,0 +1,115 @@
+/*!
+Theme Name:   	Carolina Public Humanities Storefront
+Theme URI:    	https://cphevents.unc.edu/
+Author:         Unity Digital Agency
+Author URI:     https://www.unitymakes.us/
+Description:  	Custom events registration system for Carolina Public Humanities at UNC-CH
+Version:      	2.2.5
+License:      	GNU General Public License v2 or later
+License URI:  	http://www.gnu.org/licenses/gpl-2.0.html
+Template:       storefront
+*/
+
+.site-header {
+  padding-top: 1rem;
+}
+
+.site-branding {
+  padding-bottom: 1rem;
+}
+
+.storefront-primary-navigation {
+  background: #4B9CD3;
+}
+
+.main-navigation ul.menu>li>a,
+.main-navigation ul.nav-menu>li>a,
+.site-header-cart .cart-contents {
+  padding: 1em;
+  color: #ffffff;
+}
+
+.home.home .woocommerce-products-header {
+  padding-bottom: 2em;
+}
+
+.home.home .site-main ul.products li.product {
+  width: 100%;
+  margin-right: 0;
+  margin-bottom: 10px;
+  border: 1px solid #E1E1E1;
+  clear: both;
+  padding: 10px;
+  text-align: left;
+  display: flex;
+  align-items: flex-start;
+}
+
+ul.products li.product .woocommerce-LoopProduct-link {
+  flex-grow: 1;
+}
+
+ul.products li.product .price {
+  display: block;
+  padding: .6180469716em 1.41575em;
+}
+
+ul.products li.product .button {
+  flex-shrink: 0;
+}
+
+ul.products li.product h2.woocommerce-loop-product__title {
+  display: inline;
+  font-size: 24px;
+}
+
+ul.products li.product .date {
+  color: #767676;
+  display: block;
+}
+
+ul.products li.product .cph-quantity {
+  float: right;
+  position: relative;
+}
+
+ul.products li.product .cph-quantity input[type=number]::-webkit-inner-spin-button,
+ul.products li.product .cph-quantity input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+ul.products li.product .cph-quantity input {
+  padding: .6180469716em 1.41575em;
+  -moz-appearance: textfield;
+  width: 105px;
+}
+
+ul.products li.product .cph-quantity-nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100%;
+}
+
+ul.products li.product .cph-quantity-up,
+ul.products li.product .cph-quantity-down {
+  position: absolute;
+  cursor: pointer;
+  height: 50%;
+  border-left: 1px solid #eee;
+  width: 20px;
+  text-align: center;
+  vertical-align: middle;
+  right: 0;
+}
+
+ul.products li.product .cph-quantity-up {
+  top: 0;
+  border-bottom: 1px solid #eee;
+}
+
+ul.products li.product .cph-quantity-down {
+  bottom: 0;
+}

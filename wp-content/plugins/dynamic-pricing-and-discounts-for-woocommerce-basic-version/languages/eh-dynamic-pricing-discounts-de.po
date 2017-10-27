@@ -1,0 +1,1201 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: Dynamic&nbsp;Pricing and Discounts for WooCommerce\n"
+"POT-Creation-Date: 2017-10-09 14:31+0530\n"
+"PO-Revision-Date: 2017-10-09 14:53+0530\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.13\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: eh-dynamic-pricing-discounts.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Last-Translator: \n"
+"Language: de\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: admin/class-admin-actions-function.php:29
+msgid "Dynamic Pricing"
+msgstr "Dynamische Preise"
+
+#: admin/data/BOGO_category_rules/save-options.php:73
+#: admin/data/buy_get_free_rules/save-options.php:68
+#: admin/data/cart_rules/save-options.php:55
+#: admin/data/cat_combinational_rules/save-options.php:63
+#: admin/data/category_rules/save-options.php:58
+#: admin/data/combinational_rules/save-options.php:65
+#: admin/data/product_rules/save-options.php:80
+#: admin/data/settings_page/save-options.php:33
+msgid "Saved Successfully"
+msgstr "Erfolgreich gespeichert"
+
+#: admin/data/BOGO_category_rules/save-options.php:79
+#: admin/data/buy_get_free_rules/save-options.php:74
+#: admin/data/cart_rules/save-options.php:61
+#: admin/data/cat_combinational_rules/save-options.php:69
+#: admin/data/category_rules/save-options.php:64
+#: admin/data/combinational_rules/save-options.php:71
+#: admin/data/product_rules/save-options.php:86
+#: admin/data/settings_page/save-options.php:39
+msgid "Please Enter All Fields!! Then Save"
+msgstr "Bitte geben Sie alle Felder ein! Dann speichern"
+
+#: admin/data/BOGO_category_rules/update-options.php:53
+#: admin/data/buy_get_free_rules/update-options.php:48
+#: admin/data/cart_rules/update-options.php:32
+#: admin/data/cat_combinational_rules/update-options.php:48
+#: admin/data/category_rules/update-options.php:32
+#: admin/data/combinational_rules/update-options.php:42
+#: admin/data/product_rules/update-options.php:51
+msgid "Updated Successfully"
+msgstr "Email erfolgreich versendet"
+
+#: admin/data/BOGO_category_rules/update-options.php:59
+#: admin/data/buy_get_free_rules/update-options.php:54
+#: admin/data/cart_rules/update-options.php:38
+#: admin/data/cat_combinational_rules/update-options.php:54
+#: admin/data/category_rules/update-options.php:38
+#: admin/data/combinational_rules/update-options.php:48
+#: admin/data/product_rules/update-options.php:57
+msgid "Please Enter All Fields ,Then Try To Update!!"
+msgstr ""
+"Bitte geben Sie alle Felder ein, dann versuchen Sie es zu aktualisieren!"
+
+#: admin/eha_importer.php:15
+msgid "Please upload a valid .json file"
+msgstr "Bitte eine gültige .json-Datei hochladen!"
+
+#: admin/eha_importer.php:19
+msgid "Please upload a file to import"
+msgstr "Datei für den Import hochladen"
+
+#: admin/eha_importer.php:42
+msgid "Imported Successfully!"
+msgstr "Erfolgreich importiert"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:27
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:269
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:313
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:89
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:151
+msgid "Any category"
+msgstr "Jede Kategorie"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:94
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:99
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:52
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:58
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:52
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:74
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:72
+msgid "Rule"
+msgstr "Regel"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:99
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:104
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:57
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:63
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:57
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:79
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:77
+msgid "Adjustments"
+msgstr "Einstellarbeiten"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:104
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:109
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:62
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:68
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:62
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:84
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:82
+msgid "Allowed Roles & Date"
+msgstr "Erlaubte Benutzerrollen"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:109
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:114
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:67
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:73
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:67
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:89
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:87
+msgid "Restrictions"
+msgstr "Beschränkungen"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:119
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:124
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:77
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:83
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:77
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:99
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:97
+msgid "Offer name"
+msgstr "Angebotsname"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:120
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:125
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:78
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:84
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:78
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:100
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:98
+msgid "Enter a descriptive offer name"
+msgstr "Geben Sie einen beschreibenden Angebotsnamen ein"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:121
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:126
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:79
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:85
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:79
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:101
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:99
+msgid ""
+"Name/Text of the offer to be displayed in the Offer Table. We suggest a "
+"detailed description of the discount."
+msgstr ""
+"Name / Text des Angebots, das in der Angebotstabelle angezeigt werden soll. "
+"Wir empfehlen eine detaillierte Beschreibung des Rabattes."
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:136
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:141
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:154
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:131
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:171
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:147
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:232
+msgid "Adjustment amount"
+msgstr "Schrittweite der Anpassung"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:137
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:142
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:155
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:132
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:172
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:148
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:233
+msgid "Adjust final discount amount by this amount"
+msgstr "Den endgültigen Rabattbetrag um diesen Betrag anpassen"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:149
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:154
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:167
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:144
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:184
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:160
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:251
+msgid "All"
+msgstr "Alle"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:152
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:157
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:170
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:147
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:187
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:163
+#: admin/view/tabs/selected-tab-content/display-saved-BOGO_category_rules-table.php:17
+#: admin/view/tabs/selected-tab-content/display-saved-buy_get_free_rules-table.php:18
+#: admin/view/tabs/selected-tab-content/display-saved-cart_rules-table.php:21
+#: admin/view/tabs/selected-tab-content/display-saved-cat_combinational_rules-table.php:19
+#: admin/view/tabs/selected-tab-content/display-saved-category_rules-table.php:21
+#: admin/view/tabs/selected-tab-content/display-saved-combinational_rules-table.php:20
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:23
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:254
+msgid "Allowed Roles"
+msgstr "Erlaubte Benutzerrollen"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:161
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:166
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:179
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:156
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:196
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:172
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:263
+msgid "Valid from date"
+msgstr "Gültig von"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:173
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:178
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:191
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:168
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:208
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:183
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:275
+msgid "Expiry date"
+msgstr "Verfallsdatum"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:188
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:193
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:206
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:183
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:223
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:197
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:290
+msgid "Allowed Email Ids"
+msgstr "Erlaubte E-Mail-IDs"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:189
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:194
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:207
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:184
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:224
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:198
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:291
+msgid "Enter Email ids seperated by commas"
+msgstr "Geben Sie E-Mail-IDs ein, die durch Kommas getrennt sind"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:190
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:195
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:208
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:185
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:225
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:199
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:292
+msgid ""
+"Enter Email ids seperated by commas, for which you want to allow this rule. "
+"and leave blank to allow for all"
+msgstr ""
+"Geben Sie E-Mail-IDs ein, die durch Kommas getrennt sind, für die Sie diese "
+"Regel zulassen möchten. und leer lassen, um für alle zu erlauben"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:197
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:202
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:215
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:192
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:232
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:206
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:299
+msgid "Minimum number of orders (previous orders)"
+msgstr "Mindestanzahl der Aufträge (vorherige Bestellungen)"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:198
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:203
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:216
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:193
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:233
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:207
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:300
+msgid "Minimum count of preivious orders required for this rule to be executed"
+msgstr ""
+"Die Mindestanzahl zahlreicher Aufträge, die für diese Regel erforderlich sind"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:210
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:215
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:228
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:205
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:245
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:219
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:312
+msgid "Minimum total spending (previous orders)"
+msgstr "Minimale Gesamtausgaben (vorherige Bestellungen)"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:211
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:216
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:229
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:206
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:246
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:220
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:313
+msgid ""
+"Minimum amount the user has spent till now for the rule to execute. total "
+"calculated from all previous orders"
+msgstr ""
+"Minimaler Betrag, den der Benutzer bis jetzt für die auszuführende Regel "
+"ausgegeben hat. Summe berechnet aus allen bisherigen Bestellungen"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:238
+msgid "Products need to be purchased"
+msgstr "Produkte müssen gekauft werden"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:240
+msgid "Enter products customer needs to buy to get their free products"
+msgstr ""
+"Geben Sie Produkte Kundenbedürfnisse zu kaufen, um ihre freien Produkte zu "
+"bekommen"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:247
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:368
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:252
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:365
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:283
+msgid "Row no"
+msgstr "Reihe Nr."
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:248
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:238
+#: admin/view/tabs/selected-tab-content/display-saved-category_rules-table.php:14
+msgid "Category Name"
+msgstr "Kategorienname"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:249
+#: admin/view/tabs/selected-tab-content/display-saved-cart_rules-table.php:15
+#: admin/view/tabs/selected-tab-content/display-saved-category_rules-table.php:15
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:17
+msgid "Check on"
+msgstr "An"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:250
+msgid "Check min"
+msgstr "Scheck min"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:347
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:331
+msgid "Add Category"
+msgstr "Karegorie hinzufügen"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:348
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:332
+msgid "Delete Category"
+msgstr "Rubrik löschen"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:360
+msgid "Product to be set as free"
+msgstr "Produkt als frei eingestellt werden"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:362
+msgid ""
+"Enter the products which will be set as free if all above products in "
+"respective quantities are purchased"
+msgstr ""
+"Geben Sie die Produkte ein, die frei gesetzt werden, wenn alle oben "
+"genannten Produkte in den jeweiligen Mengen gekauft werden"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:369
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:253
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:366
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:284
+msgid "Product Name"
+msgstr "Produktname"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:370
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:254
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:367
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:239
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:285
+#: admin/view/tabs/selected-tab-content/display-saved-cat_combinational_rules-table.php:15
+#: admin/view/tabs/selected-tab-content/display-saved-combinational_rules-table.php:16
+msgid "Quantity"
+msgstr "Anzahl"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:390
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:399
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:433
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:438
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:274
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:283
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:317
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:322
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:387
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:396
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:430
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:435
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:234
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:249
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:306
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:319
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:348
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:351
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:119
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:134
+#: includes/common-functions.php:99 includes/common-functions.php:119
+msgid "Search for a product&hellip;"
+msgstr "Nach einem Produkt suchen&hellip;"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:460
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:344
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:457
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:368
+msgid "Add Product"
+msgstr "Produkt Details"
+
+#: admin/view/tabs/selected-tab-content/BOGO_category_rule-tab.php:461
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:345
+#: admin/view/tabs/selected-tab-content/buy_get_free_rule-tab.php:458
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:369
+msgid "Delete Product"
+msgstr "Produkt löschen"
+
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:18
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:14
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:18
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:13
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:18
+msgid "Discount percentage"
+msgstr "Discount Prozentsatz"
+
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:88
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:105
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:166
+msgid "Check for"
+msgstr "Prüfen Sie auf:"
+
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:94
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:111
+msgid ""
+"The rules can be based on No. of items/Weight/Price/Total Units. \"No. of "
+"items\" denotes the number of distinct products. Whereas \"Total Units\" "
+"denotes the total no. of units of any product."
+msgstr ""
+"Die Regeln können auf der Anzahl der Artikel / Gewicht / Preis / "
+"Gesamteinheiten basieren. \"Anzahl der Artikel\" bezeichnet die Anzahl der "
+"verschiedenen Produkte. Während \"Gesamtbeträge\" die Gesamtnr. von "
+"Einheiten eines Produktes."
+
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:99
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:116
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:176
+msgid "Minimum"
+msgstr "Minimum"
+
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:100
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:117
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:177
+msgid "Minimum value to check"
+msgstr "Minimaler Wert zu überprüfen"
+
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:109
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:126
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:186
+msgid "Maximum"
+msgstr "Maximum"
+
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:110
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:127
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:187
+msgid "Maximum value to check, set it empty for no limit"
+msgstr "Maximaler Wert zu überprüfen, leer legen für kein Limit"
+
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:119
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:96
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:136
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:112
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:197
+msgid "Discount type"
+msgstr "Rabattart"
+
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:124
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:101
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:141
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:117
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:202
+msgid ""
+"Three types of discounts can be applied – “Percentage Discount/Flat Discount/"
+"Fixed Price”"
+msgstr ""
+"Es können drei Arten von Rabatten angewendet werden - \"Percentage "
+"Discount / Flat Discount / Fixed Price\""
+
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:129
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:106
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:146
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:122
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:207
+#: public/class-xa-dynamic-pricing-plugin-public.php:123
+#: public/xa-single-product-pricing-table.php:90
+#: public/xa-single-product-pricing-table.php:92
+msgid "Discount"
+msgstr "Rabatt"
+
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:130
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:107
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:147
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:123
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:208
+msgid ""
+"If you select “Percentage Discount”, the given percentage (value) would be "
+"discounted on each unit of the product in the cart.\n"
+"If you select “Flat Discount”, the given amount (value) would be discounted "
+"at subtotal level in the cart\n"
+"If you select “Fixed Price”, the original price of the product is replaced "
+"by the given fixed price (value)."
+msgstr ""
+"Wenn Sie \"Prozentsatzrabatt\" wählen, wird der angegebene Prozentsatz "
+"(Wert) auf jeder Einheit des Produkts im Einkaufswagen abgezinst. Wenn Sie "
+"\"Flat Discount\" wählen, wird der angegebene Betrag (Wert) auf "
+"Zwischensummebene im Warenkorb abgezinst. Wenn Sie \"Festpreis\" wählen, "
+"wird der ursprüngliche Preis des Produkts durch den angegebenen Festpreis "
+"(Wert) ersetzt."
+
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:145
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:122
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:162
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:138
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:223
+msgid "Maximum discount amount"
+msgstr "Maximaler Rabattbetrag"
+
+#: admin/view/tabs/selected-tab-content/cart-rule-tab.php:146
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:123
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:163
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:139
+msgid ""
+"After Calculation Discount Value Must Not Exceeed This Amount For This Rule"
+msgstr ""
+"Nach Berechnungsrabatt darf dieser Betrag für diese Regel nicht "
+"überschritten werden"
+
+#: admin/view/tabs/selected-tab-content/cat-combinational-rule-tab.php:237
+msgid "#Row no"
+msgstr "Reihe Nr."
+
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:88
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:150
+msgid "Product categories"
+msgstr "Produktkategorien"
+
+#: admin/view/tabs/selected-tab-content/category-rule-tab.php:100
+msgid "Select the category for which the rule would be applied."
+msgstr ""
+"Wählen Sie die Kategorie aus, für die die Regel angewendet werden soll."
+
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:233
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:248
+msgid "Apply discounts only on these products"
+msgstr "Nur Rabatte auf diese Produkte anwenden"
+
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:244
+#: admin/view/tabs/selected-tab-content/combinational-rule-tab.php:260
+msgid ""
+"Instead of applying discount on all items in this combination , you can "
+"apply discount only on some products of this combination"
+msgstr ""
+"Anstatt den Rabatt auf alle Artikel in dieser Kombination anzuwenden, können "
+"Sie Rabatt nur auf einige Produkte dieser Kombination anwenden"
+
+#: admin/view/tabs/selected-tab-content/display-saved-BOGO_category_rules-table.php:10
+#: admin/view/tabs/selected-tab-content/display-saved-buy_get_free_rules-table.php:11
+#: admin/view/tabs/selected-tab-content/display-saved-cart_rules-table.php:12
+#: admin/view/tabs/selected-tab-content/display-saved-cat_combinational_rules-table.php:11
+#: admin/view/tabs/selected-tab-content/display-saved-category_rules-table.php:11
+#: admin/view/tabs/selected-tab-content/display-saved-combinational_rules-table.php:12
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:12
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:207
+msgid "Options"
+msgstr "Aktionen"
+
+#: admin/view/tabs/selected-tab-content/display-saved-BOGO_category_rules-table.php:11
+#: admin/view/tabs/selected-tab-content/display-saved-buy_get_free_rules-table.php:12
+#: admin/view/tabs/selected-tab-content/display-saved-cart_rules-table.php:13
+#: admin/view/tabs/selected-tab-content/display-saved-cat_combinational_rules-table.php:12
+#: admin/view/tabs/selected-tab-content/display-saved-category_rules-table.php:12
+#: admin/view/tabs/selected-tab-content/display-saved-combinational_rules-table.php:13
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:13
+msgid "Rule no."
+msgstr "Regel Nr."
+
+#: admin/view/tabs/selected-tab-content/display-saved-BOGO_category_rules-table.php:12
+#: admin/view/tabs/selected-tab-content/display-saved-buy_get_free_rules-table.php:13
+#: admin/view/tabs/selected-tab-content/display-saved-cart_rules-table.php:14
+#: admin/view/tabs/selected-tab-content/display-saved-cat_combinational_rules-table.php:13
+#: admin/view/tabs/selected-tab-content/display-saved-category_rules-table.php:13
+#: admin/view/tabs/selected-tab-content/display-saved-combinational_rules-table.php:14
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:14
+msgid "Offer Name"
+msgstr "Angebotsname"
+
+#: admin/view/tabs/selected-tab-content/display-saved-BOGO_category_rules-table.php:13
+msgid "Purchased Category"
+msgstr "Gekaufte Kategorie"
+
+#: admin/view/tabs/selected-tab-content/display-saved-BOGO_category_rules-table.php:14
+#: admin/view/tabs/selected-tab-content/display-saved-buy_get_free_rules-table.php:15
+msgid "Purchased Quantity"
+msgstr "Gekaufte Menge"
+
+#: admin/view/tabs/selected-tab-content/display-saved-BOGO_category_rules-table.php:15
+#: admin/view/tabs/selected-tab-content/display-saved-buy_get_free_rules-table.php:16
+msgid "Free Product"
+msgstr "Gratis Produkt"
+
+#: admin/view/tabs/selected-tab-content/display-saved-BOGO_category_rules-table.php:16
+#: admin/view/tabs/selected-tab-content/display-saved-buy_get_free_rules-table.php:17
+msgid "Free Quantity"
+msgstr "Freie Menge"
+
+#: admin/view/tabs/selected-tab-content/display-saved-BOGO_category_rules-table.php:18
+#: admin/view/tabs/selected-tab-content/display-saved-buy_get_free_rules-table.php:19
+#: admin/view/tabs/selected-tab-content/display-saved-cart_rules-table.php:22
+#: admin/view/tabs/selected-tab-content/display-saved-cat_combinational_rules-table.php:20
+#: admin/view/tabs/selected-tab-content/display-saved-category_rules-table.php:22
+#: admin/view/tabs/selected-tab-content/display-saved-combinational_rules-table.php:21
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:24
+msgid "From Date"
+msgstr "Von"
+
+#: admin/view/tabs/selected-tab-content/display-saved-BOGO_category_rules-table.php:19
+#: admin/view/tabs/selected-tab-content/display-saved-buy_get_free_rules-table.php:20
+#: admin/view/tabs/selected-tab-content/display-saved-cart_rules-table.php:23
+#: admin/view/tabs/selected-tab-content/display-saved-cat_combinational_rules-table.php:21
+#: admin/view/tabs/selected-tab-content/display-saved-category_rules-table.php:23
+#: admin/view/tabs/selected-tab-content/display-saved-combinational_rules-table.php:22
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:25
+msgid "To Date"
+msgstr "Bis"
+
+#: admin/view/tabs/selected-tab-content/display-saved-BOGO_category_rules-table.php:20
+#: admin/view/tabs/selected-tab-content/display-saved-buy_get_free_rules-table.php:21
+#: admin/view/tabs/selected-tab-content/display-saved-cart_rules-table.php:24
+#: admin/view/tabs/selected-tab-content/display-saved-cat_combinational_rules-table.php:22
+#: admin/view/tabs/selected-tab-content/display-saved-category_rules-table.php:24
+#: admin/view/tabs/selected-tab-content/display-saved-combinational_rules-table.php:23
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:26
+msgid "Adjustment"
+msgstr "Anpassung"
+
+#: admin/view/tabs/selected-tab-content/display-saved-BOGO_category_rules-table.php:21
+#: admin/view/tabs/selected-tab-content/display-saved-buy_get_free_rules-table.php:22
+#: admin/view/tabs/selected-tab-content/display-saved-cart_rules-table.php:25
+#: admin/view/tabs/selected-tab-content/display-saved-cat_combinational_rules-table.php:23
+#: admin/view/tabs/selected-tab-content/display-saved-category_rules-table.php:25
+#: admin/view/tabs/selected-tab-content/display-saved-combinational_rules-table.php:24
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:27
+msgid "For Emails"
+msgstr "Für E-Mails"
+
+#: admin/view/tabs/selected-tab-content/display-saved-BOGO_category_rules-table.php:22
+#: admin/view/tabs/selected-tab-content/display-saved-buy_get_free_rules-table.php:23
+#: admin/view/tabs/selected-tab-content/display-saved-cart_rules-table.php:26
+#: admin/view/tabs/selected-tab-content/display-saved-cat_combinational_rules-table.php:24
+#: admin/view/tabs/selected-tab-content/display-saved-category_rules-table.php:26
+#: admin/view/tabs/selected-tab-content/display-saved-combinational_rules-table.php:25
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:28
+msgid "Min Order Count"
+msgstr "Sortieren nach Anzahl"
+
+#: admin/view/tabs/selected-tab-content/display-saved-BOGO_category_rules-table.php:23
+#: admin/view/tabs/selected-tab-content/display-saved-buy_get_free_rules-table.php:24
+#: admin/view/tabs/selected-tab-content/display-saved-cart_rules-table.php:27
+#: admin/view/tabs/selected-tab-content/display-saved-cat_combinational_rules-table.php:25
+#: admin/view/tabs/selected-tab-content/display-saved-category_rules-table.php:27
+#: admin/view/tabs/selected-tab-content/display-saved-combinational_rules-table.php:26
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:29
+msgid "Min Order Amt"
+msgstr "Minimaler Auftrag Amt"
+
+#: admin/view/tabs/selected-tab-content/display-saved-BOGO_category_rules-table.php:33
+#: admin/view/tabs/selected-tab-content/display-saved-buy_get_free_rules-table.php:34
+#: admin/view/tabs/selected-tab-content/display-saved-cart_rules-table.php:37
+#: admin/view/tabs/selected-tab-content/display-saved-cat_combinational_rules-table.php:35
+#: admin/view/tabs/selected-tab-content/display-saved-category_rules-table.php:37
+#: admin/view/tabs/selected-tab-content/display-saved-combinational_rules-table.php:36
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:40
+msgid ""
+"There are no rules created to create a rule click the \"Add New Rule\" "
+"button on top left-hand side."
+msgstr ""
+"Es gibt keine Regeln, um eine Regel zu erstellen. Klicken Sie auf die "
+"Schaltfläche \"Neue Regel hinzufügen\" oben links."
+
+#: admin/view/tabs/selected-tab-content/display-saved-buy_get_free_rules-table.php:14
+msgid "Purchased Product"
+msgstr "Gekauftes Produkt"
+
+#: admin/view/tabs/selected-tab-content/display-saved-cart_rules-table.php:16
+#: admin/view/tabs/selected-tab-content/display-saved-category_rules-table.php:16
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:18
+msgid "Min"
+msgstr "Min"
+
+#: admin/view/tabs/selected-tab-content/display-saved-cart_rules-table.php:17
+#: admin/view/tabs/selected-tab-content/display-saved-category_rules-table.php:17
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:19
+msgid "Max"
+msgstr "Max"
+
+#: admin/view/tabs/selected-tab-content/display-saved-cart_rules-table.php:18
+#: admin/view/tabs/selected-tab-content/display-saved-cat_combinational_rules-table.php:16
+#: admin/view/tabs/selected-tab-content/display-saved-category_rules-table.php:18
+#: admin/view/tabs/selected-tab-content/display-saved-combinational_rules-table.php:17
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:20
+msgid "Discount Type"
+msgstr "Rabatt Typ"
+
+#: admin/view/tabs/selected-tab-content/display-saved-cart_rules-table.php:19
+#: admin/view/tabs/selected-tab-content/display-saved-cat_combinational_rules-table.php:17
+#: admin/view/tabs/selected-tab-content/display-saved-category_rules-table.php:19
+#: admin/view/tabs/selected-tab-content/display-saved-combinational_rules-table.php:18
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:21
+msgid "Value"
+msgstr "Wert aus benutzerdefiniertem Feld"
+
+#: admin/view/tabs/selected-tab-content/display-saved-cart_rules-table.php:20
+#: admin/view/tabs/selected-tab-content/display-saved-cat_combinational_rules-table.php:18
+#: admin/view/tabs/selected-tab-content/display-saved-category_rules-table.php:20
+#: admin/view/tabs/selected-tab-content/display-saved-combinational_rules-table.php:19
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:22
+msgid "Max Discount"
+msgstr "Maximaler Rabatt (%)"
+
+#: admin/view/tabs/selected-tab-content/display-saved-cat_combinational_rules-table.php:14
+msgid "Category"
+msgstr "Kategorie"
+
+#: admin/view/tabs/selected-tab-content/display-saved-combinational_rules-table.php:15
+msgid "Product"
+msgstr "Product"
+
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:15
+msgid "Rule on"
+msgstr "Regel auf"
+
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:16
+msgid "Product/Category"
+msgstr "Produktkategorie"
+
+#: admin/view/tabs/selected-tab-content/display-saved-product_rules-table.php:30
+msgid "Repeat"
+msgstr "Wiederholen"
+
+#: admin/view/tabs/selected-tab-content/import_export-tab.php:12
+msgid "Export Settings"
+msgstr "Einstellungen exportieren"
+
+#: admin/view/tabs/selected-tab-content/import_export-tab.php:14
+msgid "Export the plugin settings to a JSON format (.json) file"
+msgstr ""
+"Exportieren Sie die Plugin-Einstellungen in eine JSON-Formatdatei (.json)"
+
+#: admin/view/tabs/selected-tab-content/import_export-tab.php:27
+msgid "Export"
+msgstr "Export"
+
+#: admin/view/tabs/selected-tab-content/import_export-tab.php:34
+msgid "Import Settings"
+msgstr "Import Einstellungen"
+
+#: admin/view/tabs/selected-tab-content/import_export-tab.php:36
+msgid "Import the plugin settings from a .json file."
+msgstr "Importieren Sie die Plugin-Einstellungen aus einer .json-Datei."
+
+#: admin/view/tabs/selected-tab-content/import_export-tab.php:59
+msgid "Import"
+msgstr "Importieren"
+
+#: admin/view/tabs/selected-tab-content/import_export-tab.php:66
+msgid "Restore Tabs"
+msgstr "Tabs wiederherstellen"
+
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:107
+msgid "Rule applicable on"
+msgstr "Regel anwendbar auf"
+
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:112
+msgid ""
+"Decide whether the rule has to be applied product wise or category wise."
+msgstr ""
+"Entscheiden Sie, ob die Regel muss Produkt klug oder Kategorie klug "
+"angewendet werden."
+
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:118
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:133
+msgid "Products"
+msgstr "Produkte"
+
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:129
+msgid "The rule would be applied to the selected products individually."
+msgstr ""
+"Die Regel würde auf die ausgewählten Produkte einzeln angewendet werden."
+
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:145
+msgid "Rule to be applied on which products"
+msgstr "Regel auf die Produkte angewendet werden"
+
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:161
+msgid ""
+"This is different from the “Category Rule”. In this case, the rule would be "
+"individually applied to all the products in the category."
+msgstr ""
+"Das unterscheidet sich von der \"Kategorieregel\". In diesem Fall würde die "
+"Regel individuell auf alle Produkte der Kategorie angewendet werden."
+
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:171
+msgid "The rules can be applied based on “Quantity/Price/Weight”"
+msgstr "Die Regeln können auf der Grundlage von \"Menge / Preis / Gewicht\""
+
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:224
+msgid ""
+"This value is used to set up a limit for the discount. This is usually left "
+"blank if you do not want to limit the discount."
+msgstr ""
+"Dieser Wert wird verwendet, um eine Grenze für den Rabatt einzurichten. Dies "
+"ist in der Regel leer, wenn Sie nicht wollen, um den Rabatt zu begrenzen."
+
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:241
+msgid "Allow repeat execution"
+msgstr "Wiederholungsausführung zulassen"
+
+#: admin/view/tabs/selected-tab-content/product-rule-tab.php:242
+msgid ""
+"This rule will be executed if the total quantity of the product is a "
+"multiple of the min/max quantity set in the “Rule” section. Note that for "
+"this to work the min and the max quantity has to be equal."
+msgstr ""
+"Diese Regel wird ausgeführt, wenn die Gesamtmenge des Produkts ein "
+"Vielfaches der im Abschnitt \"Regel\" eingestellten Min / Max-Menge ist. "
+"Beachten Sie, dass für diese Arbeit die minimale und die maximale Menge "
+"gleich sein muss."
+
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:154
+msgid "Execution Order"
+msgstr "Ausführungsreihenfolge"
+
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:272
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:306
+msgid "Before Product"
+msgstr "Vor Produkt"
+
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:273
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:307
+msgid "After Product"
+msgstr "Nach dem Produkt"
+
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:274
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:308
+msgid "Before Product Summary"
+msgstr "Vor Produktübersicht"
+
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:275
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:309
+msgid "In Product Summary"
+msgstr "Produktübersicht"
+
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:276
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:310
+msgid "After Product Summary"
+msgstr "Nach der Produktübersicht"
+
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:277
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:311
+msgid "Before Add To Cart Button"
+msgstr "Vor der Schaltfläche \"In den Warenkorb\""
+
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:278
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:312
+msgid "After Add To Cart Button"
+msgstr "Nach der Schaltfläche \"In den Warenkorb\""
+
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:279
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:313
+msgid "Before Add To Cart Form"
+msgstr "Vor \"In den Warenkorb\""
+
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:280
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:314
+msgid "After Add To Cart Form"
+msgstr "Nach \"In den Warenkorb\""
+
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:281
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:315
+msgid "Product Thumbnails"
+msgstr "Produkt-Miniaturbilder"
+
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:282
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:316
+msgid "Product Meta Start"
+msgstr "Produkt Meta Start"
+
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:283
+#: admin/view/tabs/selected-tab-content/settings_page-tab.php:317
+msgid "Product Meta End"
+msgstr "Produkt-Meta-Daten"
+
+#: admin/view/tabs/tabs-html-render.php:1
+msgid "Dynamic Pricing Main Page"
+msgstr "Dynamische Preise Hauptseite"
+
+#: admin/view/tabs/tabs-html-render.php:146
+msgid "Discount Rules"
+msgstr "Rabattregeln"
+
+#: admin/view/tabs/tabs-html-render.php:147
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: admin/view/tabs/tabs-html-render.php:148
+msgid "Licence"
+msgstr "Lizenz"
+
+#: admin/view/tabs/tabs-html-render.php:149
+msgid "Import/Export"
+msgstr "Import/Export"
+
+#: admin/view/tabs/tabs-html-render.php:158
+msgid "Product Rules"
+msgstr "Produktregeln"
+
+#: admin/view/tabs/tabs-html-render.php:160
+msgid "Combinational Rules"
+msgstr "Kombinationsregeln"
+
+#: admin/view/tabs/tabs-html-render.php:162
+msgid "Category Rules"
+msgstr "Kategorie Regeln"
+
+#: admin/view/tabs/tabs-html-render.php:164
+msgid "Category Combinational Rules"
+msgstr "Kategorie Kombinationsregeln"
+
+#: admin/view/tabs/tabs-html-render.php:166
+msgid "Cart Rules"
+msgstr "Wagenregeln"
+
+#: admin/view/tabs/tabs-html-render.php:168
+msgid "BOGO Rules"
+msgstr "BOGO Regeln"
+
+#: admin/view/tabs/tabs-html-render.php:170
+msgid "BOGO Category Rules"
+msgstr "BOGO Kategorie Regeln"
+
+#: admin/view/tabs/tabs-html-render.php:200
+msgid ""
+"Note - In this section every rule is executed individually for every "
+"product. Each product is a distinct entity."
+msgstr ""
+"Hinweis - In diesem Abschnitt wird jede Regel für jedes Produkt einzeln "
+"ausgeführt. Jedes Produkt ist eine eigenständige Einheit."
+
+#: admin/view/tabs/tabs-html-render.php:268
+msgid "All Rules Deleted Successfully!"
+msgstr "Alle Regeln wurden erfolgreich gelöscht!"
+
+#: admin/view/tabs/tabs-html-render.php:280
+msgid "Update Rule"
+msgstr "Regel aktualisieren"
+
+#: admin/view/tabs/tabs-html-render.php:283
+msgid "Save Rule"
+msgstr "Regel speichern"
+
+#: eh-dynamic-pricing-discounts.php:40
+msgid ""
+"Oops! You tried installing the premium version without deactivating and "
+"deleting the basic version. Kindly deactivate and delete Dynamic Pricing and "
+"Discounts for WooCommerce Basic Version and then try again"
+msgstr ""
+"Hoppla! Sie haben versucht, die Premium-Version zu installieren, ohne die "
+"Grundversion zu deaktivieren und zu löschen. Bitte deaktivieren und löschen "
+"Sie Dynamic Pricing und Rabatte für WooCommerce Basic Version und versuchen "
+"Sie es dann erneut"
+
+#: eh-dynamic-pricing-discounts.php:124
+msgid "Documentation"
+msgstr "Documentation"
+
+#: eh-dynamic-pricing-discounts.php:125
+msgid "Support"
+msgstr "Support"
+
+#: includes/common-functions.php:287
+#, php-format
+msgctxt "Price range: from-to"
+msgid "%1$s &ndash; %2$s"
+msgstr "%1$s &ndash; %2$s"
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:347
+#, php-format
+msgid ""
+"The license key for %s has expired. You can reactivate or purchase a license "
+"key from your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+"Der Lizenzschlüssel für %s ist abgelaufen. Sie können ihn reaktivieren oder "
+"einen neuen Lizenzschlüssel über Ihr Konto <a href=\"%s\" target=\"_blank\"> "
+"Dashboard</a> kaufen."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:357
+#, php-format
+msgid ""
+"The subscription for %s is on-hold. You can reactivate the subscription from "
+"your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+"Das Abonnement für %s ist ausgesetzt. Sie können es über Ihr Account "
+"reaktivieren. <a href=\"%s\" target=\"_blank\">dashboard</a>."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:367
+#, php-format
+msgid ""
+"The subscription for %s has been cancelled. You can renew the subscription "
+"from your account <a href=\"%s\" target=\"_blank\">dashboard</a>. A new "
+"license key will be emailed to you after your order has been completed."
+msgstr ""
+"Das Abo für %s wurde beendet. Du kannst es von deinem <a href=\"%s\" target="
+"\"_blank\">Account-Dashboard</a> aus erneuern. Ein neuer Lizenzschlüssel "
+"wird an deine E-Mail-Adresse geschickt, sobald die Bestellung abgeschlossen "
+"ist."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:377
+#, php-format
+msgid ""
+"The subscription for %s has expired. You can reactivate the subscription "
+"from your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+"Das Abo für %s ist ausgelaufen. Du kannst es über dein <a href=\"%s\" target="
+"\"_blank\">Account-Dashboard</a> erneuern."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:387
+#, php-format
+msgid ""
+"The subscription for %s has been suspended. You can reactivate the "
+"subscription from your account <a href=\"%s\" target=\"_blank\">dashboard</"
+"a>."
+msgstr ""
+"Das Abonnement für %s wurde gesperrt. Sie können das Abonnement von Ihrem "
+"Konto <a href=\"%s\" target=\"_blank\"> Dashboard </a> reaktivieren."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:397
+#, php-format
+msgid ""
+"The subscription for %s is still pending. You can check on the status of the "
+"subscription from your account <a href=\"%s\" target=\"_blank\">dashboard</"
+"a>."
+msgstr ""
+"Das Abonnement für %s ist noch schwebend. Du kannst den Status des "
+"Abonnements von deines Accounts überprüfen <a href=\"%s\" target=\"_blank"
+"\">dashboard</a>."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:407
+#, php-format
+msgid ""
+"The subscription for %s has been placed in the trash and will be deleted "
+"soon. You can purchase a new subscription from your account <a href=\"%s\" "
+"target=\"_blank\">dashboard</a>."
+msgstr ""
+"Das Abonnement für %s wurde in den Papierkorb verschoben und wird gelöscht. "
+"Sie können ein neues Abonnement über Ihr Account erwerben. <a href=\"%s\" "
+"target=\"_blank\">dashboard</a>."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:417
+#, php-format
+msgid ""
+"A subscription for %s could not be found. You can purchase a subscription "
+"from your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+"Das Abonnement für %s konnte nicht gefunden werden. Du kannst ein Abonnement "
+"von deinem Konto aus kaufen. <a href=\"%s\" target=\"_blank\">dashboard</a>."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:427
+#, php-format
+msgid ""
+"A license key for %s could not be found. Maybe you forgot to enter a license "
+"key when setting up %s, or the key was deactivated in your account. You can "
+"reactivate license key at your plugin <a href=\"%s\" target=\"_blank"
+"\">settings page</a>."
+msgstr ""
+"Ein Lizenzschlüssel für %s konnte nicht gefunden werden. Vielleicht hast du "
+"vergessen, beim Einrichten von %s einen Lizenzschlüssel einzugeben oder der "
+"Schlüssel in deinem Konto wurde deaktiviert. Einen Lizenzschlüssel kannst du "
+"über dein Konto-<a href=„%s“ target=„_blank“>Dashboard</a> reaktivieren oder "
+"kaufen."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:437
+#, php-format
+msgid ""
+"Download permission for %s has been revoked possibly due to a license key or "
+"subscription expiring. You can reactivate or purchase a license key from "
+"your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+"Herunterladen Berechtigung für %s wurde möglicherweise aufgrund eines "
+"Lizenzschlüssels oder Bezugs Erlöschen widerrufen wurde. Sie können zu "
+"reaktivieren oder Kauf einen Lizenzschlüssel von Ihrem <a href=\"%s\" target="
+"\"_blank\">Konto-Dashboard.</a> ."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:447
+#, php-format
+msgid ""
+"%s has not been activated. Go to the plugin <a href=\"%s\" target=\"_blank"
+"\">settings page</a> and enter the license key and license email to activate "
+"%s."
+msgstr ""
+"%s wurde nicht aktiviert. Wechseln Sie zur Plugin <a href=\"%s\" target="
+"\"_blank\"> Einstellungsseite </a> und geben Sie den Lizenzschlüssel und die "
+"Lizenz-E-Mail ein, um %s zu aktivieren."
+
+#: includes/wf_api_manager/class-wc-am-plugin-update.php:457
+#, php-format
+msgid ""
+"You changed the subscription for %s, so you will need to enter your new API "
+"License Key in the settings page. The License Key should have arrived in "
+"your email inbox, if not you can get it by logging into your account <a href="
+"\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+"Sie veränderten das Abonnement für %s und müssen den neuen API-"
+"Lizenzschlüssel auf der Lizenz-Seite eingeben. Der Lizenzschlüssel sollte in "
+"Ihrem E-Mail-Posteingang angekommen sein, falls nicht schauen Sie in Ihrem "
+"Konto im <a href=\"%s\" target=\"_blank\">dashboard</a> ."
+
+#: public/class-xa-dynamic-pricing-plugin-public.php:126
+msgid "Discount Adjustment"
+msgstr "Rabattanpassung"
+
+#: public/new_calculation_handler.php:243
+#, php-format
+msgctxt "Price range: from-to"
+msgid "%1$s&ndash;%2$s"
+msgstr "%1$s&ndash;%2$s"
+
+#: public/new_calculation_handler.php:247
+msgid "Free!"
+msgstr "Gratis!"
+
+#: public/xa-single-product-offer-table.php:27
+msgid "Offers"
+msgstr "Angebote"
+
+#: public/xa-single-product-pricing-table.php:38
+msgid "Bulk Product Offers"
+msgstr "Bulk Produkt Offerten"
+
+#: public/xa-single-product-pricing-table.php:41
+msgid "Min Buy"
+msgstr "Min. Kauf"
+
+#: public/xa-single-product-pricing-table.php:41
+msgid "Max Buy"
+msgstr "Max Kaufen"
+
+#: public/xa-single-product-pricing-table.php:41
+msgid "Offer"
+msgstr "Angebot"
+
+#: public/xa-single-product-pricing-table.php:48
+msgid "nos"
+msgstr "Nr"
+
+#: public/xa-single-product-pricing-table.php:87
+msgid " "
+msgstr ""
+
+#: public/xa-single-product-pricing-table.php:94
+msgid "Fixed Price"
+msgstr "Festpreis"
+
+#. Plugin Name of the plugin/theme
+msgid "Dynamic&nbsp;Pricing and Discounts for WooCommerce"
+msgstr "Dynamische Preise und Rabatte für WooCommerce"
+
+#. Plugin URI of the plugin/theme
+msgid "https://www.xadapter.com/product/dynamic-pricing-discounts-woocommerce/"
+msgstr ""
+"https://www.xadapter.com/product/dynamic-pricing-discounts-woocommerce/"
+
+#. Description of the plugin/theme
+msgid ""
+"This plugin helps you to set discounts and pricing dynamically based on "
+"minimum quantity,weight,price and allow you to set maximum allowed discounts "
+"on every rule."
+msgstr ""
+"Dieses Plugin hilft Ihnen, Rabatte und Preise dynamisch basierend auf "
+"Mindestmenge, Gewicht, Preis festzulegen und Ihnen zu erlauben, maximal "
+"zulässige Rabatte auf jede Regel festzulegen."
+
+#. Author of the plugin/theme
+msgid "xadapter"
+msgstr "xadapter"
+
+#. Author URI of the plugin/theme
+msgid "https://www.xadapter.com"
+msgstr "https://www.xadapter.com"

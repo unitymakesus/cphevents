@@ -1,0 +1,55 @@
+----------------------------
+I. PLUGIN TRANSLATION
+----------------------------
+(PLEASE place your translated PO file BACK into **this** LANGUAGES folder on your server...)
+
+please refer to the excellent tutorial at::
+
+https://web.archive.org/web/20150817183915/http://www.inkthemes.com/how-to-create-a-po-file-of-your-themes-i-e-translation-of-wordpress-theme-in-multiple-languages/
+
+
+
+http://betterwp.net/wordpress-tips/create-pot-file-using-poedit/
+
+translation file naming samples:
+
+vtprd-en_EN.po
+vtprd-en_EN.mo
+
+vtprd-fr_FR.po
+vtprd-fr_FR.mo
+
+************************************************
+************************
+
+++  The translated ** PO file ** should go to  /wp-content/plugins/pricing-deals-for-woocommerce/languages
+
+++  BE SURE to ALSO update the wp-admin setting “Site Language” setting under “Settings” in the WordPress dashboard which will show a drop down with the available languages.
+
+************************
+************************************************
+
+
+---------------------------------------------------------
+II. 'Coupon: Deals' - change name / translate name
+---------------------------------------------------------  
+
+ If you choose to show the Pricing Deals discount via an auto-inserted Coupon, and
+ 
+    you want  translate/change the name of  the 'Deals' title of the auto-inserted "Coupon: Deals", 
+
+1. ADD the following wordpress filter:
+// Sample filter execution ==>>  put into your theme's functions.php file (at the BOTTOM is best), so it's not affected by plugin updates
+          function coupon_code_discount_title() {
+            return 'different coupon title';  //new coupon title
+          }
+
+          add_filter('vtprd_coupon_code_discount_title', 'coupon_code_discount_title', 10); 
+
+2. **ALSO ADD** a new Woocommerce Coupon in wp-admin/woocommerce/coupons
+Required Coupon Attributes:
+   Coupon Code => coupon title from the Wordpress Filter in (1) above
+   Coupon Type => Fixed Cart Discount
+   Coupon Amount => 0
+
+ 
