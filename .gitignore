@@ -9,9 +9,9 @@ Thumbs.db
 adminer.php
 searchreplacedb2.php
 rrrreplace/*
-wp-config.php
 
 # wordpress specific
+wp-config.php
 wp-content/advanced-cache.php
 wp-content/backup-db/
 wp-content/backups/
@@ -22,6 +22,7 @@ wp-content/upgrade/
 wp-content/wp-cache-config.php
 wp-content/plugins/hello.php
 wp-content/ai1wm-backups/
+wp-content/uploads/wc-logs
 
 # large/disallowed file types
 # a CDN should be used for these
