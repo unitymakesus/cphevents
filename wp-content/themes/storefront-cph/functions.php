@@ -70,7 +70,15 @@ if ( storefront_is_woocommerce_activated() ) {
    * Move price to outside link
    */
   remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10);
-  add_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_price', 8);
+  add_action( 'woocommerce_after_shop_loop_item', function() {
+    global $product;
+
+    if ( !$product->is_type('variable') && $price_html = $product->get_price_html() ) {
+    	echo '<span class="price">';
+      echo $price_html;
+      echo '</span>';
+    }
+  }, 8);
 
   /**
    * Add quantity picker in product list

@@ -26,10 +26,8 @@ function quantity_picker($qty) {
   ?>
   <div class="cph-quantity">
     <input type="number" min="0" step="1" value="<?php echo $qty; ?>" />
-    <div class="cph-quantity-nav">
-      <div class="cph-quantity-up">+</div>
-      <div class="cph-quantity-down">-</div>
-    </div>
+    <button class="cph-quantity-up">+</button>
+    <button class="cph-quantity-down">-</button>
   </div>
   <?php
   return ob_get_flush();
@@ -47,20 +45,21 @@ function cph_event_list_quantity_picker() {
 
     $terms = wc_get_product_terms( $product_id, $atts_keys[0], array( 'fields' => 'all' ) );
 
-    echo '<ul>';
+    echo '<ul class="variations">';
 
     foreach ($variations as $variation) {
-      echo '<li>';
-
+      echo '<li class="variation">';
         // Set up new array for variation attributes
         $var_atts = array();
-
         foreach ($terms as $key => $term) {
           // Display variation name
           if ($term->slug == $variation['attributes']['attribute_' . $atts_keys[0]]) {
-            echo $term->name;
+            echo '<span class="name">' . $term->name . ':</span>';
           }
         }
+
+        // Display price
+        echo $variation['price_html'];
 
         $qty = product_in_cart($product, $variation['variation_id']);
         if ($qty !== NULL) {
