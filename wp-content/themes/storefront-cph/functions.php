@@ -26,6 +26,7 @@ if ( storefront_is_woocommerce_activated() ) {
   add_action('init', function() {
     // Get rid of search in header
     remove_action( 'storefront_header', 'storefront_product_search', 40 );
+    remove_action( 'storefront_header', 'storefront_header_cart',    60 );
     // Get rid of thumbnail in product list
     remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
     // Don't loop columns

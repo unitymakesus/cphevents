@@ -22,14 +22,37 @@ Template:       storefront
   background: #4B9CD3;
 }
 
+.woocommerce-active .site-header .main-navigation {
+  width: 100%;
+  margin: 0;
+}
+
 .main-navigation ul.menu>li>a,
-.main-navigation ul.nav-menu>li>a,
 .site-header-cart .cart-contents {
   padding: 1em;
   color: #ffffff;
 }
 
-.home.home .woocommerce-products-header {
+.main-navigation ul.menu>li.button {
+  padding: 0;
+  background: #13294b;
+  float: right;
+}
+
+.main-navigation ul.menu>li.button:hover {
+  background: #001032;
+}
+
+.main-navigation ul.menu>li.button>a {
+  padding: 1em 1.5em;
+  color: #ffffff;
+}
+
+.woocommerce-breadcrumb {
+  margin-bottom: 1em;
+}
+
+.home.home .woocommerce-products-header, .page .hentry.type-page .entry-header {
   padding-bottom: 2em;
 }
 
@@ -56,6 +79,7 @@ ul.products li.product > .price {
 
 ul.products li.product .button {
   flex-shrink: 0;
+  border: 1px solid #4b9cd3;
 }
 
 ul.products li.product h2.woocommerce-loop-product__title {
@@ -71,6 +95,7 @@ ul.products li.product .date {
 ul.products li.product .cph-quantity {
   float: right;
   position: relative;
+  margin-bottom: .236em;
 }
 
 ul.products li.product .cph-quantity input[type=number]::-webkit-inner-spin-button,
@@ -82,8 +107,35 @@ ul.products li.product .cph-quantity input[type=number]::-webkit-outer-spin-butt
 ul.products li.product .cph-quantity input {
   padding: .6180469716em 30px;
   -moz-appearance: textfield;
-  width: 105px;
+  width: 107px;
   text-align: center;
+  box-sizing: border-box;
+  border: 1px solid #e1e1e1;
+}
+
+ul.products li.product .cph-quantity.loading::after {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f110";
+  -webkit-animation: fa-spin .75s linear infinite;
+          animation: fa-spin .75s linear infinite;
+  height: 20px;
+  width: 20px;
+  line-height: 20px;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+}
+
+ul.products li.product .cph-quantity.loading input {
+  color: #ffffff;
 }
 
 ul.products li.product .cph-quantity-up,
