@@ -46,6 +46,11 @@ if ( storefront_is_woocommerce_activated() ) {
     remove_action( 'woocommerce_after_shop_loop',        'storefront_sorting_wrapper_close',         31 );
   });
 
+
+  /*****************************************************************************
+  * EVENT LIST PAGE
+  *****************************************************************************/
+
   /**
    * Display events in date order
    */
@@ -87,4 +92,49 @@ if ( storefront_is_woocommerce_activated() ) {
   require 'event-list-quantity-picker.php';
   remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart');
   add_action('woocommerce_after_shop_loop_item', 'cph_event_list_quantity_picker', 10);
+
+
+  /*****************************************************************************
+  * CHECKOUT PAGE
+  *****************************************************************************/
+
+  /**
+   * Remove order notes field in checkout
+   */
+  add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
+  add_filter( 'woocommerce_checkout_fields' , 'custom_wc_checkout_fields' );
+  function custom_wc_checkout_fields( $fields ) {
+    $fields['billing']['billing_state']['label'] = 'State';
+    unset($fields['billing']['billing_country']);
+    unset($fields['order']['order_comments']);
+    return $fields;
+  }
+
+  /**
+   * Add custom checkout fields per product
+   */
+  require 'checkout-functions.php';
+  add_action( 'woocommerce_before_order_notes', 'cph_custom_checkout_fields' );
+
+  /**
+  * Process the checkout and check for errors
+  */
+  add_action('woocommerce_checkout_process', 'cph_custom_checkout_field_process');
+
+  /**
+   * Save custom checkout fields to database
+   */
+  add_action('woocommerce_checkout_update_order_meta', 'cph_custom_checkout_field_update_order_meta' );
+
+
+  /*****************************************************************************
+  * ORDER DETAILS
+  *****************************************************************************/
+
+  /**
+  * Display custom field values
+  */
+  require 'order-details-functions.php';
+  add_action( 'woocommerce_order_item_meta_end', 'cph_order_details_tickets', 10, 3); // Order details page
+  add_action( 'woocommerce_after_order_itemmeta', 'cph_order_details_tickets', 10, 3);  // Admin order details
 }

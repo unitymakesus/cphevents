@@ -1,4 +1,9 @@
 jQuery(document).ready(function($) {
+
+  /*****************************************************************************
+  * EVENT LIST PAGE
+  *****************************************************************************/
+
   // Increase quantity
   $(document).on('click', '.cph-quantity-up', function() {
     var input = $(this).siblings('input[type="number"]'),
@@ -170,4 +175,38 @@ jQuery(document).ready(function($) {
 
     return false;
   }
+
+
+  /*****************************************************************************
+  * CHECKOUT PAGE
+  *****************************************************************************/
+
+  // Put all tickets as options to copy details from
+  $('.woocommerce-checkout .ticket-details').each(function() {
+    var title = $(this).siblings('h3').text(),
+        ticket = $(this).children('h4').text(),
+        ticket_key = $(this).data('ticket-key');
+
+    $('.woocommerce-checkout .ticket-details:not([class*=' + ticket_key + ']) select.copy-data').each(function() {
+      $(this).append('<option value="' + ticket_key + '">' + title + ': ' + ticket + '</option>');
+    });
+  });
+
+  // Copy details from selected fields
+  $('.woocommerce-checkout .ticket-details').on('change', 'select.copy-data', function(e) {
+    var which = $(this).val(),
+        ticket = $(this).closest('.ticket-details'),
+        ticket_key = ticket.data('ticket-key');
+
+    if (which !== '') {
+      $(ticket).find('.form-row:not(.control-copy)').each(function() {
+        var field = $(this).attr('id').replace(ticket_key, '').replace('_field', '');
+        $(ticket).find('[name$=' + field + ']').val($('[class*=' + which + ']').find('[name$=' + field + ']').val());
+
+        if (ticket.find('select.state_select').length !== 0) {
+          ticket.find('select.state_select').trigger('change');
+        }
+      });
+    }
+  });
 });
