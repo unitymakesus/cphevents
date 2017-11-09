@@ -193,7 +193,7 @@
 				<div class="switcher-target-is_update_categories" style="padding-left:17px;">
 					<?php
 					$existing_taxonomies = array();
-					$hide_taxonomies = (class_exists('PMWI_Plugin')) ? array('product_type') : array();
+					$hide_taxonomies = (class_exists('PMWI_Plugin')) ? array('product_type', 'product_visibility') : array();
 					$post_taxonomies = array_diff_key(get_taxonomies_by_object_type($post['is_override_post_type'] ? array_keys(get_post_types( '', 'names' )) : array($post_type), 'object'), array_flip($hide_taxonomies));
 					if (!empty($post_taxonomies)): 
 						foreach ($post_taxonomies as $ctx):  if ("" == $ctx->labels->name or (class_exists('PMWI_Plugin') and $post_type == "product" and strpos($ctx->name, "pa_") === 0)) continue;
@@ -226,7 +226,11 @@
 						<label for="update_categories_logic_add_new"><?php _e('Only add new', 'wp_all_import_plugin') ?></label>
 					</div>
 				</div>
-			</div>	
+			</div>
+			<?php
+				// add-ons re-import options
+				do_action('pmxi_reimport_options_after_taxonomies', $post_type, $post);
+			?>
 		</div>
 	</div>
 </div>	

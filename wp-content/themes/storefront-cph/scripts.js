@@ -209,4 +209,101 @@ jQuery(document).ready(function($) {
       });
     }
   });
+
+  function adjust_valid_fields($which, amount) {
+    var current_x = $which.closest('.discount-validation').data('x');
+    $which.closest('.discount-validation').data('x', current_x + amount);
+  }
+
+  function check_valid_fields($which) {
+    var x = $which.closest('.discount-validation').data('x');
+    var n = $which.closest('.discount-validation').data('n');
+
+    if (x == n) {
+      // Add coupon code
+      var data = {
+        action: 'cph_add_discount',
+        product_id: $which.closest('.ticket-details').data('product'),
+        discount_type: $which.closest('.discount-validation').data('discount-type')
+      };
+
+    } else {
+      // Remove coupon code
+      var data = {
+        action: 'cph_remove_discount',
+        product_id: $which.closest('.ticket-details').data('product'),
+        discount_type: $which.closest('.discount-validation').data('discount-type'),
+        original_price: $which.closest('.discount-validation').data('original-price')
+      };
+    }
+
+    $.post( wc_checkout_params.ajax_url, data, function(response) {
+      response = JSON.parse(response);
+
+      if (!response)
+      return;
+
+      console.log(response);
+    });
+  }
+
+  // Apply discounts if teacher and GAA fields validate
+  $('.discount-validation').each(function() {
+    // Number of fields to validate
+    $(this).data('n', $(this).find('input, select').length);
+
+    // Set up data storage for tracking number of fields that validate
+    $(this).data('x', 0);
+
+    // Display teacher and GAA conditional fields
+    $(this).find('.validation-checkbox input[type="checkbox"]').on('change', function() {
+      if ($(this).is(':checked')) {
+        // adjust_valid_fields($(this), 1);
+        $(this).closest('.discount-validation').find('.hidden-fields').show();
+
+        var data = {
+          action: 'cph_add_discount',
+          product_id: $(this).closest('.ticket-details').data('product'),
+          discount_type: $(this).closest('.discount-validation').data('discount-type')
+        };
+
+        $.post( wc_checkout_params.ajax_url, data, function(response) {
+          console.log(response);
+
+          if (!response)
+          return;
+
+          $('body').trigger('update_checkout');
+        });
+
+      } else {
+        // adjust_valid_fields($(this), -1);
+        $(this).closest('.discount-validation').find('.hidden-fields').hide();
+
+        var data = {
+          action: 'cph_remove_discount',
+          product_id: $(this).closest('.ticket-details').data('product'),
+          discount_type: $(this).closest('.discount-validation').data('discount-type'),
+          original_price: $(this).closest('.discount-validation').data('original-price')
+        };
+      }
+
+      // Check that valid fields match total fields
+      // check_valid_fields($(this));
+    });
+
+    // Adjust number of valid fields when these change
+    // $(this).find('.hidden-fields input, .hidden-fields select').on('change', function() {
+    //   if($(this).val()) {
+    //     adjust_valid_fields($(this), 1);
+    //   } else {
+    //     adjust_valid_fields($(this), -1);
+    //   }
+    //
+    //   // Check that valid fields match total fields
+    //   check_valid_fields($(this));
+    // });
+
+  });
+
 });

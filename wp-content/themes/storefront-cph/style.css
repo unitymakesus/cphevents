@@ -22,6 +22,13 @@ Template:       storefront
   background: #4B9CD3;
 }
 
+.storefront-primary-navigation.js-is-sticky {
+  top: 0;
+}
+.child.js-is-stuck {
+  bottom: 0;
+}
+
 .woocommerce-active .site-header .main-navigation {
   width: 100%;
   margin: 0;
@@ -52,11 +59,13 @@ Template:       storefront
   margin-bottom: 1em;
 }
 
-.home.home .woocommerce-products-header, .page .hentry.type-page .entry-header {
+.home.home .woocommerce-products-header,
+.archive.archive .woocommerce-products-header,
+.page .hentry.type-page .entry-header {
   padding-bottom: 2em;
 }
 
-.home.home .site-main ul.products li.product {
+.site-main ul.products li.product {
   width: 100%;
   margin-right: 0;
   margin-bottom: 10px;
@@ -90,6 +99,12 @@ ul.products li.product h2.woocommerce-loop-product__title {
 ul.products li.product .date {
   color: #767676;
   display: block;
+}
+
+ul.products li.product .category {
+  color: #767676;
+  display: block;
+  font-weight: bold;
 }
 
 ul.products li.product .cph-quantity {
@@ -166,6 +181,10 @@ ul.products li.product .cph-quantity-down {
   left: 0;
 }
 
+ul.products li.product > a.added_to_cart {
+  display: none !important;
+}
+
 ul.products li.product-type-variable ul.variations {
   margin: 0;
   list-style: none;
@@ -189,4 +208,29 @@ ul.products li.product-type-variable li.variation .price {
 ul.products li.product-type-variable li.variation .name {
   padding: .6180469716em 0 .6180469716em 1.41575em;
   font-weight: bold;
+}
+
+.ticket-details-wrapper {
+  border-left: 2px solid #4b9cd3;
+  padding-left: 10px;
+  margin-bottom: 1em;
+}
+
+.ticket-details-wrapper h3 {
+  font-weight: bold;
+}
+
+.ticket-details {
+  border-left: 2px solid #8FD16A;
+  padding-left: 10px;
+  margin-bottom: 1em;
+}
+
+.ticket-details h4 {
+  color: #8FD16A;
+  font-weight: bold;
+}
+
+.ticket-details .hidden-fields {
+  display: none;
 }

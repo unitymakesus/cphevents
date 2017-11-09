@@ -61,12 +61,12 @@ class WPMDB_Utils {
 			}
 		}
 	}
-	
+
 	/**
 	 * Return unserialized object or array
 	 *
-	 * @param string    $serialized_string  Serialized string.
-	 * @param string    $method             The name of the caller method.
+	 * @param string $serialized_string Serialized string.
+	 * @param string $method            The name of the caller method.
 	 *
 	 * @return mixed, false on failure
 	 */
@@ -78,12 +78,10 @@ class WPMDB_Utils {
 		$serialized_string   = trim( $serialized_string );
 		$unserialized_string = @unserialize( $serialized_string );
 
-		if ( false === $unserialized_string ) {
-			$wpmdb = function_exists( 'wp_migrate_db_pro' ) ? wp_migrate_db_pro() : wp_migrate_db();
+		if ( false === $unserialized_string && defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG ) {
 			$scope = $method ? sprintf( __( 'Scope: %s().', 'wp-migrate-db' ), $method ) : false;
-			$wpmdb->log_error( __( 'Data cannot be unserialized.', 'wp-migrate-db' ), $scope );
-
-			return false;
+			$error = sprintf( __( 'WPMDB Error: Data cannot be unserialized. %s', 'wp-migrate-db' ), $scope );
+			error_log( $error );
 		}
 
 		return $unserialized_string;
@@ -96,7 +94,7 @@ class WPMDB_Utils {
 	 *
 	 * @return string|array
 	 */
-	public static function safe_wp_unslash( $arg ){
+	public static function safe_wp_unslash( $arg ) {
 		if ( function_exists( 'wp_unslash' ) ) {
 			return wp_unslash( $arg );
 		} else {
@@ -104,4 +102,46 @@ class WPMDB_Utils {
 		}
 	}
 
+	/**
+	 * Use gzdecode if available, otherwise fall back to gzinflate
+	 *
+	 * @param string $data
+	 *
+	 * @return string|bool
+	 */
+	public static function gzdecode( $data ) {
+		if ( ! function_exists( 'gzdecode' ) ) {
+			return @gzinflate( substr( $data, 10, -8 ) );
+		}
+
+		return @gzdecode( $data );
+	}
+  
+  /*
+	 * Require wpmdb-wpdb and create new instance
+	 *
+	 * @return WPMDB_WPDB
+	 */
+	public static function make_wpmdb_wpdb_instance() {
+		if ( ! class_exists( 'WPMDB_WPDB' ) ) {
+			require_once dirname( __FILE__ ) . '/wpmdb-wpdb.php';
+		}
+
+		return new WPMDB_WPDB();
+	}
+
+	/**
+	 * Wrapper for replacing first instance of string
+	 *
+	 * @return string
+	 */
+	public static function str_replace_first( $search, $replace, $string ) {
+		$pos = strpos( $string, $search );
+
+		if ( false !== $pos ) {
+			$string = substr_replace( $string, $replace, $pos, strlen( $search ) );
+		}
+
+		return $string;
+	}
 }

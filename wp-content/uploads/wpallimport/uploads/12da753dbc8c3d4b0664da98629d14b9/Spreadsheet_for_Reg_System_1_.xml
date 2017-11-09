@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<node>
+		<typeofevent><![CDATA[Adventures in Ideas]]></typeofevent>
+		<date><![CDATA[Jan 27]]></date>
+		<time><![CDATA[9:30am-3:30pm]]></time>
+		<longtitle><![CDATA[Art and Technology, From Vermeer to Video]]></longtitle>
+		<shorttitle><![CDATA[Art & Technology]]></shorttitle>
+		<limit><![CDATA[]]></limit>
+		<regprice><![CDATA[140.00]]></regprice>
+		<earlyprice><![CDATA[125.00]]></earlyprice>
+		<addon><![CDATA[n/a - lunch included]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Adventures in Ideas]]></typeofevent>
+		<date><![CDATA[Feb 2-3]]></date>
+		<time><![CDATA[4:30pm-12:00pm]]></time>
+		<longtitle><![CDATA[The Triumph of Christianity in the Ancient World]]></longtitle>
+		<shorttitle><![CDATA[Ancient Christianity 2]]></shorttitle>
+		<limit><![CDATA[90]]></limit>
+		<regprice><![CDATA[125.00]]></regprice>
+		<earlyprice><![CDATA[110.00]]></earlyprice>
+		<addon><![CDATA[optional dinner $20.00]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Adventures in Ideas]]></typeofevent>
+		<date><![CDATA[Feb 24]]></date>
+		<time><![CDATA[9:15am-4:30pm]]></time>
+		<longtitle><![CDATA[Shakespeare: New Perspectives]]></longtitle>
+		<shorttitle><![CDATA[Shakespeare]]></shorttitle>
+		<limit><![CDATA[90]]></limit>
+		<regprice><![CDATA[125.00]]></regprice>
+		<earlyprice><![CDATA[110.00]]></earlyprice>
+		<addon><![CDATA[optional lunch $15.00]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Adventures in Ideas]]></typeofevent>
+		<date><![CDATA[Mar 24]]></date>
+		<time><![CDATA[9:15am-5:30pm]]></time>
+		<longtitle><![CDATA[Learning from the Holocaust: Public Monuments, Museums, and Memory]]></longtitle>
+		<shorttitle><![CDATA[Holocaust Monuments]]></shorttitle>
+		<limit><![CDATA[]]></limit>
+		<regprice><![CDATA[125.00]]></regprice>
+		<earlyprice><![CDATA[110.00]]></earlyprice>
+		<addon><![CDATA[optional lunch $15.00]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Adventures in Ideas]]></typeofevent>
+		<date><![CDATA[Apr 7]]></date>
+		<time><![CDATA[9:15am-4:00pm]]></time>
+		<longtitle><![CDATA[The French Revolution: Politics, Violence and Polarization]]></longtitle>
+		<shorttitle><![CDATA[French Revolution]]></shorttitle>
+		<limit><![CDATA[90]]></limit>
+		<regprice><![CDATA[125.00]]></regprice>
+		<earlyprice><![CDATA[110.00]]></earlyprice>
+		<addon><![CDATA[optional lunch $15.00]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Adventures in Ideas]]></typeofevent>
+		<date><![CDATA[Apr 20-21]]></date>
+		<time><![CDATA[4:30pm-1:00pm]]></time>
+		<longtitle><![CDATA[Whatever Happened to Global Diplomacy?]]></longtitle>
+		<shorttitle><![CDATA[Global Diplomacy]]></shorttitle>
+		<limit><![CDATA[90]]></limit>
+		<regprice><![CDATA[125.00]]></regprice>
+		<earlyprice><![CDATA[110.00]]></earlyprice>
+		<addon><![CDATA[optional dinner $20.00]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Adventures in Ideas]]></typeofevent>
+		<date><![CDATA[May 4-5]]></date>
+		<time><![CDATA[4:30pm-1:00pm]]></time>
+		<longtitle><![CDATA[Germany Under the Nazis]]></longtitle>
+		<shorttitle><![CDATA[Nazi Germany]]></shorttitle>
+		<limit><![CDATA[90]]></limit>
+		<regprice><![CDATA[125.00]]></regprice>
+		<earlyprice><![CDATA[110.00]]></earlyprice>
+		<addon><![CDATA[optional dinner $20.00]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Dialogues seminar]]></typeofevent>
+		<date><![CDATA[Feb 10]]></date>
+		<time><![CDATA[9:00am-12:30pm]]></time>
+		<longtitle><![CDATA[Transitions in African Culture]]></longtitle>
+		<shorttitle><![CDATA[African Culture Dialogues]]></shorttitle>
+		<limit><![CDATA[120]]></limit>
+		<regprice><![CDATA[65.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[register all 4 Dialogues - $200]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Dialogues seminar]]></typeofevent>
+		<date><![CDATA[Feb 17]]></date>
+		<time><![CDATA[9:00am-12:30pm]]></time>
+		<longtitle><![CDATA[UNC and State Politics: Then and Now ]]></longtitle>
+		<shorttitle><![CDATA[UNC Dialogues]]></shorttitle>
+		<limit><![CDATA[90]]></limit>
+		<regprice><![CDATA[65.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[register all 4 Dialogues - $200]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Dialogues seminar]]></typeofevent>
+		<date><![CDATA[Mar 3]]></date>
+		<time><![CDATA[9:00am-12:30pm]]></time>
+		<longtitle><![CDATA[Spain: Then and Now]]></longtitle>
+		<shorttitle><![CDATA[Spain Dialogues]]></shorttitle>
+		<limit><![CDATA[120]]></limit>
+		<regprice><![CDATA[65.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[register all 4 Dialogues - $200]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Dialogues seminar]]></typeofevent>
+		<date><![CDATA[Apr 28]]></date>
+		<time><![CDATA[9:00am-12:30pm]]></time>
+		<longtitle><![CDATA[Paris: Then and Now]]></longtitle>
+		<shorttitle><![CDATA[Paris Dialogues]]></shorttitle>
+		<limit><![CDATA[120]]></limit>
+		<regprice><![CDATA[65.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[register all 4 Dialogues - $200]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Great Books Group]]></typeofevent>
+		<date><![CDATA[Jan 30]]></date>
+		<time><![CDATA[10:00am-12:00pm]]></time>
+		<longtitle><![CDATA[Oedipus the King by Sophocles]]></longtitle>
+		<shorttitle><![CDATA[Oedipus the King]]></shorttitle>
+		<limit><![CDATA[20]]></limit>
+		<regprice><![CDATA[25.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Great Books Group]]></typeofevent>
+		<date><![CDATA[Feb 6 & 13]]></date>
+		<time><![CDATA[10:00am-12:00pm]]></time>
+		<longtitle><![CDATA[Selected Poems by Rita Dove]]></longtitle>
+		<shorttitle><![CDATA[Rita Dove]]></shorttitle>
+		<limit><![CDATA[20]]></limit>
+		<regprice><![CDATA[35.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Great Books Group]]></typeofevent>
+		<date><![CDATA[Feb 27 & Mar 6]]></date>
+		<time><![CDATA[10:00am-12:00pm]]></time>
+		<longtitle><![CDATA[The Misanthrope and Tartuffe by Moliere]]></longtitle>
+		<shorttitle><![CDATA[Moliere]]></shorttitle>
+		<limit><![CDATA[20]]></limit>
+		<regprice><![CDATA[35.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Great Books Group]]></typeofevent>
+		<date><![CDATA[Mar 20 & 27]]></date>
+		<time><![CDATA[10:00am-12:00pm]]></time>
+		<longtitle><![CDATA[The Post Office Girl by Stefan Zweig]]></longtitle>
+		<shorttitle><![CDATA[Post Office Girl]]></shorttitle>
+		<limit><![CDATA[20]]></limit>
+		<regprice><![CDATA[35.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Great Books Group]]></typeofevent>
+		<date><![CDATA[Apr 3 & 10]]></date>
+		<time><![CDATA[10:00am-12:00pm]]></time>
+		<longtitle><![CDATA[The God of Small Things by Arundhati Roy]]></longtitle>
+		<shorttitle><![CDATA[God of Small Things]]></shorttitle>
+		<limit><![CDATA[20]]></limit>
+		<regprice><![CDATA[35.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Great Books Group]]></typeofevent>
+		<date><![CDATA[Apr 17 & 24]]></date>
+		<time><![CDATA[10:00am-12:00pm]]></time>
+		<longtitle><![CDATA[The Second Sex by Simone de Beauvoir]]></longtitle>
+		<shorttitle><![CDATA[Second Sex]]></shorttitle>
+		<limit><![CDATA[20]]></limit>
+		<regprice><![CDATA[35.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Language Lunch]]></typeofevent>
+		<date><![CDATA[Jan 22]]></date>
+		<time><![CDATA[12:00pm-1:30pm]]></time>
+		<longtitle><![CDATA[Advanced French Lunch 1]]></longtitle>
+		<shorttitle><![CDATA[Advanced French 1]]></shorttitle>
+		<limit><![CDATA[12]]></limit>
+		<regprice><![CDATA[20.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a - lunch included]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Language Lunch]]></typeofevent>
+		<date><![CDATA[Feb 5]]></date>
+		<time><![CDATA[12:00pm-1:30pm]]></time>
+		<longtitle><![CDATA[Advanced French Lunch 2]]></longtitle>
+		<shorttitle><![CDATA[Advanced French 2 ]]></shorttitle>
+		<limit><![CDATA[12]]></limit>
+		<regprice><![CDATA[20.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a - lunch included]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Language Lunch]]></typeofevent>
+		<date><![CDATA[Mar 5]]></date>
+		<time><![CDATA[12:00pm-1:30pm]]></time>
+		<longtitle><![CDATA[Advanced French Lunch 4]]></longtitle>
+		<shorttitle><![CDATA[Advanced French 4]]></shorttitle>
+		<limit><![CDATA[12]]></limit>
+		<regprice><![CDATA[20.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a - lunch included]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Language Lunch]]></typeofevent>
+		<date><![CDATA[Apr 2]]></date>
+		<time><![CDATA[12:00pm-1:30pm]]></time>
+		<longtitle><![CDATA[Advanced French Lunch 6]]></longtitle>
+		<shorttitle><![CDATA[Advanced French 6]]></shorttitle>
+		<limit><![CDATA[12]]></limit>
+		<regprice><![CDATA[20.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a - lunch included]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Language Lunch]]></typeofevent>
+		<date><![CDATA[May 7]]></date>
+		<time><![CDATA[12:00pm-1:30pm]]></time>
+		<longtitle><![CDATA[Advanced French Lunch 7]]></longtitle>
+		<shorttitle><![CDATA[Advanced French 7]]></shorttitle>
+		<limit><![CDATA[12]]></limit>
+		<regprice><![CDATA[20.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a - lunch included]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Language Lunch]]></typeofevent>
+		<date><![CDATA[Feb 20]]></date>
+		<time><![CDATA[12:00pm-1:30pm]]></time>
+		<longtitle><![CDATA[Intermediate French Lunch 3]]></longtitle>
+		<shorttitle><![CDATA[Intermediate French 3]]></shorttitle>
+		<limit><![CDATA[12]]></limit>
+		<regprice><![CDATA[20.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a - lunch included]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Language Lunch]]></typeofevent>
+		<date><![CDATA[Mar 20]]></date>
+		<time><![CDATA[12:00pm-1:30pm]]></time>
+		<longtitle><![CDATA[Intermediate French Lunch 5]]></longtitle>
+		<shorttitle><![CDATA[Intermediate French 5]]></shorttitle>
+		<limit><![CDATA[12]]></limit>
+		<regprice><![CDATA[20.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a - lunch included]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Language Lunch]]></typeofevent>
+		<date><![CDATA[Feb 7]]></date>
+		<time><![CDATA[12:00pm-1:30pm]]></time>
+		<longtitle><![CDATA[Spanish Lunch 1]]></longtitle>
+		<shorttitle><![CDATA[Spanish 1]]></shorttitle>
+		<limit><![CDATA[12]]></limit>
+		<regprice><![CDATA[20.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a - lunch included]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Language Lunch]]></typeofevent>
+		<date><![CDATA[Jan 23]]></date>
+		<time><![CDATA[12:00pm-1:30pm]]></time>
+		<longtitle><![CDATA[German Lunch 1]]></longtitle>
+		<shorttitle><![CDATA[German 1]]></shorttitle>
+		<limit><![CDATA[12]]></limit>
+		<regprice><![CDATA[20.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a - lunch included]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Language Lunch]]></typeofevent>
+		<date><![CDATA[Feb 13]]></date>
+		<time><![CDATA[12:00pm-1:30pm]]></time>
+		<longtitle><![CDATA[German Lunch 2]]></longtitle>
+		<shorttitle><![CDATA[German 2]]></shorttitle>
+		<limit><![CDATA[12]]></limit>
+		<regprice><![CDATA[20.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a - lunch included]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Language Lunch]]></typeofevent>
+		<date><![CDATA[Apr 24]]></date>
+		<time><![CDATA[12:00pm-1:30pm]]></time>
+		<longtitle><![CDATA[German Lunch 3]]></longtitle>
+		<shorttitle><![CDATA[German 3]]></shorttitle>
+		<limit><![CDATA[12]]></limit>
+		<regprice><![CDATA[20.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a - lunch included]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Language Lunch]]></typeofevent>
+		<date><![CDATA[Jan 30]]></date>
+		<time><![CDATA[12:00pm-1:30pm]]></time>
+		<longtitle><![CDATA[Italian Lunch 1]]></longtitle>
+		<shorttitle><![CDATA[Italian 1]]></shorttitle>
+		<limit><![CDATA[12]]></limit>
+		<regprice><![CDATA[20.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a - lunch included]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Language Lunch]]></typeofevent>
+		<date><![CDATA[Feb 27]]></date>
+		<time><![CDATA[12:00pm-1:30pm]]></time>
+		<longtitle><![CDATA[Italian Lunch 2]]></longtitle>
+		<shorttitle><![CDATA[Italian 2]]></shorttitle>
+		<limit><![CDATA[12]]></limit>
+		<regprice><![CDATA[20.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a - lunch included]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Language Lunch]]></typeofevent>
+		<date><![CDATA[Mar 27]]></date>
+		<time><![CDATA[12:00pm-1:30pm]]></time>
+		<longtitle><![CDATA[Italian Lunch 3]]></longtitle>
+		<shorttitle><![CDATA[Italian 3]]></shorttitle>
+		<limit><![CDATA[12]]></limit>
+		<regprice><![CDATA[20.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a - lunch included]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Language Lunch]]></typeofevent>
+		<date><![CDATA[Apr 30]]></date>
+		<time><![CDATA[12:00pm-1:30pm]]></time>
+		<longtitle><![CDATA[Italian Lunch 4]]></longtitle>
+		<shorttitle><![CDATA[Italian 4]]></shorttitle>
+		<limit><![CDATA[12]]></limit>
+		<regprice><![CDATA[20.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[n/a - lunch included]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Thursdays at Friday]]></typeofevent>
+		<date><![CDATA[Feb 1]]></date>
+		<time><![CDATA[9:00am-12:30pm]]></time>
+		<longtitle><![CDATA[European “Isms” and Modern Cultural Creativity]]></longtitle>
+		<shorttitle><![CDATA[Western Isms IV]]></shorttitle>
+		<limit><![CDATA[40]]></limit>
+		<regprice><![CDATA[55.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[package: both for $100]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Thursdays at Friday]]></typeofevent>
+		<date><![CDATA[Feb 22]]></date>
+		<time><![CDATA[9:00am-12:30pm]]></time>
+		<longtitle><![CDATA[Bonaparte Family, Part 2: From Empire to Exile and Back Again (and Again)]]></longtitle>
+		<shorttitle><![CDATA[Bonaparte Family II]]></shorttitle>
+		<limit><![CDATA[40]]></limit>
+		<regprice><![CDATA[55.00]]></regprice>
+		<earlyprice><![CDATA[n/a]]></earlyprice>
+		<addon><![CDATA[package: both for $100]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Humanities in Action]]></typeofevent>
+		<date><![CDATA[Feb 6]]></date>
+		<time><![CDATA[4:30pm-6:00pm]]></time>
+		<longtitle><![CDATA[Building Walls and Saving Jobs? Right Wing Populism and Economic Globalization]]></longtitle>
+		<shorttitle><![CDATA[Populism]]></shorttitle>
+		<limit><![CDATA[60]]></limit>
+		<regprice><![CDATA[18.00]]></regprice>
+		<earlyprice><![CDATA[GAA 13.00]]></earlyprice>
+		<addon><![CDATA[Season Pass: $125 / GAA $90]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Humanities in Action]]></typeofevent>
+		<date><![CDATA[Feb 13]]></date>
+		<time><![CDATA[4:30pm-6:00pm]]></time>
+		<longtitle><![CDATA[Why Race Matters]]></longtitle>
+		<shorttitle><![CDATA[Why Race Matters ]]></shorttitle>
+		<limit><![CDATA[60]]></limit>
+		<regprice><![CDATA[18.00]]></regprice>
+		<earlyprice><![CDATA[GAA 13.00]]></earlyprice>
+		<addon><![CDATA[Season Pass: $125 / GAA $90]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Humanities in Action]]></typeofevent>
+		<date><![CDATA[Feb 20]]></date>
+		<time><![CDATA[4:30pm-6:00pm]]></time>
+		<longtitle><![CDATA[More Guns, More Safety, Less Freedom? ]]></longtitle>
+		<shorttitle><![CDATA[Gun Laws]]></shorttitle>
+		<limit><![CDATA[60]]></limit>
+		<regprice><![CDATA[18.00]]></regprice>
+		<earlyprice><![CDATA[GAA 13.00]]></earlyprice>
+		<addon><![CDATA[Season Pass: $125 / GAA $90]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Humanities in Action]]></typeofevent>
+		<date><![CDATA[Feb 27]]></date>
+		<time><![CDATA[4:30pm-6:00pm]]></time>
+		<longtitle><![CDATA[Teaching to the Test? Who Gets to Regulate Public Education and Why ]]></longtitle>
+		<shorttitle><![CDATA[Public Education]]></shorttitle>
+		<limit><![CDATA[60]]></limit>
+		<regprice><![CDATA[18.00]]></regprice>
+		<earlyprice><![CDATA[GAA 13.00]]></earlyprice>
+		<addon><![CDATA[Season Pass: $125 / GAA $90]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Humanities in Action]]></typeofevent>
+		<date><![CDATA[Mar 6]]></date>
+		<time><![CDATA[4:30pm-6:00pm]]></time>
+		<longtitle><![CDATA[Earth is Dying and We Should Care ]]></longtitle>
+		<shorttitle><![CDATA[Climate Change]]></shorttitle>
+		<limit><![CDATA[60]]></limit>
+		<regprice><![CDATA[18.00]]></regprice>
+		<earlyprice><![CDATA[GAA 13.00]]></earlyprice>
+		<addon><![CDATA[Season Pass: $125 / GAA $90]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Humanities in Action]]></typeofevent>
+		<date><![CDATA[Mar 20]]></date>
+		<time><![CDATA[4:30pm-6:00pm]]></time>
+		<longtitle><![CDATA[Can We Have a Market Economy and Equality?]]></longtitle>
+		<shorttitle><![CDATA[Market Economy]]></shorttitle>
+		<limit><![CDATA[60]]></limit>
+		<regprice><![CDATA[18.00]]></regprice>
+		<earlyprice><![CDATA[GAA 13.00]]></earlyprice>
+		<addon><![CDATA[Season Pass: $125 / GAA $90]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Humanities in Action]]></typeofevent>
+		<date><![CDATA[Mar 27]]></date>
+		<time><![CDATA[4:30pm-6:00pm]]></time>
+		<longtitle><![CDATA[Money for Nothing? The Ethics of a Universal Basic Income]]></longtitle>
+		<shorttitle><![CDATA[Universal Basic Income]]></shorttitle>
+		<limit><![CDATA[60]]></limit>
+		<regprice><![CDATA[18.00]]></regprice>
+		<earlyprice><![CDATA[GAA 13.00]]></earlyprice>
+		<addon><![CDATA[Season Pass: $125 / GAA $90]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Humanities in Action]]></typeofevent>
+		<date><![CDATA[Apr 10]]></date>
+		<time><![CDATA[4:30pm-6:00pm]]></time>
+		<longtitle><![CDATA[The Ethics of “Nudge:” How Governments Get Us to Act Against Our Interests]]></longtitle>
+		<shorttitle><![CDATA[Nudge]]></shorttitle>
+		<limit><![CDATA[60]]></limit>
+		<regprice><![CDATA[18.00]]></regprice>
+		<earlyprice><![CDATA[GAA 13.00]]></earlyprice>
+		<addon><![CDATA[Season Pass: $125 / GAA $90]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Humanities in Action]]></typeofevent>
+		<date><![CDATA[Apr 17]]></date>
+		<time><![CDATA[4:30pm-6:00pm]]></time>
+		<longtitle><![CDATA[Is Privacy Worth Protecting Anymore?]]></longtitle>
+		<shorttitle><![CDATA[Privacy]]></shorttitle>
+		<limit><![CDATA[60]]></limit>
+		<regprice><![CDATA[18.00]]></regprice>
+		<earlyprice><![CDATA[GAA 13.00]]></earlyprice>
+		<addon><![CDATA[Season Pass: $125 / GAA $90]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Humanities in Action]]></typeofevent>
+		<date><![CDATA[Apr 24]]></date>
+		<time><![CDATA[4:30pm-6:00pm]]></time>
+		<longtitle><![CDATA[TOMORROW 3.0: Birthing, Sharing, and Killing Jobs in the Next Great Economic Revolution]]></longtitle>
+		<shorttitle><![CDATA[Tomorrow 3.0]]></shorttitle>
+		<limit><![CDATA[60]]></limit>
+		<regprice><![CDATA[18.00]]></regprice>
+		<earlyprice><![CDATA[GAA 13.00]]></earlyprice>
+		<addon><![CDATA[Season Pass: $125 / GAA $90]]></addon>
+	</node>
+	<node>
+		<typeofevent><![CDATA[Special Event]]></typeofevent>
+		<date><![CDATA[Feb 27]]></date>
+		<time><![CDATA[6:00pm-8:30pm]]></time>
+		<longtitle><![CDATA[The 5th Annual Oscars Preview: A “Carolina Blue Carpet” Event]]></longtitle>
+		<shorttitle><![CDATA[Oscars Preview 2018]]></shorttitle>
+		<limit><![CDATA[]]></limit>
+		<regprice><![CDATA[10.00]]></regprice>
+		<earlyprice><![CDATA[GAA free]]></earlyprice>
+		<addon><![CDATA[]]></addon>
+	</node>
+</data>

@@ -3,6 +3,7 @@
  * Enqueue sripts
  */
 add_action('init', function() {
+  // wp_enqueue_script('validate', get_stylesheet_directory_uri() . '/jquery.validate.min.js', array('jquery'), '1.17.0', true);
   wp_enqueue_script('cph-scripts', get_stylesheet_directory_uri() . '/scripts.js', array('jquery'), null, true);
   wp_localize_script( 'cph-scripts', 'cphajax', array(
 	   'ajaxurl' => admin_url( 'admin-ajax.php' ),
@@ -67,8 +68,12 @@ if ( storefront_is_woocommerce_activated() ) {
    * Show event date in product list
    */
   add_action('woocommerce_after_shop_loop_item_title', function() {
+    echo '<span class="category">';
+    $terms = wp_get_post_terms(get_the_ID(), 'product_cat');
+    echo $terms[0]->name;
+    echo '</span>';
     echo '<span class="date">';
-    echo date('F j, Y', strtotime(get_field('date')));
+    echo get_post_meta(get_the_ID(), 'display_date', true);
     echo '</span>';
   }, 5);
 
@@ -109,6 +114,13 @@ if ( storefront_is_woocommerce_activated() ) {
     unset($fields['order']['order_comments']);
     return $fields;
   }
+
+  add_filter( 'woocommerce_coupons_enabled', function( $enabled ) {
+    if ( is_checkout() ) {
+      $enabled = false;
+    }
+    return $enabled;
+  });
 
   /**
    * Add custom checkout fields per product

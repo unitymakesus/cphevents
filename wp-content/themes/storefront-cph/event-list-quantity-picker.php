@@ -149,6 +149,7 @@ function do_cart_error($product_id) {
  * Borrowed from https://github.com/wp-plugins/woocommerce-ajax-add-to-cart-for-variable-products/ by Rcreators
  */
 add_action('wp_ajax_cph_variable_add_to_cart', 'cph_variable_add_to_cart_callback' );
+add_action('wp_ajax_nopriv_cph_variable_add_to_cart', 'cph_variable_add_to_cart_callback' );
 function cph_variable_add_to_cart_callback() {
 
   $product_id = apply_filters( 'woocommerce_add_to_cart_product_id', absint( $_POST['product_id'] ) );
