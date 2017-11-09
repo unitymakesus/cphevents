@@ -149,4 +149,14 @@ if ( storefront_is_woocommerce_activated() ) {
   require 'order-details-functions.php';
   add_action( 'woocommerce_order_item_meta_end', 'cph_order_details_tickets', 10, 3); // Order details page
   add_action( 'woocommerce_after_order_itemmeta', 'cph_order_details_tickets', 10, 3);  // Admin order details
+
+
+  /*****************************************************************************
+  * TOUCHNET INTEGRATION
+  *****************************************************************************/
+  require 'touchnet.php';
+  add_filter('woocommerce_payment_gateways', function($methods) {
+    $methods[] = 'WC_Gateway_Touchnet';
+    return $methods;
+  });
 }
