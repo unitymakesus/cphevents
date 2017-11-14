@@ -178,30 +178,47 @@ jQuery(document).ready(function($) {
 
 
   /*****************************************************************************
-  * CHECKOUT PAGE
+  * CART PAGE
   *****************************************************************************/
 
   // Put all tickets as options to copy details from
-  $('.woocommerce-checkout .ticket-details').each(function() {
+  $('.woocommerce-cart-form .ticket-details').each(function() {
     var title = $(this).siblings('h3').text(),
         ticket = $(this).children('h4').text(),
         ticket_key = $(this).data('ticket-key');
 
-    $('.woocommerce-checkout .ticket-details:not([class*=' + ticket_key + ']) select.copy-data').each(function() {
+    $('.woocommerce-cart-form .ticket-details:not([class*=' + ticket_key + ']) select.copy-data').each(function() {
       $(this).append('<option value="' + ticket_key + '">' + title + ': ' + ticket + '</option>');
     });
   });
 
   // Copy details from selected fields
-  $('.woocommerce-checkout .ticket-details').on('change', 'select.copy-data', function(e) {
+  $('.woocommerce-cart-form .ticket-details').on('change', 'select.copy-data', function(e) {
     var which = $(this).val(),
         ticket = $(this).closest('.ticket-details'),
-        ticket_key = ticket.data('ticket-key');
+        ticket_key = ticket.data('ticket-key')
+        account = $('#account-data');
 
     if (which !== '') {
+      // Loop through fields that need replacing
       $(ticket).find('.form-row:not(.control-copy)').each(function() {
-        var field = $(this).attr('id').replace(ticket_key, '').replace('_field', '');
-        $(ticket).find('[name$=' + field + ']').val($('[class*=' + which + ']').find('[name$=' + field + ']').val());
+        // Get global name of field
+        var field = $(this).attr('id').replace(ticket_key + '_', '').replace('_field', '');
+
+        // If copying from account details
+        if (which == 'account') {
+          if (typeof account.data(field) !== "undefined") {
+            $(ticket).find('[name$=' + field + ']').val(account.data(field));
+          }
+        } else {
+          if ((field == 'teacher' || field == 'gaa')) {
+            // Handle checkbox fields (teacher and gaa are checkboxes)
+            $(ticket).find('[name$=' + field + ']').prop('checked', $('[class*=' + which + ']').find('[name$=' + field + ']').prop('checked')).trigger('change');
+          } else {
+            // Handle input and select fields
+            $(ticket).find('[name$=' + field + ']').val($('[class*=' + which + ']').find('[name$=' + field + ']').val());
+          }
+        }
 
         if (ticket.find('select.state_select').length !== 0) {
           ticket.find('select.state_select').trigger('change');
@@ -210,42 +227,126 @@ jQuery(document).ready(function($) {
     }
   });
 
-  function adjust_valid_fields($which, amount) {
-    var current_x = $which.closest('.discount-validation').data('x');
-    $which.closest('.discount-validation').data('x', current_x + amount);
-  }
-
-  function check_valid_fields($which) {
-    var x = $which.closest('.discount-validation').data('x');
-    var n = $which.closest('.discount-validation').data('n');
-
-    if (x == n) {
-      // Add coupon code
-      var data = {
-        action: 'cph_add_discount',
-        product_id: $which.closest('.ticket-details').data('product'),
-        discount_type: $which.closest('.discount-validation').data('discount-type')
-      };
-
-    } else {
-      // Remove coupon code
-      var data = {
-        action: 'cph_remove_discount',
-        product_id: $which.closest('.ticket-details').data('product'),
-        discount_type: $which.closest('.discount-validation').data('discount-type'),
-        original_price: $which.closest('.discount-validation').data('original-price')
-      };
+  // Set conditional fields to display if checked on init
+  $('.validation-checkbox input[type="checkbox"]').each(function() {
+    if ($(this).is(':checked')) {
+      $(this).closest('.discount-validation').find('.hidden-fields').show();
     }
+  });
 
-    $.post( wc_checkout_params.ajax_url, data, function(response) {
-      response = JSON.parse(response);
+  // Display teacher and GAA conditional fields
+  $(this).find('.validation-checkbox input[type="checkbox"]').on('change', function() {
+    if ($(this).is(':checked')) {
+      $(this).closest('.discount-validation').find('.hidden-fields').show();
+    } else {
+      $(this).closest('.discount-validation').find('.hidden-fields').hide();
+    }
+  });
 
-      if (!response)
-      return;
+  // Handle saving custom fields to session data
+  $('.cart-collaterals .wc-proceed-to-checkout a.checkout-button').on('click', function(e) {
+    e.preventDefault();
 
-      console.log(response);
+    var custom_fields = []
+        checkout_page = $(this).attr('href');
+
+    // Send all ticket details to array
+    $('.ticket-details').each(function(){
+      meta = {
+        'product_id' : $(this).data('product'),
+        'ticket_key' : $(this).data('ticket-key'),
+        'first_name' : $(this).find('input[name$="_first_name"]').val(),
+        'last_name' : $(this).find('input[name$="_last_name"]').val(),
+        'address_1' : $(this).find('input[name$="_address_1"]').val(),
+        'address_2' : $(this).find('input[name$="_address_2"]').val(),
+        'city' : $(this).find('input[name$="_city"]').val(),
+        'state' : $(this).find('input[name$="_state"]').val(),
+        'postcode' : $(this).find('input[name$="_postcode"]').val(),
+        'phone' : $(this).find('input[name$="_phone"]').val(),
+        'email' : $(this).find('input[name$="_email"]').val(),
+        'special_needs' : $(this).find('input[name$="_special_needs"]').val(),
+      };
+
+      var $teacher_checkbox = $(this).find('input[name$="_teacher"]');
+      if ($teacher_checkbox.is(':checked')) {
+        meta['teacher'] = $teacher_checkbox.val();
+        meta['teacher_type'] = $(this).find('select[name$="_teacher_type"]').val();
+        meta['teacher_school'] = $(this).find('input[name$="_teacher_school"]').val();
+        meta['teacher_county'] = $(this).find('input[name$="_teacher_county"]').val();
+      }
+
+      var $gaa_checkbox = $(this).find('input[name$="_gaa"]');
+      if ($gaa_checkbox.is(':checked')) {
+        meta['gaa'] = $gaa_checkbox.val();
+
+        var $gaa_discount_seminar = $(this).find('input[name$="_gaa_discount_seminar"]');
+        if ($gaa_discount_seminar.is(':checked')) {
+          meta['gaa_discount_seminar'] = $gaa_discount_seminar.val();
+          meta['gaa_type'] = $(this).find('select[name$="_gaa_type"]').val();
+        }
+
+        var $gaa_discount_flyleaf = $(this).find('input[name$="_gaa_discount_flyleaf"]');
+        if ($gaa_discount_flyleaf.is(':checked')) {
+          meta['gaa_discount_flyleaf'] = $gaa_discount_flyleaf.val();
+          meta['gaa_type'] = $(this).find('select[name$="_gaa_type"]').val();
+        }
+      }
+
+      custom_fields.push(meta);
     });
-  }
+
+    var data = {
+      'action': 'cph_update_cart_meta',
+      'custom_fields': custom_fields
+    };
+
+    $.post(wc_cart_params.ajax_url, data, function (response) {
+      // Go to next checkout page
+      window.location.href = checkout_page;
+			return;
+    });
+  });
+
+  /*****************************************************************************
+  * CHECKOUT PAGE
+  *****************************************************************************/
+
+  // function adjust_valid_fields($which, amount) {
+  //   var current_x = $which.closest('.discount-validation').data('x');
+  //   $which.closest('.discount-validation').data('x', current_x + amount);
+  // }
+  //
+  // function check_valid_fields($which) {
+  //   var x = $which.closest('.discount-validation').data('x');
+  //   var n = $which.closest('.discount-validation').data('n');
+  //
+  //   if (x == n) {
+  //     // Add coupon code
+  //     var data = {
+  //       action: 'cph_add_discount',
+  //       product_id: $which.closest('.ticket-details').data('product'),
+  //       discount_type: $which.closest('.discount-validation').data('discount-type')
+  //     };
+  //
+  //   } else {
+  //     // Remove coupon code
+  //     var data = {
+  //       action: 'cph_remove_discount',
+  //       product_id: $which.closest('.ticket-details').data('product'),
+  //       discount_type: $which.closest('.discount-validation').data('discount-type'),
+  //       original_price: $which.closest('.discount-validation').data('original-price')
+  //     };
+  //   }
+  //
+  //   $.post( wc_checkout_params.ajax_url, data, function(response) {
+  //     response = JSON.parse(response);
+  //
+  //     if (!response)
+  //     return;
+  //
+  //     console.log(response);
+  //   });
+  // }
 
   // Apply discounts if teacher and GAA fields validate
   $('.discount-validation').each(function() {
@@ -261,32 +362,76 @@ jQuery(document).ready(function($) {
         // adjust_valid_fields($(this), 1);
         $(this).closest('.discount-validation').find('.hidden-fields').show();
 
-        var data = {
-          action: 'cph_add_discount',
-          product_id: $(this).closest('.ticket-details').data('product'),
-          discount_type: $(this).closest('.discount-validation').data('discount-type')
-        };
+        // var data = {
+        //   action: 'cph_add_discount',
+        //   security: wc_checkout_params.update_order_review_nonce,
+        //   post_data: $( 'form.checkout' ).serialize(),
+        //   product_id: $(this).closest('.ticket-details').data('product'),
+        //   discount_type: $(this).closest('.discount-validation').data('discount-type')
+        // };
 
-        $.post( wc_checkout_params.ajax_url, data, function(response) {
-          console.log(response);
+        // if ( xhr ) xhr.abort();
 
-          if (!response)
-          return;
+        // $( '#order_methods, #order_review' ).block({ message: null, overlayCSS: { background: '#fff url(' + wc_checkout_params.ajax_loader_url + ') no-repeat center', backgroundSize:'16px 16px', opacity: 0.6 } });
 
-          $('body').trigger('update_checkout');
-        });
+        // var data = {
+        //   action: 'woocommerce_update_order_review',
+        //   security: wc_checkout_params.update_order_review_nonce,
+        //   // billing_state: billingstate,
+        //   // billing_country : billingcountry,
+        //   post_data: $( 'form.checkout' ).serialize()
+        // };
+        //
+        // xhr = $.ajax({
+        //   type: 'POST',
+        //   url: wc_checkout_params.ajax_url,
+        //   data: data,
+        //   success: function( response ) {
+        //     console.log(response);
+        //     var order_output = $(response);
+        //     $( '#order_review' ).html( response['fragments']['.woocommerce-checkout-review-order-table']+response['fragments']['.woocommerce-checkout-payment']);
+        //     $('body').trigger('update_checkout');
+        //   },
+        //   error: function(code){
+        //     console.log('ERROR');
+        //   }
+        // });
+
+        // $.post( wc_checkout_params.ajax_url, data, function(response) {
+        //   console.log(response);
+        //
+        //   if (!response)
+        //   return;
+        //
+        // });
+        // xhr = $.ajax({
+				// 	type: 'POST',
+				// 	url: wc_checkout_params.ajax_url,
+				// 	data: data,
+				// 	success: function( response ) {
+        //     console.log(response);
+				// 		var order_output = $(response);
+				// 		$( '#order_review' ).html( response['fragments']['.woocommerce-checkout-review-order-table']+response['fragments']['.woocommerce-checkout-payment']);
+				// 		$('body').trigger('updated_checkout');
+				// 	},
+				// 	error: function(code){
+				// 		console.log('ERROR');
+				// 	}
+        // });
 
       } else {
         // adjust_valid_fields($(this), -1);
         $(this).closest('.discount-validation').find('.hidden-fields').hide();
 
-        var data = {
-          action: 'cph_remove_discount',
-          product_id: $(this).closest('.ticket-details').data('product'),
-          discount_type: $(this).closest('.discount-validation').data('discount-type'),
-          original_price: $(this).closest('.discount-validation').data('original-price')
-        };
+        // var data = {
+        //   action: 'cph_remove_discount',
+        //   product_id: $(this).closest('.ticket-details').data('product'),
+        //   discount_type: $(this).closest('.discount-validation').data('discount-type'),
+        //   original_price: $(this).closest('.discount-validation').data('original-price')
+        // };
       }
+
+      // $('body').trigger('update_checkout');
 
       // Check that valid fields match total fields
       // check_valid_fields($(this));
@@ -304,6 +449,42 @@ jQuery(document).ready(function($) {
     //   check_valid_fields($(this));
     // });
 
+  });
+
+  if ( typeof wc_checkout_params === 'undefined' )
+    return false;
+
+  var updateTimer,dirtyInput = false,xhr;
+  function update_order_review_table(billingstate,billingcountry) {
+    if ( xhr ) xhr.abort();
+
+    $( '#order_methods, #order_review' ).block({ message: null, overlayCSS: { background: '#fff url(' + wc_checkout_params.ajax_loader_url + ') no-repeat center', backgroundSize:'16px 16px', opacity: 0.6 } });
+
+    var data = {
+      action: 'woocommerce_update_order_review',
+      security: wc_checkout_params.update_order_review_nonce,
+      billing_state: billingstate,
+      billing_country : billingcountry,
+      post_data: $( 'form.checkout' ).serialize()
+    };
+
+    xhr = $.ajax({
+      type: 'POST',
+      url: wc_checkout_params.ajax_url,
+      data: data,
+      success: function( response ) {
+        var order_output = $(response);
+        $( '#order_review' ).html( response['fragments']['.woocommerce-checkout-review-order-table']+response['fragments']['.woocommerce-checkout-payment']);
+        $('body').trigger('update_checkout');
+      },
+      error: function(code){
+        console.log('ERROR');
+      }
+    });
+  }
+
+  jQuery('.state_select').change(function(e, params){
+    update_order_review_table(jQuery(this).val(),jQuery('#billing_country').val());
   });
 
 });

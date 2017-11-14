@@ -4,259 +4,71 @@
  * @param  object $checkout WooCommerce checkout object
  * @return string HTML
  */
-function cph_custom_checkout_fields( $checkout ) {
+function cph_calculate_fees( $checkout ) {
+  $teacher_tickets = array();
+  $teacher_count = 0;
+  $teacher_discount = 0;
+  $gaa_seminar_count = 0;
+  $gaa_flyleaf_count = 0;
 
+  // Loop through each event in cart and get saved ticket data
   foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-    $_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+    $_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+    if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
+      $tickets = WC()->session->get( $_product->get_id() . '_tickets_data' );
 
-    if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
-      ?>
-      <div class="ticket-details-wrapper">
+      // Loop through each ticket and check for teachers and GAA members, increase count if found
+      if (!empty($tickets)) {
+        foreach ($tickets as $ticket) {
+          if ($ticket['teacher'] == 1) {
+            $teacher_count ++;
+            $teacher_tickets[] = $_product->get_price();
+          }
 
-        <h3><?php echo apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ); ?></h3>
+          if ($ticket['gaa_discount_seminar'] == 1) {
+            $gaa_seminar_count ++;
+          }
 
-        <?php for ($i = 1; $i <= $cart_item['quantity']; $i++) { ?>
-
-          <?php $field_prefix = $_product->get_id() . '_ticket_' . $i; ?>
-
-          <div class="ticket-details <?php echo $field_prefix; ?>__field-wrapper" data-ticket-key="<?php echo $field_prefix; ?>" data-product="<?php echo $_product->get_id(); ?>">
-            <h4>Ticket <?php echo $i; ?></h4>
-
-            <p class="form-row form-row-wide control-copy">
-              <label for="<?php echo $field_prefix; ?>_copy_data">Copy data from:</label>
-              <select id="<?php echo $field_prefix; ?>_copy_data" class="copy-data">
-                <option value="">Select (optional)</option>
-                <option value="woocommerce-billing-fields">Billing details</option>
-              </select>
-            </p>
-
-            <?php
-            woocommerce_form_field( $field_prefix . '_first_name',
-              array(
-                'type'          => 'text',
-                'class'         => array('form-row-first'),
-                'label'         => __('First name'),
-                'required'      => true,
-              ),
-              $checkout->get_value( $field_prefix . '_first_name' )
-            );
-
-            woocommerce_form_field( $field_prefix . '_last_name',
-              array(
-                'type'          => 'text',
-                'class'         => array('form-row-last'),
-                'label'         => __('Last name'),
-                'required'      => true,
-              ),
-              $checkout->get_value( $field_prefix . '_last_name' )
-            );
-
-            woocommerce_form_field( $field_prefix . '_address_1',
-              array(
-                'type'          => 'text',
-                'class'         => array('form-row-wide'),
-                'label'         => __('Mailing address'),
-                'placeholder'   => __('House number and street name'),
-                'required'      => true,
-              ),
-              $checkout->get_value( $field_prefix . '_address_1' )
-            );
-
-            woocommerce_form_field( $field_prefix . '_address_2',
-              array(
-                'type'          => 'text',
-                'class'         => array('form-row-wide'),
-                'label'         => __(''),
-                'placeholder'   => __('Apartment, suite, unit etc. (optional)'),
-                'required'      => false,
-              ),
-              $checkout->get_value( $field_prefix . '_address_2' )
-            );
-
-            woocommerce_form_field( $field_prefix . '_city',
-              array(
-                'type'          => 'text',
-                'class'         => array('form-row-wide'),
-                'label'         => __('Town / City'),
-                'required'      => true,
-              ),
-              $checkout->get_value( $field_prefix . '_city' )
-            );
-
-            woocommerce_form_field( $field_prefix . '_state',
-              array(
-                'type'          => 'state',
-                'class'         => array('form-row-wide'),
-                'label'         => __('State'),
-                'required'      => true,
-              ),
-              $checkout->get_value( $field_prefix . '_state' )
-            );
-
-            woocommerce_form_field( $field_prefix . '_postcode',
-              array(
-                'type'          => 'text',
-                'class'         => array('form-row-wide'),
-                'label'         => __('ZIP'),
-                'required'      => true,
-              ),
-              $checkout->get_value( $field_prefix . '_postcode' )
-            );
-
-            woocommerce_form_field( $field_prefix . '_phone',
-              array(
-                'type'          => 'text',
-                'class'         => array('form-row-first'),
-                'label'         => __('Phone'),
-                'required'      => false,
-              ),
-              $checkout->get_value( $field_prefix . '_phone' )
-            );
-
-            woocommerce_form_field( $field_prefix . '_email',
-              array(
-                'type'          => 'text',
-                'class'         => array('form-row-last'),
-                'label'         => __('Email address'),
-                'required'      => true,
-              ),
-              $checkout->get_value( $field_prefix . '_email' )
-            );
-
-            woocommerce_form_field( $field_prefix . '_special_needs',
-              array(
-                'type'          => 'textarea',
-                'class'         => array('form-row-wide'),
-                'label'         => __('Please indicate any accommodations and/or services you require.'),
-                'required'      => false,
-              ),
-              $checkout->get_value( $field_prefix . '_special_needs' )
-            );
-
-            // Get product category
-            if ($_product->is_type('variation')) {
-              $parent = $_product->get_parent_ID();
-              $terms = wp_get_post_terms($parent, 'product_cat');
-            } else {
-              $terms = wp_get_post_terms($_product->get_ID(), 'product_cat');
-            }
-
-            // If this is an Adventures in Ideas Seminar:
-            if ($terms[0]->slug == 'adventures-in-ideas-seminar') {
-
-              echo '<div class="discount-validation" data-discount-type="teacher" data-original-price="' . $_product->get_price() . '" data-order-id="' . $order_id . '">';
-
-                woocommerce_form_field( $field_prefix . '_teacher',
-                  array(
-                    'type'          => 'checkbox',
-                    'class'         => array('form-row-wide', 'validation-checkbox'),
-                    'label'         => __('This participant is a teacher/educator.'),
-                    'required'      => false,
-                  ),
-                  $checkout->get_value( $field_prefix . '_teacher' )
-                );
-
-                echo '<div class="hidden-fields">';
-
-                  woocommerce_form_field( $field_prefix . '_teacher_type',
-                    array(
-                      'type'          => 'select',
-                      'class'         => array('form-row-wide'),
-                      'label'         => __('Teacher Type'),
-                      'options'       => array(
-                        ''                    => '',
-                        'k-12-teacher'        => 'K-12 Teacher',
-                        'k-12-librarian'      => 'K-12 Librarian',
-                        'k-12-administrator'  => 'K-12 Administrator',
-                        'community-college'   => 'Community College Teacher'
-                      ),
-                      'required'      => false,
-                    ),
-                    $checkout->get_value( $field_prefix . '_teacher_type' )
-                  );
-
-                  woocommerce_form_field( $field_prefix . '_teacher_school',
-                    array(
-                      'type'          => 'text',
-                      'class'         => array('form-row-wide'),
-                      'label'         => __('School Name'),
-                      'required'      => false,
-                    ),
-                    $checkout->get_value( $field_prefix . '_teacher_school' )
-                  );
-
-                  woocommerce_form_field( $field_prefix . '_teacher_county',
-                    array(
-                      'type'          => 'text',
-                      'class'         => array('form-row-wide'),
-                      'label'         => __('School County'),
-                      'required'      => false,
-                    ),
-                    $checkout->get_value( $field_prefix . '_teacher_county' )
-                  );
-
-                echo '</div>';
-
-              echo '</div>';
-
-              echo '<div class="discount-validation" data-discount-type="gaa">';
-
-                woocommerce_form_field( $field_prefix . '_gaa',
-                  array(
-                    'type'          => 'checkbox',
-                    'class'         => array('form-row-wide', 'validation-checkbox'),
-                    'label'         => __('This participant is a member of the UNC General Alumni Association.'),
-                    'required'      => false,
-                  ),
-                  $checkout->get_value( $field_prefix . '_gaa' )
-                );
-
-                echo '<div class="hidden-fields">';
-
-                  woocommerce_form_field( $field_prefix . '_gaa_type',
-                    array(
-                      'type'          => 'select',
-                      'class'         => array('form-row-wide'),
-                      'label'         => __('GAA Membership Type'),
-                      'options'       => array(
-                        ''              => '',
-                        'annual'        => 'Annual Membership',
-                        'lifetime'      => 'Lifetime Membership',
-                      ),
-                      'required'      => false,
-                    ),
-                    $checkout->get_value( $field_prefix . '_gaa_type' )
-                  );
-
-                  woocommerce_form_field( $field_prefix . '_gaa_pid',
-                    array(
-                      'type'          => 'text',
-                      'class'         => array('form-row-wide'),
-                      'label'         => __('PID Number'),
-                      'required'      => false,
-                    ),
-                    $checkout->get_value( $field_prefix . '_gaa_pid' )
-                  );
-
-                echo '</div>';
-
-              echo '</div>';
-
-            }
-            ?>
-
-          </div>
-
-        <?php } ?>
-
-      </div>
-
-    <?php
+          if ($ticket['gaa_discount_flyleaf'] == 1) {
+            $gaa_flyleaf_count ++;
+          }
+        }
+      }
     }
-
   }
 
+  // Apply teacher discounts to cart
+  if ($teacher_count > 0) {
+    $teacher_total = array_sum($teacher_tickets);
+    $teacher_discount = -($teacher_total / 2);
+
+    WC()->cart->add_fee('Teacher Discount (50% off Adventures in Ideas Seminars)', $teacher_discount);
+  }
+
+  // Apply GAA Seminar discounts to cart
+  if ($gaa_seminar_count > 0) {
+    $gaa_seminar_discount = -($gaa_seminar_count * 15);
+
+    WC()->cart->add_fee('GAA Discount ($15 off Adventures in Ideas or Dialogue Seminars)', $gaa_seminar_discount);
+  }
+
+  // Apply GAA Humanities in Action discounts to cart
+  if ($gaa_flyleaf_count > 0) {
+    $gaa_flyleaf_discount = -($gaa_flyleaf_count * 5);
+
+    WC()->cart->add_fee('GAA Discount ($5 off Humanities in Action series events)', $gaa_flyleaf_discount);
+  }
 }
+
+
+/**
+ * Changes place order button text
+ * @return HTML
+ */
+add_filter( 'woocommerce_order_button_text', function() {
+  return 'Proceed to Payment';
+});
+
 
 /**
  * Sets errors for custom checkout fields that are required
@@ -336,9 +148,103 @@ function cph_custom_checkout_field_update_order_meta( $order_id ) {
 }
 
 
-/**
- * AJAX callback for adding discounts to checkout for teachers and GAA members
- */
+// function bbloomer_wc_discount_total_30() {
+//
+//    global $woocommerce;
+//
+//    $discount_total = 0;
+//
+//    foreach ( $woocommerce->cart->get_cart() as $cart_item_key => $values) {
+//
+//    $_product = $values['data'];
+//
+//        if ( $_product->is_on_sale() ) {
+//        $regular_price = $_product->get_regular_price();
+//        $sale_price = $_product->get_sale_price();
+//        $discount = ($regular_price - $sale_price) * $values['quantity'];
+//        $discount_total += $discount;
+//        }
+//
+//    }
+//
+//    if ( $discount_total > 0 ) {
+//    echo '<tr class="cart-discount">
+//    <th>'. __( 'You Saved', 'woocommerce' ) .'</th>
+//    <td data-title=" '. __( 'You Saved', 'woocommerce' ) .' ">'
+//    . wc_price( $discount_total + $woocommerce->cart->discount_cart ) .'</td>
+//    </tr>';
+//    }
+//
+// }
+//
+// // Hook our values to the Basket and Checkout pages
+//
+// add_action( 'woocommerce_cart_totals_after_order_total', 'bbloomer_wc_discount_total_30', 99);
+// add_action( 'woocommerce_review_order_after_order_total', 'bbloomer_wc_discount_total_30', 99);
+
+
+// add_action( 'woocommerce_review_order_before_order_total', 'custom_cart_total' );
+// add_action( 'woocommerce_before_cart_totals', 'custom_cart_total' );
+// function custom_cart_total() {
+//
+//     if ( is_admin() && ! defined( 'DOING_AJAX' ) )
+//             return;
+//
+//     WC()->cart->total *= 0.25;
+//     //var_dump( WC()->cart->total);
+// }
+// add_action('woocommerce_checkout_update_order_review', function($post_data) {
+//   // error_log($post_data);
+//
+//   // Put post data into array
+//   parse_str($post_data, $data);
+//
+//   // Get teacher and GAA checkbox values
+//   $teacher = preg_grep_keys('/ticket_\d+_teacher$/', $data);
+//   $gaa = preg_grep_keys('/ticket_\d+_gaa$/', $data);
+//
+//
+//   // If teacher checkbox is checked
+//   if (array_shift($teacher) == 1) {
+//     error_log('Add discount now please');
+//
+//     WC()->cart->add_fee('Teacher Discount', -50, false, '');
+//
+//     // remove_action('woocommerce_cart_reset', array(WC()->cart, 'remove_all_fees'), 1);
+//
+//     // error_log(print_r(WC()->cart, true));
+//
+//     // unset( WC()->cart->cart_contents['65ded5353c5ee48d0b7d48c591b8f430'] );    // This works to remove item from cart and refreshes the cart preview on checkout page
+//     // $ret = WC()->cart->apply_coupon( 't50special' );
+//     // $array = array('return' => $ret); print_r($array);
+//     // WC()->cart->apply_coupon('t50special');
+//     // WC()->cart->total *= 0.25;
+//   }
+//
+//   // If GAA checkbox is checked
+//   if ($gaa == 1) {
+//
+//   }
+// }, 1, 1);
+
+// add_action( 'woocommerce_cart_calculate_fees', function() {
+//
+// 	if ( is_admin() && ! defined( 'DOING_AJAX' ) )
+// 		return;
+//
+// 	$surcharge = -( WC()->cart->cart_contents_total + WC()->cart->shipping_total ) * .1;
+// 	WC()->cart->add_fee( 'Surcharge', $surcharge, true, '' );
+//
+// });
+
+
+function preg_grep_keys($pattern, $input, $flags = 0) {
+  return array_intersect_key($input, array_flip(preg_grep($pattern, array_keys($input), $flags)));
+}
+
+// /**
+//  * AJAX callback for adding discounts to checkout for teachers and GAA members
+//  */
 add_action('wp_ajax_cph_add_discount', 'cph_add_discount_callback' );
 add_action('wp_ajax_nopriv_cph_add_discount', 'cph_add_discount_callback' );
 function cph_add_discount_callback() {
@@ -350,7 +256,9 @@ function cph_add_discount_callback() {
 
     // Reduce price of this ticket by 50%
     // $discount_price = -($original_price * .5);
-    // WC()->cart->apply_coupon( 't50special' );
+    $ret = WC()->cart->apply_coupon( 't50special' );
+    $array = array('return' => $ret); print_r($array);
+
     // print_r(cph_apply_discount('t50special'));
 
   } elseif ($discount_type == 'gaa') {
@@ -358,10 +266,10 @@ function cph_add_discount_callback() {
   }
 
 }
-
-add_action('woocommerce_coupon_is_valid', function($valid, $coupon) {
-  return true;
-}, 10, 2);
+//
+// add_action('woocommerce_coupon_is_valid', function($valid, $coupon) {
+//   return true;
+// }, 10, 2);
 
 
 /**

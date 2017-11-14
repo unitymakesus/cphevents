@@ -45,6 +45,8 @@ if ( storefront_is_woocommerce_activated() ) {
     remove_action( 'woocommerce_after_shop_loop',        'woocommerce_result_count',                 20 );
     remove_action( 'woocommerce_after_shop_loop',        'woocommerce_pagination',                   30 );
     remove_action( 'woocommerce_after_shop_loop',        'storefront_sorting_wrapper_close',         31 );
+    // Don't show cart totals on cart page
+    remove_action( 'woocommerce_cart_collaterals',       'woocommerce_cart_totals',                  10 );
   });
 
 
@@ -100,6 +102,27 @@ if ( storefront_is_woocommerce_activated() ) {
 
 
   /*****************************************************************************
+  * CART PAGE
+  *****************************************************************************/
+  require 'cart-functions.php';
+
+  /**
+   * Disable coupon codes on cart page
+   */
+  add_filter( 'woocommerce_coupons_enabled', function( $enabled ) {
+    if ( is_cart() ) {
+      $enabled = false;
+    }
+    return $enabled;
+  });
+
+  /**
+  * Process the checkout and check for errors
+  */
+  add_action('woocommerce_cart_process', 'cph_custom_cart_field_process');
+
+
+  /*****************************************************************************
   * CHECKOUT PAGE
   *****************************************************************************/
 
@@ -123,20 +146,20 @@ if ( storefront_is_woocommerce_activated() ) {
   });
 
   /**
-   * Add custom checkout fields per product
+   * Calculate discounts based on ticket attendee data
    */
   require 'checkout-functions.php';
-  add_action( 'woocommerce_before_order_notes', 'cph_custom_checkout_fields' );
+  add_action( 'woocommerce_cart_calculate_fees', 'cph_calculate_fees' );
 
   /**
   * Process the checkout and check for errors
   */
-  add_action('woocommerce_checkout_process', 'cph_custom_checkout_field_process');
+  // add_action('woocommerce_checkout_process', 'cph_custom_checkout_field_process');
 
   /**
    * Save custom checkout fields to database
    */
-  add_action('woocommerce_checkout_update_order_meta', 'cph_custom_checkout_field_update_order_meta' );
+  // add_action('woocommerce_checkout_update_order_meta', 'cph_custom_checkout_field_update_order_meta' );
 
 
   /*****************************************************************************
