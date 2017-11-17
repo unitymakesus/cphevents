@@ -65,6 +65,10 @@ Template:       storefront
   padding-bottom: 2em;
 }
 
+/*****************************************************************************
+* EVENT LIST PAGE
+*****************************************************************************/
+
 .site-main ul.products li.product {
   width: 100%;
   margin-right: 0;
@@ -96,12 +100,14 @@ ul.products li.product h2.woocommerce-loop-product__title {
   font-size: 24px;
 }
 
-ul.products li.product .date {
+ul.products li.product .date,
+.ticket-details-wrapper .date {
   color: #767676;
   display: block;
 }
 
-ul.products li.product .category {
+ul.products li.product .category,
+.ticket-details-wrapper .category {
   color: #767676;
   display: block;
   font-weight: bold;
@@ -203,6 +209,7 @@ ul.products li.product-type-variable li.variation .price {
   display: inline-block;
   margin: 0;
   padding: .6180469716em 1.41575em;
+  white-space: nowrap;
 }
 
 ul.products li.product-type-variable li.variation .name {
@@ -210,20 +217,132 @@ ul.products li.product-type-variable li.variation .name {
   font-weight: bold;
 }
 
+ul.products li.product .button.sold-out {
+  background: #767676;
+  border-color: #767676;
+  cursor: default;
+}
+
+/*****************************************************************************
+* CHECKOUT PAGES
+*****************************************************************************/
+
+ol.checkout-progress {
+  list-style: none;
+  display: table;
+  margin: 1.5rem 0;
+  table-layout: fixed;
+  width: 100%;
+  padding: 0 15%;
+  counter-reset: progressStep;
+}
+
+ol.checkout-progress:focus {
+  outline: 0;
+}
+
+ol.checkout-progress:focus li[data-step-current] {
+  outline: #767676 dotted 1px;
+}
+
+ol.checkout-progress li {
+  text-transform: uppercase;
+  text-align: center;
+  display: table-cell;
+  list-style: none;
+  margin: 0;
+  padding: 2rem 0 0;
+  position: relative;
+  width: 100%;
+  counter-increment: progressStep;
+}
+
+ol.checkout-progress li[data-step-current] {
+  color: #13294B;
+  font-weight: bold;
+}
+
+ol.checkout-progress li::before,
+ol.checkout-progress li::after {
+  background: #E1E1E1;
+  color: #151515;
+  display: block;
+  position: absolute;
+}
+
+ol.checkout-progress li::before {
+  content: counter(progressStep);
+  border-radius: 3px;
+  font-weight: bold;
+  height: 1.5rem;
+  left: 50%;
+  margin-left: -.75rem;
+  line-height: 1.5rem;
+  padding-left: 0.1rem;
+  top: 0;
+  transform: scale(1,1);
+  width: 1.5rem;
+  z-index: 1;
+}
+
+ol.checkout-progress li[data-step-current]::before {
+  background: #13294B;
+  color: #ffffff;
+}
+
+ol.checkout-progress li[data-step-complete]::before {
+  background: #4B9CD3;
+  color: #ffffff;
+}
+
+ol.checkout-progress li::after {
+  content: '';
+  height: .25rem;
+  left: -50%;
+  top: .65rem;
+  width: 100%;
+}
+
+ol.checkout-progress li[data-step-complete]::after,
+ol.checkout-progress li[data-step-current]::after {
+  background: #4b9cd3;
+}
+
+ol.checkout-progress li:first-child::after {
+  display: none;
+}
+
 .ticket-details-wrapper {
   border-left: 2px solid #4b9cd3;
+  border-bottom: 1px solid #e1e1e1;
   padding-left: 10px;
-  margin-bottom: 1em;
+  margin-bottom: 3em;
+  width: 100%;
+  overflow: hidden;
 }
 
 .ticket-details-wrapper h3 {
   font-weight: bold;
+  margin-bottom: 0;
 }
 
-.ticket-details {
-  border-left: 2px solid #8FD16A;
-  padding-left: 10px;
+.ticket-details h4 {
+  border-bottom: 2px solid #8FD16A;
+  padding-bottom: 10px;
   margin-bottom: 1em;
+}
+
+@media (min-width: 768px) {
+  .ticket-details.col-1 {
+  	float: left;
+  	width: 48%;
+    clear: left;
+  }
+
+  .ticket-details.col-2 {
+  	float: right;
+  	width: 48%;
+  }
 }
 
 .ticket-details h4 {
@@ -231,6 +350,61 @@ ul.products li.product-type-variable li.variation .name {
   font-weight: bold;
 }
 
-.ticket-details .hidden-fields {
+.discount-validation .hidden-fields {
   display: none;
+}
+
+.discount-validation .hidden-fields p.info {
+  background: #FFD96A;
+  padding: 10px;
+  border: 1px solid #FFC03F;
+}
+
+.ui-control.select {
+  position: relative;
+  display: block;
+}
+
+.ui-control.select select {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  padding: .6180469716em;
+  outline: 0;
+  border: 0;
+  border-radius: 0;
+  background: #f2f2f2;
+  color: #43454b;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.125);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.ui-control.select select::-ms-expand {
+  display: none;
+}
+.ui-control.select select:hover,
+.ui-control.select select:focus, {
+  color: #43454b;
+}
+.ui-control.select select:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.ui-control .select_arrow {
+  position: absolute;
+  top: 19px;
+  right: 15px;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  border-style: solid;
+  border-width: 8px 5px 0 5px;
+  border-color: #43454b transparent transparent transparent;
+}
+
+#payment .wc_payment_methods {
+  display: none !important;
 }

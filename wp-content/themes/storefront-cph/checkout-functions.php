@@ -5,17 +5,28 @@
  * @return string HTML
  */
 function cph_calculate_fees( $checkout ) {
+
   $teacher_tickets = array();
   $teacher_count = 0;
   $teacher_discount = 0;
   $gaa_seminar_count = 0;
   $gaa_flyleaf_count = 0;
+  $aiiseminar_count = 0;
+  $dseminar_count = 0;
 
   // Loop through each event in cart and get saved ticket data
   foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
     $_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
     if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
       $tickets = WC()->session->get( $_product->get_id() . '_tickets_data' );
+
+      // Get product category
+      if ($_product->is_type('variation')) {
+        $parent = $_product->get_parent_ID();
+        $terms = wp_get_post_terms($parent, 'product_cat');
+      } else {
+        $terms = wp_get_post_terms($_product->get_ID(), 'product_cat');
+      }
 
       // Loop through each ticket and check for teachers and GAA members, increase count if found
       if (!empty($tickets)) {
@@ -31,6 +42,14 @@ function cph_calculate_fees( $checkout ) {
 
           if ($ticket['gaa_discount_flyleaf'] == 1) {
             $gaa_flyleaf_count ++;
+          }
+
+          if ($terms[0]->slug == 'adventures-in-ideas-seminar') {
+            $aiiseminar_count ++;
+          }
+
+          if ($terms[0]->slug == 'dialogues-seminar') {
+            $dseminar_count ++;
           }
         }
       }
@@ -58,6 +77,19 @@ function cph_calculate_fees( $checkout ) {
 
     WC()->cart->add_fee('GAA Discount ($5 off Humanities in Action series events)', $gaa_flyleaf_discount);
   }
+
+  // Teacher discount overrides the 3 or more.
+  // So only apply the 3 or more coupon if there are
+  // 3 or more AiI seminars BEYOND those registered by teachers
+  if ($teacher_count +3 > $aiiseminar_count) {
+    WC()->cart->remove_coupon('3ormore-spring18');
+  } elseif ($aiiseminar_count > 2) {
+    if (!in_array('3ormore-spring18', WC()->cart->get_applied_coupons())) {
+      WC()->cart->apply_coupon('3ormore-spring18');
+    }
+  }
+
+  // Discount for all 4 dialogues
 }
 
 

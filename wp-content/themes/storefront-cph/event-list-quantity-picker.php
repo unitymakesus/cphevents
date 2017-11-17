@@ -66,25 +66,29 @@ function cph_event_list_quantity_picker() {
         echo $variation['price_html'];
 
         $item = product_in_cart($product, $variation['variation_id']);
-        if ($item['qty'] !== NULL) {
-          $qty = $item['qty'];
-          // Show quantity picker
-          quantity_picker($qty, $product_id, $variation['variation_id'], json_encode($variation['attributes']));
+        if ( $product->is_in_stock() ) {
+          if ($item['qty'] !== NULL) {
+            $qty = $item['qty'];
+            // Show quantity picker
+            quantity_picker($qty, $product_id, $variation['variation_id'], json_encode($variation['attributes']));
+          } else {
+            // Show add to cart for this variation
+            ob_start();
+            ?>
+
+            <a rel="nofollow"
+               href="/?add-to-cart=<?php echo $product_id; ?>"
+               data-quantity="1"
+               data-product_id="<?php echo $product_id; ?>"
+               data-variation_id="<?php echo $variation['variation_id']; ?>"
+               data-variation='<?php echo json_encode($variation['attributes']); ?>'
+               class="button ajax_add_to_cart">Add to cart</a>
+
+            <?php
+            ob_end_flush();
+          }
         } else {
-          // Show add to cart for this variation
-          ob_start();
-          ?>
-
-          <a rel="nofollow"
-             href="/?add-to-cart=<?php echo $product_id; ?>"
-             data-quantity="1"
-             data-product_id="<?php echo $product_id; ?>"
-             data-variation_id="<?php echo $variation['variation_id']; ?>"
-             data-variation='<?php echo json_encode($variation['attributes']); ?>'
-             class="button ajax_add_to_cart">Add to cart</a>
-
-          <?php
-          ob_end_flush();
+          echo '<span class="button sold-out">Sold Out</span>';
         }
       echo '</li>';
     }

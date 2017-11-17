@@ -18,16 +18,19 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
     $field_data = $pre_pop_data[$field_prefix];
       ?>
 
-      <div class="ticket-details <?php echo $field_prefix; ?>__field-wrapper" data-ticket-key="<?php echo $field_prefix; ?>" data-product="<?php echo $_product->get_id(); ?>">
+      <div class="ticket-details <?php if ($i % 2 == 0) { echo 'col-2'; } else { echo 'col-1'; } ?> <?php echo $field_prefix; ?>__field-wrapper" data-ticket-key="<?php echo $field_prefix; ?>" data-product="<?php echo $_product->get_id(); ?>">
         <h4>Ticket <?php echo $i; ?></h4>
 
         <?php if (!empty($customer['address_1']) || $i > 1) { ?>
           <p class="form-row form-row-wide control-copy">
             <label for="<?php echo $field_prefix; ?>_copy_data">Copy information from:</label>
-            <select id="<?php echo $field_prefix; ?>_copy_data" class="copy-data">
-              <option value="">Select (optional)</option>
-              <option value="account">My account</option>
-            </select>
+            <span class="ui-control select">
+              <select id="<?php echo $field_prefix; ?>_copy_data" class="copy-data">
+                <option value="">Select (optional)</option>
+                <option value="account">My account</option>
+              </select>
+              <span class="select_arrow"></span>
+            </span>
           </p>
         <?php } ?>
 
@@ -160,7 +163,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
             ?>
 
             <div class="hidden-fields">
-              <p>Eligible teachers may receive 50% off their ticket for any Adventure in Ideas Seminars. Please complete the fields below.</p>
+              <p class="info">Eligible teachers may receive 50% off their ticket for any Adventure in Ideas Seminars. Please complete the fields below.</p>
               <?php
                 woocommerce_form_field( $field_prefix . '_teacher_type',
                   array(
@@ -226,7 +229,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
             <div class="hidden-fields">
               <?php
                 if ($terms[0]->slug == 'humanities-in-action') {
-                  echo '<p>Eligible GAA Members may opt-in to receive $5 off their ticket to a Humanities in Action series event.</p>';
+                  echo '<p class="info">Eligible GAA Members may opt-in to receive $5 off their ticket to a Humanities in Action series event.</p>';
 
                   woocommerce_form_field( $field_prefix . '_gaa_discount_flyleaf',
                     array(
@@ -238,7 +241,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
                     $field_data['gaa_discount_flyleaf']
                   );
                 } else {
-                  echo '<p>Eligible GAA Members may opt-in to receive $15 off their ticket for one Adventure in Ideas Seminar or Dialogues Seminar per semester.</p>';
+                  echo '<p class="info">Eligible GAA Members may opt-in to receive $15 off their ticket for one Adventure in Ideas Seminar or Dialogues Seminar per semester.</p>';
 
                   woocommerce_form_field( $field_prefix . '_gaa_discount_seminar',
                     array(
@@ -324,22 +327,47 @@ function cph_update_cart_meta_callback(){
 
   // For each item in the cart, we're adding session data for the ticket details
   $cart_items = WC()->cart->get_cart_contents();
-  foreach ($cart_items as $key => $item) {
+  foreach ($cart_items as $cart_item) {
     $this_session = array();
+    $_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 
     // Clear ticket session data each time
-    WC()->session->set( $item['product_id'] . '_tickets_data', null);
+    WC()->session->set( $_product->get_ID() . '_tickets_data', null);
 
     // Set up array to put in session data
     foreach ($_POST['custom_fields'] as $ticket_details) {
-      if ($ticket_details['product_id'] == $item['product_id']) {
+      if ($ticket_details['product_id'] == $_product->get_ID()) {
         $this_session[$ticket_details['ticket_key']] = $ticket_details;
       }
     }
 
     // Set new session data
-    WC()->session->set( $item['product_id'] . '_tickets_data', $this_session );
+    WC()->session->set( $_product->get_ID() . '_tickets_data', $this_session );
   }
 
   wp_die();
+}
+
+
+/**
+ * Change select, checkboxes, and radio form fields to new UI
+ */
+function cph_form_field_select($field, $key, $args, $value) {
+  $patterns = array(
+                '/<\/label>/',
+                '/<\/select>/'
+              );
+  $rplcmnts = array(
+                '</label><span class="ui-control select">',
+                '</select><span class="select_arrow"></span></span>'
+              );
+	return preg_replace($patterns, $rplcmnts, $field);
+}
+
+function cph_form_field_checkbox($field, $key, $args, $value) {
+  return $field;
+}
+
+function cph_form_field_radio($field, $key, $args, $value) {
+	return $field;
 }

@@ -55,6 +55,13 @@ class WC_Gateway_Touchnet extends WC_Payment_Gateway {
   public function process_payment( $order_id ) {
     $order = new WC_Order($order_id);
 
+    // Encode validation key
+    $upay_posting_key = 'EX123';
+    $trans_id = str_replace( "#", "", $order->get_order_number() );
+    $amount = $order->get_total();
+    $validation_key = base64_encode(md5($upay_posting_key + $trans_id + $amount, TRUE));
+
+    // Build payload
     $payload = array(
       'UPAY_SITE_ID' => 52,
       'BILL_EMAIL_ADDRESS' => $order->get_billing_email(),
@@ -65,8 +72,15 @@ class WC_Gateway_Touchnet extends WC_Payment_Gateway {
       'BILL_STATE' => $order->get_billing_state(),
       'BILL_POSTAL_CODE' => $order->get_billing_postcode(),
       'BILL_COUNTRY' => 'US',
-      'AMT' => $order->get_total(),
-      'EXT_TRANS_ID' => str_replace( "#", "", $order->get_order_number() ),
+      'AMT' => $amount,
+      'EXT_TRANS_ID' => $trans_id,
+      'VALIDATION_KEY' => $validation_key,
+      'SUCCESS_LINK' => home_url() . '/my-account/view-order/' . $trans_id,
+      'SUCCESS_LINK_TEXT' => 'Thank you for your order. Click here to view order summary.',
+      // 'ERROR_LINK' => [LINK TO ERROR PAGE TO GO BACK TO CART],
+      // 'ERROR_LINK_TEXT' => 'There was an error. You may return to your cart.',
+      // 'CANCEL_LINK' => [LINK TO GO BACK TO CART],
+      // 'CANCEL_LINK_TEXT' => 'Back to cart'
     );
 
     // Build redirect URL

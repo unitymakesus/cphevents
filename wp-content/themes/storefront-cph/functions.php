@@ -121,10 +121,33 @@ if ( storefront_is_woocommerce_activated() ) {
   */
   add_action('woocommerce_cart_process', 'cph_custom_cart_field_process');
 
+  /**
+   * Change select, checkboxes, and radio form fields to new UI
+   */
+  add_action('woocommerce_form_field_select', 'cph_form_field_select', 10, 4);
+  add_action('woocommerce_form_field_checkbox', 'cph_form_field_checkbox', 10, 4);
+  add_action('woocommerce_form_field_radio', 'cph_form_field_radio', 10, 4);
+
 
   /*****************************************************************************
   * CHECKOUT PAGE
   *****************************************************************************/
+
+  /**
+   * Add progress bar to top of checkout page
+   */
+  add_action( 'woocommerce_before_checkout_form', function() {
+    ?>
+    	<ol class="checkout-progress" tabindex="0" role="progressbar"
+    			aria-valuemin="1" aria-valuemax="4"
+    			aria-valuenow="2" aria-valuetext="Step 2 of 4: Review Order">
+    		<li aria-hidden="true" data-step-complete>Attendee Information</li>
+    		<li aria-hidden="true" data-step-current>Review Order</li>
+    		<li aria-hidden="true" data-step-incomplete>Payment</li>
+    		<li aria-hidden="true" data-step-incomplete>Complete</li>
+    	</ol>
+    <?php
+  }, 5 );
 
   /**
    * Remove order notes field in checkout
@@ -138,12 +161,12 @@ if ( storefront_is_woocommerce_activated() ) {
     return $fields;
   }
 
-  add_filter( 'woocommerce_coupons_enabled', function( $enabled ) {
-    if ( is_checkout() ) {
-      $enabled = false;
-    }
-    return $enabled;
-  });
+  // add_filter( 'woocommerce_coupons_enabled', function( $enabled ) {
+  //   if ( is_checkout() ) {
+  //     $enabled = false;
+  //   }
+  //   return $enabled;
+  // });
 
   /**
    * Calculate discounts based on ticket attendee data

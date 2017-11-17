@@ -24,6 +24,17 @@ wc_print_notices();
 
 do_action( 'woocommerce_before_cart' ); ?>
 
+<ol class="checkout-progress" tabindex="0" role="progressbar"
+		aria-valuemin="1" aria-valuemax="4"
+		aria-valuenow="1" aria-valuetext="Step 1 of 4: Attendee Information">
+	<li aria-hidden="true" data-step-current>Attendee Info</li>
+	<li aria-hidden="true" data-step-incomplete>Review Order</li>
+	<li aria-hidden="true" data-step-incomplete>Payment</li>
+	<li aria-hidden="true" data-step-incomplete>Complete</li>
+</ol>
+
+</div>
+
 <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 	<?php do_action( 'woocommerce_before_cart_table' ); ?>
 
@@ -62,6 +73,13 @@ do_action( 'woocommerce_before_cart' ); ?>
 							// Event title
 							echo apply_filters( 'woocommerce_cart_item_name', sprintf( '<h3>%s</h3>', $_product->get_name() ), $cart_item, $cart_item_key );
 
+							echo '<span class="category">';
+							$terms = wp_get_post_terms($product_id, 'product_cat');
+							echo $terms[0]->name;
+							echo '</span>';
+							echo '<span class="date">';
+							echo get_post_meta($product_id, 'display_date', true);
+							echo '</span>';
 							// Meta data
 							echo WC()->cart->get_item_data( $cart_item );
 
