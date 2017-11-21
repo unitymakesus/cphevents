@@ -28,6 +28,10 @@ if ( storefront_is_woocommerce_activated() ) {
     // Get rid of search in header
     remove_action( 'storefront_header', 'storefront_product_search', 40 );
     remove_action( 'storefront_header', 'storefront_header_cart',    60 );
+    // Remove breadcrumbs
+    add_filter( 'woocommerce_get_breadcrumb', '__return_false' );
+    // Remove default footer text
+    remove_action( 'storefront_footer', 'storefront_credit', 20 );
     // Get rid of thumbnail in product list
     remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
     // Don't loop columns
@@ -48,6 +52,14 @@ if ( storefront_is_woocommerce_activated() ) {
     // Don't show cart totals on cart page
     remove_action( 'woocommerce_cart_collaterals',       'woocommerce_cart_totals',                  10 );
   });
+
+  add_action( 'storefront_footer', function() {
+    ?>
+  		<div class="site-info">
+  			&copy; Carolina Public Humanities <?php echo date( 'Y' ); ?>
+  		</div><!-- .site-info -->
+		<?php
+  }, 20);
 
 
   /*****************************************************************************
@@ -141,7 +153,7 @@ if ( storefront_is_woocommerce_activated() ) {
     	<ol class="checkout-progress" tabindex="0" role="progressbar"
     			aria-valuemin="1" aria-valuemax="4"
     			aria-valuenow="2" aria-valuetext="Step 2 of 4: Review Order">
-    		<li aria-hidden="true" data-step-complete>Attendee Information</li>
+    		<li aria-hidden="true" data-step-complete><a href="<?php echo get_permalink(get_page_by_path('/checkout/step-1')); ?>">Attendee Information</a></li>
     		<li aria-hidden="true" data-step-current>Review Order</li>
     		<li aria-hidden="true" data-step-incomplete>Payment</li>
     		<li aria-hidden="true" data-step-incomplete>Complete</li>
@@ -182,7 +194,7 @@ if ( storefront_is_woocommerce_activated() ) {
   /**
    * Save custom checkout fields to database
    */
-  // add_action('woocommerce_checkout_update_order_meta', 'cph_custom_checkout_field_update_order_meta' );
+  add_action('woocommerce_checkout_update_order_meta', 'cph_custom_checkout_field_update_order_meta' );
 
 
   /*****************************************************************************
@@ -193,7 +205,7 @@ if ( storefront_is_woocommerce_activated() ) {
   * Display custom field values
   */
   require 'order-details-functions.php';
-  add_action( 'woocommerce_order_item_meta_end', 'cph_order_details_tickets', 10, 3); // Order details page
+  add_action( 'woocommerce_order_item_meta_end', 'cph_order_details_tickets', 10, 3); // Order details page and email
   add_action( 'woocommerce_after_order_itemmeta', 'cph_order_details_tickets', 10, 3);  // Admin order details
 
 

@@ -10,12 +10,12 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
   $customer = WC()->session->get('customer');
 
   // Get session data for this product
-  $pre_pop_data = WC()->session->get( $_product->get_id() . '_tickets_data' );
+  $session_data = WC()->session->get( $_product->get_id() . '_tickets_data' );
 
   for ($i = 1; $i <= $cart_item['quantity']; $i++) {
 
     $field_prefix = $_product->get_id() . '_ticket_' . $i;
-    $field_data = $pre_pop_data[$field_prefix];
+    $field_data = $session_data[$field_prefix];
       ?>
 
       <div class="ticket-details <?php if ($i % 2 == 0) { echo 'col-2'; } else { echo 'col-1'; } ?> <?php echo $field_prefix; ?>__field-wrapper" data-ticket-key="<?php echo $field_prefix; ?>" data-product="<?php echo $_product->get_id(); ?>">
@@ -279,42 +279,42 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
   }
 }
 
-
-/**
- * Sets errors for custom cart fields that are required
- * @return null
- */
-function cph_custom_cart_field_process() {
-
-  foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-    $_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-
-    if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
-
-      for ($i = 1; $i <= $cart_item['quantity']; $i++) {
-        $field_prefix = $_product->get_id() . '_ticket_' . $i;
-
-        if ( ! $_POST[$field_prefix . '_first_name'] )
-          wc_add_notice( 'Please enter a first name for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
-        if ( ! $_POST[$field_prefix . '_last_name'] )
-          wc_add_notice( 'Please enter a last name for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
-        if ( ! $_POST[$field_prefix . '_address_1'] )
-          wc_add_notice( 'Please enter a street address for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
-        if ( ! $_POST[$field_prefix . '_city'] )
-          wc_add_notice( 'Please enter a city for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
-        if ( ! $_POST[$field_prefix . '_state'] )
-          wc_add_notice( 'Please enter a state for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
-        if ( ! $_POST[$field_prefix . '_postcode'] )
-          wc_add_notice( 'Please enter a zip code for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
-        if ( ! $_POST[$field_prefix . '_email'] )
-          wc_add_notice( 'Please enter an email address for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
-      }
-
-    }
-
-  }
-
-}
+//
+// /**
+//  * Sets errors for custom cart fields that are required
+//  * @return null
+//  */
+// function cph_custom_cart_field_process() {
+//
+//   foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+//     $_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+//
+//     if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
+//
+//       for ($i = 1; $i <= $cart_item['quantity']; $i++) {
+//         $field_prefix = $_product->get_id() . '_ticket_' . $i;
+//
+//         if ( ! $_POST[$field_prefix . '_first_name'] )
+//           wc_add_notice( 'Please enter a first name for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
+//         if ( ! $_POST[$field_prefix . '_last_name'] )
+//           wc_add_notice( 'Please enter a last name for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
+//         if ( ! $_POST[$field_prefix . '_address_1'] )
+//           wc_add_notice( 'Please enter a street address for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
+//         if ( ! $_POST[$field_prefix . '_city'] )
+//           wc_add_notice( 'Please enter a city for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
+//         if ( ! $_POST[$field_prefix . '_state'] )
+//           wc_add_notice( 'Please enter a state for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
+//         if ( ! $_POST[$field_prefix . '_postcode'] )
+//           wc_add_notice( 'Please enter a zip code for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
+//         if ( ! $_POST[$field_prefix . '_email'] )
+//           wc_add_notice( 'Please enter an email address for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
+//       }
+//
+//     }
+//
+//   }
+//
+// }
 
 
 /**
@@ -324,6 +324,8 @@ function cph_custom_cart_field_process() {
 add_action('wp_ajax_cph_update_cart_meta', 'cph_update_cart_meta_callback' );
 add_action('wp_ajax_nopriv_cph_update_cart_meta', 'cph_update_cart_meta_callback' );
 function cph_update_cart_meta_callback(){
+
+  $errors = new WP_Error();
 
   // For each item in the cart, we're adding session data for the ticket details
   $cart_items = WC()->cart->get_cart_contents();
@@ -335,14 +337,52 @@ function cph_update_cart_meta_callback(){
     WC()->session->set( $_product->get_ID() . '_tickets_data', null);
 
     // Set up array to put in session data
-    foreach ($_POST['custom_fields'] as $ticket_details) {
+    foreach ($_POST['custom_fields'] as $i => $ticket_details) {
       if ($ticket_details['product_id'] == $_product->get_ID()) {
+
+        $field_label = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i;
+
+        // Validate fields
+        if ( ! $ticket_details['first_name'] )
+          $errors->add( 'required-field', apply_filters( 'woocommerce_checkout_required_field_notice', sprintf( __( 'Please enter a first name for %s.', 'woocommerce' ), '<strong>' . esc_html($field_label) . '</strong>' ), $field_label ) );
+        if ( ! $ticket_details['last_name'] )
+          $errors->add( 'required-field', apply_filters( 'woocommerce_checkout_required_field_notice', sprintf( __( 'Please enter a last name for %s.', 'woocommerce' ), '<strong>' . esc_html($field_label) . '</strong>' ), $field_label ) );
+        if ( ! $ticket_details['address_1'] )
+          $errors->add( 'required-field', apply_filters( 'woocommerce_checkout_required_field_notice', sprintf( __( 'Please enter a street address for %s.', 'woocommerce' ), '<strong>' . esc_html($field_label) . '</strong>' ), $field_label ) );
+        if ( ! $ticket_details['city'] )
+          $errors->add( 'required-field', apply_filters( 'woocommerce_checkout_required_field_notice', sprintf( __( 'Please enter a city for %s.', 'woocommerce' ), '<strong>' . esc_html($field_label) . '</strong>' ), $field_label ) );
+        if ( ! $ticket_details['state'] )
+          $errors->add( 'required-field', apply_filters( 'woocommerce_checkout_required_field_notice', sprintf( __( 'Please enter a state for %s.', 'woocommerce' ), '<strong>' . esc_html($field_label) . '</strong>' ), $field_label ) );
+        if ( ! $ticket_details['postcode'] )
+          $errors->add( 'required-field', apply_filters( 'woocommerce_checkout_required_field_notice', sprintf( __( 'Please enter a zip code for %s.', 'woocommerce' ), '<strong>' . esc_html($field_label) . '</strong>' ), $field_label ) );
+        if ( ! $ticket_details['email'] )
+          $errors->add( 'required-field', apply_filters( 'woocommerce_checkout_required_field_notice', sprintf( __( 'Please enter an email address for %s.', 'woocommerce' ), '<strong>' . esc_html($field_label) . '</strong>' ), $field_label ) );
+
+        // Set session data
         $this_session[$ticket_details['ticket_key']] = $ticket_details;
       }
     }
 
     // Set new session data
     WC()->session->set( $_product->get_ID() . '_tickets_data', $this_session );
+  }
+
+  // Handle errors
+	foreach ( $errors->get_error_messages() as $message ) {
+		wc_add_notice( $message, 'error' );
+	}
+
+  if (wc_notice_count( 'error' ) > 0) {
+    ob_start();
+  	wc_print_notices();
+  	$messages = ob_get_clean();
+
+		$response = array(
+			'error'    => true,
+			'messages' => isset( $messages ) ? $messages : ''
+		);
+
+    wp_send_json($response);
   }
 
   wp_die();

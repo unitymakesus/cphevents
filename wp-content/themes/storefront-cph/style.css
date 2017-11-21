@@ -12,6 +12,7 @@ Template:       storefront
 
 .site-header {
   padding-top: 1rem;
+  margin-bottom: 4.235801032em;
 }
 
 .site-branding {
@@ -63,6 +64,22 @@ Template:       storefront
 .archive.archive .woocommerce-products-header,
 .page .hentry.type-page .entry-header {
   padding-bottom: 2em;
+}
+
+.main-navigation ul li a:hover,
+.main-navigation ul li:hover > a,
+.site-title a:hover,
+a.cart-contents:hover,
+.site-header-cart .widget_shopping_cart a:hover,
+.site-header-cart:hover > li > a,
+.site-header ul.menu li.current-menu-item > a {
+  background: #007FAE;
+  color: #ffffff;
+}
+
+.main-navigation ul ul a:hover {
+  color: #007FAE;
+  text-decoration: underline;
 }
 
 /*****************************************************************************

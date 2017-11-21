@@ -106,37 +106,37 @@ add_filter( 'woocommerce_order_button_text', function() {
  * Sets errors for custom checkout fields that are required
  * @return null
  */
-function cph_custom_checkout_field_process() {
-
-  foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-    $_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
-
-    if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
-
-      for ($i = 1; $i <= $cart_item['quantity']; $i++) {
-        $field_prefix = $_product->get_id() . '_ticket_' . $i;
-
-        if ( ! $_POST[$field_prefix . '_first_name'] )
-          wc_add_notice( 'Please enter a first name for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
-        if ( ! $_POST[$field_prefix . '_last_name'] )
-          wc_add_notice( 'Please enter a last name for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
-        if ( ! $_POST[$field_prefix . '_address_1'] )
-          wc_add_notice( 'Please enter a street address for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
-        if ( ! $_POST[$field_prefix . '_city'] )
-          wc_add_notice( 'Please enter a city for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
-        if ( ! $_POST[$field_prefix . '_state'] )
-          wc_add_notice( 'Please enter a state for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
-        if ( ! $_POST[$field_prefix . '_postcode'] )
-          wc_add_notice( 'Please enter a zip code for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
-        if ( ! $_POST[$field_prefix . '_email'] )
-          wc_add_notice( 'Please enter an email address for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
-      }
-
-    }
-
-  }
-
-}
+// function cph_custom_checkout_field_process() {
+//
+//   foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+//     $_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+//
+//     if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
+//
+//       for ($i = 1; $i <= $cart_item['quantity']; $i++) {
+//         $field_prefix = $_product->get_id() . '_ticket_' . $i;
+//
+//         if ( ! $_POST[$field_prefix . '_first_name'] )
+//           wc_add_notice( 'Please enter a first name for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
+//         if ( ! $_POST[$field_prefix . '_last_name'] )
+//           wc_add_notice( 'Please enter a last name for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
+//         if ( ! $_POST[$field_prefix . '_address_1'] )
+//           wc_add_notice( 'Please enter a street address for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
+//         if ( ! $_POST[$field_prefix . '_city'] )
+//           wc_add_notice( 'Please enter a city for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
+//         if ( ! $_POST[$field_prefix . '_state'] )
+//           wc_add_notice( 'Please enter a state for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
+//         if ( ! $_POST[$field_prefix . '_postcode'] )
+//           wc_add_notice( 'Please enter a zip code for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
+//         if ( ! $_POST[$field_prefix . '_email'] )
+//           wc_add_notice( 'Please enter an email address for ' . apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key ) . ': Ticket ' . $i, 'error' );
+//       }
+//
+//     }
+//
+//   }
+//
+// }
 
 /**
  * Saves custom checkout fields to database
@@ -145,32 +145,34 @@ function cph_custom_checkout_field_update_order_meta( $order_id ) {
 
   foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
     $_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+    $session_data = WC()->session->get( $_product->get_id() . '_tickets_data' );
 
     if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 
       for ($i = 1; $i <= $cart_item['quantity']; $i++) {
         $field_prefix = $_product->get_id() . '_ticket_' . $i;
+        $field_data = $session_data[$field_prefix];
 
-        if ( ! empty( $_POST[$field_prefix . '_first_name'] ) )
-          update_post_meta( $order_id, $field_prefix . '_first_name', $_POST[$field_prefix . '_first_name'] );
-        if ( ! empty( $_POST[$field_prefix . '_last_name'] ) )
-          update_post_meta( $order_id, $field_prefix . '_last_name', $_POST[$field_prefix . '_last_name'] );
-        if ( ! empty( $_POST[$field_prefix . '_address_1'] ) )
-          update_post_meta( $order_id, $field_prefix . '_address_1', $_POST[$field_prefix . '_address_1'] );
-        if ( ! empty( $_POST[$field_prefix . '_address_2'] ) )
-          update_post_meta( $order_id, $field_prefix . '_address_2', $_POST[$field_prefix . '_address_2'] );
-        if ( ! empty( $_POST[$field_prefix . '_city'] ) )
-          update_post_meta( $order_id, $field_prefix . '_city', $_POST[$field_prefix . '_city'] );
-        if ( ! empty( $_POST[$field_prefix . '_state'] ) )
-          update_post_meta( $order_id, $field_prefix . '_state', $_POST[$field_prefix . '_state'] );
-        if ( ! empty( $_POST[$field_prefix . '_postcode'] ) )
-          update_post_meta( $order_id, $field_prefix . '_postcode', $_POST[$field_prefix . '_postcode'] );
-        if ( ! empty( $_POST[$field_prefix . '_phone'] ) )
-          update_post_meta( $order_id, $field_prefix . '_phone', $_POST[$field_prefix . '_phone'] );
-        if ( ! empty( $_POST[$field_prefix . '_email'] ) )
-          update_post_meta( $order_id, $field_prefix . '_email', $_POST[$field_prefix . '_email'] );
-        if ( ! empty( $_POST[$field_prefix . '_special_needs'] ) )
-          update_post_meta( $order_id, $field_prefix . '_special_needs', $_POST[$field_prefix . '_special_needs'] );
+        if ( ! empty( $field_data['first_name'] ) )
+          update_post_meta( $order_id, $field_prefix . '_first_name', $field_data['first_name'] );
+        if ( ! empty( $field_data['last_name'] ) )
+          update_post_meta( $order_id, $field_prefix . '_last_name', $field_data['last_name'] );
+        if ( ! empty( $field_data['address_1'] ) )
+          update_post_meta( $order_id, $field_prefix . '_address_1', $field_data['address_1'] );
+        if ( ! empty( $field_data['address_2'] ) )
+          update_post_meta( $order_id, $field_prefix . '_address_2', $field_data['address_2'] );
+        if ( ! empty( $field_data['city'] ) )
+          update_post_meta( $order_id, $field_prefix . '_city', $field_data['city'] );
+        if ( ! empty( $field_data['state'] ) )
+          update_post_meta( $order_id, $field_prefix . '_state', $field_data['state'] );
+        if ( ! empty( $field_data['postcode'] ) )
+          update_post_meta( $order_id, $field_prefix . '_postcode', $field_data['postcode'] );
+        if ( ! empty( $field_data['phone'] ) )
+          update_post_meta( $order_id, $field_prefix . '_phone', $field_data['phone'] );
+        if ( ! empty( $field_data['email'] ) )
+          update_post_meta( $order_id, $field_prefix . '_email', $field_data['email'] );
+        if ( ! empty( $field_data['special_needs'] ) )
+          update_post_meta( $order_id, $field_prefix . '_special_needs', $field_data['special_needs'] );
       }
 
     }

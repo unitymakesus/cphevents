@@ -63,7 +63,7 @@ class WC_Gateway_Touchnet extends WC_Payment_Gateway {
 
     // Build payload
     $payload = array(
-      'UPAY_SITE_ID' => 52,
+      'UPAY_SITE_ID' => 316,
       'BILL_EMAIL_ADDRESS' => $order->get_billing_email(),
       'BILL_NAME' => $order->get_billing_first_name() . ' ' . $order->get_billing_last_name(),
       'BILL_STREET1' => $order->get_billing_address_1(),
@@ -75,7 +75,7 @@ class WC_Gateway_Touchnet extends WC_Payment_Gateway {
       'AMT' => $amount,
       'EXT_TRANS_ID' => $trans_id,
       'VALIDATION_KEY' => $validation_key,
-      'SUCCESS_LINK' => home_url() . '/my-account/view-order/' . $trans_id,
+      'SUCCESS_LINK' => get_home_url() . '/my-account/view-order/' . $trans_id,
       'SUCCESS_LINK_TEXT' => 'Thank you for your order. Click here to view order summary.',
       // 'ERROR_LINK' => [LINK TO ERROR PAGE TO GO BACK TO CART],
       // 'ERROR_LINK_TEXT' => 'There was an error. You may return to your cart.',

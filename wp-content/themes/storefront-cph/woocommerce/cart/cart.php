@@ -20,8 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-wc_print_notices();
-
 do_action( 'woocommerce_before_cart' ); ?>
 
 <ol class="checkout-progress" tabindex="0" role="progressbar"
@@ -36,6 +34,11 @@ do_action( 'woocommerce_before_cart' ); ?>
 </div>
 
 <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
+
+	<div class="woocommerce-NoticeGroup">
+		<?php wc_print_notices(); ?>
+	</div>
+
 	<?php do_action( 'woocommerce_before_cart_table' ); ?>
 
 	<div class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">
