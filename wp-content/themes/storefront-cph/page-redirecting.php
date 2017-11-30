@@ -23,6 +23,6 @@ $EXT_TRANS_ID = $_GET['EXT_TRANS_ID'];
   <input value="<?php echo $BILL_COUNTRY; ?>" name="BILL_COUNTRY" type="hidden"></input>
   <input value="<?php echo $AMT; ?>" name="AMT" type="hidden"></input>
   <input value="<?php echo $EXT_TRANS_ID; ?>" name="EXT_TRANS_ID" type="hidden"></input>
-  <input value="" name="VALIDATION_KEY" type="hidden"></input>
+  <input value="<?php echo $VALIDATION_KEY; ?>" name="VALIDATION_KEY" type="hidden"></input>
   <input value="Click here if the site is taking too long to redirect" class="art-button" type="submit"></input>
 </form>

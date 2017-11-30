@@ -59,7 +59,7 @@ class WC_Gateway_Touchnet extends WC_Payment_Gateway {
     $upay_posting_key = 'DF)948ai';
     $trans_id = str_replace( "#", "", $order->get_order_number() );
     $amount = $order->get_total();
-    $validation_key = base64_encode(md5($upay_posting_key + $trans_id + $amount, TRUE));
+    $validation_key = base64_encode(md5($upay_posting_key . $trans_id . $amount, TRUE));
 
     // Build payload
     $payload = array(
