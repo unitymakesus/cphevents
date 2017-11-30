@@ -276,9 +276,9 @@ function preg_grep_keys($pattern, $input, $flags = 0) {
   return array_intersect_key($input, array_flip(preg_grep($pattern, array_keys($input), $flags)));
 }
 
-// /**
-//  * AJAX callback for adding discounts to checkout for teachers and GAA members
-//  */
+/**
+ * AJAX callback for adding discounts to checkout for teachers and GAA members
+ */
 add_action('wp_ajax_cph_add_discount', 'cph_add_discount_callback' );
 add_action('wp_ajax_nopriv_cph_add_discount', 'cph_add_discount_callback' );
 function cph_add_discount_callback() {

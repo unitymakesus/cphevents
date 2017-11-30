@@ -21,18 +21,18 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
       <div class="ticket-details <?php if ($i % 2 == 0) { echo 'col-2'; } else { echo 'col-1'; } ?> <?php echo $field_prefix; ?>__field-wrapper" data-ticket-key="<?php echo $field_prefix; ?>" data-product="<?php echo $_product->get_id(); ?>">
         <h4>Ticket <?php echo $i; ?></h4>
 
-        <?php if (!empty($customer['address_1']) || $i > 1) { ?>
-          <p class="form-row form-row-wide control-copy">
-            <label for="<?php echo $field_prefix; ?>_copy_data">Copy information from:</label>
-            <span class="ui-control select">
-              <select id="<?php echo $field_prefix; ?>_copy_data" class="copy-data">
-                <option value="">Select (optional)</option>
+        <p class="form-row form-row-wide control-copy">
+          <label for="<?php echo $field_prefix; ?>_copy_data">Copy information from:</label>
+          <span class="ui-control select">
+            <select id="<?php echo $field_prefix; ?>_copy_data" class="copy-data">
+              <option value="">Select (optional)</option>
+              <?php if (!empty($customer['address_1']) || $i > 1) { ?>
                 <option value="account">My account</option>
-              </select>
-              <span class="select_arrow"></span>
-            </span>
-          </p>
-        <?php } ?>
+              <?php } ?>
+            </select>
+            <span class="select_arrow"></span>
+          </span>
+        </p>
 
         <?php
         woocommerce_form_field( $field_prefix . '_first_name',

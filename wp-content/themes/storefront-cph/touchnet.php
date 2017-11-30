@@ -56,14 +56,14 @@ class WC_Gateway_Touchnet extends WC_Payment_Gateway {
     $order = new WC_Order($order_id);
 
     // Encode validation key
-    $upay_posting_key = 'EX123';
+    $upay_posting_key = 'DF)948ai';
     $trans_id = str_replace( "#", "", $order->get_order_number() );
     $amount = $order->get_total();
     $validation_key = base64_encode(md5($upay_posting_key + $trans_id + $amount, TRUE));
 
     // Build payload
     $payload = array(
-      'UPAY_SITE_ID' => 316,
+      'UPAY_SITE_ID' => 317,
       'BILL_EMAIL_ADDRESS' => $order->get_billing_email(),
       'BILL_NAME' => $order->get_billing_first_name() . ' ' . $order->get_billing_last_name(),
       'BILL_STREET1' => $order->get_billing_address_1(),
@@ -84,9 +84,9 @@ class WC_Gateway_Touchnet extends WC_Payment_Gateway {
     );
 
     // Build redirect URL
-    $redirect_url = get_permalink(get_page_by_path('redirecting'))  . '?' . http_build_query($payload);
+    $redirect_url = get_permalink(get_page_by_path('checkout/redirecting'))  . '?' . http_build_query($payload);
 
-    // Mark as on-hold
+    // Mark as pending
     $order->update_status('pending', 'Awaiting payment through TouchNet');
 
     // Reduce stock levels

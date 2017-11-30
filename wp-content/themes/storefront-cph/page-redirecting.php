@@ -11,7 +11,7 @@ $BILL_COUNTRY = $_GET['BILL_COUNTRY'];
 $AMT = $_GET['AMT'];
 $EXT_TRANS_ID = $_GET['EXT_TRANS_ID'];
 ?>
-<form method="post" action="https://secure.touchnet.com/C21551_upay/web/index.jsp" name="patron_form">
+<form method="post" action="https://secure.touchnet.com:8443/C21551test_upay/web/index.jsp" name="patron_form">
   <input value="<?php echo $UPAY_SITE_ID; ?>" name="UPAY_SITE_ID" type="hidden"></input>
   <input value="<?php echo $BILL_EMAIL_ADDRESS; ?>" name="BILL_EMAIL_ADDRESS" type="hidden"></input>
   <input value="<?php echo $BILL_NAME; ?>" name="BILL_NAME" type="hidden"></input>
