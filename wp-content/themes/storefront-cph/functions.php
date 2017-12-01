@@ -121,7 +121,7 @@ if ( storefront_is_woocommerce_activated() ) {
   /**
    * Add quantity picker in product list
    */
-  require 'event-list-quantity-picker.php';
+  require 'lib/event-list-quantity-picker.php';
   remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart');
   add_action('woocommerce_after_shop_loop_item', 'cph_event_list_quantity_picker', 10);
 
@@ -129,7 +129,7 @@ if ( storefront_is_woocommerce_activated() ) {
   /*****************************************************************************
   * CART PAGE
   *****************************************************************************/
-  require 'cart-functions.php';
+  require 'lib/cart-functions.php';
 
   /**
    * Disable coupon codes on cart page
@@ -196,7 +196,7 @@ if ( storefront_is_woocommerce_activated() ) {
   /**
    * Calculate discounts based on ticket attendee data
    */
-  require 'checkout-functions.php';
+  require 'lib/checkout-functions.php';
   add_action( 'woocommerce_cart_calculate_fees', 'cph_calculate_fees' );
 
   /**
@@ -217,7 +217,7 @@ if ( storefront_is_woocommerce_activated() ) {
   /**
   * Display custom field values
   */
-  require 'order-details-functions.php';
+  require 'lib/order-details-functions.php';
   add_action( 'woocommerce_order_item_meta_end', 'cph_order_details_tickets', 10, 3); // Order details page and email
   add_action( 'woocommerce_after_order_itemmeta', 'cph_order_details_tickets', 10, 3);  // Admin order details
 
@@ -225,7 +225,7 @@ if ( storefront_is_woocommerce_activated() ) {
   /*****************************************************************************
   * TOUCHNET INTEGRATION
   *****************************************************************************/
-  require 'touchnet.php';
+  require 'lib/touchnet.php';
   add_filter('woocommerce_payment_gateways', function($methods) {
     $methods[] = 'WC_Gateway_Touchnet';
     return $methods;

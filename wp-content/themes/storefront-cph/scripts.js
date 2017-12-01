@@ -378,43 +378,6 @@ jQuery(document).ready(function($) {
   * CHECKOUT PAGE
   *****************************************************************************/
 
-  // function adjust_valid_fields($which, amount) {
-  //   var current_x = $which.closest('.discount-validation').data('x');
-  //   $which.closest('.discount-validation').data('x', current_x + amount);
-  // }
-  //
-  // function check_valid_fields($which) {
-  //   var x = $which.closest('.discount-validation').data('x');
-  //   var n = $which.closest('.discount-validation').data('n');
-  //
-  //   if (x == n) {
-  //     // Add coupon code
-  //     var data = {
-  //       action: 'cph_add_discount',
-  //       product_id: $which.closest('.ticket-details').data('product'),
-  //       discount_type: $which.closest('.discount-validation').data('discount-type')
-  //     };
-  //
-  //   } else {
-  //     // Remove coupon code
-  //     var data = {
-  //       action: 'cph_remove_discount',
-  //       product_id: $which.closest('.ticket-details').data('product'),
-  //       discount_type: $which.closest('.discount-validation').data('discount-type'),
-  //       original_price: $which.closest('.discount-validation').data('original-price')
-  //     };
-  //   }
-  //
-  //   $.post( wc_checkout_params.ajax_url, data, function(response) {
-  //     response = JSON.parse(response);
-  //
-  //     if (!response)
-  //     return;
-  //
-  //     console.log(response);
-  //   });
-  // }
-
   // Apply discounts if teacher and GAA fields validate
   $('.discount-validation').each(function() {
     // Number of fields to validate
@@ -426,102 +389,16 @@ jQuery(document).ready(function($) {
     // Display teacher and GAA conditional fields
     $(this).find('.validation-checkbox input[type="checkbox"]').on('change', function() {
       if ($(this).is(':checked')) {
-        // adjust_valid_fields($(this), 1);
         $(this).closest('.discount-validation').find('.hidden-fields').show();
-
-        // var data = {
-        //   action: 'cph_add_discount',
-        //   security: wc_checkout_params.update_order_review_nonce,
-        //   post_data: $( 'form.checkout' ).serialize(),
-        //   product_id: $(this).closest('.ticket-details').data('product'),
-        //   discount_type: $(this).closest('.discount-validation').data('discount-type')
-        // };
-
-        // if ( xhr ) xhr.abort();
-
-        // $( '#order_methods, #order_review' ).block({ message: null, overlayCSS: { background: '#fff url(' + wc_checkout_params.ajax_loader_url + ') no-repeat center', backgroundSize:'16px 16px', opacity: 0.6 } });
-
-        // var data = {
-        //   action: 'woocommerce_update_order_review',
-        //   security: wc_checkout_params.update_order_review_nonce,
-        //   // billing_state: billingstate,
-        //   // billing_country : billingcountry,
-        //   post_data: $( 'form.checkout' ).serialize()
-        // };
-        //
-        // xhr = $.ajax({
-        //   type: 'POST',
-        //   url: wc_checkout_params.ajax_url,
-        //   data: data,
-        //   success: function( response ) {
-        //     console.log(response);
-        //     var order_output = $(response);
-        //     $( '#order_review' ).html( response['fragments']['.woocommerce-checkout-review-order-table']+response['fragments']['.woocommerce-checkout-payment']);
-        //     $('body').trigger('update_checkout');
-        //   },
-        //   error: function(code){
-        //     console.log('ERROR');
-        //   }
-        // });
-
-        // $.post( wc_checkout_params.ajax_url, data, function(response) {
-        //   console.log(response);
-        //
-        //   if (!response)
-        //   return;
-        //
-        // });
-        // xhr = $.ajax({
-				// 	type: 'POST',
-				// 	url: wc_checkout_params.ajax_url,
-				// 	data: data,
-				// 	success: function( response ) {
-        //     console.log(response);
-				// 		var order_output = $(response);
-				// 		$( '#order_review' ).html( response['fragments']['.woocommerce-checkout-review-order-table']+response['fragments']['.woocommerce-checkout-payment']);
-				// 		$('body').trigger('updated_checkout');
-				// 	},
-				// 	error: function(code){
-				// 		console.log('ERROR');
-				// 	}
-        // });
-
       } else {
-        // adjust_valid_fields($(this), -1);
         $(this).closest('.discount-validation').find('.hidden-fields').hide();
-
-        // var data = {
-        //   action: 'cph_remove_discount',
-        //   product_id: $(this).closest('.ticket-details').data('product'),
-        //   discount_type: $(this).closest('.discount-validation').data('discount-type'),
-        //   original_price: $(this).closest('.discount-validation').data('original-price')
-        // };
       }
-
-      // $('body').trigger('update_checkout');
-
-      // Check that valid fields match total fields
-      // check_valid_fields($(this));
     });
-
-    // Adjust number of valid fields when these change
-    // $(this).find('.hidden-fields input, .hidden-fields select').on('change', function() {
-    //   if($(this).val()) {
-    //     adjust_valid_fields($(this), 1);
-    //   } else {
-    //     adjust_valid_fields($(this), -1);
-    //   }
-    //
-    //   // Check that valid fields match total fields
-    //   check_valid_fields($(this));
-    // });
 
   });
 
-  if ( typeof wc_checkout_params === 'undefined' )
-    return false;
-
   var updateTimer,dirtyInput = false,xhr;
+
   function update_order_review_table(billingstate,billingcountry) {
     if ( xhr ) xhr.abort();
 
@@ -553,5 +430,20 @@ jQuery(document).ready(function($) {
   jQuery('.state_select').change(function(e, params){
     update_order_review_table(jQuery(this).val(),jQuery('#billing_country').val());
   });
+
+  /*****************************************************************************
+  * ERROR PAGE
+  *****************************************************************************/
+
+  // Replace [EXT_TRANS_ID] with the ID from URL param
+  var EXT_TRANS_ID = getUrlParameter('EXT_TRANS_ID');
+  console.info('id', EXT_TRANS_ID);
+  if (EXT_TRANS_ID.length > 0) {
+    $('.entry-content p').each(function() {
+      $(this).html(function(index, text) {
+        return text.replace("[EXT_TRANS_ID]", EXT_TRANS_ID);
+      });
+    });
+  }
 
 });
