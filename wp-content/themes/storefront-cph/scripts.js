@@ -1,8 +1,29 @@
 jQuery(document).ready(function($) {
 
+  function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  };
+
   /*****************************************************************************
   * EVENT LIST PAGE
   *****************************************************************************/
+
+  // Scroll to event identified in URL
+  var event_id = getUrlParameter('event_id'),
+      $event = $( '.product.post-' + event_id );
+  if (event_id.length > 0) {
+    $event.addClass('active');
+    $( 'html, body' ).animate({
+      scrollTop: ( $event.offset().top - 50 )
+    }, 1000 );
+
+    setTimeout(function() {
+      $event.removeClass('active');
+    }, 5000);
+  }
 
   // Increase quantity
   $(document).on('click', '.cph-quantity-up', function() {
