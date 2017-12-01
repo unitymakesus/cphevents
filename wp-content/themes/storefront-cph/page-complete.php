@@ -48,7 +48,7 @@ get_header(); ?>
             		'<mark class="order-status">' . wc_get_order_status_name( $order->get_status() ) . '</mark>'
             	);
               ?>
-              <a href="<?php echo get_permalink(get_option('woocommerce_myaccount_page_id')); ?>/orders">View all my orders .</a>
+              <a href="<?php echo get_permalink(get_option('woocommerce_myaccount_page_id')); ?>/orders">View all my orders.</a>
             </p>
 
             <?php
