@@ -14,22 +14,21 @@ $order = new WC_Order($_POST['EXT_TRANS_ID']);
 
 // Handle order status
 if ($_POST['pmt_status'] == 'success') {
-	$order->add_order_note('TouchNet payment completed');
-	$order->payment_complete();
+	$order->update_status('complete', 'TouchNet payment completed.');
 } elseif ($_POST['pmt_status'] == 'cancelled') {
-	$order->add_order_note('TouchNet payment cancelled');
+	$order->add_order_note('TouchNet payment cancelled.');
 }
 
 // Save post stuff as order meta
 if ( ! empty( $_POST['pmt_status'] ) )
-	update_post_meta( $order_id, 'pmt_status', $_POST['pmt_status'] );
+	update_post_meta( $_POST['EXT_TRANS_ID'], 'pmt_status', $_POST['pmt_status'] );
 if ( ! empty( $_POST['tpg_trans_id'] ) )
-	update_post_meta( $order_id, 'tpg_trans_id', $_POST['tpg_trans_id'] );
+	update_post_meta( $_POST['EXT_TRANS_ID'], 'tpg_trans_id', $_POST['tpg_trans_id'] );
 if ( ! empty( $_POST['pmt_amt'] ) )
-	update_post_meta( $order_id, 'pmt_amt', $_POST['pmt_amt'] );
+	update_post_meta( $_POST['EXT_TRANS_ID'], 'pmt_amt', $_POST['pmt_amt'] );
 if ( ! empty( $_POST['pmt_status'] ) )
-	update_post_meta( $order_id, 'pmt_status', $_POST['pmt_status'] );
+	update_post_meta( $_POST['EXT_TRANS_ID'], 'pmt_status', $_POST['pmt_status'] );
 if ( ! empty( $_POST['pmt_date'] ) )
-	update_post_meta( $order_id, 'pmt_date', $_POST['pmt_date'] );
+	update_post_meta( $_POST['EXT_TRANS_ID'], 'pmt_date', $_POST['pmt_date'] );
 if ( ! empty( $_POST['sys_tracking_id'] ) )
-	update_post_meta( $order_id, 'sys_tracking_id', $_POST['sys_tracking_id'] );
+	update_post_meta( $_POST['EXT_TRANS_ID'], 'sys_tracking_id', $_POST['sys_tracking_id'] );
