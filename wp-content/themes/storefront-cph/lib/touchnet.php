@@ -63,7 +63,7 @@ class WC_Gateway_Touchnet extends WC_Payment_Gateway {
 
     // Build payload
     $payload = array(
-      'UPAY_SITE_ID' => 317,
+      'UPAY_SITE_ID' => 316,
       'BILL_EMAIL_ADDRESS' => $order->get_billing_email(),
       'BILL_NAME' => $order->get_billing_first_name() . ' ' . $order->get_billing_last_name(),
       'BILL_STREET1' => $order->get_billing_address_1(),
