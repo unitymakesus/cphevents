@@ -64,6 +64,7 @@ Template:       storefront
 .archive.archive .woocommerce-products-header,
 .page .hentry.type-page .entry-header {
   padding-bottom: 2em;
+  text-align: center;
 }
 
 .main-navigation ul li a:hover,

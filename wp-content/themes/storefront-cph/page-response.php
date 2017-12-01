@@ -6,9 +6,6 @@
  * the corresponding order accordingly.
  */
 
-$pmt_status = $_POST['pmt_status'];
-$EXT_TRANS_ID = $_POST['EXT_TRANS_ID'];
-
 // Set up order object
 $order = new WC_Order($_POST['EXT_TRANS_ID']);
 

@@ -221,6 +221,11 @@ if ( storefront_is_woocommerce_activated() ) {
   add_action( 'woocommerce_order_item_meta_end', 'cph_order_details_tickets', 10, 3); // Order details page and email
   add_action( 'woocommerce_after_order_itemmeta', 'cph_order_details_tickets', 10, 3);  // Admin order details
 
+  add_filter( 'woocommerce_account_menu_items', function( $items ) {
+    unset($items['downloads']);
+    return $items;
+  } );
+
 
   /*****************************************************************************
   * TOUCHNET INTEGRATION

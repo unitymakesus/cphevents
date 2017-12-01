@@ -1,4 +1,11 @@
 <?php
+/**
+ * This is the page that redirects to TouchNet
+ *
+ * It takes the submitted data from the checkout process to POST data, which is
+ * the only way TouchNet allows data to be set.
+ */
+
 $UPAY_SITE_ID = $_GET['UPAY_SITE_ID'];
 $BILL_EMAIL_ADDRESS = $_GET['BILL_EMAIL_ADDRESS'];
 $BILL_NAME = $_GET['BILL_NAME'];
