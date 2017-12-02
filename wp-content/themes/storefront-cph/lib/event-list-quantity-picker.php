@@ -39,13 +39,13 @@ function quantity_picker($qty, $product_id, $variation_id = null, $variation = n
 
 function cph_event_list_quantity_picker() {
   global $product;
+  $product_id = $product->get_id();
 
   // If product is variable
   if ($product->is_type('variable')) {
     $variations = $product->get_available_variations();
     $atts = $product->get_variation_attributes();
     $atts_keys = array_keys($atts);
-    $product_id = $product->get_id();
 
     $terms = wc_get_product_terms( $product_id, $atts_keys[0], array( 'fields' => 'all' ) );
 
@@ -197,6 +197,7 @@ function cph_variable_add_to_cart_callback() {
         echo do_cart_error($product_id);
       }
     }
+
   }
 	die();
 }

@@ -70,7 +70,7 @@ if ( storefront_is_woocommerce_activated() ) {
    * Display events in date order
    */
   add_action('pre_get_posts', function($query) {
-    if (!is_admin() && $query->is_post_type_archive() && $query->get('post_type') == 'product') {
+    if (!is_admin() && ($query->is_archive())) {
       $query->set('posts_per_page', '-1');
       $query->set('meta_key', 'date');
       $query->set('orderby', 'meta_value');

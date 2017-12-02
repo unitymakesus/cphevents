@@ -345,6 +345,12 @@ jQuery(document).ready(function($) {
           meta['gaa_discount_flyleaf'] = $gaa_discount_flyleaf.val();
           meta['gaa_type'] = $(this).find('select[name$="_gaa_type"]').val();
         }
+
+        var $gaa_discount_bulk_flyleaf = $(this).find('input[name$="_gaa_discount_bulk_flyleaf"]');
+        if ($gaa_discount_bulk_flyleaf.is(':checked')) {
+          meta['gaa_discount_bulk_flyleaf'] = $gaa_discount_bulk_flyleaf.val();
+          meta['gaa_type'] = $(this).find('select[name$="_gaa_type"]').val();
+        }
       }
 
       custom_fields.push(meta);

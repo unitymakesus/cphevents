@@ -11,6 +11,7 @@ function cph_calculate_fees( $checkout ) {
   $teacher_discount = 0;
   $gaa_seminar_count = 0;
   $gaa_flyleaf_count = 0;
+  $gaa_flyleaf_bulk = 0;
   $aiiseminar_count = 0;
   $dseminar_count = 0;
 
@@ -38,6 +39,10 @@ function cph_calculate_fees( $checkout ) {
 
           if ($ticket['gaa_discount_seminar'] == 1) {
             $gaa_seminar_count ++;
+          }
+
+          if ($ticket['gaa_discount_bulk_flyleaf'] == 1) {
+            $gaa_flyleaf_bulk ++;
           }
 
           if ($ticket['gaa_discount_flyleaf'] == 1) {
@@ -76,6 +81,13 @@ function cph_calculate_fees( $checkout ) {
     $gaa_flyleaf_discount = -($gaa_flyleaf_count * 5);
 
     WC()->cart->add_fee('GAA Discount ($5 off Humanities in Action series events)', $gaa_flyleaf_discount);
+  }
+
+  // Apply GAA Humanities in Action season pass discounts to cart
+  if ($gaa_flyleaf_bulk > 0) {
+    $gaa_flyleaf_bulk_discount = -($gaa_flyleaf_bulk * 35);
+
+    WC()->cart->add_fee('GAA Discount ($35 off Flyleaf Season Pass)', $gaa_flyleaf_bulk_discount);
   }
 
   // Teacher discount overrides the 3 or more.
