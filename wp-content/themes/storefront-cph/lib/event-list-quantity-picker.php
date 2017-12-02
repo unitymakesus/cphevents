@@ -95,14 +95,18 @@ function cph_event_list_quantity_picker() {
 
     echo '</ul>';
   } else {
-    $item = product_in_cart($product);
-    if ($item['qty'] !== NULL) {
-      $qty = $item['qty'];
-      // Show quantity picker
-      quantity_picker($qty, $product->get_id());
+    if ($product->is_in_stock()) {
+      $item = product_in_cart($product);
+      if ($item['qty'] !== NULL) {
+        $qty = $item['qty'];
+        // Show quantity picker
+        quantity_picker($qty, $product->get_id());
+      } else {
+        // Show default add to cart
+        woocommerce_template_loop_add_to_cart();
+      }
     } else {
-      // Show default add to cart
-      woocommerce_template_loop_add_to_cart();
+      echo '<span class="button sold-out">Sold Out</span>';
     }
   }
 }
