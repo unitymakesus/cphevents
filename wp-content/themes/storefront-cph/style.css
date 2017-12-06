@@ -375,6 +375,14 @@ ol.checkout-progress li:first-child::after {
   font-weight: bold;
 }
 
+.ticket-details .ticket-group {
+  background: #E1E1E1;
+}
+
+.ticket-details .ticket-group.visible {
+  background: #ffffff;
+}
+
 .discount-validation .hidden-fields {
   display: none;
 }

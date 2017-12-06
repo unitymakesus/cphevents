@@ -202,49 +202,169 @@ jQuery(document).ready(function($) {
   * CART PAGE
   *****************************************************************************/
 
-  // Put all tickets as options to copy details from
-  $('.woocommerce-cart-form .ticket-details').each(function() {
-    var title = $(this).siblings('h3').text(),
-        ticket = $(this).children('h4').text(),
-        ticket_key = $(this).data('ticket-key');
+  // Function that adds new guest to the ticket options
+  function setup_guest_data(handler, ticket, full_name, sanitized_name) {
+    var all_fields = [],
+        all_valid = [],
+        ticket_group = $('[id=' + ticket + '_ticket_group]'),
+        ticket_selects = $('.woocommerce-cart-form select.copy-data');
 
-    $('.woocommerce-cart-form .ticket-details:not([class*=' + ticket_key + ']) select.copy-data').each(function() {
-      $(this).append('<option value="' + ticket_key + '">' + title + ': ' + ticket + '</option>');
-    });
-  });
+    ticket_group.find('.form-row').each(function() {
 
-  // Copy details from selected fields
-  $('.woocommerce-cart-form .ticket-details').on('change', 'select.copy-data', function(e) {
-    var which = $(this).val(),
-        ticket = $(this).closest('.ticket-details'),
-        ticket_key = ticket.data('ticket-key')
-        account = $('#account-data');
+      var row = $(this),
+          field = row.attr('id').match(/ticket_\d+_(.*)_field/);
 
-    if (which !== '') {
-      // Loop through fields that need replacing
-      $(ticket).find('.form-row:not(.control-copy)').each(function() {
-        // Get global name of field
-        var field = $(this).attr('id').replace(ticket_key + '_', '').replace('_field', '');
+      row.find('.input-text, select, input:checkbox').each(function() {
 
-        // If copying from account details
-        if (which == 'account') {
-          if (typeof account.data(field) !== "undefined") {
-            $(ticket).find('[name$=' + field + ']').val(account.data(field));
+        // Save field/value pairs to array
+        if ($(this).is('input:checkbox')) {
+          // Handle check boxes
+          if ($(this).is(':checked')) {
+            all_fields[field[1]] = 1;
           }
         } else {
-          if ((field == 'teacher' || field == 'gaa')) {
-            // Handle checkbox fields (teacher and gaa are checkboxes)
-            $(ticket).find('[name$=' + field + ']').prop('checked', $('[class*=' + which + ']').find('[name$=' + field + ']').prop('checked')).trigger('change');
+          all_fields[field[1]] = $(this).val();
+        }
+
+        // Validate required fields
+        if (row.hasClass('validate-required')) {
+          $(this).trigger('validate').promise().done(function() {
+            // If this validates, add 1 to counting array
+            if ($(this).closest('.form-row').hasClass('woocommerce-validated')) {
+              all_valid.push(1);
+            } else {
+              all_valid.push(0);
+            }
+          });
+        }
+      });
+
+    }).promise().done(function() {
+
+      // Spread all values in array and find if there are any 0s
+      if (Math.min(...all_valid) == 0) {
+        return false;
+      } else {
+
+        // If all fields validate
+        if (handler == 'new') {
+
+          // Add new guest to all dropdowns
+          ticket_selects.each(function() {
+            $(this).find('option[value="new"]').before('<option value="' + sanitized_name + '">' + full_name + '</option>');
+          }).promise().done(function() {
+            // Select new guest for this ticket
+            $('select.copy-data[id*="' + ticket + '"]').val(sanitized_name);
+            ticket_group.removeClass('visible');
+          });
+
+          // Add new guest data to DOM
+          var new_guest = $('<div data-ticket-name="' + sanitized_name + '"></div>');
+          for (field in all_fields) {
+            if (typeof all_fields[field] !== 'function') {
+              new_guest.attr('data-' + field, all_fields[field]);
+            }
+          }
+          $('#guest-data').append(new_guest);
+
+        } else {
+
+          // Update master instance of this guest's info
+          for (field in all_fields) {
+            if (typeof all_fields[field] !== 'function') {
+              handler.attr('data-' + field, all_fields[field]);
+            }
+          }
+
+          // Update all other instances of this guest's tickets
+          ticket_selects.each(function() {
+            if ($(this).not('[id*="' + ticket + '"]') && $(this).val() == sanitized_name) {
+              update_ticket_data(sanitized_name, $(this).closest('.ticket-details'));
+            }
+          });
+        }
+      }
+    });
+  }
+
+  // When the update button is clicked, either update guest data or
+  // add new guest as ticket option
+  $('.woocommerce-cart-form #ticket_update').on('click', function(e) {
+    e.preventDefault();
+
+    var ticket = $(this).data('ticket'),
+        first_name = $(this).siblings('[id*="first_name"]').find('input[type="text"]').val(),
+        last_name = $(this).siblings('[id*="last_name"]').find('input[type="text"]').val(),
+        full_name = first_name + ' ' + last_name,
+        sanitized_name = full_name.toLowerCase().replace(/[^a-z0-9 _-]/g, '').replace(/\s+/g, '-'),
+        find_guest = $('#guest-data').find('[data-ticket-name="' + sanitized_name + '"]');
+
+    // Check if this is existing guest
+    if (find_guest.length > 0) {
+      // Update guest info
+      setup_guest_data(find_guest, ticket, full_name, sanitized_name);
+    } else {
+      // We gotta set up a new guest
+      setup_guest_data('new', ticket, full_name, sanitized_name);
+    }
+  });
+
+  // Function that updates the ticket info with master data
+  function update_ticket_data(sanitized_name, ticket) {
+
+    ticket.find('.form-row:not(.control-copy)').each(function() {
+      // Get global name of field
+      var guest_data = $('#guest-data'),
+          field = $(this).attr('id').match(/ticket_\d+_(.*)_field/);
+
+      // Reset validation
+      $(this).removeClass('woocommerce-validated woocommerce-invalid woocommerce-invalid-required-field');
+
+      if (sanitized_name == 'new') {
+
+        // Reset fields to blank/unchecked
+        if ($(this).find('[name$=' + field[1] + ']').is(':checkbox')) {
+          $(this).find('[name$=' + field[1] + ']').prop('checked', false).trigger('change');
+        } else {
+          $(this).find('[name$=' + field[1] + ']').val('');
+        }
+
+      } else {
+
+        // Update fields with master guest info
+        var guest = guest_data.find('[data-ticket-name="' + sanitized_name + '"]');
+        console.info(field[1], guest.attr('data-' + field[1]));
+        if (typeof guest.attr('data-' + field[1]) !== "undefined") {
+          if ($(this).find('[name$=' + field[1] + ']').is(':checkbox')) {
+            $(this).find('[name$=' + field[1] + ']').prop('checked', guest.attr('data-' + field[1])).trigger('change');
           } else {
-            // Handle input and select fields
-            $(ticket).find('[name$=' + field + ']').val($('[class*=' + which + ']').find('[name$=' + field + ']').val());
+            $(this).find('[name$=' + field[1] + ']').val(guest.attr('data-' + field[1]));
           }
         }
 
-        if (ticket.find('select.state_select').length !== 0) {
-          ticket.find('select.state_select').trigger('change');
-        }
-      });
+      }
+
+      // Woo function (is this necessary?)
+      if (ticket.find('select.state_select').length !== 0) {
+        ticket.find('select.state_select').trigger('change');
+      }
+    });
+  }
+
+  // Set guest data on select
+  $('.woocommerce-cart-form .ticket-details').on('change', 'select.copy-data', function(e) {
+    var sanitized_name = $(this).val(),
+        ticket = $(this).closest('.ticket-details');
+
+    // Update fields to match selection
+    update_ticket_data(sanitized_name, ticket);
+
+    if (sanitized_name == 'new') {
+      // Show guest info fields
+      $(ticket).find('.ticket-group').addClass('visible');
+    } else {
+      // Hide guest info fields
+      $(ticket).find('.ticket-group').removeClass('visible');
     }
   });
 
@@ -255,14 +375,24 @@ jQuery(document).ready(function($) {
     }
   });
 
+  // Show/hide conditional fields
+  $('.validation-checkbox input[type="checkbox"]').on('change', function() {
+    if ($(this).is(':checked')) {
+      $(this).closest('.discount-validation').find('.hidden-fields').show();
+    } else {
+      $(this).closest('.discount-validation').find('.hidden-fields').hide();
+    }
+  });
+
+
   // Inline validation
   $('.woocommerce-cart-form').on( 'input validate change', '.input-text, select, input:checkbox', function( e ) {
 		var $this             = $( this ),
-			$parent           = $this.closest( '.form-row' ),
-			validated         = true,
-			validate_required = $parent.is( '.validate-required' ),
-			validate_email    = $parent.is( '.validate-email' ),
-			event_type        = e.type;
+  			$parent           = $this.closest( '.form-row' ),
+  			validated         = true,
+  			validate_required = $parent.is( '.validate-required' ),
+  			validate_email    = $parent.is( '.validate-email' ),
+  			event_type        = e.type;
 
 		if ( 'input' === event_type ) {
 			$parent.removeClass( 'woocommerce-invalid woocommerce-invalid-required-field woocommerce-invalid-email woocommerce-validated' );
@@ -362,8 +492,6 @@ jQuery(document).ready(function($) {
     };
 
     $.post(wc_cart_params.ajax_url, data, function (response) {
-      console.log(response);
-
       if (response.error) {
         // Display errors
         $('.woocommerce-NoticeGroup').html(response.messages);
@@ -384,58 +512,39 @@ jQuery(document).ready(function($) {
   * CHECKOUT PAGE
   *****************************************************************************/
 
-  // Apply discounts if teacher and GAA fields validate
-  $('.discount-validation').each(function() {
-    // Number of fields to validate
-    $(this).data('n', $(this).find('input, select').length);
-
-    // Set up data storage for tracking number of fields that validate
-    $(this).data('x', 0);
-
-    // Display teacher and GAA conditional fields
-    $(this).find('.validation-checkbox input[type="checkbox"]').on('change', function() {
-      if ($(this).is(':checked')) {
-        $(this).closest('.discount-validation').find('.hidden-fields').show();
-      } else {
-        $(this).closest('.discount-validation').find('.hidden-fields').hide();
-      }
-    });
-
-  });
-
-  var updateTimer,dirtyInput = false,xhr;
-
-  function update_order_review_table(billingstate,billingcountry) {
-    if ( xhr ) xhr.abort();
-
-    $( '#order_methods, #order_review' ).block({ message: null, overlayCSS: { background: '#fff url(' + wc_checkout_params.ajax_loader_url + ') no-repeat center', backgroundSize:'16px 16px', opacity: 0.6 } });
-
-    var data = {
-      action: 'woocommerce_update_order_review',
-      security: wc_checkout_params.update_order_review_nonce,
-      billing_state: billingstate,
-      billing_country : billingcountry,
-      post_data: $( 'form.checkout' ).serialize()
-    };
-
-    xhr = $.ajax({
-      type: 'POST',
-      url: wc_checkout_params.ajax_url,
-      data: data,
-      success: function( response ) {
-        var order_output = $(response);
-        $( '#order_review' ).html( response['fragments']['.woocommerce-checkout-review-order-table']+response['fragments']['.woocommerce-checkout-payment']);
-        $('body').trigger('update_checkout');
-      },
-      error: function(code){
-        console.log('ERROR');
-      }
-    });
-  }
-
-  jQuery('.state_select').change(function(e, params){
-    update_order_review_table(jQuery(this).val(),jQuery('#billing_country').val());
-  });
+  // var updateTimer,dirtyInput = false,xhr;
+  //
+  // function update_order_review_table(billingstate,billingcountry) {
+  //   if ( xhr ) xhr.abort();
+  //
+  //   $( '#order_methods, #order_review' ).block({ message: null, overlayCSS: { background: '#fff url(' + wc_checkout_params.ajax_loader_url + ') no-repeat center', backgroundSize:'16px 16px', opacity: 0.6 } });
+  //
+  //   var data = {
+  //     action: 'woocommerce_update_order_review',
+  //     security: wc_checkout_params.update_order_review_nonce,
+  //     billing_state: billingstate,
+  //     billing_country : billingcountry,
+  //     post_data: $( 'form.checkout' ).serialize()
+  //   };
+  //
+  //   xhr = $.ajax({
+  //     type: 'POST',
+  //     url: wc_checkout_params.ajax_url,
+  //     data: data,
+  //     success: function( response ) {
+  //       var order_output = $(response);
+  //       $( '#order_review' ).html( response['fragments']['.woocommerce-checkout-review-order-table']+response['fragments']['.woocommerce-checkout-payment']);
+  //       $('body').trigger('update_checkout');
+  //     },
+  //     error: function(code){
+  //       console.log('ERROR');
+  //     }
+  //   });
+  // }
+  //
+  // jQuery('.state_select').change(function(e, params){
+  //   update_order_review_table(jQuery(this).val(),jQuery('#billing_country').val());
+  // });
 
   /*****************************************************************************
   * ERROR PAGE
@@ -443,7 +552,6 @@ jQuery(document).ready(function($) {
 
   // Replace [EXT_TRANS_ID] with the ID from URL param
   var EXT_TRANS_ID = getUrlParameter('EXT_TRANS_ID');
-  console.info('id', EXT_TRANS_ID);
   if (EXT_TRANS_ID.length > 0) {
     $('.entry-content p').each(function() {
       $(this).html(function(index, text) {

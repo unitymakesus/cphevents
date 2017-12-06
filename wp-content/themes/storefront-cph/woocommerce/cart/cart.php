@@ -49,7 +49,8 @@ do_action( 'woocommerce_before_cart' ); ?>
 		  $customer = WC()->session->get('customer');
 		  if (!empty($customer['address_1'])) {
 		    ?>
-		      <div id="account-data" style="display: none;"
+		      <div id="guest-data" style="display: none;">
+						<div data-ticket-name="<?php echo sanitize_title_with_dashes($customer['first_name'] . ' ' . $customer['last_name']); ?>"
 		           data-first_name="<?php echo $customer['first_name']; ?>"
 		           data-last_name="<?php echo $customer['last_name']; ?>"
 		           data-address_1="<?php echo $customer['address_1']; ?>"
@@ -58,8 +59,8 @@ do_action( 'woocommerce_before_cart' ); ?>
 		           data-state="<?php echo $customer['state']; ?>"
 		           data-postcode="<?php echo $customer['postcode']; ?>"
 		           data-phone="<?php echo $customer['phone']; ?>"
-		           data-email="<?php echo $customer['email']; ?>"
-		      ></div>
+		           data-email="<?php echo $customer['email']; ?>"></div>
+		      </div>
 		    <?php
 		  }
 
