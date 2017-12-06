@@ -166,7 +166,7 @@ if ( storefront_is_woocommerce_activated() ) {
     	<ol class="checkout-progress" tabindex="0" role="progressbar"
     			aria-valuemin="1" aria-valuemax="4"
     			aria-valuenow="2" aria-valuetext="Step 2 of 4: Review Order">
-    		<li aria-hidden="true" data-step-complete><a href="<?php echo get_permalink(get_page_by_path('/checkout/step-1')); ?>">Attendee Information</a></li>
+    		<li aria-hidden="true" data-step-complete><a href="<?php echo get_permalink(get_page_by_path('/checkout/step-1')); ?>">Ticket Info</a></li>
     		<li aria-hidden="true" data-step-current>Review Order</li>
     		<li aria-hidden="true" data-step-incomplete>Payment</li>
     		<li aria-hidden="true" data-step-incomplete>Complete</li>
