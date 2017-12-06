@@ -73,49 +73,46 @@ function cph_calculate_fees( $checkout ) {
     $teacher_total = array_sum($teacher_tickets);
     $teacher_discount = -($teacher_total / 2);
 
-    WC()->cart->add_fee('Teacher Discount (50% off Adventures in Ideas Seminars)', $teacher_discount);
+    WC()->cart->add_fee('Teacher Discount (50% off Adventures in Ideas Seminars) x ' . $teacher_count , $teacher_discount);
   }
 
   // Apply GAA Seminar discounts to cart
   if ($gaa_seminar_count > 0) {
     $gaa_seminar_discount = -($gaa_seminar_count * 15);
 
-    WC()->cart->add_fee('GAA Discount ($15 off Adventures in Ideas or Dialogue Seminars)', $gaa_seminar_discount);
+    WC()->cart->add_fee('GAA Discount ($15 off Adventures in Ideas or Dialogue Seminars) x ' . $gaa_seminar_count, $gaa_seminar_discount);
   }
 
   // Apply GAA Humanities in Action discounts to cart
   if ($gaa_flyleaf_count > 0) {
     $gaa_flyleaf_discount = -($gaa_flyleaf_count * 5);
 
-    WC()->cart->add_fee('GAA Discount ($5 off Humanities in Action series events)', $gaa_flyleaf_discount);
+    WC()->cart->add_fee('GAA Discount ($5 off Humanities in Action series events) x ' . $gaa_flyleaf_count, $gaa_flyleaf_discount);
   }
 
   // Apply GAA Humanities in Action season pass discounts to cart
   if ($gaa_flyleaf_bulk > 0) {
     $gaa_flyleaf_bulk_discount = -($gaa_flyleaf_bulk * 35);
 
-    WC()->cart->add_fee('GAA Discount ($35 off Flyleaf Season Pass)', $gaa_flyleaf_bulk_discount);
+    WC()->cart->add_fee('GAA Discount ($35 off Flyleaf Season Pass) x ' . $gaa_flyleaf_bulk, $gaa_flyleaf_bulk_discount);
   }
 
   // Teacher discount overrides the 3 or more.
-  // So only apply the 3 or more coupon if there are
+  // So only apply the 3 or more discount if there are
   // 3 or more AiI seminars BEYOND those registered by teachers
-  if ($teacher_count +3 > $aiiseminar_count) {
-    WC()->cart->remove_coupon('3ormore-spring18');
-  } elseif ($aiiseminar_count > 2) {
-    if (!in_array('3ormore-spring18', WC()->cart->get_applied_coupons())) {
-      WC()->cart->apply_coupon('3ormore-spring18');
-    }
+  $aiitotal = $aiiseminar_count - $teacher_count;
+  if ($aiitotal > 2) {
+    $aiiseminar_discount = -($aiitotal * 20);
+    WC()->cart->add_fee('Bulk Discount ($20 off Adventure in Ideas seminars) x ' . $aiitotal, $aiiseminar_discount);
   }
 
   // Discount for all 4 dialogues
   if (count($dialogues) > 3) {
     // If there are tickets for all events in cart, apply this discount for the
     // number of sets that exist in the cart.
-    error_log(print_r($dialogues, true));
     $dialogue_sets = min($dialogues);
     $dialogues_discount = -($dialogue_sets * 60);
-    WC()->cart->add_fee('Bulk Discount (All 4 Dialogues for $200)', $dialogues_discount);
+    WC()->cart->add_fee('Bulk Discount (All 4 Dialogues for $200) x ' . $dialogue_sets, $dialogues_discount);
   }
 
   // Discount for 2 Thursdays at the Friday Center
@@ -124,7 +121,7 @@ function cph_calculate_fees( $checkout ) {
     // number of pairs that exist in the cart.
     $thursday_pairs = min($thursday_friday);
     $thursday_discount = -($thursday_pairs * 10);
-    WC()->cart->add_fee('Bulk Discount (Both Thursdays at the Friday Center for $100)', $thursday_discount);
+    WC()->cart->add_fee('Bulk Discount (Both Thursdays at the Friday Center for $100) x ' . $thursday_pairs, $thursday_discount);
   }
 }
 

@@ -202,14 +202,32 @@ jQuery(document).ready(function($) {
   * CART PAGE
   *****************************************************************************/
 
+  // On page load, make sure all guest data is available
+  if ($('body').hasClass('woocommerce-cart')) {
+    $('.woocommerce-cart-form select.copy-data').each(function() {
+      $(this).children('option[value]').not('[value=new]').each(function() {
+        var ticket = $(this).closest('.ticket-details').data('ticket-key'),
+            full_name = $(this).text(),
+            sanitized_name = $(this).attr('value'),
+            guest_data = $('#guest-data');
+
+        // Add new guest data to DOM
+        var guest = guest_data.find('[data-ticket-name="' + sanitized_name + '"]');
+        if (guest.length == 0) {
+          setup_guest_data('new', ticket, full_name, sanitized_name, true);
+        }
+      });
+    });
+  }
+
   // Function that adds new guest to the ticket options
-  function setup_guest_data(handler, ticket, full_name, sanitized_name) {
+  function setup_guest_data(handler, ticket, full_name, sanitized_name, init=false, hidden_set=false) {
     var all_fields = [],
         all_valid = [],
-        ticket_group = $('[id=' + ticket + '_ticket_group]'),
+        ticket_details = $('.ticket-details[data-ticket-key=' + ticket + ']'),
         ticket_selects = $('.woocommerce-cart-form select.copy-data');
 
-    ticket_group.find('.form-row').each(function() {
+    ticket_details.find('.form-row').not('.control-copy').each(function() {
 
       var row = $(this),
           field = row.attr('id').match(/ticket_\d+_(.*)_field/);
@@ -220,14 +238,16 @@ jQuery(document).ready(function($) {
         if ($(this).is('input:checkbox')) {
           // Handle check boxes
           if ($(this).is(':checked')) {
-            all_fields[field[1]] = 1;
+            all_fields[field[1]] = true;
+          } else {
+            all_fields[field[1]] = false;
           }
         } else {
           all_fields[field[1]] = $(this).val();
         }
 
         // Validate required fields
-        if (row.hasClass('validate-required')) {
+        if (row.hasClass('validate-required') && init==false) {
           $(this).trigger('validate').promise().done(function() {
             // If this validates, add 1 to counting array
             if ($(this).closest('.form-row').hasClass('woocommerce-validated')) {
@@ -236,6 +256,8 @@ jQuery(document).ready(function($) {
               all_valid.push(0);
             }
           });
+        } else {
+          all_valid.push(1);
         }
       });
 
@@ -245,17 +267,24 @@ jQuery(document).ready(function($) {
       if (Math.min(...all_valid) == 0) {
         return false;
       } else {
-
         // If all fields validate
+
+        // Handle new guest
         if (handler == 'new') {
 
           // Add new guest to all dropdowns
           ticket_selects.each(function() {
-            $(this).find('option[value="new"]').before('<option value="' + sanitized_name + '">' + full_name + '</option>');
+            var match = $(this).find('option[value="' + sanitized_name + '"]');
+            if (match.length == 0) {
+              $(this).find('option[value="new"]').before('<option value="' + sanitized_name + '">' + full_name + '</option>');
+            }
           }).promise().done(function() {
             // Select new guest for this ticket
-            $('select.copy-data[id*="' + ticket + '"]').val(sanitized_name);
-            ticket_group.removeClass('visible');
+            if (init==false) {
+              $('select.copy-data[id*="' + ticket + '"]').val(sanitized_name);
+              ticket_details.find('.hidden-fields').removeClass('visible');
+              $('.ticket-details[data-ticket-key=' + ticket + '] .edit-guest').removeClass('hide');
+            }
           });
 
           // Add new guest data to DOM
@@ -269,6 +298,20 @@ jQuery(document).ready(function($) {
 
         } else {
 
+          // Clean up teacher and GAA fields
+          if (all_fields['teacher'] == false) {
+            all_fields['teacher_type'] = '';
+            all_fields['teacher_school'] = '';
+            all_fields['teacher_county'] = '';
+          }
+
+          if (all_fields['gaa'] == false) {
+            all_fields['gaa_discount_bulk_flyleaf'] = '';
+            all_fields['gaa_discount_flyleaf'] = '';
+            all_fields['gaa_discount_seminar'] = '';
+            all_fields['gaa_type'] = '';
+          }
+
           // Update master instance of this guest's info
           for (field in all_fields) {
             if (typeof all_fields[field] !== 'function') {
@@ -276,38 +319,24 @@ jQuery(document).ready(function($) {
             }
           }
 
-          // Update all other instances of this guest's tickets
+          // Update all instances of this guest's tickets
           ticket_selects.each(function() {
-            if ($(this).not('[id*="' + ticket + '"]') && $(this).val() == sanitized_name) {
+            if ($(this).val() == sanitized_name) {
               update_ticket_data(sanitized_name, $(this).closest('.ticket-details'));
             }
           });
         }
+
+        // Hide guest info fields
+        if (hidden_set.length) {
+          console.log(hidden_set);
+          hidden_set.removeClass('visible');
+          hidden_set.prev('.form-row').find('.edit-discount, .edit-guest').removeClass('hide');
+        }
+
       }
     });
   }
-
-  // When the update button is clicked, either update guest data or
-  // add new guest as ticket option
-  $('.woocommerce-cart-form #ticket_update').on('click', function(e) {
-    e.preventDefault();
-
-    var ticket = $(this).data('ticket'),
-        first_name = $(this).siblings('[id*="first_name"]').find('input[type="text"]').val(),
-        last_name = $(this).siblings('[id*="last_name"]').find('input[type="text"]').val(),
-        full_name = first_name + ' ' + last_name,
-        sanitized_name = full_name.toLowerCase().replace(/[^a-z0-9 _-]/g, '').replace(/\s+/g, '-'),
-        find_guest = $('#guest-data').find('[data-ticket-name="' + sanitized_name + '"]');
-
-    // Check if this is existing guest
-    if (find_guest.length > 0) {
-      // Update guest info
-      setup_guest_data(find_guest, ticket, full_name, sanitized_name);
-    } else {
-      // We gotta set up a new guest
-      setup_guest_data('new', ticket, full_name, sanitized_name);
-    }
-  });
 
   // Function that updates the ticket info with master data
   function update_ticket_data(sanitized_name, ticket) {
@@ -324,7 +353,7 @@ jQuery(document).ready(function($) {
 
         // Reset fields to blank/unchecked
         if ($(this).find('[name$=' + field[1] + ']').is(':checkbox')) {
-          $(this).find('[name$=' + field[1] + ']').prop('checked', false).trigger('change');
+          $(this).find('[name$=' + field[1] + ']').prop('checked', false);
         } else {
           $(this).find('[name$=' + field[1] + ']').val('');
         }
@@ -333,13 +362,14 @@ jQuery(document).ready(function($) {
 
         // Update fields with master guest info
         var guest = guest_data.find('[data-ticket-name="' + sanitized_name + '"]');
-        console.info(field[1], guest.attr('data-' + field[1]));
-        if (typeof guest.attr('data-' + field[1]) !== "undefined") {
-          if ($(this).find('[name$=' + field[1] + ']').is(':checkbox')) {
-            $(this).find('[name$=' + field[1] + ']').prop('checked', guest.attr('data-' + field[1])).trigger('change');
-          } else {
-            $(this).find('[name$=' + field[1] + ']').val(guest.attr('data-' + field[1]));
+        if ($(this).find('[name$=' + field[1] + ']').is(':checkbox')) {
+          var check = (guest.attr('data-' + field[1]) === "true");
+          $(this).find('[name$=' + field[1] + ']').prop('checked', check);
+          if (check == true) {
+            $(this).find('[name$=' + field[1] + ']').siblings('.edit-discount').removeClass('hide');
           }
+        } else {
+          $(this).find('[name$=' + field[1] + ']').val(guest.attr('data-' + field[1]));
         }
 
       }
@@ -351,6 +381,31 @@ jQuery(document).ready(function($) {
     });
   }
 
+  // When the update button is clicked, either update guest data or
+  // add new guest as ticket option
+  $('.woocommerce-cart-form .ticket-update').on('click', function(e) {
+    e.preventDefault();
+
+    var ticket = $(this).data('ticket'),
+        ticket_details = $('.ticket-details[data-ticket-key=' + ticket + ']'),
+        first_name = ticket_details.find('[id*="first_name"]').find('input[type="text"]').val(),
+        last_name = ticket_details.find('[id*="last_name"]').find('input[type="text"]').val(),
+        full_name = first_name + ' ' + last_name,
+        sanitized_name = full_name.toLowerCase().replace(/[^a-z0-9 _-]/g, '').replace(/\s+/g, '-'),
+        find_guest = $('#guest-data').find('[data-ticket-name="' + sanitized_name + '"]'),
+        hidden_set = $(this).closest('.hidden-fields');
+
+    // Check if this is existing guest
+    if (find_guest.length > 0) {
+      // Update guest info
+      setup_guest_data(find_guest, ticket, full_name, sanitized_name, false, hidden_set);
+    } else {
+      // We gotta set up a new guest
+      setup_guest_data('new', ticket, full_name, sanitized_name);
+    }
+
+  });
+
   // Set guest data on select
   $('.woocommerce-cart-form .ticket-details').on('change', 'select.copy-data', function(e) {
     var sanitized_name = $(this).val(),
@@ -361,29 +416,65 @@ jQuery(document).ready(function($) {
 
     if (sanitized_name == 'new') {
       // Show guest info fields
-      $(ticket).find('.ticket-group').addClass('visible');
+      $(ticket).find('.hidden-fields').addClass('visible');
+      $(ticket).find('.edit-guest').addClass('hide');
     } else {
       // Hide guest info fields
-      $(ticket).find('.ticket-group').removeClass('visible');
+      $(ticket).find('.hidden-fields').removeClass('visible');
+      $(ticket).find('.edit-guest').removeClass('hide');
     }
   });
+
+  // Show guest info on edit link click
+  $('.woocommerce-cart-form .ticket-details a.edit-guest').on('click', function(e) {
+    e.preventDefault();
+
+    $(this).closest('.ticket-details').find('.hidden-fields.contact-info').addClass('visible');
+    $(this).addClass('hide');
+  });
+
+  // Hide guest info on cancel button click
+  $('.woocommerce-cart-form .ticket-details button.cancel').on('click', function(e) {
+    e.preventDefault();
+
+    var ticket = $(this).closest('.ticket-details'),
+        discount_val = $(this).closest('.discount-validation');
+
+    if (discount_val.length) {
+      discount_val.find('input[type="checkbox"]').prop('checked', false);
+    }
+
+    $(this).closest('.hidden-fields').removeClass('visible');
+    $(ticket).find('.edit-guest').removeClass('hide');
+  });
+
 
   // Set conditional fields to display if checked on init
   $('.validation-checkbox input[type="checkbox"]').each(function() {
     if ($(this).is(':checked')) {
-      $(this).closest('.discount-validation').find('.hidden-fields').show();
+      $(this).siblings('.edit-discount').removeClass('hide');
     }
   });
 
   // Show/hide conditional fields
   $('.validation-checkbox input[type="checkbox"]').on('change', function() {
+    var hidden_fields = $(this).closest('.discount-validation').children('.hidden-fields');
+
     if ($(this).is(':checked')) {
-      $(this).closest('.discount-validation').find('.hidden-fields').show();
+      hidden_fields.addClass('visible');
+      hidden_fields.children('.form-row').addClass('validate-required');
     } else {
-      $(this).closest('.discount-validation').find('.hidden-fields').hide();
+      hidden_fields.removeClass('visible');
+      hidden_fields.children('.form-row').removeClass('validate-required');
     }
   });
 
+  $('.woocommerce-cart-form .discount-validation').on('click', 'a.edit-discount', function(e) {
+    e.preventDefault();
+
+    $(this).closest('.discount-validation').children('.hidden-fields').addClass('visible');
+    $(this).addClass('hide');
+  });
 
   // Inline validation
   $('.woocommerce-cart-form').on( 'input validate change', '.input-text, select, input:checkbox', function( e ) {

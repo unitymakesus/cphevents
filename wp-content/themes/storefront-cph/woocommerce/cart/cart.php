@@ -44,12 +44,12 @@ do_action( 'woocommerce_before_cart' ); ?>
 	<div class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">
 		<?php do_action( 'woocommerce_before_cart_contents' ); ?>
 
-			<?php
-			// Get customer details to show in hidden div for jQuery copy ticket info
-		  $customer = WC()->session->get('customer');
-		  if (!empty($customer['address_1'])) {
-		    ?>
-		      <div id="guest-data" style="display: none;">
+			<div id="guest-data" style="display: none;">
+				<?php
+				// Get customer details to show in hidden div for jQuery copy ticket info
+			  $customer = WC()->session->get('customer');
+			  if (!empty($customer['address_1'])) {
+			    ?>
 						<div data-ticket-name="<?php echo sanitize_title_with_dashes($customer['first_name'] . ' ' . $customer['last_name']); ?>"
 		           data-first_name="<?php echo $customer['first_name']; ?>"
 		           data-last_name="<?php echo $customer['last_name']; ?>"
@@ -60,10 +60,12 @@ do_action( 'woocommerce_before_cart' ); ?>
 		           data-postcode="<?php echo $customer['postcode']; ?>"
 		           data-phone="<?php echo $customer['phone']; ?>"
 		           data-email="<?php echo $customer['email']; ?>"></div>
-		      </div>
-		    <?php
-		  }
+		    	<?php
+				}
+				?>
+			</div>
 
+			<?php
 			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 				$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );

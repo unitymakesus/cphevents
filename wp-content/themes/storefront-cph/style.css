@@ -375,16 +375,14 @@ ol.checkout-progress li:first-child::after {
   font-weight: bold;
 }
 
-.ticket-details .ticket-group {
-  background: #E1E1E1;
-}
-
-.ticket-details .ticket-group.visible {
-  background: #ffffff;
-}
-
-.discount-validation .hidden-fields {
+.ticket-details .hidden-fields {
   display: none;
+  margin-bottom: 1em;
+}
+
+.ticket-details .hidden-fields.visible {
+  display: block;
+  border: none;
 }
 
 .discount-validation .hidden-fields p.info {
@@ -438,6 +436,23 @@ ol.checkout-progress li:first-child::after {
   border-color: #43454b transparent transparent transparent;
 }
 
+.control-copy .edit-guest {
+  display: block;
+}
+
+.control-copy .edit-guest.hide,
+.discount-validation .edit-discount.hide {
+  display: none;
+}
+
 #payment .wc_payment_methods {
   display: none !important;
+}
+
+button.secondary {
+  background: #767676;
+}
+
+button.secondary:hover, button.secondary:focus, button.secondary:active {
+  background: #434343;
 }
