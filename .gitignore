@@ -6,7 +6,7 @@
 *.swp
 Thumbs.db
 
-adminer.php
+#adminer.php
 searchreplacedb2.php
 rrrreplace/*
 

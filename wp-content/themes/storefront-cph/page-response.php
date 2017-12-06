@@ -8,8 +8,13 @@
 
 // Set up order object
 // $order = new WC_Order($_POST['EXT_TRANS_ID']);
-add_option( 'touchnet_post', serialize($_POST) );
-add_option( 'touchnet_get', serialize($_GET) );
+if (!empty($_POST)) {
+	add_option( 'touchnet_post', serialize($_POST) );
+}
+
+if (!empty($_GET)) {
+	add_option( 'touchnet_get', serialize($_GET) );
+}
 
 // Handle order status
 // if ($_POST['pmt_status'] == 'success') {
