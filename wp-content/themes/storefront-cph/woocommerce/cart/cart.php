@@ -24,8 +24,8 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 <ol class="checkout-progress" tabindex="0" role="progressbar"
 		aria-valuemin="1" aria-valuemax="4"
-		aria-valuenow="1" aria-valuetext="Step 1 of 4: Attendee Information">
-	<li aria-hidden="true" data-step-current>Attendee Info</li>
+		aria-valuenow="1" aria-valuetext="Step 1 of 4: Ticket Info">
+	<li aria-hidden="true" data-step-current>Ticket Info</li>
 	<li aria-hidden="true" data-step-incomplete>Review Order</li>
 	<li aria-hidden="true" data-step-incomplete>Payment</li>
 	<li aria-hidden="true" data-step-incomplete>Complete</li>

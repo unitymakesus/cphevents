@@ -7,13 +7,16 @@
 function cph_calculate_fees( $checkout ) {
 
   $teacher_tickets = array();
+  $thursday_friday = array();
+  $dialogues = array();
+  $flyleaf = array();
+
   $teacher_count = 0;
   $teacher_discount = 0;
   $gaa_seminar_count = 0;
   $gaa_flyleaf_count = 0;
   $gaa_flyleaf_bulk = 0;
   $aiiseminar_count = 0;
-  $dseminar_count = 0;
 
   // Loop through each event in cart and get saved ticket data
   foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
@@ -54,7 +57,11 @@ function cph_calculate_fees( $checkout ) {
           }
 
           if ($terms[0]->slug == 'dialogues-seminar') {
-            $dseminar_count ++;
+            $dialogues[$cart_item_key] ++;
+          }
+
+          if ($terms[0]->slug == 'thursdays-at-friday-center') {
+            $thursday_friday[$cart_item_key] ++;
           }
         }
       }
@@ -102,6 +109,23 @@ function cph_calculate_fees( $checkout ) {
   }
 
   // Discount for all 4 dialogues
+  if (count($dialogues) > 3) {
+    // If there are tickets for all events in cart, apply this discount for the
+    // number of sets that exist in the cart.
+    error_log(print_r($dialogues, true));
+    $dialogue_sets = min($dialogues);
+    $dialogues_discount = -($dialogue_sets * 60);
+    WC()->cart->add_fee('Bulk Discount (All 4 Dialogues for $200)', $dialogues_discount);
+  }
+
+  // Discount for 2 Thursdays at the Friday Center
+  if (count($thursday_friday) > 1) {
+    // If there are tickets for both events in cart, apply this discount for the
+    // number of pairs that exist in the cart.
+    $thursday_pairs = min($thursday_friday);
+    $thursday_discount = -($thursday_pairs * 10);
+    WC()->cart->add_fee('Bulk Discount (Both Thursdays at the Friday Center for $100)', $thursday_discount);
+  }
 }
 
 
@@ -183,6 +207,24 @@ function cph_custom_checkout_field_update_order_meta( $order_id ) {
           update_post_meta( $order_id, $field_prefix . '_phone', $field_data['phone'] );
         if ( ! empty( $field_data['email'] ) )
           update_post_meta( $order_id, $field_prefix . '_email', $field_data['email'] );
+        if ( ! empty( $field_data['teacher'] ) )
+          update_post_meta( $order_id, $field_prefix . '_teacher', $field_data['teacher'] );
+        if ( ! empty( $field_data['teacher_type'] ) )
+          update_post_meta( $order_id, $field_prefix . '_teacher_type', $field_data['teacher_type'] );
+        if ( ! empty( $field_data['teacher_school'] ) )
+          update_post_meta( $order_id, $field_prefix . '_teacher_school', $field_data['teacher_school'] );
+        if ( ! empty( $field_data['teacher_county'] ) )
+          update_post_meta( $order_id, $field_prefix . '_teacher_county', $field_data['teacher_county'] );
+        if ( ! empty( $field_data['gaa'] ) )
+          update_post_meta( $order_id, $field_prefix . '_gaa', $field_data['gaa'] );
+        if ( ! empty( $field_data['gaa_discount_flyleaf'] ) )
+          update_post_meta( $order_id, $field_prefix . '_gaa_discount_flyleaf', $field_data['gaa_discount_flyleaf'] );
+        if ( ! empty( $field_data['gaa_discount_bulk_flyleaf'] ) )
+          update_post_meta( $order_id, $field_prefix . '_gaa_discount_bulk_flyleaf', $field_data['gaa_discount_bulk_flyleaf'] );
+        if ( ! empty( $field_data['gaa_discount_seminar'] ) )
+          update_post_meta( $order_id, $field_prefix . '_gaa_discount_seminar', $field_data['gaa_discount_seminar'] );
+        if ( ! empty( $field_data['gaa_type'] ) )
+          update_post_meta( $order_id, $field_prefix . '_gaa_type', $field_data['gaa_type'] );
         if ( ! empty( $field_data['special_needs'] ) )
           update_post_meta( $order_id, $field_prefix . '_special_needs', $field_data['special_needs'] );
       }

@@ -26,6 +26,31 @@ function cph_order_details_tickets( $item_id, $item, $order ) {
         </p>
         <p><strong>Phone:</strong><br /><?php echo $post_meta[$field_prefix . '_phone'][0]; ?></p>
         <p><strong>Email address:</strong><br /><a href="mailto:<?php echo $post_meta[$field_prefix . '_email'][0]; ?>"><?php echo $post_meta[$field_prefix . '_email'][0]; ?></a></p>
+
+        <?php if ($teacher = $post_meta[$field_prefix . '_teacher'][0]) { ?>
+          <p><strong>Teacher:</strong><br /><?php echo $post_meta[$field_prefix . '_teacher_type'][0]; ?></p>
+          <p><strong>School:</strong><br /><?php echo $post_meta[$field_prefix . '_teacher_school'][0]; ?></p>
+          <p><strong>County:</strong><br /><?php echo $post_meta[$field_prefix . '_teacher_county'][0]; ?></p>
+          <p><strong>Discount:</strong><br /><?php echo '50% off Adventures in Ideas Seminars'; ?></p>
+        <?php } ?>
+
+        <?php if ($gaa = $post_meta[$field_prefix . '_gaa'][0]) { ?>
+          <p><strong>GAA Member:</strong><br /><?php echo $post_meta[$field_prefix . '_gaa_type'][0]; ?></p>
+          <p><strong>Discount:</strong><br />
+            <?php
+            if ($gaa_discount_flyleaf = $post_meta[$field_prefix . '_gaa_discount_flyleaf'][0]) {
+              echo '$5 off Humanities in Action series events';
+            }
+            if ($gaa_discount_bulk_flyleaf = $post_meta[$field_prefix . '_gaa_discount_bulk_flyleaf'][0]) {
+              echo '$35 off Flyleaf Season Pass';
+            }
+            if ($gaa_discount_seminar = $post_meta[$field_prefix . '_gaa_discount_seminar'][0]) {
+              echo '$15 off Adventures in Ideas or Dialogue Seminars';
+            }
+            ?>
+          </p>
+        <?php } ?>
+
         <?php if ($special_needs = $post_meta[$field_prefix . '_special_needs'][0]) { ?>
           <p><strong>Special needs:</strong><br /><?php echo $special_needs; ?></p>
         <?php } ?>
