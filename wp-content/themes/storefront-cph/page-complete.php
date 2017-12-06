@@ -26,8 +26,8 @@ get_header(); ?>
 
             <ol class="checkout-progress" tabindex="0" role="progressbar"
             		aria-valuemin="1" aria-valuemax="4"
-            		aria-valuenow="1" aria-valuetext="Step 1 of 4: Attendee Information">
-            	<li aria-hidden="true" data-step-complete>Attendee Info</li>
+            		aria-valuenow="1" aria-valuetext="Step 4 of 4: Complete">
+            	<li aria-hidden="true" data-step-complete>Ticket Info</li>
             	<li aria-hidden="true" data-step-complete>Review Order</li>
             	<li aria-hidden="true" data-step-complete>Payment</li>
             	<li aria-hidden="true" data-step-current>Complete</li>
