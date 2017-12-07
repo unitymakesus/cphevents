@@ -43,7 +43,19 @@ class WC_Gateway_Touchnet extends WC_Payment_Gateway {
   			'type' => 'checkbox',
   			'label' => 'Enable UNC TouchNet',
   			'default' => 'yes'
-  		)
+  		),
+      'touchnet_url' => array(
+        'title' => 'TouchNet URL',
+        'type' => 'text'
+  		),
+      'site_id' => array(
+        'title' => 'uPay Site ID',
+        'type' => 'text'
+  		),
+      'posting_key' => array(
+        'title' => 'uPay Posting Key',
+        'type' => 'text'
+      )
   	);
   }
 
@@ -56,14 +68,14 @@ class WC_Gateway_Touchnet extends WC_Payment_Gateway {
     $order = new WC_Order($order_id);
 
     // Encode validation key
-    $upay_posting_key = 'DF)948ai';
+    $upay_posting_key = $this->settings['posting_key'];
     $trans_id = str_replace( "#", "", $order->get_order_number() );
     $amount = $order->get_total();
     $validation_key = base64_encode(md5($upay_posting_key . $trans_id . $amount, TRUE));
 
     // Build payload
     $payload = array(
-      'UPAY_SITE_ID' => 317,
+      'UPAY_SITE_ID' => $this->settings['site_id'],
       'BILL_EMAIL_ADDRESS' => $order->get_billing_email(),
       'BILL_NAME' => $order->get_billing_first_name() . ' ' . $order->get_billing_last_name(),
       'BILL_STREET1' => $order->get_billing_address_1(),
@@ -75,8 +87,8 @@ class WC_Gateway_Touchnet extends WC_Payment_Gateway {
       'AMT' => $amount,
       'EXT_TRANS_ID' => $trans_id,
       'VALIDATION_KEY' => $validation_key,
-      'SUCCESS_LINK' => get_home_url() . '/my-account/view-order/' . $trans_id,
-      'SUCCESS_LINK_TEXT' => 'Thank you for your order. Click here to view order summary.',
+      // 'SUCCESS_LINK' => get_home_url() . '/my-account/view-order/' . $trans_id,
+      // 'SUCCESS_LINK_TEXT' => 'Thank you for your order. Click here to view order summary.',
       // 'ERROR_LINK' => [LINK TO ERROR PAGE TO GO BACK TO CART],
       // 'ERROR_LINK_TEXT' => 'There was an error. You may return to your cart.',
       // 'CANCEL_LINK' => [LINK TO GO BACK TO CART],
@@ -88,9 +100,6 @@ class WC_Gateway_Touchnet extends WC_Payment_Gateway {
 
     // Mark as pending
     $order->update_status('processing', 'Awaiting payment through TouchNet.');
-
-    // Reduce stock levels
-    $order->reduce_order_stock();
 
     // Remove cart
     WC()->cart->empty_cart();

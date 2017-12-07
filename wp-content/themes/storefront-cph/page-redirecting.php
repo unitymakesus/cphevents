@@ -18,6 +18,10 @@ $BILL_COUNTRY = $_GET['BILL_COUNTRY'];
 $AMT = $_GET['AMT'];
 $EXT_TRANS_ID = $_GET['EXT_TRANS_ID'];
 $VALIDATION_KEY = $_GET['VALIDATION_KEY'];
+
+$touchnet = new WC_Gateway_Touchnet();
+$touchnet_url = $touchnet->settings['touchnet_url'];
+
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
   <head>
@@ -78,14 +82,14 @@ $VALIDATION_KEY = $_GET['VALIDATION_KEY'];
 
     <script type="text/javascript">
     window.onload = function(){
-      document.forms['redirect'].submit();
+      // document.forms['redirect'].submit();
     }
     </script>
   </head>
 
   <body <?php body_class(); ?>>
 
-    <form id="redirect" method="post" action="https://secure.touchnet.com:8443/C21551test_upay/web/index.jsp" name="patron_form">
+    <form id="redirect" method="post" action="<?php echo $touchnet_url; ?>" name="touchnet_form">
       <input value="<?php echo $UPAY_SITE_ID; ?>" name="UPAY_SITE_ID" type="hidden"></input>
       <input value="<?php echo $BILL_EMAIL_ADDRESS; ?>" name="BILL_EMAIL_ADDRESS" type="hidden"></input>
       <input value="<?php echo $BILL_NAME; ?>" name="BILL_NAME" type="hidden"></input>
