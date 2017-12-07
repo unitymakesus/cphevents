@@ -8,12 +8,11 @@
 
 // Set up order object
 // $order = new WC_Order($_POST['EXT_TRANS_ID']);
-if (!empty($_POST)) {
-	add_option( 'touchnet_post', serialize($_POST) );
-}
 
-if (!empty($_GET)) {
-	add_option( 'touchnet_get', serialize($_GET) );
+error_log(print_r($_REQUEST, true));
+
+if (!empty($_REQUEST)) {
+	add_option( 'touchnet_post_' . current_time(mysql), serialize($_REQUEST) );
 }
 
 // Handle order status
