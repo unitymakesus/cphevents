@@ -82,7 +82,7 @@ $touchnet_url = $touchnet->settings['touchnet_url'];
 
     <script type="text/javascript">
     window.onload = function(){
-      // document.forms['redirect'].submit();
+      document.forms['redirect'].submit();
     }
     </script>
   </head>
