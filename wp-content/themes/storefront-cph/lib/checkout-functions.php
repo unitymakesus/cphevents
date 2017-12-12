@@ -33,8 +33,6 @@ function cph_calculate_fees( $checkout ) {
         $terms = wp_get_post_terms($_product->get_ID(), 'product_cat');
       }
 
-      error_log(print_r($tickets, true));
-
       // Loop through each ticket and check for teachers and GAA members, increase count if found
       if (!empty($tickets)) {
         foreach ($tickets as $ticket) {
