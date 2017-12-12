@@ -10,6 +10,7 @@ function cph_calculate_fees( $checkout ) {
   $thursday_friday = array();
   $dialogues = array();
   $flyleaf = array();
+  $names = array();
 
   $teacher_count = 0;
   $teacher_discount = 0;
@@ -31,6 +32,8 @@ function cph_calculate_fees( $checkout ) {
       } else {
         $terms = wp_get_post_terms($_product->get_ID(), 'product_cat');
       }
+
+      error_log(print_r($tickets, true));
 
       // Loop through each ticket and check for teachers and GAA members, increase count if found
       if (!empty($tickets)) {
@@ -63,6 +66,11 @@ function cph_calculate_fees( $checkout ) {
           if ($terms[0]->slug == 'thursdays-at-friday-center') {
             $thursday_friday[$cart_item_key] ++;
           }
+
+          // Tally total number of unique names
+          if (!empty($ticket['first_name']) && !empty($ticket['last_name'])) {
+            $names[$ticket['first_name'] . '-' . $ticket['last_name']] ++;
+          }
         }
       }
     }
@@ -78,9 +86,16 @@ function cph_calculate_fees( $checkout ) {
 
   // Apply GAA Seminar discounts to cart
   if ($gaa_seminar_count > 0) {
-    $gaa_seminar_discount = -($gaa_seminar_count * 15);
+    // Only allow one discount per person
+    if ($gaa_seminar_count > count($names)) {
+      $gaa_seminar_discount_count = count($names);
+    } else {
+      $gaa_seminar_discount_count = $gaa_seminar_count;
+    }
+    // Calculate discount
+    $gaa_seminar_discount = -($gaa_seminar_discount_count * 15);
 
-    WC()->cart->add_fee('GAA Discount ($15 off Adventures in Ideas or Dialogue Seminars) x ' . $gaa_seminar_count, $gaa_seminar_discount);
+    WC()->cart->add_fee('GAA Discount ($15 off Adventures in Ideas or Dialogue Seminars) x ' . $gaa_seminar_discount_count, $gaa_seminar_discount);
   }
 
   // Apply GAA Humanities in Action discounts to cart

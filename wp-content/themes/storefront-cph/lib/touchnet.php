@@ -87,12 +87,6 @@ class WC_Gateway_Touchnet extends WC_Payment_Gateway {
       'AMT' => $amount,
       'EXT_TRANS_ID' => $trans_id,
       'VALIDATION_KEY' => $validation_key,
-      // 'SUCCESS_LINK' => get_home_url() . '/my-account/view-order/' . $trans_id,
-      // 'SUCCESS_LINK_TEXT' => 'Thank you for your order. Click here to view order summary.',
-      // 'ERROR_LINK' => [LINK TO ERROR PAGE TO GO BACK TO CART],
-      // 'ERROR_LINK_TEXT' => 'There was an error. You may return to your cart.',
-      // 'CANCEL_LINK' => [LINK TO GO BACK TO CART],
-      // 'CANCEL_LINK_TEXT' => 'Back to cart'
     );
 
     // Build redirect URL

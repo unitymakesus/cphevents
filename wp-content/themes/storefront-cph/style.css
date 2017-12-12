@@ -47,7 +47,8 @@ Template:       storefront
   float: right;
 }
 
-.main-navigation ul.menu>li.button:hover {
+.main-navigation ul.menu>li.button:hover,
+.main-navigation ul.menu>li.button:focus {
   background: #001032;
 }
 
@@ -87,6 +88,10 @@ a.cart-contents:hover,
 * EVENT LIST PAGE
 *****************************************************************************/
 
+.site-main ul.products {
+  margin-bottom: 2em;
+}
+
 .site-main ul.products li.product {
   width: 100%;
   margin-right: 0;
@@ -120,9 +125,24 @@ ul.products li.product .button {
   border: 1px solid #4b9cd3;
 }
 
+button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .button:hover, .added_to_cart:hover, .widget a.button:hover, .site-header-cart .widget_shopping_cart a.button:hover,
+button:focus, input[type="button"]:focus, input[type="reset"]:focus, input[type="submit"]:focus, .button:focus, .added_to_cart:focus, .widget a.button:focus, .site-header-cart .widget_shopping_cart a.button:focus {
+  background: #007FAE;
+}
+
 ul.products li.product h2.woocommerce-loop-product__title {
   display: inline;
   font-size: 24px;
+  color: #007fae;
+}
+
+ul.products li.product h2.woocommerce-loop-product__title a {
+  font-weight: normal;
+}
+
+ul.products li.product h2.woocommerce-loop-product__title a:hover,
+ul.products li.product h2.woocommerce-loop-product__title a:focus {
+  text-decoration: underline;
 }
 
 ul.products li.product .date,

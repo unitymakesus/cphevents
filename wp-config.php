@@ -68,7 +68,6 @@ define('NONCE_SALT',       'CD9p:X!e.+c&AI5VqUzh;AcrTHw4%B+{h@!t.$0uDz;A0W|o*zas
  */
 $table_prefix = 'wp_';
 
-
 /* That's all, stop editing! Happy blogging. */
 
 /** Absolute path to the WordPress directory. */

@@ -92,6 +92,20 @@ if ( storefront_is_woocommerce_activated() ) {
   }, 5);
 
   /**
+   * Add links back to CPH event description
+   */
+  remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
+  add_action('woocommerce_shop_loop_item_title', function() {
+    echo '<h2 class="woocommerce-loop-product__title">';
+    if (!empty($link = get_post_meta(get_the_id(), 'event_link', true))) {
+      echo '<a href="' . $link . '">' . get_the_title() . '</a>';
+    } else {
+      echo get_the_title();
+    }
+    echo '</h2>';
+  }, 10);
+
+  /**
    * Show event date in product list
    */
   add_action('woocommerce_after_shop_loop_item_title', function() {
@@ -124,6 +138,16 @@ if ( storefront_is_woocommerce_activated() ) {
   require 'lib/event-list-quantity-picker.php';
   remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart');
   add_action('woocommerce_after_shop_loop_item', 'cph_event_list_quantity_picker', 10);
+
+  /**
+   * Add proceed to checkout button to bottom of shop page
+   */
+  add_action('woocommerce_after_shop_loop', function() {
+    global $woocommerce;
+    echo '<div class="wc-proceed-to-checkout">';
+    echo '<a href="' . $woocommerce->cart->get_cart_url() . '" class="button alt checkout-button wc-forward">Checkout</a>';
+    echo '</div>';
+  }, 10);
 
 
   /*****************************************************************************
