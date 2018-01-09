@@ -12,8 +12,9 @@ $order = new WC_Order($order_id);
 
 // Handle order status
 if ($_REQUEST['pmt_status'] == 'success') {
-  $order->reduce_order_stock();
-	$order->update_status('completed', 'TouchNet payment completed. uPay Order ID: ' . $_REQUEST['sys_tracking_id']);
+  // $order->reduce_order_stock();
+  $order->payment_complete($_REQUEST['sys_tracking_id']);
+	$order->add_order_note('TouchNet payment completed. uPay Order ID: ' . $_REQUEST['sys_tracking_id']);
 } elseif ($_REQUEST['pmt_status'] == 'cancelled') {
 	$order->update_status('failed', 'TouchNet payment cancelled.');
 }

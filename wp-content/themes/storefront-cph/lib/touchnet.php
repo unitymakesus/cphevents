@@ -93,7 +93,7 @@ class WC_Gateway_Touchnet extends WC_Payment_Gateway {
     $redirect_url = get_permalink(get_page_by_path('checkout/redirecting'))  . '?' . http_build_query($payload);
 
     // Mark as pending
-    $order->update_status('processing', 'Awaiting payment through TouchNet.');
+    $order->set_status('pending');
 
     // Remove cart
     WC()->cart->empty_cart();
