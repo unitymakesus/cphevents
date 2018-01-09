@@ -199,7 +199,7 @@ if ( storefront_is_woocommerce_activated() ) {
   }, 5 );
 
   /**
-   * Remove order notes field in checkout
+   * Remove order notes and country fields in checkout
    */
   add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
   add_filter( 'woocommerce_checkout_fields' , 'custom_wc_checkout_fields' );
@@ -207,6 +207,16 @@ if ( storefront_is_woocommerce_activated() ) {
     $fields['billing']['billing_state']['label'] = 'State';
     unset($fields['billing']['billing_country']);
     unset($fields['order']['order_comments']);
+    return $fields;
+  }
+
+  /**
+   * Remove country field from addresses
+   */
+  add_filter('woocommerce_billing_fields', 'custom_wc_address_fields');
+  add_filter('woocommerce_shipping_fields', 'custom_wc_address_fields');
+  function custom_wc_address_fields( $fields ) {
+    unset($fields['billing_country']);
     return $fields;
   }
 
