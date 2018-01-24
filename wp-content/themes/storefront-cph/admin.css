@@ -1,0 +1,17 @@
+.widefat .column-order {
+  width: 25%;
+}
+
+.widefat .column-date {
+  width: 20%;
+}
+
+@media print {
+  #adminmenumain {
+    display: none;
+  }
+
+  #wpcontent {
+    margin-left: 0;
+  }
+}

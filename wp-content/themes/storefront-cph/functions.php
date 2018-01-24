@@ -75,6 +75,7 @@ if ( storefront_is_woocommerce_activated() ) {
       $query->set('meta_key', 'date');
       $query->set('orderby', 'meta_value');
       $query->set('order', 'ASC');
+      $query->set('meta_query', array(array('key' => 'date', 'compare' => '>', 'value' => current_time('Ymd'), 'type' => 'NUMERIC')));
     }
   });
 
@@ -98,7 +99,7 @@ if ( storefront_is_woocommerce_activated() ) {
   add_action('woocommerce_shop_loop_item_title', function() {
     echo '<h2 class="woocommerce-loop-product__title">';
     if (!empty($link = get_post_meta(get_the_id(), 'event_link', true))) {
-      echo '<a href="' . $link . '">' . get_the_title() . '</a>';
+      echo '<a href="' . $link . '" target="_blank" rel="noopener">' . get_the_title() . '</a>';
     } else {
       echo get_the_title();
     }
@@ -260,6 +261,17 @@ if ( storefront_is_woocommerce_activated() ) {
     return $items;
   } );
 
+
+  /*****************************************************************************
+  * REPORTING
+  *****************************************************************************/
+
+  require 'lib/report-functions.php';
+  add_action('admin_enqueue_scripts', function($hook) {
+    if ('woocommerce_page_event-ticket-reports' == $hook) {
+      wp_enqueue_style('admin-style', get_stylesheet_directory_uri() . '/admin.css', null);
+    }
+  });
 
   /*****************************************************************************
   * TOUCHNET INTEGRATION

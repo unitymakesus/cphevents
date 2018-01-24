@@ -53,8 +53,6 @@ function cph_event_list_quantity_picker() {
 
     foreach ($variations as $variation) {
       echo '<li class="variation">';
-        // Set up new array for variation attributes
-        $var_atts = array();
         foreach ($terms as $key => $term) {
           // Display variation name
           if ($term->slug == $variation['attributes']['attribute_' . $atts_keys[0]]) {
