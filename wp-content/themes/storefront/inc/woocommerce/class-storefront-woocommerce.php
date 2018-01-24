@@ -100,12 +100,6 @@ if ( ! class_exists( 'Storefront_WooCommerce' ) ) :
 
 			wp_register_script( 'storefront-header-cart', get_template_directory_uri() . '/assets/js/woocommerce/header-cart' . $suffix . '.js', array(), $storefront_version, true );
 			wp_enqueue_script( 'storefront-header-cart' );
-
-			wp_register_script( 'storefront-sticky-payment', get_template_directory_uri() . '/assets/js/woocommerce/checkout' . $suffix . '.js', array('jquery'), $storefront_version, true );
-
-			if ( is_checkout() && apply_filters( 'storefront_sticky_order_review', true ) ) {
-				wp_enqueue_script( 'storefront-sticky-payment' );
-			}
 		}
 
 		/**
@@ -114,15 +108,17 @@ if ( ! class_exists( 'Storefront_WooCommerce' ) ) :
 		 * @since 1.6.0
 		 */
 		public function star_rating_script() {
-			if ( wp_script_is( 'jquery', 'done' ) && is_product() ) {
+			if ( is_product() ) {
 		?>
 			<script type="text/javascript">
-				jQuery( function( $ ) {
-					$( 'body' ).on( 'click', '#respond p.stars a', function() {
-						var $container = $( this ).closest( '.stars' );
-						$container.addClass( 'selected' );
-					});
-				});
+				var starsEl = document.querySelector( '#respond p.stars' );
+				if ( starsEl ) {
+					starsEl.addEventListener( 'click', function( event ) {
+						if ( event.target.tagName === 'A' ) {
+							starsEl.classList.add( 'selected' );
+						}
+					} );
+				}
 			</script>
 		<?php
 			}
@@ -145,7 +141,7 @@ if ( ! class_exists( 'Storefront_WooCommerce' ) ) :
 		}
 
 		/**
-		 * Product gallery thumnail columns
+		 * Product gallery thumbnail columns
 		 *
 		 * @return integer number of columns
 		 * @since  1.0.0
@@ -163,11 +159,18 @@ if ( ! class_exists( 'Storefront_WooCommerce' ) ) :
 		/**
 		 * Products per page
 		 *
-		 * @return integer number of products
 		 * @since  1.0.0
+		 * @param  integer $number number of products
+		 * @return integer         number of products
 		 */
-		public function products_per_page() {
-			return intval( apply_filters( 'storefront_products_per_page', 12 ) );
+		public function products_per_page( $number ) {
+
+			// Default number of products if < WooCommerce 3.3.
+			if ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, '3.3', '<' ) ) {
+				$number = 12;
+			}
+
+			return absint( apply_filters( 'storefront_products_per_page', $number ) );
 		}
 
 		/**
@@ -343,8 +346,12 @@ if ( ! class_exists( 'Storefront_WooCommerce' ) ) :
 					background-color: ' . $storefront_theme_mods['accent_color'] . ' !important;
 				}
 
-				.wc-bookings-date-picker .ui-datepicker td.bookable-range .ui-state-default {
+				.wc-bookings-date-picker .ui-datepicker td.bookable a.ui-state-default {
 					background-color: ' . storefront_adjust_color_brightness( $storefront_theme_mods['accent_color'], -10 ) . ' !important;
+				}
+
+				.wc-bookings-date-picker .ui-datepicker td.bookable a.ui-state-active {
+					background-color: ' . storefront_adjust_color_brightness( $storefront_theme_mods['accent_color'], -50 ) . ' !important;
 				}
 				';
 			}

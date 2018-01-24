@@ -41,20 +41,20 @@
   text-align: center; }
 
 .fa-ul {
-  padding-left: 0;
-  margin-left: 2.1428571429em;
+  padding-right: 0;
+  margin-right: 2.1428571429em;
   list-style-type: none; }
   .fa-ul > li {
     position: relative; }
 
 .fa-li {
   position: absolute;
-  left: -2.1428571429em;
+  right: -2.1428571429em;
   width: 2.1428571429em;
   top: 0.1428571429em;
   text-align: center; }
   .fa-li.fa-lg {
-    left: -1.8571428571em; }
+    right: -1.8571428571em; }
 
 .fa-border {
   padding: .2em .25em .15em;
@@ -62,29 +62,29 @@
   border-radius: .1em; }
 
 .fa-pull-left {
-  float: left; }
-
-.fa-pull-right {
   float: right; }
 
+.fa-pull-right {
+  float: left; }
+
 .fa.fa-pull-left {
-  margin-right: .3em; }
+  margin-left: .3em; }
 
 .fa.fa-pull-right {
-  margin-left: .3em; }
+  margin-right: .3em; }
 
 /* Deprecated as of 4.4.0 */
 .pull-right {
-  float: right; }
-
-.pull-left {
   float: left; }
 
+.pull-left {
+  float: right; }
+
 .fa.pull-left {
-  margin-right: .3em; }
+  margin-left: .3em; }
 
 .fa.pull-right {
-  margin-left: .3em; }
+  margin-right: .3em; }
 
 .fa-spin {
   -webkit-animation: fa-spin 2s infinite linear;
@@ -99,34 +99,34 @@
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg); }
   100% {
-    -webkit-transform: rotate(359deg);
-    transform: rotate(359deg); } }
+    -webkit-transform: rotate(-359deg);
+    transform: rotate(-359deg); } }
 
 @keyframes fa-spin {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg); }
   100% {
-    -webkit-transform: rotate(359deg);
-    transform: rotate(359deg); } }
+    -webkit-transform: rotate(-359deg);
+    transform: rotate(-359deg); } }
 
 .fa-rotate-90 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
-  -webkit-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg); }
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg); }
 
 .fa-rotate-180 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
-  -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  transform: rotate(180deg); }
+  -webkit-transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  transform: rotate(-180deg); }
 
 .fa-rotate-270 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-  -webkit-transform: rotate(270deg);
-  -ms-transform: rotate(270deg);
-  transform: rotate(270deg); }
+  -webkit-transform: rotate(-270deg);
+  -ms-transform: rotate(-270deg);
+  transform: rotate(-270deg); }
 
 .fa-flip-horizontal {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
@@ -158,7 +158,7 @@
 
 .fa-stack-1x, .fa-stack-2x {
   position: absolute;
-  left: 0;
+  right: 0;
   width: 100%;
   text-align: center; }
 
@@ -2329,14 +2329,14 @@
 
 .site-search .widget_product_search form input[type=search],
 .site-search .widget_product_search form input[type=text] {
-  padding-left: 2.617924em; }
+  padding-right: 2.617924em; }
 
 #comments .commentlist .bypostauthor > .comment-body cite:after {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
-  margin-left: 0.5407911001em;
+  margin-right: 0.5407911001em;
   content: "\f0f6"; }
 
 #comments .commentlist .reply a:after {
@@ -2345,7 +2345,7 @@
   font-size: inherit;
   text-rendering: auto;
   content: "\f112";
-  margin-left: 0.5407911001em; }
+  margin-right: 0.5407911001em; }
 
 #comments .commentlist .reply a.comment-edit-link:after {
   content: "\f040"; }
@@ -2363,7 +2363,7 @@
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
-  margin-right: 0.5407911001em;
+  margin-left: 0.5407911001em;
   content: "\f08d"; }
 
 button.loading,
@@ -2392,8 +2392,8 @@ input[type="submit"].loading,
     font-size: 20px;
     position: absolute;
     top: 50%;
-    left: 50%;
-    margin-left: -10px;
+    right: 50%;
+    margin-right: -10px;
     margin-top: -10px; }
 
 .main-navigtion ul li a:before {
@@ -2402,23 +2402,23 @@ input[type="submit"].loading,
   font-size: inherit;
   text-rendering: auto;
   content: "\f0f6";
-  margin-right: 0.5407911001em; }
+  margin-left: 0.5407911001em; }
 
 .site-main nav.navigation .nav-previous a:before {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
-  content: "\f177";
-  margin-right: 0.5407911001em; }
+  content: "\f178";
+  margin-left: 0.5407911001em; }
 
 .site-main nav.navigation .nav-next a:after {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
-  content: "\f178";
-  margin-left: 0.5407911001em; }
+  content: "\f177";
+  margin-right: 0.5407911001em; }
 
 .widget_search form:before,
 .widget_product_search form:before {
@@ -2429,13 +2429,13 @@ input[type="submit"].loading,
   content: "\f002";
   position: absolute;
   top: 1em;
-  left: 1em; }
+  right: 1em; }
 
 .widget_search form input[type=text],
 .widget_search form input[type=search],
 .widget_product_search form input[type=text],
 .widget_product_search form input[type=search] {
-  padding-left: 2.617924em; }
+  padding-right: 2.617924em; }
 
 .storefront-handheld-footer-bar ul li > a:before {
   display: inline-block;
@@ -2444,8 +2444,8 @@ input[type="submit"].loading,
   text-rendering: auto;
   position: absolute;
   top: 0;
-  left: 0;
   right: 0;
+  left: 0;
   bottom: 0;
   text-align: center;
   line-height: 2.618046972;
@@ -2487,7 +2487,7 @@ input[type="submit"].loading,
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
-  margin-right: 0.5407911001em; }
+  margin-left: 0.5407911001em; }
 
 .stock.in-stock:before {
   content: "\f118"; }
@@ -2501,7 +2501,7 @@ a.reset_variations:before {
   font-size: inherit;
   text-rendering: auto;
   content: "\f021";
-  margin-right: 0.5407911001em; }
+  margin-left: 0.5407911001em; }
 
 .woocommerce-breadcrumb a:first-of-type:before {
   display: inline-block;
@@ -2509,7 +2509,7 @@ a.reset_variations:before {
   font-size: inherit;
   text-rendering: auto;
   content: "\f015";
-  margin-right: 0.5407911001em; }
+  margin-left: 0.5407911001em; }
 
 .widget_recent_entries ul,
 .widget_pages ul,
@@ -2532,7 +2532,7 @@ a.reset_variations:before {
   .widget_product_categories ul li,
   .widget_layered_nav ul li,
   .widget_layered_nav_filters ul li {
-    padding-left: 1.618em; }
+    padding-right: 1.618em; }
     .widget_recent_entries ul li:before,
     .widget_pages ul li:before,
     .widget_categories ul li:before,
@@ -2544,11 +2544,11 @@ a.reset_variations:before {
     .widget_layered_nav ul li:before,
     .widget_layered_nav_filters ul li:before {
       font-family: "FontAwesome";
-      margin-right: 0.5407911001em;
+      margin-left: 0.5407911001em;
       display: block;
-      float: left;
+      float: right;
       opacity: 0.35;
-      margin-left: -1.618em;
+      margin-right: -1.618em;
       width: 1em; }
 
 .widget_product_categories ul li:before {
@@ -2606,8 +2606,8 @@ a.remove {
     text-rendering: auto;
     position: absolute;
     top: 0;
-    left: 0;
     right: 0;
+    left: 0;
     bottom: 0;
     color: #e2401c;
     line-height: 1.618;
@@ -2620,7 +2620,7 @@ a.remove {
   font-size: inherit;
   text-rendering: auto;
   content: "\f0d1";
-  margin-right: 0.3342343017em; }
+  margin-left: 0.3342343017em; }
 
 .blockUI:before {
   display: inline-block;
@@ -2636,8 +2636,8 @@ a.remove {
   font-size: 30px;
   position: absolute;
   top: 50%;
-  left: 50%;
-  margin-left: -15px;
+  right: 50%;
+  margin-right: -15px;
   margin-top: -15px; }
 
 .woocommerce-pagination .next,
@@ -2651,20 +2651,20 @@ a.remove {
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
     text-rendering: auto;
-    content: "\f0d9";
+    content: "\f0da";
     text-indent: 0;
     position: absolute;
     top: 50%;
-    left: 50%;
+    right: 50%;
     width: 1em;
     height: 1em;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-        -ms-transform: translateX(-50%) translateY(-50%);
-            transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(50%) translateY(-50%);
+        -ms-transform: translateX(50%) translateY(-50%);
+            transform: translateX(50%) translateY(-50%);
     line-height: 1; }
 
 .woocommerce-pagination .next:after {
-  content: "\f0da"; }
+  content: "\f0d9"; }
 
 .woocommerce-breadcrumb .breadcrumb-separator {
   text-indent: -9999px;
@@ -2677,17 +2677,17 @@ a.remove {
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
     text-rendering: auto;
-    content: "\f105";
+    content: "\f104";
     font-size: 0.875em;
     text-indent: 0;
     position: absolute;
     top: 50%;
-    left: 50%;
+    right: 50%;
     width: 1em;
     height: 1em;
-    -webkit-transform: translateX(-50%) translateY(-50%);
-        -ms-transform: translateX(-50%) translateY(-50%);
-            transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(50%) translateY(-50%);
+        -ms-transform: translateX(50%) translateY(-50%);
+            transform: translateX(50%) translateY(-50%);
     text-align: center;
     opacity: .25; }
 
@@ -2698,7 +2698,7 @@ a.remove {
   font-size: inherit;
   text-rendering: auto;
   content: "\f10c";
-  margin-right: 0.5407911001em;
+  margin-left: 0.5407911001em;
   -webkit-transition: color, ease, .2s;
   transition: color, ease, .2s; }
 
@@ -2716,7 +2716,7 @@ a.remove {
   font-size: inherit;
   text-rendering: auto;
   content: "\f119";
-  margin-left: 0.5407911001em; }
+  margin-right: 0.5407911001em; }
 
 .woocommerce-password-strength.strong:after {
   content: "\f118"; }
@@ -2734,10 +2734,10 @@ a.remove {
   text-rendering: auto;
   content: "\f0f6";
   line-height: 1.618;
-  margin-left: 0.5407911001em;
+  margin-right: 0.5407911001em;
   width: 1.41575em;
-  text-align: right;
-  float: right;
+  text-align: left;
+  float: left;
   opacity: .25; }
 
 .woocommerce-MyAccount-navigation ul li a:hover:before {
@@ -2773,7 +2773,7 @@ a.remove {
   font-size: inherit;
   text-rendering: auto;
   content: "\f06e";
-  margin-left: 0.5407911001em; }
+  margin-right: 0.5407911001em; }
 
 p.order-again .button:after {
   display: inline-block;
@@ -2781,7 +2781,7 @@ p.order-again .button:after {
   font-size: inherit;
   text-rendering: auto;
   content: "\f021";
-  margin-left: 0.5407911001em; }
+  margin-right: 0.5407911001em; }
 
 .woocommerce-MyAccount-downloads .button:after {
   display: inline-block;
@@ -2789,14 +2789,14 @@ p.order-again .button:after {
   font-size: inherit;
   text-rendering: auto;
   content: "\f0ed";
-  margin-left: 0.5407911001em; }
+  margin-right: 0.5407911001em; }
 
 .demo_store:before {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
-  margin-right: 0.5407911001em;
+  margin-left: 0.5407911001em;
   content: "\f05a"; }
 
 .woocommerce-tabs ul.tabs li:after {
@@ -2808,7 +2808,7 @@ p.order-again .button:after {
   display: block;
   position: absolute;
   top: 50%;
-  right: -1em;
+  left: -1em;
   -webkit-transform: translateY(-50%);
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -2818,7 +2818,7 @@ p.order-again .button:after {
 
 .woocommerce-tabs ul.tabs li.active:after {
   opacity: 1;
-  right: 0; }
+  left: 0; }
 
 .wc-forward:after,
 .woocommerce-Button--next:after {
@@ -2826,16 +2826,16 @@ p.order-again .button:after {
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
-  content: "\f178";
-  margin-left: 0.5407911001em; }
+  content: "\f177";
+  margin-right: 0.5407911001em; }
 
 .woocommerce-Button--previous:before {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
   font-size: inherit;
   text-rendering: auto;
-  content: "\f177";
-  margin-right: 0.5407911001em; }
+  content: "\f178";
+  margin-left: 0.5407911001em; }
 
 #reviews .commentlist li p.meta .verified {
   display: inline-block;
@@ -2852,7 +2852,7 @@ p.order-again .button:after {
     color: #0f834d;
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     width: 1.41575em;
     height: 1.41575em;
     text-indent: 0;
@@ -2868,7 +2868,7 @@ p.order-again .button:after {
   font-size: inherit;
   text-rendering: auto;
   content: "\f021";
-  margin-right: 0.5407911001em; }
+  margin-left: 0.5407911001em; }
 
 /**
  * Mix and Match
@@ -2880,11 +2880,11 @@ p.order-again .button:after {
   font-size: inherit;
   text-rendering: auto;
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
-  -webkit-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
   content: "\f148";
-  margin-right: 0.3819820591em;
+  margin-left: 0.3819820591em;
   opacity: .25; }
 
 /**
@@ -2896,7 +2896,7 @@ p.order-again .button:after {
   font-size: inherit;
   text-rendering: auto;
   content: "\f06e";
-  margin-right: 0.6180469716em; }
+  margin-left: 0.6180469716em; }
 
 /**
  * Ship multiple addresses
@@ -2908,7 +2908,7 @@ p.order-again .button:after {
   font-size: inherit;
   text-rendering: auto;
   content: "\f06b";
-  margin-left: 0.5407911001em; }
+  margin-right: 0.5407911001em; }
 
 .woocommerce-page .ship_address .modify-address-button:before,
 .woocommerce-page .no_shipping_address .modify-address-button:before {
@@ -2917,7 +2917,7 @@ p.order-again .button:after {
   font-size: inherit;
   text-rendering: auto;
   content: "\f044";
-  margin-right: 0.5407911001em; }
+  margin-left: 0.5407911001em; }
 
 .woocommerce-page .addresses + .addresses header.title a:before {
   content: "\f067"; }
@@ -2938,7 +2938,7 @@ a#variations_clear:before {
   font-size: inherit;
   text-rendering: auto;
   content: "\f021";
-  margin-right: 0.5407911001em; }
+  margin-left: 0.5407911001em; }
 
 /**
  * Wishlists
@@ -2949,7 +2949,7 @@ a#variations_clear:before {
   font-size: inherit;
   text-rendering: auto;
   content: "\f004";
-  margin-right: 0.5407911001em; }
+  margin-left: 0.5407911001em; }
 
 .button.wl-create-new:before {
   display: inline-block;
@@ -2957,7 +2957,7 @@ a#variations_clear:before {
   font-size: inherit;
   text-rendering: auto;
   content: "\f067";
-  margin-right: 0.5407911001em; }
+  margin-left: 0.5407911001em; }
 
 @media (min-width: 768px) {
   .main-navigation ul.menu > li.menu-item-has-children > a:after, .main-navigation ul.menu > li.page_item_has_children > a:after,
@@ -2968,7 +2968,7 @@ a#variations_clear:before {
     font-size: inherit;
     text-rendering: auto;
     content: "\f107";
-    margin-left: 1em; }
+    margin-right: 1em; }
   .main-navigation ul.menu ul li.menu-item-has-children > a:after, .main-navigation ul.menu ul li.page_item_has_children > a:after,
   .main-navigation ul.nav-menu ul li.menu-item-has-children > a:after,
   .main-navigation ul.nav-menu ul li.page_item_has_children > a:after {
@@ -2976,8 +2976,8 @@ a#variations_clear:before {
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
     text-rendering: auto;
-    content: "\f105";
-    float: right;
+    content: "\f104";
+    float: left;
     line-height: 1.618; }
   .demo_store a.woocommerce-store-notice__dismiss-link:before {
     display: inline-block;
@@ -2985,14 +2985,14 @@ a#variations_clear:before {
     font-size: inherit;
     text-rendering: auto;
     content: "\f057";
-    margin-right: 0.3342343017em; }
+    margin-left: 0.3342343017em; }
   .site-header-cart .cart-contents:after {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
     text-rendering: auto;
     height: 1em;
-    float: right;
+    float: left;
     content: "\f291";
     line-height: 1.618; }
   .addresses header.title a {
@@ -3012,13 +3012,13 @@ a#variations_clear:before {
       line-height: 1.618;
       position: absolute;
       top: 0;
-      left: 0;
+      right: 0;
       height: 100%;
       width: 100%;
       text-align: center;
       text-indent: 0; }
   .woocommerce-tabs ul.tabs li:after {
-    content: "\f105"; }
+    content: "\f104"; }
   /**
 	 * Wishlists
 	 */
@@ -3027,7 +3027,7 @@ a#variations_clear:before {
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
     text-rendering: auto;
-    content: "\f105";
+    content: "\f104";
     display: block !important;
     position: absolute;
     top: 50%;

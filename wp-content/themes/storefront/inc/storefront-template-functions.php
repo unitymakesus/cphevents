@@ -127,7 +127,7 @@ if ( ! function_exists( 'storefront_credit' ) ) {
 		<div class="site-info">
 			<?php echo esc_html( apply_filters( 'storefront_copyright_text', $content = '&copy; ' . get_bloginfo( 'name' ) . ' ' . date( 'Y' ) ) ); ?>
 			<?php if ( apply_filters( 'storefront_credit_link', true ) ) { ?>
-			<br /> <?php printf( esc_attr__( '%1$s designed by %2$s.', 'storefront' ), 'Storefront', '<a href="http://www.woocommerce.com" title="WooCommerce - The Best eCommerce Platform for WordPress" rel="author">WooCommerce</a>' ); ?>
+			<br /> <?php echo '<a href="https://woocommerce.com" target="_blank" title="' . esc_attr__( 'WooCommerce - The Best eCommerce Platform for WordPress', 'storefront' ) . '" rel="author">' . esc_html__( 'Built with Storefront &amp; WooCommerce', 'storefront' ) . '</a>' ?>
 			<?php } ?>
 		</div><!-- .site-info -->
 		<?php
@@ -423,11 +423,11 @@ if ( ! function_exists( 'storefront_post_meta' ) ) {
 			<?php if ( 'post' == get_post_type() ) : // Hide category and tag text for pages on Search.
 
 			?>
-			<div class="author">
+			<div class="vcard author">
 				<?php
 					echo get_avatar( get_the_author_meta( 'ID' ), 128 );
 					echo '<div class="label">' . esc_attr( __( 'Written by', 'storefront' ) ) . '</div>';
-					the_author_posts_link();
+					echo sprintf( '<a href="%1$s" class="url fn" rel="author">%2$s</a>', esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ), get_the_author() );
 				?>
 			</div>
 			<?php

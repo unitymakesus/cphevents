@@ -33,9 +33,7 @@ textarea {
 	color: $color_body;
 	font-family: $base-font;
 	line-height: 1.618;
-	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
 	font-weight: 400;
 }
 
@@ -270,6 +268,8 @@ body {
 
 .site {
 	overflow-x: hidden;
+	position: relative;
+	display: initial;
 }
 
 .site-content,
@@ -755,7 +755,7 @@ table {
 	}
 
 	.entry-meta {
-		font-weight: 300;
+		font-weight: 400;
 	}
 
 	&.type-page {
@@ -831,7 +831,6 @@ input[type="submit"],
 	display: inline-block;
 	outline: none;
 	-webkit-appearance: none;
-	-webkit-font-smoothing: antialiased;
 	border-radius: 0;
 
 	&.cta,
@@ -883,6 +882,10 @@ input[type="search"]::-webkit-search-decoration { /* Corrects inner padding disp
 
 input[type="search"] {
 	box-sizing: border-box; // Overrules normalize.css.
+
+	&::placeholder {
+		color: #616161;
+	}
 }
 
 button::-moz-focus-inner,
@@ -1370,7 +1373,7 @@ button.menu-toggle {
 
 .widget-area {
 	.widget {
-		font-weight: 300;
+		font-weight: 400;
 
 		a.button {
 			font-weight: 600 !important;
@@ -1398,7 +1401,8 @@ button.menu-toggle {
 			width: 100%;
 		}
 
-		input[type=submit] {
+		input[type=submit],
+		button[type=submit] {
 			@include screen-reader-text();
 			top: 0;
 			left: 0;

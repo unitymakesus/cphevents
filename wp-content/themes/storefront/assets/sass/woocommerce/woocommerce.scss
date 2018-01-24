@@ -876,6 +876,7 @@ a.reset_variations {
 
 	.ui-slider .ui-slider-handle {
 		position: absolute;
+		top: auto;
 		z-index: 2;
 		width: 1em;
 		height: 1em;
@@ -886,7 +887,9 @@ a.reset_variations {
 		background: $color_links;
 		box-sizing: border-box;
 		margin-top: -.25em;
+		margin-left: auto;
 		opacity: 1;
+		border: 0;
 
 		&:last-child {
 			margin-left: -1em;
@@ -913,6 +916,7 @@ a.reset_variations {
 		@include border-top-radius(1em);
 		@include border-bottom-radius(1em);
 		background: rgba(0,0,0,0.1);
+		border: 0;
 	}
 
 	.ui-slider-horizontal {
@@ -1101,6 +1105,7 @@ form.checkout {
 		margin: 0 !important;
 		padding: 0 !important;
 
+		> .woocommerce-PaymentMethod,
 		> .wc_payment_method {
 			> label {
 				display: block;
@@ -1269,21 +1274,8 @@ table.woocommerce-checkout-review-order-table {
 	}
 }
 
-.woocommerce-checkout {
-	.payment-fixed {
-		position: fixed;
-		top: 0;
-		z-index: 9;
-		box-shadow: 0 6px 2em rgba(#000,.2);
-	}
-}
-
 .admin-bar {
 	.woocommerce-checkout {
-		.payment-fixed {
-			top: 32px;
-		}
-
 		#wc_checkout_add_ons label + br {
 			display: none;
 		}
@@ -1408,12 +1400,6 @@ ul.order_details {
 	#payment {
 		.payment_methods {
 			margin-bottom: ms(3) !important;
-
-			li {
-				.payment_box {
-					background-color: rgba(#000,.05);
-				}
-			}
 		}
 	}
 }
@@ -1499,10 +1485,13 @@ ul.order_details {
 		color: #fff;
 		font-weight: 400;
 		text-decoration: underline;
-		display: block;
 
 		&:hover {
 			text-decoration: none;
+		}
+
+		&.woocommerce-store-notice__dismiss-link {
+			display: block;
 		}
 	}
 }
@@ -1643,6 +1632,8 @@ p.stars {
 }
 
 .woocommerce-tabs {
+	@include clearfix;
+	overflow: hidden;
 	padding: 1em 0;
 
 	ul.tabs {
@@ -1815,11 +1806,13 @@ dl.variation {
 		bottom: 0;
 
 		a {
-			background: rgba(#000,.1);
-			float: right;
-			display: inline-block;
-			margin: -1em -1.41575em -1em 0;
-			padding: 1em ms(2);
+			&.woocommerce-store-notice__dismiss-link {
+				background: rgba(#000,.1);
+				float: right;
+				display: inline-block;
+				margin: -1em -1.41575em -1em 0;
+				padding: 1em ms(2);
+			}
 		}
 	}
 
@@ -1885,7 +1878,7 @@ dl.variation {
 			}
 
 			.count {
-				font-weight: 300;
+				font-weight: 400;
 				opacity: 0.5;
 				font-size: ms(-1);
 			}
@@ -2750,7 +2743,6 @@ dl.variation {
 	}
 
 	.woocommerce-tabs {
-		@include clearfix;
 		padding-top: ms(5);
 		padding-bottom: ms(5);
 
