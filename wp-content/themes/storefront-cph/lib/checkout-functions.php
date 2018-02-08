@@ -38,7 +38,23 @@ function cph_calculate_fees( $checkout ) {
         foreach ($tickets as $ticket) {
           if ($ticket['teacher'] == 1) {
             $teacher_count ++;
-            $teacher_tickets[] = $_product->get_price();
+
+            // If ticket includes meal
+            $ticket_var = $_product->get_attributes();
+            if ($ticket_var['pa_meal'] == "lunch" || $ticket_var['pa_meal'] == "dinner") {
+              $parent_product = new WC_Product_Variable($parent);
+              $variations = $parent_product->get_available_variations();
+
+              // Get price of ticket without meal
+              foreach ($variations as $variation) {
+                if (stristr($variation['attributes']['attribute_pa_meal'], 'no-')) {
+                  $teacher_tickets[] = $variation['display_price'];
+                }
+              }
+            } else {
+              $teacher_tickets[] = $_product->get_price();
+            }
+
           }
 
           if ($ticket['gaa_discount_seminar'] == 1) {
@@ -76,6 +92,10 @@ function cph_calculate_fees( $checkout ) {
 
   // Apply teacher discounts to cart
   if ($teacher_count > 0) {
+    // var_dump($teacher_tickets);
+    // foreach ($teacher_tickets as $tt) {
+    //   $teacher_discount = $tt['ticket_price']
+    // }
     $teacher_total = array_sum($teacher_tickets);
     $teacher_discount = -($teacher_total / 2);
 
