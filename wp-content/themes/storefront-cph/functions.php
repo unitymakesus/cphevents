@@ -268,7 +268,7 @@ if ( storefront_is_woocommerce_activated() ) {
 
   require 'lib/report-functions.php';
   add_action('admin_enqueue_scripts', function($hook) {
-    if ('woocommerce_page_event-ticket-reports' == $hook) {
+    if ('woocommerce_page_event-ticket-reports' == $hook || 'post.php' == $hook) {
       wp_enqueue_style('admin-style', get_stylesheet_directory_uri() . '/admin.css', null);
     }
   });
