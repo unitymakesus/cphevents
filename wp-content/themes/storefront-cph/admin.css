@@ -22,6 +22,14 @@
     display: none;
   }
 
+  .wrap {
+    margin: 0;
+  }
+
+  #poststuff {
+    padding-top: 0;
+  }
+
   #poststuff #post-body.columns-2 {
     margin-right: 0;
   }
@@ -29,5 +37,15 @@
   #wpcontent {
     margin-left: 0;
     padding-left: 0;
+  }
+
+  .postbox, .panel {
+    border: 0 !important;
+    padding: 0 !important;
+  }
+
+  #woocommerce-order-items .wc-order-data-row,
+  #woocommerce-order-items .woocommerce_order_items_wrapper table.woocommerce_order_items thead th {
+    padding: 0 !important;
   }
 }
