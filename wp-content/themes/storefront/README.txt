@@ -2,8 +2,8 @@
 Contributors: automattic, tiagonoronha, jameskoster
 Requires at least: 4.7
 Tested up to: 4.9
-Stable tag: 2.2.6
-Version: 2.2.6
+Stable tag: 2.2.7
+Version: 2.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: e-commerce, two-columns, left-sidebar, right-sidebar, custom-background, custom-colors, custom-header, custom-menu, featured-images, full-width-template, threaded-comments, accessibility-ready, rtl-language-support, footer-widgets, sticky-post, theme-options
@@ -42,6 +42,12 @@ FontAwesome License: SIL Open Font License - http://scripts.sil.org/OFL
 Images License: GNU General Public License v2 or later
 
 == Changelog ==
+
+= 2.2.7 - 2018-01-23 =
+* Fix - Reverted Chromium overflow fix introduced in 2.2.6 due to incompatibility with other Storefront products.
+* Fix - Jetpack Google Translate widget styling.
+* Tweak - Improved Grouped products table styling.
+* Dev - Added filters; `storefront_custom_logo_args`, `storefront_register_nav_menus`, `storefront_html5_args`, and `storefront_site_logo_args`.
 
 = 2.2.6 - 2018-01-16 =
 * Fix - Price slider widget styling.
