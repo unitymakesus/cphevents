@@ -36,6 +36,8 @@ if ( storefront_is_woocommerce_activated() ) {
     remove_action( 'storefront_footer', 'storefront_credit', 20 );
     // Get rid of thumbnail in product list
     remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
+    // Remove unneccessary link closure
+    remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
     // Don't loop columns
     remove_filter( 'loop_shop_columns',                  'storefront_loop_columns' );
     remove_action( 'woocommerce_before_shop_loop',       'storefront_product_columns_wrapper',       40 );
