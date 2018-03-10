@@ -58,7 +58,8 @@ Template:       storefront
   text-align: center;
 }
 
-.main-navigation ul li a:hover {
+.main-navigation ul ul li a:hover,
+.main-navigation ul ul li:hover > a {
   color: #007FAE;
   text-decoration: underline;
 }

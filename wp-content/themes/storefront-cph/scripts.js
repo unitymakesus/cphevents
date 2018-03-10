@@ -221,7 +221,13 @@ jQuery(document).ready(function($) {
   }
 
   // Function that adds new guest to the ticket options
-  function setup_guest_data(handler, ticket, full_name, sanitized_name, init=false, hidden_set=false) {
+  function setup_guest_data(handler, ticket, full_name, sanitized_name, init, hidden_set) {
+    if (init === undefined) {
+      init = false;
+    }
+    if (hidden_set === undefined) {
+      hidden_set = false;
+    }
     var all_fields = [],
         all_valid = [],
         ticket_details = $('.ticket-details[data-ticket-key=' + ticket + ']'),
@@ -264,7 +270,7 @@ jQuery(document).ready(function($) {
     }).promise().done(function() {
 
       // Spread all values in array and find if there are any 0s
-      if (Math.min(...all_valid) == 0) {
+      if (Math.min.apply(null, all_valid) == 0) {
         return false;
       } else {
         // If all fields validate
