@@ -30,6 +30,8 @@ if ( storefront_is_woocommerce_activated() ) {
     remove_action( 'storefront_header', 'storefront_header_cart',    60 );
     // Remove breadcrumbs
     add_filter( 'woocommerce_get_breadcrumb', '__return_false' );
+    // Remove duplicate navigation for desktop and mobile
+    remove_action( 'storefront_header', 'storefront_primary_navigation', 50 );
     // Remove default footer text
     remove_action( 'storefront_footer', 'storefront_credit', 20 );
     // Get rid of thumbnail in product list
@@ -52,6 +54,22 @@ if ( storefront_is_woocommerce_activated() ) {
     // Don't show cart totals on cart page
     remove_action( 'woocommerce_cart_collaterals',       'woocommerce_cart_totals',                  10 );
   });
+
+  add_action( 'storefront_header', function() {
+		?>
+		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_html_e( 'Primary Navigation', 'storefront' ); ?>">
+		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span><?php echo esc_attr( apply_filters( 'storefront_menu_toggle_text', __( 'Menu', 'storefront' ) ) ); ?></span></button>
+			<?php
+			wp_nav_menu(
+				array(
+					'theme_location'	=> 'primary',
+					'container_class'	=> 'primary-navigation menu',
+					)
+			);
+			?>
+		</nav><!-- #site-navigation -->
+		<?php
+  }, 50);
 
   add_action( 'storefront_footer', function() {
     ?>
@@ -117,6 +135,9 @@ if ( storefront_is_woocommerce_activated() ) {
     echo '<span class="date">';
     echo get_post_meta(get_the_ID(), 'display_date', true);
     echo '</span>';
+    if (!empty($link = get_post_meta(get_the_id(), 'event_link', true))) {
+      echo '<a class="link" href="' . $link . '" target="_blank" rel="noopener">View event description <i class="fa fa-external-link"></i></a>';
+    }
   }, 5);
 
   /**
