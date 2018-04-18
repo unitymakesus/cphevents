@@ -21,6 +21,26 @@ if ( ! function_exists( 'storefront_is_woocommerce_activated' ) ) {
 }
 
 /**
+ * Set cart expiration times
+ */
+add_filter('wc_session_expiring', function($seconds) {
+  return 60 * 60 * 23; // 23 hours
+});
+
+add_filter('wc_session_expiration', function($seconds) {
+  return 60 * 60 * 24; // 24 hours
+});
+
+/**
+ * Clear cart on log out
+ */
+add_action('wp_logout', function() {
+  if( function_exists('WC') ){
+    WC()->cart->empty_cart();
+  }
+});
+
+/**
  * Remove actions from WooCommerce and parent theme
  */
 if ( storefront_is_woocommerce_activated() ) {
