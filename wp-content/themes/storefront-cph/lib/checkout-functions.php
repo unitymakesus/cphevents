@@ -17,7 +17,7 @@ function cph_calculate_fees( $checkout ) {
   $gaa_seminar_count = 0;
   $gaa_flyleaf_count = 0;
   $gaa_flyleaf_bulk = 0;
-  $aiiseminar_count = 0;
+  $weekendseminar_count = 0;
 
   // Loop through each event in cart and get saved ticket data
   foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
@@ -70,11 +70,12 @@ function cph_calculate_fees( $checkout ) {
           }
 
           if ($terms[0]->slug == 'adventures-in-ideas-seminar') {
-            $aiiseminar_count ++;
+            $weekendseminar_count ++;
           }
 
           if ($terms[0]->slug == 'dialogues-seminar') {
             $dialogues[$cart_item_key] ++;
+            $weekendseminar_count ++;
           }
 
           if ($terms[0]->slug == 'thursdays-at-friday-center') {
@@ -113,7 +114,7 @@ function cph_calculate_fees( $checkout ) {
     // Calculate discount
     $gaa_seminar_discount = -($gaa_seminar_discount_count * 15);
 
-    WC()->cart->add_fee('GAA Discount ($15 off Adventures in Ideas or Dialogue Seminars) x ' . $gaa_seminar_discount_count, $gaa_seminar_discount);
+    WC()->cart->add_fee('GAA Discount ($15 off one Adventures in Ideas or Dialogue Seminar per person) x ' . $gaa_seminar_discount_count, $gaa_seminar_discount);
   }
 
   // Apply GAA Humanities in Action discounts to cart
@@ -132,11 +133,11 @@ function cph_calculate_fees( $checkout ) {
 
   // Teacher discount overrides the 3 or more.
   // So only apply the 3 or more discount if there are
-  // 3 or more AiI seminars BEYOND those registered by teachers
-  $aiitotal = $aiiseminar_count - $teacher_count;
-  if ($aiitotal > 2) {
-    $aiiseminar_discount = -($aiitotal * 20);
-    WC()->cart->add_fee('Bulk Discount ($20 off Adventure in Ideas seminars) x ' . $aiitotal, $aiiseminar_discount);
+  // 3 or more weekend seminars (Adventures in Ideas and Dialogues) BEYOND those registered by teachers
+  $weekendseminar_total = $weekendseminar_count - $teacher_count;
+  if ($weekendseminar_total > 2) {
+    $weekendseminar_discount = -($weekendseminar_total * 10);
+    WC()->cart->add_fee('Bulk Discount ($10 off each Adventure in Ideas or Dialogues Seminar) x ' . $weekendseminar_total, $weekendseminar_discount);
   }
 
   // Discount for all 4 dialogues

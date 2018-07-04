@@ -183,8 +183,8 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
           $terms = wp_get_post_terms($_product->get_ID(), 'product_cat');
         }
 
-        // If this is an Adventures in Ideas Seminar:
-        if ($terms[0]->slug == 'adventures-in-ideas-seminar') {
+        // If this is an Adventures in Ideas or Dialogues Seminar:
+        if ($terms[0]->slug == 'adventures-in-ideas-seminar' || $terms[0]->slug == 'dialogues-seminar') {
           ?>
 
           <div class="discount-validation" data-discount-type="teacher" data-original-price="<?php echo $_product->get_price(); ?>" data-order-id="<?php echo $order_id; ?>">
@@ -201,7 +201,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
             ?>
 
             <div class="hidden-fields">
-              <p class="info">Eligible teachers may receive 50% off their ticket for any Adventure in Ideas Seminars. Please complete the fields below.</p>
+              <p class="info">Eligible teachers may receive 50% off their ticket for any Adventure in Ideas Seminar or Dialogues Seminar. Please complete the fields below.</p>
               <?php
                 woocommerce_form_field( $field_prefix . '_teacher_type',
                   array(
