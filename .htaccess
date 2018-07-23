@@ -9,3 +9,12 @@ RewriteRule . /index.php [L]
 </IfModule>
 
 # END WordPress
+
+# protect wp config
+<files wp-config.php>
+order allow,deny
+deny from all
+</files>
+
+# disable directory browsing
+Options All -Indexes
