@@ -76,6 +76,7 @@ if ( ! class_exists( 'Storefront' ) ) :
 				'height'      => 110,
 				'width'       => 470,
 				'flex-width'  => true,
+				'flex-height' => true,
 			) ) );
 
 			// This theme uses wp_nav_menu() in two locations.
@@ -223,7 +224,7 @@ if ( ! class_exists( 'Storefront' ) ) :
 			wp_enqueue_style( 'storefront-style', get_template_directory_uri() . '/style.css', '', $storefront_version );
 			wp_style_add_data( 'storefront-style', 'rtl', 'replace' );
 
-			wp_enqueue_style( 'storefront-icons', get_template_directory_uri() . '/assets/sass/base/icons.css', '', $storefront_version );
+			wp_enqueue_style( 'storefront-icons', get_template_directory_uri() . '/assets/css/base/icons.css', '', $storefront_version );
 			wp_style_add_data( 'storefront-icons', 'rtl', 'replace' );
 
 			/**
@@ -250,8 +251,16 @@ if ( ! class_exists( 'Storefront' ) ) :
 			wp_enqueue_script( 'storefront-navigation', get_template_directory_uri() . '/assets/js/navigation' . $suffix . '.js', array(), $storefront_version, true );
 			wp_enqueue_script( 'storefront-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix' . $suffix . '.js', array(), '20130115', true );
 
+			if ( has_nav_menu( 'handheld' ) ) {
+				$storefront_l10n = array(
+					'expand'   => __( 'Expand child menu', 'storefront' ),
+					'collapse' => __( 'Collapse child menu', 'storefront' ),
+				);
+
+				wp_localize_script( 'storefront-navigation', 'storefrontScreenReaderText', $storefront_l10n );
+			}
+
 			if ( is_page_template( 'template-homepage.php' ) && has_post_thumbnail() ) {
-				wp_enqueue_script( 'storefront-rgbaster', get_template_directory_uri() . '/assets/js/vendor/rgbaster.min.js', array(), '1.1.0', true );
 				wp_enqueue_script( 'storefront-homepage', get_template_directory_uri() . '/assets/js/homepage' . $suffix . '.js', array(), $storefront_version, true );
 			}
 
@@ -322,6 +331,11 @@ if ( ! class_exists( 'Storefront' ) ) :
 				$classes[] = 'has-post-thumbnail';
 			}
 
+			// Add class when Secondary Navigation is in use
+			if ( has_nav_menu( 'secondary' ) ) {
+				$classes[] = 'storefront-secondary-navigation';
+			}
+
 			return $classes;
 		}
 
@@ -330,7 +344,7 @@ if ( ! class_exists( 'Storefront' ) ) :
 		 */
 		public function navigation_markup_template() {
 			$template  = '<nav id="post-navigation" class="navigation %1$s" role="navigation" aria-label="' . esc_html__( 'Post Navigation', 'storefront' ) . '">';
-			$template .= '<span class="screen-reader-text">%2$s</span>';
+			$template .= '<h2 class="screen-reader-text">%2$s</h2>';
 			$template .= '<div class="nav-links">%3$s</div>';
 			$template .= '</nav>';
 

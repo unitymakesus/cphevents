@@ -7,6 +7,7 @@
  */
 function product_in_cart($product, $variation_id = null) {
   global $woocommerce;
+  $item = array();
   foreach ( $woocommerce->cart->get_cart() as $key => $cart_item ) {
     if($cart_item['product_id'] == $product->get_id() && $cart_item['variation_id'] == $variation_id ){
       $item['qty'] = $cart_item['quantity'];
@@ -65,7 +66,7 @@ function cph_event_list_quantity_picker() {
 
         $item = product_in_cart($product, $variation['variation_id']);
         if ( $product->is_in_stock() ) {
-          if ($item['qty'] !== NULL) {
+          if (array_key_exists('qty', $item) && $item['qty'] !== NULL) {
             $qty = $item['qty'];
             // Show quantity picker
             quantity_picker($qty, $product_id, $variation['variation_id'], json_encode($variation['attributes']));
@@ -95,7 +96,7 @@ function cph_event_list_quantity_picker() {
   } else {
     if ($product->is_in_stock()) {
       $item = product_in_cart($product);
-      if ($item['qty'] !== NULL) {
+      if (array_key_exists('qty', $item) && $item['qty'] !== NULL) {
         $qty = $item['qty'];
         // Show quantity picker
         quantity_picker($qty, $product->get_id());

@@ -45,7 +45,7 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 
 			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 
-			wp_enqueue_style( 'storefront-admin-nux', get_template_directory_uri() . '/assets/sass/admin/admin.css', '', $storefront_version );
+			wp_enqueue_style( 'storefront-admin-nux', get_template_directory_uri() . '/assets/css/admin/admin.css', '', $storefront_version );
 
 			wp_enqueue_script( 'storefront-admin-nux', get_template_directory_uri() . '/assets/js/admin/admin' . $suffix . '.js', array( 'jquery' ), $storefront_version, 'all' );
 
@@ -63,7 +63,13 @@ if ( ! class_exists( 'Storefront_NUX_Admin' ) ) :
 		 */
 		public function admin_notices() {
 			global $pagenow;
+
 			if ( true === (bool) get_option( 'storefront_nux_dismissed' ) ) {
+				return;
+			}
+
+			// Coming from the WooCommerce Wizard?
+			if ( wp_get_referer() && 'index.php?page=wc-setup&step=next_steps' === basename( wp_get_referer() ) && 'post-new.php' === $pagenow ) {
 				return;
 			}
 			?>

@@ -187,9 +187,8 @@ if ( storefront_is_woocommerce_activated() ) {
    * Add proceed to checkout button to bottom of shop page
    */
   add_action('woocommerce_after_shop_loop', function() {
-    global $woocommerce;
     echo '<div class="wc-proceed-to-checkout">';
-    echo '<a href="' . $woocommerce->cart->get_cart_url() . '" class="button alt checkout-button wc-forward">Checkout</a>';
+    echo '<a href="' . wc_get_cart_url() . '" class="button alt checkout-button wc-forward">Checkout</a>';
     echo '</div>';
   }, 10);
 

@@ -127,7 +127,13 @@ if ( ! function_exists( 'storefront_credit' ) ) {
 		<div class="site-info">
 			<?php echo esc_html( apply_filters( 'storefront_copyright_text', $content = '&copy; ' . get_bloginfo( 'name' ) . ' ' . date( 'Y' ) ) ); ?>
 			<?php if ( apply_filters( 'storefront_credit_link', true ) ) { ?>
-			<br /> <?php echo '<a href="https://woocommerce.com" target="_blank" title="' . esc_attr__( 'WooCommerce - The Best eCommerce Platform for WordPress', 'storefront' ) . '" rel="author">' . esc_html__( 'Built with Storefront &amp; WooCommerce', 'storefront' ) . '</a>' ?>
+			<br />
+			<?php
+				if ( apply_filters( 'storefront_privacy_policy_link', true ) && function_exists( 'the_privacy_policy_link' ) ) {
+					the_privacy_policy_link( '', '<span role="separator" aria-hidden="true"></span>' );
+				}
+			?>
+			<?php echo '<a href="https://woocommerce.com" target="_blank" title="' . esc_attr__( 'WooCommerce - The Best eCommerce Platform for WordPress', 'storefront' ) . '" rel="author">' . esc_html__( 'Built with Storefront &amp; WooCommerce', 'storefront' ) . '</a>.' ?>
 			<?php } ?>
 		</div><!-- .site-info -->
 		<?php
@@ -180,7 +186,7 @@ if ( ! function_exists( 'storefront_site_title_or_logo' ) ) {
 	function storefront_site_title_or_logo( $echo = true ) {
 		if ( function_exists( 'the_custom_logo' ) && has_custom_logo() ) {
 			$logo = get_custom_logo();
-			$html = is_front_page() ? '<h1 class="logo">' . $logo . '</h1>' : $logo;
+			$html = is_home() ? '<h1 class="logo">' . $logo . '</h1>' : $logo;
 		} elseif ( function_exists( 'jetpack_has_site_logo' ) && jetpack_has_site_logo() ) {
 			// Copied from jetpack_the_site_logo() function.
 			$logo    = site_logo()->logo;
@@ -203,7 +209,7 @@ if ( ! function_exists( 'storefront_site_title_or_logo' ) ) {
 
 			$html = apply_filters( 'jetpack_the_site_logo', $html, $logo, $size );
 		} else {
-			$tag = is_front_page() ? 'h1' : 'div';
+			$tag = is_home() ? 'h1' : 'div';
 
 			$html = '<' . esc_attr( $tag ) . ' class="beta site-title"><a href="' . esc_url( home_url( '/' ) ) . '" rel="home">' . esc_html( get_bloginfo( 'name' ) ) . '</a></' . esc_attr( $tag ) .'>';
 
@@ -492,8 +498,8 @@ if ( ! function_exists( 'storefront_post_nav' ) ) {
 	 */
 	function storefront_post_nav() {
 		$args = array(
-			'next_text' => '%title',
-			'prev_text' => '%title',
+			'next_text' => '<span class="screen-reader-text">' . esc_html__( 'Next post:', 'storefront' ) . ' </span>%title',
+			'prev_text' => '<span class="screen-reader-text">' . esc_html__( 'Previous post:', 'storefront' ) . ' </span>%title',
 			);
 		the_post_navigation( $args );
 	}
@@ -604,12 +610,16 @@ if ( ! function_exists( 'storefront_recent_products' ) ) {
 		if ( storefront_is_woocommerce_activated() ) {
 
 			$args = apply_filters( 'storefront_recent_products_args', array(
-				'limit' 			=> 4,
-				'columns' 			=> 4,
-				'title'				=> __( 'New In', 'storefront' ),
+				'limit'   => 4,
+				'columns' => 4,
+				'orderby' => 'date',
+				'order'   => 'desc',
+				'title'   => __( 'New In', 'storefront' ),
 			) );
 
-			$shortcode_content = storefront_do_shortcode( 'recent_products', apply_filters( 'storefront_recent_products_shortcode_args', array(
+			$shortcode_content = storefront_do_shortcode( 'products', apply_filters( 'storefront_recent_products_shortcode_args', array(
+				'orderby'  => esc_attr( $args['orderby'] ),
+				'order'    => esc_attr( $args['order'] ),
 				'per_page' => intval( $args['limit'] ),
 				'columns'  => intval( $args['columns'] ),
 			) ) );
@@ -652,18 +662,20 @@ if ( ! function_exists( 'storefront_featured_products' ) ) {
 		if ( storefront_is_woocommerce_activated() ) {
 
 			$args = apply_filters( 'storefront_featured_products_args', array(
-				'limit'   => 4,
-				'columns' => 4,
-				'orderby' => 'date',
-				'order'   => 'desc',
-				'title'   => __( 'We Recommend', 'storefront' ),
+				'limit'      => 4,
+				'columns'    => 4,
+				'orderby'    => 'date',
+				'order'      => 'desc',
+				'visibility' => 'featured',
+				'title'      => __( 'We Recommend', 'storefront' ),
 			) );
 
-			$shortcode_content = storefront_do_shortcode( 'featured_products', apply_filters( 'storefront_featured_products_shortcode_args', array(
-				'per_page' => intval( $args['limit'] ),
-				'columns'  => intval( $args['columns'] ),
-				'orderby'  => esc_attr( $args['orderby'] ),
-				'order'    => esc_attr( $args['order'] ),
+			$shortcode_content = storefront_do_shortcode( 'products', apply_filters( 'storefront_featured_products_shortcode_args', array(
+				'per_page'   => intval( $args['limit'] ),
+				'columns'    => intval( $args['columns'] ),
+				'orderby'    => esc_attr( $args['orderby'] ),
+				'order'      => esc_attr( $args['order'] ),
+				'visibility' => esc_attr( $args['visibility'] ),
 			) ) );
 
 			/**
@@ -706,12 +718,16 @@ if ( ! function_exists( 'storefront_popular_products' ) ) {
 			$args = apply_filters( 'storefront_popular_products_args', array(
 				'limit'   => 4,
 				'columns' => 4,
+				'orderby' => 'rating',
+				'order'   => 'desc',
 				'title'   => __( 'Fan Favorites', 'storefront' ),
 			) );
 
-			$shortcode_content = storefront_do_shortcode( 'top_rated_products', apply_filters( 'storefront_popular_products_shortcode_args', array(
+			$shortcode_content = storefront_do_shortcode( 'products', apply_filters( 'storefront_popular_products_shortcode_args', array(
 				'per_page' => intval( $args['limit'] ),
 				'columns'  => intval( $args['columns'] ),
+				'orderby'  => esc_attr( $args['orderby'] ),
+				'order'    => esc_attr( $args['order'] ),
 			) ) );
 
 			/**
@@ -754,12 +770,18 @@ if ( ! function_exists( 'storefront_on_sale_products' ) ) {
 			$args = apply_filters( 'storefront_on_sale_products_args', array(
 				'limit'   => 4,
 				'columns' => 4,
+				'orderby' => 'date',
+				'order'   => 'desc',
+				'on_sale' => 'true',
 				'title'   => __( 'On Sale', 'storefront' ),
 			) );
 
-			$shortcode_content = storefront_do_shortcode( 'sale_products', apply_filters( 'storefront_on_sale_products_shortcode_args', array(
+			$shortcode_content = storefront_do_shortcode( 'products', apply_filters( 'storefront_on_sale_products_shortcode_args', array(
 				'per_page' => intval( $args['limit'] ),
 				'columns'  => intval( $args['columns'] ),
+				'orderby'  => esc_attr( $args['orderby'] ),
+				'order'    => esc_attr( $args['order'] ),
+				'on_sale'  => esc_attr( $args['on_sale'] ),
 			) ) );
 
 			/**
@@ -801,12 +823,16 @@ if ( ! function_exists( 'storefront_best_selling_products' ) ) {
 			$args = apply_filters( 'storefront_best_selling_products_args', array(
 				'limit'   => 4,
 				'columns' => 4,
+				'orderby' => 'popularity',
+				'order'   => 'desc',
 				'title'	  => esc_attr__( 'Best Sellers', 'storefront' ),
 			) );
 
-			$shortcode_content = storefront_do_shortcode( 'best_selling_products', apply_filters( 'storefront_best_selling_products_shortcode_args', array(
+			$shortcode_content = storefront_do_shortcode( 'products', apply_filters( 'storefront_best_selling_products_shortcode_args', array(
 				'per_page' => intval( $args['limit'] ),
 				'columns'  => intval( $args['columns'] ),
+				'orderby'  => esc_attr( $args['orderby'] ),
+				'order'    => esc_attr( $args['order'] ),
 			) ) );
 
 			/**
@@ -902,7 +928,7 @@ if ( ! function_exists( 'storefront_primary_navigation_wrapper' ) ) {
 	 * The primary navigation wrapper
 	 */
 	function storefront_primary_navigation_wrapper() {
-		echo '<div class="storefront-primary-navigation">';
+		echo '<div class="storefront-primary-navigation"><div class="col-full">';
 	}
 }
 
@@ -911,6 +937,24 @@ if ( ! function_exists( 'storefront_primary_navigation_wrapper_close' ) ) {
 	 * The primary navigation wrapper close
 	 */
 	function storefront_primary_navigation_wrapper_close() {
+		echo '</div></div>';
+	}
+}
+
+if ( ! function_exists( 'storefront_header_container' ) ) {
+	/**
+	 * The header container
+	 */
+	function storefront_header_container() {
+		echo '<div class="col-full">';
+	}
+}
+
+if ( ! function_exists( 'storefront_header_container_close' ) ) {
+	/**
+	 * The header container close
+	 */
+	function storefront_header_container_close() {
 		echo '</div>';
 	}
 }

@@ -31,9 +31,6 @@ if ( ! class_exists( 'Storefront_Customizer' ) ) :
 			add_action( 'customize_controls_print_styles', array( $this, 'customizer_custom_control_css' ) );
 			add_action( 'customize_register',              array( $this, 'edit_default_customizer_settings' ), 99 );
 			add_action( 'init',                            array( $this, 'default_theme_mod_values' ), 10 );
-
-			add_action( 'after_switch_theme',              array( $this, 'set_storefront_style_theme_mods' ) );
-			add_action( 'customize_save_after',            array( $this, 'set_storefront_style_theme_mods' ) );
 		}
 
 		/**
@@ -46,6 +43,8 @@ if ( ! class_exists( 'Storefront_Customizer' ) ) :
 				'storefront_heading_color'               => '#333333',
 				'storefront_text_color'                  => '#6d6d6d',
 				'storefront_accent_color'                => '#96588a',
+				'storefront_hero_heading_color'          => '#000000',
+				'storefront_hero_text_color'             => '#000000',
 				'storefront_header_background_color'     => '#ffffff',
 				'storefront_header_text_color'           => '#404040',
 				'storefront_header_link_color'           => '#333333',
@@ -58,6 +57,8 @@ if ( ! class_exists( 'Storefront_Customizer' ) ) :
 				'storefront_button_alt_background_color' => '#333333',
 				'storefront_button_alt_text_color'       => '#ffffff',
 				'storefront_layout'                      => 'right',
+				'storefront_sticky_add_to_cart'          => true,
+				'storefront_product_pagination'          => true,
 				'background_color'                       => 'ffffff',
 			) );
 		}
@@ -226,6 +227,38 @@ if ( ! class_exists( 'Storefront_Customizer' ) ) :
 				'section'  				=> 'storefront_typography',
 				'settings' 				=> 'storefront_accent_color',
 				'priority' 				=> 40,
+			) ) );
+
+			/**
+			 * Hero Heading Color
+			 */
+			$wp_customize->add_setting( 'storefront_hero_heading_color', array(
+				'default'           	=> apply_filters( 'storefront_default_hero_heading_color', '#000000' ),
+				'sanitize_callback' 	=> 'sanitize_hex_color',
+			) );
+
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'storefront_hero_heading_color', array(
+				'label'	   				=> __( 'Hero heading color', 'storefront' ),
+				'section'  				=> 'storefront_typography',
+				'settings' 				=> 'storefront_hero_heading_color',
+				'priority' 				=> 50,
+				'active_callback'       => array( $this, 'is_homepage_template' ),
+			) ) );
+
+			/**
+			 * Hero Text Color
+			 */
+			$wp_customize->add_setting( 'storefront_hero_text_color', array(
+				'default'           	=> apply_filters( 'storefront_default_hero_text_color', '#000000' ),
+				'sanitize_callback' 	=> 'sanitize_hex_color',
+			) );
+
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'storefront_hero_text_color', array(
+				'label'	   				=> __( 'Hero text color', 'storefront' ),
+				'section'  				=> 'storefront_typography',
+				'settings' 				=> 'storefront_hero_text_color',
+				'priority' 				=> 60,
+				'active_callback'       => array( $this, 'is_homepage_template' ),
 			) ) );
 
 			$wp_customize->add_control( new Arbitrary_Storefront_Control( $wp_customize, 'storefront_header_image_heading', array(
@@ -443,6 +476,40 @@ if ( ! class_exists( 'Storefront_Customizer' ) ) :
 			) ) );
 
 			/**
+			 * Product Page
+			 */
+			$wp_customize->add_section( 'storefront_single_product_page' , array(
+				'title'                 => __( 'Product Page', 'storefront' ),
+				'priority'              => 60,
+			) );
+
+			$wp_customize->add_setting( 'storefront_product_pagination', array(
+				'default'               => apply_filters( 'storefront_default_product_pagination', true ),
+				'sanitize_callback'     => 'wp_validate_boolean',
+			) );
+
+			$wp_customize->add_setting( 'storefront_sticky_add_to_cart', array(
+				'default'               => apply_filters( 'storefront_default_sticky_add_to_cart', true ),
+				'sanitize_callback'     => 'wp_validate_boolean',
+			) );
+
+			$wp_customize->add_control( 'storefront_sticky_add_to_cart', array(
+				'type'                  => 'checkbox',
+				'section'               => 'storefront_single_product_page',
+				'label'                 => __( 'Sticky Add-To-Cart', 'storefront' ),
+				'description'           => __( 'A small content bar at the top of the browser window which includes relevant product information and an add-to-cart button. It slides into view once the standard add-to-cart button has scrolled out of view.', 'storefront' ),
+				'priority' 				=> 10,
+			) );
+
+			$wp_customize->add_control( 'storefront_product_pagination', array(
+				'type'                  => 'checkbox',
+				'section'               => 'storefront_single_product_page',
+				'label'                 => __( 'Product Pagination', 'storefront' ),
+				'description'           => __( 'Displays next and previous links on product pages. A product thumbnail is displayed with the title revealed on hover.', 'storefront' ),
+				'priority' 				=> 20,
+			) );
+
+			/**
 			 * More
 			 */
 			if ( apply_filters( 'storefront_customizer_more', true ) ) {
@@ -474,6 +541,8 @@ if ( ! class_exists( 'Storefront_Customizer' ) ) :
 			$storefront_theme_mods = array(
 				'background_color'            => storefront_get_content_background_color(),
 				'accent_color'                => get_theme_mod( 'storefront_accent_color' ),
+				'hero_heading_color'          => get_theme_mod( 'storefront_hero_heading_color' ),
+				'hero_text_color'             => get_theme_mod( 'storefront_hero_text_color' ),
 				'header_background_color'     => get_theme_mod( 'storefront_header_background_color' ),
 				'header_link_color'           => get_theme_mod( 'storefront_header_link_color' ),
 				'header_text_color'           => get_theme_mod( 'storefront_header_text_color' ),
@@ -510,7 +579,8 @@ if ( ! class_exists( 'Storefront_Customizer' ) ) :
 			.site-branding h1 a,
 			.site-footer .storefront-handheld-footer-bar a:not(.button),
 			button.menu-toggle,
-			button.menu-toggle:hover {
+			button.menu-toggle:hover,
+			.handheld-navigation .dropdown-toggle {
 				color: ' . $storefront_theme_mods['header_link_color'] . ';
 			}
 
@@ -659,6 +729,14 @@ if ( ! class_exists( 'Storefront_Customizer' ) ) :
 				color: ' . $storefront_theme_mods['footer_heading_color'] . ';
 			}
 
+			.page-template-template-homepage.has-post-thumbnail .type-page.has-post-thumbnail .entry-title {
+				color: ' . $storefront_theme_mods['hero_heading_color'] . ';
+			}
+
+			.page-template-template-homepage.has-post-thumbnail .type-page.has-post-thumbnail .entry-content {
+				color: ' . $storefront_theme_mods['hero_text_color'] . ';
+			}
+
 			#order_review {
 				background-color: ' . $storefront_theme_mods['background_color'] . ';
 			}
@@ -700,6 +778,25 @@ if ( ! class_exists( 'Storefront_Customizer' ) ) :
 					border-bottom-color: ' . storefront_adjust_color_brightness( $storefront_theme_mods['header_background_color'], -15 ) . ';
 				}
 			}';
+
+			if ( ! class_exists( 'Storefront_Product_Pagination' ) ) {
+				$styles .= '.storefront-product-pagination a {
+					color: ' . $storefront_theme_mods['text_color'] . ';
+					background-color: ' . $storefront_theme_mods['background_color'] . ';
+				}';
+			}
+
+			if ( ! class_exists( 'Storefront_Sticky_Add_to_Cart' ) ) {
+				$styles .= '
+				.storefront-sticky-add-to-cart {
+					color: ' . $storefront_theme_mods['text_color'] . ';
+					background-color: ' . $storefront_theme_mods['background_color'] . ';
+				}
+
+				.storefront-sticky-add-to-cart a:not(.button) {
+					color: ' . $storefront_theme_mods['header_link_color'] . ';
+				}';
+			}
 
 			return apply_filters( 'storefront_customizer_css', $styles );
 		}
@@ -820,31 +917,26 @@ if ( ! class_exists( 'Storefront_Customizer' ) ) :
 		/**
 		 * Assign Storefront styles to individual theme mods.
 		 *
+		 * @deprecated 2.3.1
 		 * @return void
 		 */
 		public function set_storefront_style_theme_mods() {
-			set_theme_mod( 'storefront_styles', $this->get_css() );
-			set_theme_mod( 'storefront_woocommerce_styles', $this->get_woocommerce_css() );
+			if ( function_exists( 'wc_deprecated_function' ) ) {
+				wc_deprecated_function( __FUNCTION__, '2.3.1' );
+			} else {
+				_deprecated_function( __FUNCTION__, '2.3.1' );
+			}
 		}
 
 		/**
 		 * Add CSS in <head> for styles handled by the theme customizer
-		 * If the Customizer is active pull in the raw css. Otherwise pull in the prepared theme_mods if they exist.
 		 *
 		 * @since 1.0.0
 		 * @return void
 		 */
 		public function add_customizer_css() {
-			$storefront_styles             = get_theme_mod( 'storefront_styles' );
-			$storefront_woocommerce_styles = get_theme_mod( 'storefront_woocommerce_styles' );
-
-			if ( is_customize_preview() || ( defined( 'WP_DEBUG' ) && true === WP_DEBUG ) || ( false === $storefront_styles && false === $storefront_woocommerce_styles ) ) {
-				wp_add_inline_style( 'storefront-style', $this->get_css() );
-				wp_add_inline_style( 'storefront-woocommerce-style', $this->get_woocommerce_css() );
-			} else {
-				wp_add_inline_style( 'storefront-style', get_theme_mod( 'storefront_styles' ) );
-				wp_add_inline_style( 'storefront-woocommerce-style', get_theme_mod( 'storefront_woocommerce_styles' ) );
-			}
+			wp_add_inline_style( 'storefront-style', $this->get_css() );
+			wp_add_inline_style( 'storefront-woocommerce-style', $this->get_woocommerce_css() );
 		}
 
 		/**
@@ -933,6 +1025,22 @@ if ( ! class_exists( 'Storefront_Customizer' ) ) :
 		 */
 		public function get_site_description() {
 			return get_bloginfo( 'description', 'display' );
+		}
+
+		/**
+		 * Check if current page is using the Homepage template.
+		 *
+		 * @since 2.3.0
+		 * @return bool
+		 */
+		public function is_homepage_template() {
+			$template = get_post_meta( get_the_ID(), '_wp_page_template', true );
+
+			if ( ! $template || 'template-homepage.php' !== $template || ! has_post_thumbnail( get_the_ID() ) ) {
+				return false;
+			}
+
+			return true;
 		}
 	}
 

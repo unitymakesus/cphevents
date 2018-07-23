@@ -1,20 +1,22 @@
 === Storefront ===
 Contributors: automattic, tiagonoronha, jameskoster
 Requires at least: 4.7
-Tested up to: 4.9.4
-Stable tag: 2.2.8
-Version: 2.2.8
+Tested up to: 4.9
+Stable tag: 2.3.3
+Version: 2.3.3
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tags: e-commerce, two-columns, left-sidebar, right-sidebar, custom-background, custom-colors, custom-header, custom-menu, featured-images, full-width-template, threaded-comments, accessibility-ready, rtl-language-support, footer-widgets, sticky-post, theme-options
 
 Storefront is the perfect theme for your next WooCommerce project.
 
 == Description ==
 
-Storefront is the perfect theme for your next WooCommerce project. Designed and developed by WooCommerce Core developers, it features a bespoke integration with WooCommerce itself plus many of the most popular customer facing WooCommerce extensions. There are several layout & color options to personalize your shop, multiple widget regions, a responsive design and much more. Developers will love it's lean and extensible codebase making it a joy to customize and extend. Looking for a WooCommerce theme? Look no further!
+Storefront is the perfect theme for your next WooCommerce project. Designed and developed by WooCommerce Core developers, it features a bespoke integration with WooCommerce itself plus many of the most popular customer facing WooCommerce extensions. There are several layout & color options to personalize your shop, multiple widget regions, a responsive design and much more. Developers will love its lean and extensible codebase making it a joy to customize and extend. Looking for a WooCommerce theme? Look no further!
 
 For more information about Storefront please go to https://woocommerce.com/storefront/.
+
+For even more customization, check out Storefront extensions https://woocommerce.com/product-category/storefront-extensions/ and Storefront child themes https://woocommerce.com/product-category/themes/storefront-child-theme-themes/.
 
 == Installation ==
 
@@ -29,19 +31,77 @@ For more information about Storefront please go to https://woocommerce.com/store
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 
-Storefront is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, Inc.
+Storefront is based on Underscores https://underscores.me/, (C) 2012-2017 Automattic, Inc.
 
 Resetting and rebuilding styles have been helped along thanks to the fine work of
-Eric Meyer http://meyerweb.com/eric/tools/css/reset/index.html
-along with Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
+Eric Meyer https://meyerweb.com/eric/tools/css/reset/
+along with Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 
 All sizing (typography, layout, padding/margins etc) are inspired by a modular scale that uses 1em as a base size with a 1.618 ratio.
-You can read more about the calculator we use in our sass here; https://github.com/modularscale/modularscale-sass
+You can read more about the calculator we use in our sass here: https://github.com/modularscale/modularscale-sass
 
-FontAwesome License: SIL Open Font License - http://scripts.sil.org/OFL
+FontAwesome License: SIL Open Font License - http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
 Images License: GNU General Public License v2 or later
 
+Storefront serves fonts via the hosted Google Fonts service. Storefront does not share any data with Google directly.
+To the best of our knowledge, Google doesn’t track nor share end user data.
+Privacy Policy for the Google Fonts API: https://developers.google.com/fonts/faq#what_does_using_the_google_fonts_api_mean_for_the_privacy_of_my_users
+
 == Changelog ==
+
+= 2.3.3 - 2018-07-18 =
+* Tweak - Removed `user-scalable=no` from the viewport meta tag to allow for zooming on mobile browsers.
+* Tweak - Allow for a flexible height on the site logo.
+* Tweak - Only try to add title from `data-title` to responsive table columns that have this attribute set.
+* Fix - Prevent select box from overflowing its wrapping container.
+* Fix - Fixed handheld sub navigation dropdown toggle color. It now uses the same color set for the links.
+* Fix - Fixed price label direction when in RTL.
+* Fix - Removed related products static number of columns. It will now use the value from the wrapper `ul.products`.
+* Fix - Removed font weight from default link styles for better compatibility with design plugins.
+* Fix - Fixed H3 scopping in WooCommerce Brands integration.
+* Fix - Fixed bundle layout issues in Composite Products integration.
+
+= 2.3.2 - 2018-05-30 =
+* Tweak - Replaced `wp_kses_data()` with `wp_kses_post()` on price outputs in the Mini-Cart and Sticky Add-To-Cart.
+* Tweak - Added support for `tel` type fields in forms.
+* Tweak - Replaced legacy homepage shortcodes with the new `[products]` shortcode.
+* Fix - WooCommerce Memberships mobile table styling.
+* Fix - Moved margin from `.woocommerce-breadcrumb` to the new `.storefront-breadcrumb` wrapper.
+* Fix - Fixed alignment of mobile menu toggle.
+* Fix - Removed H1 from logo when the Homepage is not the Blog page.
+* Dev - Removed legacy Sass mixins.
+
+= 2.3.1 - 2018-05-10 =
+* Feature - Add support for GDPR features soon to be introduced in WordPress 4.9.6.
+* Tweak - Removed inline CSS cache; WordPress autoloads options by default, there's no advantage to caching the CSS.
+* Fix - Made changes to `icons.scss` to address an issue where Font Awesome icons were not being displayed correctly on some sites.
+* Fix - Apply clearfix to `.col-full` globally.
+
+= 2.3.0 - 2018-05-08 =
+* Feature - Sticky Add-To-Cart.
+* Feature - Product Pagination.
+* Feature - WooCommerce Brands integration.
+* Tweak - Increased size of branding section if secondary navigation not used.
+* Tweak - Added a screen reader label to post navigation links.
+* Tweak - Removed RGBaster and added Customizer controls to change the color of text in the homepage Hero section.
+* Tweak - Removed NUX notice if coming from the WooCommerce wizard.
+* Tweak - Updated My Account layout.
+* Tweak - Removed column wrappers, unnecessary as of WooCommerce 3.3.
+* Tweak - Removed Jetpack Infinite Scroll hacks; they are no longer needed as of the latest version of Jetpack / WooCommerce.
+* Tweak - Removed "Free Extensions" column from Welcome page.
+* Fix - Reduce padding on cart table to prevent sidebar from overflowing container.
+* Fix - Hide handheld footer bar when an input is focused.
+* Fix - Prevent entry meta author styles from being applied to the author archives.
+* Fix - All included JavaScript is now compatible with Internet Explorer 11.
+* Fix - Added styling for other buttons in the header mini cart added by extensions.
+* Fix - Improved semantic HTML for pages and single posts.
+* Fix - Removed negative margins in the primary navigation and breadcrumb containers to fix an overflow issue in the Linux version of Chrome.
+* Fix - Removed 1px pixel margin on the product images gallery.
+* Fix - Added missing styles to Composite Products integration.
+* Dev - Upgrade to Font Awesome 5.
+* Dev - Remove `composer.json` from production version.
+* Dev - Added CSS style linting.
+* Dev - Renamed the `sass` folder to `css`. All `.scss` files are now excluded from the production version.
 
 = 2.2.8 - 2018-02-13 =
 * Fix - Image bleed from next image in the gallery.
@@ -135,7 +195,7 @@ Images License: GNU General Public License v2 or later
 * Dev - Homepage product sections only display if products are returned.
 * Tweak - Escape background content color before output. Kudos [@pdewouters](https://github.com/pdewouters).
 * Dev - Updated package versions. You'll need to `npm install` next time you try to build.
-* Dev - Adds `grunt-postcss` + `autoprefixer` to the build process to reduce reliance on [Bourbon](http://bourbon.io/).
+* Dev - Adds `grunt-postcss` + `autoprefixer` to the build process to reduce reliance on [Bourbon](https://www.bourbon.io/).
 * Tweak - Doctype in lowercase. Kudos [@B-07](https://github.com/B-07).
 * Fix - Only output `background-image` styles for the header and homepage content sections if an image exists.
 * Fix - Translatable aria labels in the homepage sections. Kudos [@andreaskian](https://github.com/andreaskian).
@@ -568,4 +628,3 @@ Images License: GNU General Public License v2 or later
 
 = 1.0.0 - 2014-09-05 =
 * Initial release
-
