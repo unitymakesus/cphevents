@@ -85,7 +85,8 @@ do_action( 'woocommerce_before_cart' ); ?>
 							echo get_post_meta($product_id, 'display_date', true);
 							echo '</span>';
 							// Meta data
-							echo WC()->cart->get_item_data( $cart_item );
+							echo wc_get_formatted_cart_item_data( $cart_item );
+							// echo WC()->cart->get_item_data( $cart_item );
 
               // Custom fields
               cph_custom_product_fields( $cart_item, $cart_item_key );

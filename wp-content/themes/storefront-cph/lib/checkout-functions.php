@@ -36,7 +36,7 @@ function cph_calculate_fees( $checkout ) {
       // Loop through each ticket and check for teachers and GAA members, increase count if found
       if (!empty($tickets)) {
         foreach ($tickets as $ticket) {
-          if ($ticket['teacher'] == 1) {
+          if (isset($ticket['teacher']) && $ticket['teacher'] == 1) {
             $teacher_count ++;
 
             // If ticket includes meal
@@ -57,34 +57,38 @@ function cph_calculate_fees( $checkout ) {
 
           }
 
-          if ($ticket['gaa_discount_seminar'] == 1) {
+          if (isset($ticket['gaa_discount_seminar']) && $ticket['gaa_discount_seminar'] == 1) {
             $gaa_seminar_count ++;
           }
 
-          if ($ticket['gaa_discount_bulk_flyleaf'] == 1) {
+          if (isset($ticket['gaa_discount_bulk_flyleaf']) && $ticket['gaa_discount_bulk_flyleaf'] == 1) {
             $gaa_flyleaf_bulk ++;
           }
 
-          if ($ticket['gaa_discount_flyleaf'] == 1) {
+          if (isset($ticket['gaa_discount_flyleaf']) && $ticket['gaa_discount_flyleaf'] == 1) {
             $gaa_flyleaf_count ++;
           }
 
-          if ($terms[0]->slug == 'adventures-in-ideas-seminar') {
+          if (isset($terms[0]->slug) && $terms[0]->slug == 'adventures-in-ideas-seminar') {
             $weekendseminar_count ++;
           }
 
-          if ($terms[0]->slug == 'dialogues-seminar') {
+          if (isset($terms[0]->slug) && $terms[0]->slug == 'dialogues-seminar') {
             $dialogues[$cart_item_key] ++;
             $weekendseminar_count ++;
           }
 
-          if ($terms[0]->slug == 'thursdays-at-friday-center') {
+          if (isset($terms[0]->slug) && $terms[0]->slug == 'thursdays-at-friday-center') {
             $thursday_friday[$cart_item_key] ++;
           }
 
           // Tally total number of unique names
           if (!empty($ticket['first_name']) && !empty($ticket['last_name'])) {
-            $names[$ticket['first_name'] . '-' . $ticket['last_name']] ++;
+            if (!isset($names[$ticket['first_name'] . '-' . $ticket['last_name']])) {
+              $names[$ticket['first_name'] . '-' . $ticket['last_name']] = 1;
+            } else {
+              $names[$ticket['first_name'] . '-' . $ticket['last_name']] ++;
+            }
           }
         }
       }

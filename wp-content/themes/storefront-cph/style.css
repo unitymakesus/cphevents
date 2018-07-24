@@ -17,6 +17,7 @@ Template:       storefront
 
 .site-branding {
   padding-bottom: 1rem;
+  max-width: 215px;
 }
 
 .storefront-primary-navigation {
@@ -127,7 +128,7 @@ body.woocommerce-checkout .storefront-handheld-footer-bar {
   margin-bottom: 2em;
 }
 
-.site-main ul.products li.product {
+.storefront-full-width-content .site-main.site-main ul.products li.product {
   width: 100%;
   margin-right: 0;
   margin-bottom: 10px;
@@ -476,6 +477,10 @@ ol.checkout-progress li:first-child::after {
 .ticket-details .hidden-fields.visible {
   display: block;
   border: none;
+}
+
+.discount-validation label .optional {
+  display: none;
 }
 
 .discount-validation .hidden-fields p.info {

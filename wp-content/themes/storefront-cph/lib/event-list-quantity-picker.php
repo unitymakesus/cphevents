@@ -66,7 +66,7 @@ function cph_event_list_quantity_picker() {
 
         $item = product_in_cart($product, $variation['variation_id']);
         if ( $product->is_in_stock() ) {
-          if (array_key_exists('qty', $item) && $item['qty'] !== NULL) {
+          if (isset($item['qty']) ) {
             $qty = $item['qty'];
             // Show quantity picker
             quantity_picker($qty, $product_id, $variation['variation_id'], json_encode($variation['attributes']));
@@ -96,7 +96,7 @@ function cph_event_list_quantity_picker() {
   } else {
     if ($product->is_in_stock()) {
       $item = product_in_cart($product);
-      if (array_key_exists('qty', $item) && $item['qty'] !== NULL) {
+      if (isset($item['qty'])) {
         $qty = $item['qty'];
         // Show quantity picker
         quantity_picker($qty, $product->get_id());
@@ -161,15 +161,15 @@ function cph_variable_add_to_cart_callback() {
 
   $product_id = apply_filters( 'woocommerce_add_to_cart_product_id', absint( $_POST['product_id'] ) );
   $quantity = !isset( $_POST['quantity'] ) ? 1 : apply_filters( 'woocommerce_stock_amount', $_POST['quantity'] );
-  $variation_id = $_POST['variation_id'];
-  $variation = $_POST['variation'];
+  $variation_id = (isset($_POST['variation_id']) ? $_POST['variation_id'] : 'undefined');
+  $variation = (isset($_POST['variation']) ? $_POST['variation'] : 'undefined');
   $passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $quantity );
 
   if ($passed_validation) {
 
     // If item is already in cart, we need to adjust the quantity
     $item = product_in_cart(wc_get_product($product_id), $variation_id);
-    if ($item['key'] !== NULL) {
+    if (isset($item['key'])) {
       $cart_item_key = $item['key'];
 
       // If quantity is set to 0, remove the item from cart

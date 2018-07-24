@@ -214,7 +214,7 @@ jQuery(document).ready(function($) {
         // Add new guest data to DOM
         var guest = guest_data.find('[data-ticket-name="' + sanitized_name + '"]');
         if (guest.length == 0) {
-          setup_guest_data('new', ticket, full_name, sanitized_name, true);
+          setup_guest_data('new', ticket, full_name, sanitized_name, true, false);
         }
       });
     });
@@ -222,12 +222,6 @@ jQuery(document).ready(function($) {
 
   // Function that adds new guest to the ticket options
   function setup_guest_data(handler, ticket, full_name, sanitized_name, init, hidden_set) {
-    if (init === undefined) {
-      init = false;
-    }
-    if (hidden_set === undefined) {
-      hidden_set = false;
-    }
     var all_fields = [],
         all_valid = [],
         ticket_details = $('.ticket-details[data-ticket-key=' + ticket + ']'),
@@ -335,7 +329,6 @@ jQuery(document).ready(function($) {
 
         // Hide guest info fields
         if (hidden_set.length) {
-          console.log(hidden_set);
           hidden_set.removeClass('visible');
           hidden_set.prev('.form-row').find('.edit-discount, .edit-guest').removeClass('hide');
         }
@@ -407,7 +400,7 @@ jQuery(document).ready(function($) {
       setup_guest_data(find_guest, ticket, full_name, sanitized_name, false, hidden_set);
     } else {
       // We gotta set up a new guest
-      setup_guest_data('new', ticket, full_name, sanitized_name);
+      setup_guest_data('new', ticket, full_name, sanitized_name, false, hidden_set);
     }
 
   });
@@ -447,7 +440,8 @@ jQuery(document).ready(function($) {
         discount_val = $(this).closest('.discount-validation');
 
     if (discount_val.length) {
-      discount_val.find('input[type="checkbox"]').prop('checked', false);
+    //   discount_val.find('input[type="checkbox"]').prop('checked', false);
+      $(ticket).find('.edit-discount').removeClass('hide');
     }
 
     $(this).closest('.hidden-fields').removeClass('visible');
@@ -472,10 +466,11 @@ jQuery(document).ready(function($) {
     } else {
       hidden_fields.removeClass('visible');
       hidden_fields.children('.form-row').removeClass('validate-required');
+      $(this).siblings('.edit-discount').addClass('hide');
     }
   });
 
-  $('.woocommerce-cart-form .discount-validation').on('click', 'a.edit-discount', function(e) {
+  $('.woocommerce-cart-form .discount-validation a.edit-discount').on('click', function(e) {
     e.preventDefault();
 
     $(this).closest('.discount-validation').children('.hidden-fields').addClass('visible');

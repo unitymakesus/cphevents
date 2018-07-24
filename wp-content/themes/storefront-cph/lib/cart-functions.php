@@ -21,22 +21,22 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
 
     // If session data exists for this ticket...
     if (!empty($field_data['address_1'])) {
-      $first_name = $field_data['first_name'];
-      $last_name = $field_data['last_name'];
-      $address_1 = $field_data['address_1'];
-      $address_2 = $field_data['address_2'];
-      $city = $field_data['city'];
-      $state = $field_data['state'];
-      $postcode = $field_data['postcode'];
-      $phone = $field_data['phone'];
-      $email = $field_data['email'];
-      $special_needs = $field_data['special_needs'];
-      $teacher = $field_data['teacher'];
-      $teacher_type = $field_data['teacher_type'];
-      $teacher_school = $field_data['teacher_school'];
-      $teacher_county = $field_data['teacher_county'];
-      $gaa = $field_data['gaa'];
-      $gaa_type = $field_data['gaa_type'];
+      $first_name = (isset($field_data['first_name']) ? $field_data['first_name'] : null);
+      $last_name = (isset($field_data['last_name']) ? $field_data['last_name'] : null);
+      $address_1 = (isset($field_data['address_1']) ? $field_data['address_1'] : null);
+      $address_2 = (isset($field_data['address_2']) ? $field_data['address_2'] : null);
+      $city = (isset($field_data['city']) ? $field_data['city'] : null);
+      $state = (isset($field_data['state']) ? $field_data['state'] : null);
+      $postcode = (isset($field_data['postcode']) ? $field_data['postcode'] : null);
+      $phone = (isset($field_data['phone']) ? $field_data['phone'] : null);
+      $email = (isset($field_data['email']) ? $field_data['email'] : null);
+      $special_needs = (isset($field_data['special_needs']) ? $field_data['special_needs'] : null);
+      $teacher = (isset($field_data['teacher']) ? $field_data['teacher'] : null);
+      $teacher_type = (isset($field_data['teacher_type']) ? $field_data['teacher_type'] : null);
+      $teacher_school = (isset($field_data['teacher_school']) ? $field_data['teacher_school'] : null);
+      $teacher_county = (isset($field_data['teacher_county']) ? $field_data['teacher_county'] : null);
+      $gaa = (isset($field_data['gaa']) ? $field_data['gaa'] : null);
+      $gaa_type = (isset($field_data['gaa_type']) ? $field_data['gaa_type'] : null);
       $full_name = $first_name . ' ' . $last_name;
 
       $session_prefill = true;
@@ -51,17 +51,17 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
           <span class="ui-control select">
             <select id="<?php echo $field_prefix; ?>_ticket_name" class="copy-data">
               <option>--Select One--</option>
-              <?php if (!empty($customer['address_1']) && $customer_name !== $full_name) { ?>
+              <?php if (!empty($customer['address_1']) && (empty($full_name) || $customer_name !== $full_name)) { ?>
                 <option value="<?php echo sanitize_title_with_dashes($customer_name); ?>"><?php echo $customer_name; ?></option>
               <?php } ?>
-              <?php if ($session_prefill == true) { ?>
+              <?php if (!empty($session_prefill) && $session_prefill == true) { ?>
                 <option selected="selected" value="<?php echo sanitize_title_with_dashes($full_name); ?>"><?php echo $full_name; ?></option>
               <?php } ?>
               <option value="new">New Guest</option>
             </select>
             <span class="select_arrow"></span>
           </span>
-          <a href="#" class="edit-guest <?php if ($session_prefill !== true) { echo 'hide'; } ?>">Edit contact info</a>
+          <a href="#" class="edit-guest <?php if (empty($session_prefill) || $session_prefill !== true) { echo 'hide'; } ?>">Edit contact info</a>
         </p>
 
         <div class="hidden-fields contact-info">
@@ -73,7 +73,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
               'label'         => __('First name'),
               'required'      => true,
             ),
-            $first_name
+            ( !empty($first_name) ? $first_name : '' )
           );
 
           woocommerce_form_field( $field_prefix . '_last_name',
@@ -83,7 +83,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
               'label'         => __('Last name'),
               'required'      => true,
             ),
-            $last_name
+            ( !empty($last_name) ? $last_name : '' )
           );
 
           woocommerce_form_field( $field_prefix . '_address_1',
@@ -94,7 +94,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
               'placeholder'   => __('House number and street name'),
               'required'      => true,
             ),
-            $address_1
+            ( !empty($address_1) ? $address_1 : '' )
           );
 
           woocommerce_form_field( $field_prefix . '_address_2',
@@ -105,7 +105,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
               'placeholder'   => __('Apartment, suite, unit etc. (optional)'),
               'required'      => false,
             ),
-            $address_2
+            ( !empty($address_2) ? $address_2 : '' )
           );
 
           woocommerce_form_field( $field_prefix . '_city',
@@ -115,7 +115,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
               'label'         => __('Town / City'),
               'required'      => true,
             ),
-            $city
+            ( !empty($city) ? $city : '' )
           );
 
           woocommerce_form_field( $field_prefix . '_state',
@@ -125,7 +125,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
               'label'         => __('State'),
               'required'      => true,
             ),
-            $state
+            ( !empty($state) ? $state : '' )
           );
 
           woocommerce_form_field( $field_prefix . '_postcode',
@@ -135,7 +135,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
               'label'         => __('ZIP'),
               'required'      => true,
             ),
-            $postcode
+            ( !empty($postcode) ? $postcode : '' )
           );
 
           woocommerce_form_field( $field_prefix . '_phone',
@@ -145,7 +145,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
               'label'         => __('Phone'),
               'required'      => false,
             ),
-            $phone
+            ( !empty($phone) ? $phone : '' )
           );
 
           woocommerce_form_field( $field_prefix . '_email',
@@ -155,7 +155,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
               'label'         => __('Email address'),
               'required'      => true,
             ),
-            $email
+            ( !empty($email) ? $email : '' )
           );
 
           woocommerce_form_field( $field_prefix . '_special_needs',
@@ -165,7 +165,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
               'label'         => __('Please indicate any accommodations and/or services you require.'),
               'required'      => false,
             ),
-            $special_needs
+            ( !empty($special_needs) ? $special_needs : '' )
           );
           ?>
 
@@ -187,7 +187,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
         if ($terms[0]->slug == 'adventures-in-ideas-seminar' || $terms[0]->slug == 'dialogues-seminar') {
           ?>
 
-          <div class="discount-validation" data-discount-type="teacher" data-original-price="<?php echo $_product->get_price(); ?>" data-order-id="<?php echo $order_id; ?>">
+          <div class="discount-validation" data-discount-type="teacher">
             <?php
               woocommerce_form_field( $field_prefix . '_teacher',
                 array(
@@ -196,7 +196,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
                   'label'         => __('This guest is a teacher/educator. <a href="#" class="edit-discount hide">Edit details</a>'),
                   'required'      => false,
                 ),
-                $field_data['teacher']
+                ( isset($field_data['teacher']) ? $field_data['teacher'] : '' )
               );
             ?>
 
@@ -217,7 +217,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
                     ),
                     'required'      => false,
                   ),
-                  $field_data['teacher_type']
+                  ( isset($field_data['teacher_type']) ? $field_data['teacher_type'] : '' )
                 );
 
                 woocommerce_form_field( $field_prefix . '_teacher_school',
@@ -227,7 +227,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
                     'label'         => __('School Name'),
                     'required'      => false,
                   ),
-                  $field_data['teacher_school']
+                  ( isset($field_data['teacher_school']) ? $field_data['teacher_school'] : '' )
                 );
 
                 woocommerce_form_field( $field_prefix . '_teacher_county',
@@ -237,7 +237,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
                     'label'         => __('School County'),
                     'required'      => false,
                   ),
-                  $field_data['teacher_county']
+                  ( isset($field_data['teacher_county']) ? $field_data['teacher_county'] : '' )
                 );
               ?>
 
@@ -279,7 +279,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
                   'label'         => __('This guest is a member of the UNC General Alumni Association. <a href="#" class="edit-discount hide">Edit details</a>'),
                   'required'      => false,
                 ),
-                $field_data['gaa']
+                ( isset($field_data['gaa']) ? $field_data['gaa'] : '' )
               );
             ?>
 
@@ -296,7 +296,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
                         'label'         => __('Check this box to claim the GAA Discount and select your membership type below:'),
                         'required'      => false,
                       ),
-                      $field_data['gaa_discount_bulk_flyleaf']
+                      ( isset($field_data['gaa_discount_bulk_flyleaf']) ? $field_data['gaa_discount_bulk_flyleaf'] : '' )
                     );
                   } else {
                     echo '<p class="info">Eligible GAA Members may opt-in to receive $5 off their ticket to a Humanities in Action series event.</p>';
@@ -308,7 +308,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
                         'label'         => __('Check this box to claim the GAA Discount and select your membership type below:'),
                         'required'      => false,
                       ),
-                      $field_data['gaa_discount_flyleaf']
+                      ( isset($field_data['gaa_discount_flyleaf']) ? $field_data['gaa_discount_flyleaf'] : '' )
                     );
                   }
                 } else {
@@ -321,7 +321,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
                       'label'         => __('Check this box to claim the GAA Discount and select your membership type below:'),
                       'required'      => false,
                     ),
-                    $field_data['gaa_discount_seminar']
+                    ( isset($field_data['gaa_discount_seminar']) ? $field_data['gaa_discount_seminar'] : '' )
                   );
                 }
 
@@ -337,7 +337,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
                     ),
                     'required'      => false,
                   ),
-                  $field_data['gaa_type']
+                  ( isset($field_data['gaa_type']) ? $field_data['gaa_type'] : '' )
                 );
               ?>
 
@@ -402,8 +402,8 @@ function cph_update_cart_meta_callback(){
   $errors = new WP_Error();
 
   // For each item in the cart, we're adding session data for the ticket details
-  $cart_items = WC()->cart->get_cart_contents();
-  foreach ($cart_items as $cart_item) {
+  // $cart_items = WC()->cart->get_cart_contents();
+  foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item) {
     $this_session = array();
     $_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 
