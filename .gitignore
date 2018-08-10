@@ -10,6 +10,9 @@ Thumbs.db
 searchreplacedb2.php
 rrrreplace/*
 
+# error logs
+*.log
+
 # wordpress specific
 wp-config.php
 wp-content/advanced-cache.php
