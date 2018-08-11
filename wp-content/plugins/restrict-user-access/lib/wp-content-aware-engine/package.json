@@ -1,0 +1,25 @@
+{
+  "name": "wp-content-aware-engine",
+  "description": "WordPress Content Aware Engine",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/intoxstudio/wp-content-aware-engine.git"
+  },
+  "author": "Joachim Jensen",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/intoxstudio/wp-content-aware-engine/issues"
+  },
+  "homepage": "https://github.com/intoxstudio/wp-content-aware-engine",
+  "devDependencies": {
+    "grunt": "^1.0.0",
+    "grunt-contrib-less": "^1.4.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "load-grunt-tasks": "^3.5.2",
+    "grunt-contrib-uglify": "^2.3.0",
+    "grunt-potomo": "^3.5.0",
+    "less-plugin-autoprefix": "^1.5.1",
+    "less-plugin-clean-css": "^1.5.1",
+    "grunt-transifex": "git://github.com/intoxstudio/grunt-transifex"
+  }
+}

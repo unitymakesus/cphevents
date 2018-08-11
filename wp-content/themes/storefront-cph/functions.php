@@ -78,19 +78,21 @@ if ( storefront_is_woocommerce_activated() ) {
   });
 
   add_action( 'storefront_header', function() {
-		?>
-		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_html_e( 'Primary Navigation', 'storefront' ); ?>">
-		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span><?php echo esc_attr( apply_filters( 'storefront_menu_toggle_text', __( 'Menu', 'storefront' ) ) ); ?></span></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location'	=> 'primary',
-					'container_class'	=> 'primary-navigation menu',
-					)
-			);
-			?>
-		</nav><!-- #site-navigation -->
-		<?php
+    if (is_user_logged_in()) :
+  		?>
+  		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_html_e( 'Primary Navigation', 'storefront' ); ?>">
+  		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span><?php echo esc_attr( apply_filters( 'storefront_menu_toggle_text', __( 'Menu', 'storefront' ) ) ); ?></span></button>
+  			<?php
+  			wp_nav_menu(
+  				array(
+  					'theme_location'	=> 'primary',
+  					'container_class'	=> 'primary-navigation menu',
+  					)
+  			);
+  			?>
+  		</nav><!-- #site-navigation -->
+	    <?php
+    endif;
   }, 50);
 
   add_action( 'storefront_footer', function() {
