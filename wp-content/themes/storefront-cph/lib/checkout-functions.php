@@ -213,6 +213,8 @@ add_filter( 'woocommerce_order_button_text', function() {
  * Saves custom checkout fields to database
  */
 function cph_custom_checkout_field_update_order_meta( $order_id ) {
+  $user_id = get_current_user_id();
+  $customer = WC()->session->get('customer');
 
   foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
     $_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
@@ -224,6 +226,7 @@ function cph_custom_checkout_field_update_order_meta( $order_id ) {
         $field_prefix = $_product->get_id() . '_ticket_' . $i;
         $field_data = $session_data[$field_prefix];
 
+        // Save custom fields to order
         if ( ! empty( $field_data['first_name'] ) )
           update_post_meta( $order_id, $field_prefix . '_first_name', $field_data['first_name'] );
         if ( ! empty( $field_data['last_name'] ) )
@@ -262,6 +265,40 @@ function cph_custom_checkout_field_update_order_meta( $order_id ) {
           update_post_meta( $order_id, $field_prefix . '_gaa_type', $field_data['gaa_type'] );
         if ( ! empty( $field_data['special_needs'] ) )
           update_post_meta( $order_id, $field_prefix . '_special_needs', $field_data['special_needs'] );
+
+        // Save custom fields to customer's user account
+        if ($field_data['first_name'] == $customer['first_name'] && $field_data['last_name'] == $customer['last_name']) {
+          // If this is the account holder...
+          if ( ! empty( $field_data['special_needs'] ) )
+            update_field('special_needs', $field_data['special_needs'], "user_{$user_id}");
+          if ( ! empty( $field_data['teacher'] ) )
+            update_field('teacher', $field_data['teacher'], "user_{$user_id}");
+          if ( ! empty( $field_data['teacher_type'] ) )
+            update_field('teacher_type', $field_data['teacher_type'], "user_{$user_id}");
+          if ( ! empty( $field_data['teacher_school'] ) )
+            update_field('teacher_school', $field_data['teacher_school'], "user_{$user_id}");
+          if ( ! empty( $field_data['teacher_county'] ) )
+            update_field('teacher_county', $field_data['teacher_county'], "user_{$user_id}");
+          if ( ! empty( $field_data['gaa'] ) )
+            update_field('gaa', $field_data['gaa'], "user_{$user_id}");
+          if ( ! empty( $field_data['gaa_type'] ) )
+            update_field('gaa_type', $field_data['gaa_type'], "user_{$user_id}");
+        } else {
+          // If this is a guest ticket...
+          $guests = get_field('guests', "user_{$user_id}");
+          $updated = false;
+
+          foreach ($guests as $row => $guest) {
+            if ($field_data['first_name'] == $guest['first_name'] && $field_data['last_name'] == $guest['last_name']) {
+              update_row('guests', $field_data, $row, "user_{$user_id}");
+              $updated = true;
+            }
+          }
+
+          if ($updated == false) {
+            add_row('guests', $field_data, "user_{$user_id}");
+          }
+        }
       }
 
     }

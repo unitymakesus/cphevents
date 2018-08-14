@@ -10,6 +10,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
   $customer = WC()->session->get('customer');
 
   $customer_name = $customer['first_name'] . ' ' . $customer['last_name'];
+  $user_id = get_current_user_id();
 
   // Get session data for this product
   $session_data = WC()->session->get( $_product->get_id() . '_tickets_data' );
@@ -54,6 +55,14 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
               <?php if (!empty($customer['address_1']) && (empty($full_name) || $customer_name !== $full_name)) { ?>
                 <option value="<?php echo sanitize_title_with_dashes($customer_name); ?>"><?php echo $customer_name; ?></option>
               <?php } ?>
+              <?php if (have_rows('guests', "user_{$user_id}")) {
+      					while (have_rows('guests', "user_{$user_id}")) {
+      						the_row();
+                  ?>
+                  <option value="<?php echo sanitize_title_with_dashes(get_sub_field('first_name') . ' ' . get_sub_field('last_name')); ?>"><?php echo get_sub_field('first_name') . ' ' . get_sub_field('last_name'); ?></option>
+                  <?php
+                }
+              } ?>
               <?php if (!empty($session_prefill) && $session_prefill == true) { ?>
                 <option selected="selected" value="<?php echo sanitize_title_with_dashes($full_name); ?>"><?php echo $full_name; ?></option>
               <?php } ?>

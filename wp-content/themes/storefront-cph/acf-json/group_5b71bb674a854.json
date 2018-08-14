@@ -1,0 +1,91 @@
+{
+    "key": "group_5b71bb674a854",
+    "title": "Event Info",
+    "fields": [
+        {
+            "key": "field_59e909b21e7a4",
+            "label": "Event Link",
+            "name": "event_link",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "formatting": "html",
+            "maxlength": ""
+        },
+        {
+            "key": "field_59fdfeddc1572",
+            "label": "Event Date",
+            "name": "display_date",
+            "type": "text",
+            "instructions": "This is the date that appears publicly on the page.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "formatting": "html",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5a54d11b60c9d",
+            "label": "Display Order Date",
+            "name": "date",
+            "type": "date_picker",
+            "instructions": "This is the date that determines the order in which events are displayed. Past events will not appear in the list.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "first_day": 0,
+            "return_format": "d\/m\/Y",
+            "display_format": "d\/m\/Y"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "product"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content",
+        "excerpt",
+        "discussion",
+        "comments",
+        "author",
+        "format",
+        "featured_image",
+        "tags",
+        "send-trackbacks"
+    ],
+    "active": 1,
+    "description": "",
+    "modified": 1534282166
+}

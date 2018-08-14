@@ -339,10 +339,12 @@ jQuery(document).ready(function($) {
 
   // Function that updates the ticket info with master data
   function update_ticket_data(sanitized_name, ticket) {
+    var guest_data = $('#guest-data'),
+        guest = guest_data.find('[data-ticket-name="' + sanitized_name + '"]');
 
     ticket.find('.form-row:not(.control-copy)').each(function() {
       // Get global name of field
-      var guest_data = $('#guest-data'),
+      var check = "false",
           field = $(this).attr('id').match(/ticket_\d+_(.*)_field/);
 
       // Reset validation
@@ -360,12 +362,14 @@ jQuery(document).ready(function($) {
       } else {
 
         // Update fields with master guest info
-        var guest = guest_data.find('[data-ticket-name="' + sanitized_name + '"]');
         if ($(this).find('[name$=' + field[1] + ']').is(':checkbox')) {
-          var check = (guest.attr('data-' + field[1]) === "true");
-          $(this).find('[name$=' + field[1] + ']').prop('checked', check);
-          if (check == true) {
-            $(this).find('[name$=' + field[1] + ']').siblings('.edit-discount').removeClass('hide');
+          if (field[1].indexOf('gaa_discount') == -1) {
+            check = (guest.attr('data-' + field[1]) == 1 ? "true" : "false" );
+            $(this).find('[name$=' + field[1] + ']').prop('checked', check);
+
+            if (check == "true") {
+              $(this).find('[name$=' + field[1] + ']').siblings('.edit-discount').removeClass('hide');
+            }
           }
         } else {
           $(this).find('[name$=' + field[1] + ']').val(guest.attr('data-' + field[1]));
@@ -541,7 +545,7 @@ jQuery(document).ready(function($) {
         'postcode' : $(this).find('input[name$="_postcode"]').val(),
         'phone' : $(this).find('input[name$="_phone"]').val(),
         'email' : $(this).find('input[name$="_email"]').val(),
-        'special_needs' : $(this).find('input[name$="_special_needs"]').val(),
+        'special_needs' : $(this).find('textarea[name$="_special_needs"]').val(),
       };
 
       var $teacher_checkbox = $(this).find('input[name$="_teacher"]');
