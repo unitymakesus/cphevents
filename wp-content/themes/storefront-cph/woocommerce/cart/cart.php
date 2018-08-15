@@ -42,8 +42,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 	<div class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">
 		<?php do_action( 'woocommerce_before_cart_contents' ); ?>
 
-			<div id="guest-data">
-			<!-- <div id="guest-data" style="display: none;"> -->
+			<div id="guest-data" style="display: none;">
 				<?php
 				// Get customer details to show in hidden div for jQuery copy ticket info
 				$user_id = get_current_user_id();
@@ -52,7 +51,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 					$teacher_type = get_field('teacher_type', "user_{$user_id}");
 					$gaa_type = get_field('gaa_type', "user_{$user_id}");
 			    ?>
-						<div data-ticket-name="<?php echo sanitize_title_with_dashes($customer['first_name'] . ' ' . $customer['last_name']); ?>"
+						<div class="customer" data-ticket-name="<?php echo sanitize_title_with_dashes($customer['first_name'] . ' ' . $customer['last_name']); ?>"
 			           data-first_name="<?php echo $customer['first_name']; ?>"
 			           data-last_name="<?php echo $customer['last_name']; ?>"
 			           data-address_1="<?php echo $customer['address_1']; ?>"
@@ -79,7 +78,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 						$teacher_type = get_sub_field('teacher_type');
 						$gaa_type = get_sub_field('gaa_type');
 						?>
-							<div data-ticket-name="<?php echo sanitize_title_with_dashes(get_sub_field('first_name') . ' ' . get_sub_field('last_name')); ?>"
+							<div class="guest" data-ticket-name="<?php echo sanitize_title_with_dashes(get_sub_field('first_name') . ' ' . get_sub_field('last_name')); ?>"
 				           data-first_name="<?php echo get_sub_field('first_name'); ?>"
 				           data-last_name="<?php echo get_sub_field('last_name'); ?>"
 				           data-address_1="<?php echo get_sub_field('address_1'); ?>"

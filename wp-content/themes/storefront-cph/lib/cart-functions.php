@@ -17,11 +17,23 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
 
   for ($i = 1; $i <= $cart_item['quantity']; $i++) {
 
+    if ($_product->is_type('variation')) {
+      $parent = $_product->get_parent_ID();
+      $terms = wp_get_post_terms($parent, 'product_cat');
+    } else {
+      $terms = wp_get_post_terms($_product->get_ID(), 'product_cat');
+    }
+
+    foreach ($terms as $term) {
+      $cats[] = $term->slug;
+    }
+
     $field_prefix = $_product->get_id() . '_ticket_' . $i;
-    $field_data = $session_data[$field_prefix];
 
     // If session data exists for this ticket...
-    if (!empty($field_data['address_1'])) {
+    if (isset($session_data[$field_prefix])) {
+      $field_data = $session_data[$field_prefix];
+
       $first_name = (isset($field_data['first_name']) ? $field_data['first_name'] : null);
       $last_name = (isset($field_data['last_name']) ? $field_data['last_name'] : null);
       $address_1 = (isset($field_data['address_1']) ? $field_data['address_1'] : null);
@@ -39,38 +51,51 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
       $gaa = (isset($field_data['gaa']) ? $field_data['gaa'] : null);
       $gaa_type = (isset($field_data['gaa_type']) ? $field_data['gaa_type'] : null);
       $full_name = $first_name . ' ' . $last_name;
-
-      $session_prefill = true;
     }
     ?>
 
-      <div class="ticket-details <?php if ($i % 2 == 0) { echo 'col-2'; } else { echo 'col-1'; } ?> <?php echo $field_prefix; ?>__field-wrapper" data-ticket-key="<?php echo $field_prefix; ?>" data-product="<?php echo $_product->get_id(); ?>">
+      <div class="ticket-details <?php if ($i % 2 == 0) { echo 'col-2'; } else { echo 'col-1'; } ?> <?php echo $field_prefix; ?>__field-wrapper" data-ticket-key="<?php echo $field_prefix; ?>" data-product="<?php echo $_product->get_id(); ?>" data-category="<?php echo implode($cats, ' '); ?>">
         <h4>Ticket <?php echo $i; ?></h4>
 
         <p class="form-row form-row-wide control-copy">
-          <label for="<?php echo $field_prefix; ?>_ticket_name">Name <abbr class="required" title="required">*</abbr></label>
+          <label for="<?php echo $field_prefix; ?>_ticket_name">Guest <abbr class="required" title="required">*</abbr></label>
           <span class="ui-control select">
             <select id="<?php echo $field_prefix; ?>_ticket_name" class="copy-data">
               <option>--Select One--</option>
-              <?php if (!empty($customer['address_1']) && (empty($full_name) || $customer_name !== $full_name)) { ?>
-                <option value="<?php echo sanitize_title_with_dashes($customer_name); ?>"><?php echo $customer_name; ?></option>
-              <?php } ?>
-              <?php if (have_rows('guests', "user_{$user_id}")) {
-      					while (have_rows('guests', "user_{$user_id}")) {
-      						the_row();
-                  ?>
-                  <option value="<?php echo sanitize_title_with_dashes(get_sub_field('first_name') . ' ' . get_sub_field('last_name')); ?>"><?php echo get_sub_field('first_name') . ' ' . get_sub_field('last_name'); ?></option>
-                  <?php
+              <?php
+                // Session Prefill For Customer
+                if ($customer_name == $full_name) {
+                  $selected = 'selected="selected"';
+                } else {
+                  $selected = '';
                 }
-              } ?>
-              <?php if (!empty($session_prefill) && $session_prefill == true) { ?>
-                <option selected="selected" value="<?php echo sanitize_title_with_dashes($full_name); ?>"><?php echo $full_name; ?></option>
-              <?php } ?>
+              ?>
+              <option <?php echo $selected; ?> value="<?php echo sanitize_title_with_dashes($customer_name); ?>"><?php echo $customer_name; ?></option>
+
+              <?php
+                if (have_rows('guests', "user_{$user_id}")) {
+        					while (have_rows('guests', "user_{$user_id}")) {
+        						the_row();
+
+                    $guest_name = get_sub_field('first_name') . ' ' . get_sub_field('last_name');
+
+                    // Session Prefill For Additional Guests
+                    if ($guest_name == $full_name) {
+                      $selected = 'selected="selected"';
+                    } else {
+                      $selected = '';
+                    }
+                    ?>
+                    <option <?php echo $selected; ?> value="<?php echo sanitize_title_with_dashes($guest_name); ?>"><?php echo $guest_name; ?></option>
+                    <?php
+                  }
+                }
+              ?>
               <option value="new">New Guest</option>
             </select>
             <span class="select_arrow"></span>
           </span>
-          <a href="#" class="edit-guest <?php if (empty($session_prefill) || $session_prefill !== true) { echo 'hide'; } ?>">Edit contact info</a>
+          <a href="#" class="edit-guest <?php if (empty($full_name)) { echo 'hide'; } ?>">Edit guest info</a>
         </p>
 
         <div class="hidden-fields contact-info">
@@ -178,39 +203,19 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
           );
           ?>
 
-          <button class="ticket-update" data-ticket="<?php echo $field_prefix; ?>">Update Contact Info</button>
-          <button class="secondary cancel">Cancel</a>
-
-        </div>
-
-        <?php
-        // Get product category
-        if ($_product->is_type('variation')) {
-          $parent = $_product->get_parent_ID();
-          $terms = wp_get_post_terms($parent, 'product_cat');
-        } else {
-          $terms = wp_get_post_terms($_product->get_ID(), 'product_cat');
-        }
-
-        // If this is an Adventures in Ideas or Dialogues Seminar:
-        if ($terms[0]->slug == 'adventures-in-ideas-seminar' || $terms[0]->slug == 'dialogues-seminar') {
-          ?>
-
           <div class="discount-validation" data-discount-type="teacher">
             <?php
               woocommerce_form_field( $field_prefix . '_teacher',
                 array(
                   'type'          => 'checkbox',
                   'class'         => array('form-row-wide', 'validation-checkbox'),
-                  'label'         => __('This guest is a teacher/educator. <a href="#" class="edit-discount hide">Edit details</a>'),
+                  'label'         => __('This guest is a teacher/educator.'),
                   'required'      => false,
                 ),
-                ( isset($field_data['teacher']) ? $field_data['teacher'] : '' )
+                ( !empty($teacher) ? $teacher : '' )
               );
             ?>
-
-            <div class="hidden-fields">
-              <p class="info">Eligible teachers may receive 50% off their ticket for any Adventure in Ideas Seminar or Dialogues Seminar. Please complete the fields below.</p>
+            <div class="conditional-fields">
               <?php
                 woocommerce_form_field( $field_prefix . '_teacher_type',
                   array(
@@ -226,7 +231,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
                     ),
                     'required'      => false,
                   ),
-                  ( isset($field_data['teacher_type']) ? $field_data['teacher_type'] : '' )
+                  ( isset($teacher_type) ? $teacher_type : '' )
                 );
 
                 woocommerce_form_field( $field_prefix . '_teacher_school',
@@ -236,7 +241,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
                     'label'         => __('School Name'),
                     'required'      => false,
                   ),
-                  ( isset($field_data['teacher_school']) ? $field_data['teacher_school'] : '' )
+                  ( isset($teacher_school) ? $teacher_school : '' )
                 );
 
                 woocommerce_form_field( $field_prefix . '_teacher_county',
@@ -246,22 +251,55 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
                     'label'         => __('School County'),
                     'required'      => false,
                   ),
-                  ( isset($field_data['teacher_county']) ? $field_data['teacher_county'] : '' )
+                  ( isset($teacher_county) ? $teacher_county : '' )
                 );
               ?>
-
-              <button class="ticket-update" data-ticket="<?php echo $field_prefix; ?>">Update Teacher Info</button>
-              <button class="secondary cancel">Cancel</a>
             </div>
-
           </div>
 
-        <?php
-        } // End adventures-in-ideas-seminar
+          <div class="discount-validation" data-discount-type="gaa">
+            <?php
+              woocommerce_form_field( $field_prefix . '_gaa',
+                array(
+                  'type'          => 'checkbox',
+                  'class'         => array('form-row-wide', 'validation-checkbox'),
+                  'label'         => __('This guest is a member of the UNC General Alumni Association.'),
+                  'required'      => false,
+                ),
+                ( isset($gaa) ? $gaa : '' )
+              );
+            ?>
 
-        // If this is an Adventures in Ideas Seminar, Dialogues Seminar, or Flyleaf Lecture (humanities-in-action):
+            <div class="conditional-fields">
+              <?php
+                woocommerce_form_field( $field_prefix . '_gaa_type',
+                  array(
+                    'type'          => 'select',
+                    'class'         => array('form-row-wide'),
+                    'label'         => __('GAA Membership Type'),
+                    'options'       => array(
+                      ''              => '',
+                      'annual'        => 'Annual Membership',
+                      'lifetime'      => 'Lifetime Membership',
+                    ),
+                    'required'      => false,
+                  ),
+                  ( isset($gaa_type) ? $gaa_type : '' )
+                );
+              ?>
+            </div>
+          </div>
+
+          <button class="ticket-update" data-ticket="<?php echo $field_prefix; ?>">Update Guest Info</button>
+          <button class="secondary cancel">Cancel</a>
+
+        </div>
+
+        <?php
+        // Show GAA discount opt-in if this is an Adventures in Ideas Seminar, Dialogues Seminar, or Flyleaf Lecture (humanities-in-action):
         $matches = false;
         $bulk = false;
+
         foreach ($terms as $term) {
           $cats = [
             'adventures-in-ideas-seminar',
@@ -276,88 +314,54 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
             $bulk = true;
           }
         }
+
         if (!empty($matches)) {
           ?>
-
-          <div class="discount-validation" data-discount-type="gaa">
+          <div class="gaa-opt-in conditional-fields">
             <?php
-              woocommerce_form_field( $field_prefix . '_gaa',
-                array(
-                  'type'          => 'checkbox',
-                  'class'         => array('form-row-wide', 'validation-checkbox'),
-                  'label'         => __('This guest is a member of the UNC General Alumni Association. <a href="#" class="edit-discount hide">Edit details</a>'),
-                  'required'      => false,
-                ),
-                ( isset($field_data['gaa']) ? $field_data['gaa'] : '' )
-              );
-            ?>
+              if ($matches[0] == 'humanities-in-action') {
+                if ($bulk == true) {
+                  echo '<p class="info">Eligible GAA Members may opt-in to receive $35 off their Flyleaf Season Pass.</p>';
 
-            <div class="hidden-fields">
-              <?php
-                if ($matches[0] == 'humanities-in-action') {
-                  if ($bulk == true) {
-                    echo '<p class="info">Eligible GAA Members may opt-in to receive $35 off their Flyleaf Season Pass.</p>';
-
-                    woocommerce_form_field( $field_prefix . '_gaa_discount_bulk_flyleaf',
-                      array(
-                        'type'          => 'checkbox',
-                        'class'         => array('form-row-wide'),
-                        'label'         => __('Check this box to claim the GAA Discount and select your membership type below:'),
-                        'required'      => false,
-                      ),
-                      ( isset($field_data['gaa_discount_bulk_flyleaf']) ? $field_data['gaa_discount_bulk_flyleaf'] : '' )
-                    );
-                  } else {
-                    echo '<p class="info">Eligible GAA Members may opt-in to receive $5 off their ticket to a Humanities in Action series event.</p>';
-
-                    woocommerce_form_field( $field_prefix . '_gaa_discount_flyleaf',
-                      array(
-                        'type'          => 'checkbox',
-                        'class'         => array('form-row-wide'),
-                        'label'         => __('Check this box to claim the GAA Discount and select your membership type below:'),
-                        'required'      => false,
-                      ),
-                      ( isset($field_data['gaa_discount_flyleaf']) ? $field_data['gaa_discount_flyleaf'] : '' )
-                    );
-                  }
-                } else {
-                  echo '<p class="info">Eligible GAA Members may opt-in to receive $15 off their ticket for one Adventure in Ideas Seminar or Dialogues Seminar per semester.</p>';
-
-                  woocommerce_form_field( $field_prefix . '_gaa_discount_seminar',
+                  woocommerce_form_field( $field_prefix . '_gaa_discount_bulk_flyleaf',
                     array(
                       'type'          => 'checkbox',
                       'class'         => array('form-row-wide'),
-                      'label'         => __('Check this box to claim the GAA Discount and select your membership type below:'),
+                      'label'         => __('Check this box to claim the GAA Discount.'),
                       'required'      => false,
                     ),
-                    ( isset($field_data['gaa_discount_seminar']) ? $field_data['gaa_discount_seminar'] : '' )
+                    ( isset($field_data['gaa_discount_bulk_flyleaf']) ? $field_data['gaa_discount_bulk_flyleaf'] : '' )
+                  );
+                } else {
+                  echo '<p class="info">Eligible GAA Members may opt-in to receive $5 off their ticket to a Humanities in Action series event.</p>';
+
+                  woocommerce_form_field( $field_prefix . '_gaa_discount_flyleaf',
+                    array(
+                      'type'          => 'checkbox',
+                      'class'         => array('form-row-wide'),
+                      'label'         => __('Check this box to claim the GAA Discount.'),
+                      'required'      => false,
+                    ),
+                    ( isset($field_data['gaa_discount_flyleaf']) ? $field_data['gaa_discount_flyleaf'] : '' )
                   );
                 }
+              } else {
+                echo '<p class="info">Eligible GAA Members may opt-in to receive $15 off their ticket for one Adventure in Ideas Seminar or Dialogues Seminar per semester.</p>';
 
-                woocommerce_form_field( $field_prefix . '_gaa_type',
+                woocommerce_form_field( $field_prefix . '_gaa_discount_seminar',
                   array(
-                    'type'          => 'select',
+                    'type'          => 'checkbox',
                     'class'         => array('form-row-wide'),
-                    'label'         => __('GAA Membership Type'),
-                    'options'       => array(
-                      ''              => '',
-                      'annual'        => 'Annual Membership',
-                      'lifetime'      => 'Lifetime Membership',
-                    ),
+                    'label'         => __('Check this box to claim the one-time GAA Discount.'),
                     'required'      => false,
                   ),
-                  ( isset($field_data['gaa_type']) ? $field_data['gaa_type'] : '' )
+                  ( isset($field_data['gaa_discount_seminar']) ? $field_data['gaa_discount_seminar'] : '' )
                 );
-              ?>
-
-              <button class="ticket-update" data-ticket="<?php echo $field_prefix; ?>">Update GAA Info</button>
-              <button class="secondary cancel">Cancel</a>
-            </div>
-
+              }
+            ?>
           </div>
         <?php } ?>
       </div>
-
     <?php
   }
 }

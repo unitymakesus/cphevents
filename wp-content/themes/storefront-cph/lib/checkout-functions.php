@@ -6,6 +6,10 @@
  */
 function cph_calculate_fees( $checkout ) {
 
+  $gaa_seminar_guests = array();
+  $gaa_flyleaf_guests = array();
+  $gaa_flyleaf_bulk = array();
+
   $teacher_tickets = array();
   $thursday_friday = array();
   $dialogues = array();
@@ -13,11 +17,8 @@ function cph_calculate_fees( $checkout ) {
   $names = array();
 
   $teacher_count = 0;
-  $teacher_discount = 0;
-  $gaa_seminar_count = 0;
-  $gaa_flyleaf_count = 0;
-  $gaa_flyleaf_bulk = 0;
   $weekendseminar_count = 0;
+  $dialogue_sets = 0;
 
   // Loop through each event in cart and get saved ticket data
   foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
@@ -36,59 +37,70 @@ function cph_calculate_fees( $checkout ) {
       // Loop through each ticket and check for teachers and GAA members, increase count if found
       if (!empty($tickets)) {
         foreach ($tickets as $ticket) {
-          if (isset($ticket['teacher']) && $ticket['teacher'] == 1) {
-            $teacher_count ++;
+          $full_name = $ticket['first_name'] . '-' . $ticket['last_name'];
 
-            // If ticket includes meal
-            $ticket_var = $_product->get_attributes();
-            if ($ticket_var['pa_meal'] == "lunch" || $ticket_var['pa_meal'] == "dinner") {
-              $parent_product = new WC_Product_Variable($parent);
-              $variations = $parent_product->get_available_variations();
-
-              // Get price of ticket without meal
-              foreach ($variations as $variation) {
-                if (stristr($variation['attributes']['attribute_pa_meal'], 'no-')) {
-                  $teacher_tickets[] = $variation['display_price'];
-                }
-              }
-            } else {
-              $teacher_tickets[] = $_product->get_price();
-            }
-
-          }
-
+          // Only allow one GAA discount per person
           if (isset($ticket['gaa_discount_seminar']) && $ticket['gaa_discount_seminar'] == 1) {
-            $gaa_seminar_count ++;
+            $gaa_seminar_guests[$full_name] = 1;
           }
-
           if (isset($ticket['gaa_discount_bulk_flyleaf']) && $ticket['gaa_discount_bulk_flyleaf'] == 1) {
-            $gaa_flyleaf_bulk ++;
+            $gaa_flyleaf_bulk[$full_name] = 1;
           }
-
           if (isset($ticket['gaa_discount_flyleaf']) && $ticket['gaa_discount_flyleaf'] == 1) {
-            $gaa_flyleaf_count ++;
-          }
-
-          if (isset($terms[0]->slug) && $terms[0]->slug == 'adventures-in-ideas-seminar') {
-            $weekendseminar_count ++;
+            $gaa_flyleaf_guests[$full_name] = 1;
           }
 
           if (isset($terms[0]->slug) && $terms[0]->slug == 'dialogues-seminar') {
-            $dialogues[$cart_item_key] ++;
             $weekendseminar_count ++;
+
+            // Count number of events in series registered to same guest for bulk pricing
+            if (!isset($dialogues[$full_name])) {
+              $dialogues[$full_name] = 1;
+            } else {
+              $dialogues[$full_name] ++;
+            }
           }
 
           if (isset($terms[0]->slug) && $terms[0]->slug == 'thursdays-at-friday-center') {
-            $thursday_friday[$cart_item_key] ++;
+            // Count number of events in series registered to same guest for bulk pricing
+            if (!isset($thursday_friday[$full_name])) {
+              $thursday_friday[$full_name] = 1;
+            } else {
+              $thursday_friday[$full_name] ++;
+            }
+          }
+
+          // Count AiI Seminars and teachers can only get discount on these
+          if (isset($terms[0]->slug) && $terms[0]->slug == 'adventures-in-ideas-seminar') {
+            $weekendseminar_count ++;
+
+            // Teachers can get 50% off this category
+            if (isset($ticket['teacher']) && $ticket['teacher'] == 1) {
+              $teacher_count ++;
+
+              // If ticket includes meal
+              $ticket_var = $_product->get_attributes();
+              if ($ticket_var['pa_meal'] == "lunch" || $ticket_var['pa_meal'] == "dinner") {
+                $parent_product = new WC_Product_Variable($parent);
+                $variations = $parent_product->get_available_variations();
+
+                // Get price of ticket without meal
+                foreach ($variations as $variation) {
+                  if (stristr($variation['attributes']['attribute_pa_meal'], 'no-')) {
+                    $teacher_tickets[] = $variation['display_price'];
+                  }
+                }
+              } else {
+                $teacher_tickets[] = $_product->get_price();
+              }
+            }
           }
 
           // Tally total number of unique names
-          if (!empty($ticket['first_name']) && !empty($ticket['last_name'])) {
-            if (!isset($names[$ticket['first_name'] . '-' . $ticket['last_name']])) {
-              $names[$ticket['first_name'] . '-' . $ticket['last_name']] = 1;
-            } else {
-              $names[$ticket['first_name'] . '-' . $ticket['last_name']] ++;
-            }
+          if (!isset($names[$full_name])) {
+            $names[$full_name] = 1;
+          } else {
+            $names[$full_name] ++;
           }
         }
       }
@@ -97,10 +109,6 @@ function cph_calculate_fees( $checkout ) {
 
   // Apply teacher discounts to cart
   if ($teacher_count > 0) {
-    // var_dump($teacher_tickets);
-    // foreach ($teacher_tickets as $tt) {
-    //   $teacher_discount = $tt['ticket_price']
-    // }
     $teacher_total = array_sum($teacher_tickets);
     $teacher_discount = -($teacher_total / 2);
 
@@ -108,58 +116,58 @@ function cph_calculate_fees( $checkout ) {
   }
 
   // Apply GAA Seminar discounts to cart
-  if ($gaa_seminar_count > 0) {
-    // Only allow one discount per person
-    if ($gaa_seminar_count > count($names)) {
-      $gaa_seminar_discount_count = count($names);
-    } else {
-      $gaa_seminar_discount_count = $gaa_seminar_count;
-    }
-    // Calculate discount
-    $gaa_seminar_discount = -($gaa_seminar_discount_count * 15);
+  if ($gaa_seminar_count = count($gaa_seminar_guests) > 0) {
+    $gaa_seminar_discount = -($gaa_seminar_count * 15);
 
-    WC()->cart->add_fee('GAA Discount ($15 off one Adventures in Ideas or Dialogue Seminar per person) x ' . $gaa_seminar_discount_count, $gaa_seminar_discount);
+    WC()->cart->add_fee('GAA Discount ($15 off one Adventures in Ideas or Dialogue Seminar per person) x ' . $gaa_seminar_count, $gaa_seminar_discount);
   }
 
   // Apply GAA Humanities in Action discounts to cart
-  if ($gaa_flyleaf_count > 0) {
-    $gaa_flyleaf_discount = -($gaa_flyleaf_count * 5);
+  if ($gaa_flyfleaf_count = count($gaa_flyleaf_guests) > 0) {
+    $gaa_flyleaf_discount = -($gaa_flyfleaf_count * 5);
 
-    WC()->cart->add_fee('GAA Discount ($5 off Humanities in Action series events) x ' . $gaa_flyleaf_count, $gaa_flyleaf_discount);
+    WC()->cart->add_fee('GAA Discount ($5 off Humanities in Action series events) x ' . $gaa_flyfleaf_count, $gaa_flyleaf_discount);
   }
 
   // Apply GAA Humanities in Action season pass discounts to cart
-  if ($gaa_flyleaf_bulk > 0) {
-    $gaa_flyleaf_bulk_discount = -($gaa_flyleaf_bulk * 35);
+  if ($gaa_flyleaf_bulk_count = count($gaa_flyleaf_bulk) > 0) {
+    $gaa_flyleaf_bulk_discount = -($gaa_flyleaf_bulk_count * 35);
 
-    WC()->cart->add_fee('GAA Discount ($35 off Flyleaf Season Pass) x ' . $gaa_flyleaf_bulk, $gaa_flyleaf_bulk_discount);
-  }
-
-  // Teacher discount overrides the 3 or more.
-  // So only apply the 3 or more discount if there are
-  // 3 or more weekend seminars (Adventures in Ideas and Dialogues) BEYOND those registered by teachers
-  $weekendseminar_total = $weekendseminar_count - $teacher_count;
-  if ($weekendseminar_total > 2) {
-    $weekendseminar_discount = -($weekendseminar_total * 10);
-    WC()->cart->add_fee('Bulk Discount ($10 off each Adventure in Ideas or Dialogues Seminar) x ' . $weekendseminar_total, $weekendseminar_discount);
-  }
-
-  // Discount for all 4 dialogues
-  if (count($dialogues) > 3) {
-    // If there are tickets for all events in cart, apply this discount for the
-    // number of sets that exist in the cart.
-    $dialogue_sets = min($dialogues);
-    $dialogues_discount = -($dialogue_sets * 60);
-    WC()->cart->add_fee('Bulk Discount (All 4 Dialogues for $200) x ' . $dialogue_sets, $dialogues_discount);
+    WC()->cart->add_fee('GAA Discount ($35 off Flyleaf Season Pass) x ' . $gaa_flyleaf_bulk_count, $gaa_flyleaf_bulk_discount);
   }
 
   // Discount for 2 Thursdays at the Friday Center
-  if (count($thursday_friday) > 1) {
-    // If there are tickets for both events in cart, apply this discount for the
-    // number of pairs that exist in the cart.
-    $thursday_pairs = min($thursday_friday);
-    $thursday_discount = -($thursday_pairs * 10);
-    WC()->cart->add_fee('Bulk Discount (Both Thursdays at the Friday Center for $100) x ' . $thursday_pairs, $thursday_discount);
+  foreach ($thursday_friday as $thursday_guest) {
+    if ($thursday_guest >= 2) {
+      $thursday_sets ++;
+    }
+  }
+  if ($thursday_sets > 0) {
+    $thursday_discount = -($thursday_sets * 10);
+    WC()->cart->add_fee('Bulk Discount ($10 off both Thursdays at the Friday Center) x ' . $thursday_sets, $thursday_discount);
+  }
+
+  // Discount for a semester worth of Dialogues
+  // (there were 2 in Fall 2018)
+  $dialogues_this_semester = 2;
+  foreach ($dialogues as $dia_guest) {
+    if ($dia_guest >= $dialogues_this_semester) {
+      $dialogue_sets ++;
+    }
+  }
+  if ($dialogue_sets > 0) {
+    $dialogues_off = $dialogues_this_semester * 15;
+    $dialogues_discount = -($dialogues_discount * $dialogue_sets);
+    WC()->cart->add_fee('Bulk Discount ($' . $dialogues_off . ' off a full semester of Dialogues) x ' . $dialogue_sets, $dialogues_discount);
+  }
+
+  // Bulk Dialogues and Teacher discounts overrides the 3 or more.
+  // So only apply the 3 or more discount if there are
+  // 3 or more weekend seminars (Adventures in Ideas and Dialogues) BEYOND those registered by teachers and any bulk Dialogues!
+  $weekendseminar_total = $weekendseminar_count - $teacher_count - ($dialogue_sets * $dialogues_this_semester);
+  if ($weekendseminar_total > 2) {
+    $weekendseminar_discount = -($weekendseminar_total * 10);
+    WC()->cart->add_fee('Bulk Discount ($10 off each Adventure in Ideas or Dialogues Seminar) x ' . $weekendseminar_total, $weekendseminar_discount);
   }
 }
 

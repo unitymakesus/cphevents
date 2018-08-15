@@ -379,7 +379,7 @@
             {
                 "param": "user_role",
                 "operator": "==",
-                "value": "customer"
+                "value": "all"
             }
         ]
     ],
@@ -391,5 +391,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1534282145
+    "modified": 1534290930
 }

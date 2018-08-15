@@ -220,6 +220,17 @@ jQuery(document).ready(function($) {
     });
   }
 
+  // Logic to determine if they are eligible for GAA discount opt-in
+  function guest_can_gaa_disc(category, teacher, gaa_member) {
+    if (category == 'adventures-in-ideas-seminar' || category == 'dialogues-seminar') {
+      if (gaa_member == true && teacher == false) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
   // Function that adds new guest to the ticket options
   function setup_guest_data(handler, ticket, full_name, sanitized_name, init, hidden_set) {
     var all_fields = [],
@@ -238,9 +249,9 @@ jQuery(document).ready(function($) {
         if ($(this).is('input:checkbox')) {
           // Handle check boxes
           if ($(this).is(':checked')) {
-            all_fields[field[1]] = true;
+            all_fields[field[1]] = 1;
           } else {
-            all_fields[field[1]] = false;
+            all_fields[field[1]] = 0;
           }
         } else {
           all_fields[field[1]] = $(this).val();
@@ -306,11 +317,12 @@ jQuery(document).ready(function($) {
           }
 
           if (all_fields['gaa'] == false) {
-            all_fields['gaa_discount_bulk_flyleaf'] = '';
-            all_fields['gaa_discount_flyleaf'] = '';
-            all_fields['gaa_discount_seminar'] = '';
             all_fields['gaa_type'] = '';
           }
+
+          all_fields['gaa_discount_bulk_flyleaf'] = '';
+          all_fields['gaa_discount_flyleaf'] = '';
+          all_fields['gaa_discount_seminar'] = '';
 
           // Update master instance of this guest's info
           for (field in all_fields) {
@@ -327,10 +339,17 @@ jQuery(document).ready(function($) {
           });
         }
 
+        // Show relevant GAA opt-in discount options
+        if (guest_can_gaa_disc(ticket_details.attr('data-category'), all_fields['teacher'], all_fields['gaa'])) {
+          hidden_set.siblings('.gaa-opt-in').addClass('visible');
+        } else {
+          hidden_set.siblings('.gaa-opt-in').removeClass('visible');
+        }
+
         // Hide guest info fields
         if (hidden_set.length) {
           hidden_set.removeClass('visible');
-          hidden_set.prev('.form-row').find('.edit-discount, .edit-guest').removeClass('hide');
+          ticket_details.find('.edit-guest').removeClass('hide');
         }
 
       }
@@ -364,12 +383,8 @@ jQuery(document).ready(function($) {
         // Update fields with master guest info
         if ($(this).find('[name$=' + field[1] + ']').is(':checkbox')) {
           if (field[1].indexOf('gaa_discount') == -1) {
-            check = (guest.attr('data-' + field[1]) == 1 ? "true" : "false" );
+            check = (guest.attr('data-' + field[1]) == 1 ? true : false );
             $(this).find('[name$=' + field[1] + ']').prop('checked', check);
-
-            if (check == "true") {
-              $(this).find('[name$=' + field[1] + ']').siblings('.edit-discount').removeClass('hide');
-            }
           }
         } else {
           $(this).find('[name$=' + field[1] + ']').val(guest.attr('data-' + field[1]));
@@ -397,6 +412,8 @@ jQuery(document).ready(function($) {
         sanitized_name = full_name.toLowerCase().replace(/[^a-z0-9 _-]/g, '').replace(/\s+/g, '-'),
         find_guest = $('#guest-data').find('[data-ticket-name="' + sanitized_name + '"]'),
         hidden_set = $(this).closest('.hidden-fields');
+
+    $(ticket).find('.edit-guest').removeClass('hide');
 
     // Check if this is existing guest
     if (find_guest.length > 0) {
@@ -443,10 +460,10 @@ jQuery(document).ready(function($) {
     var ticket = $(this).closest('.ticket-details'),
         discount_val = $(this).closest('.discount-validation');
 
-    if (discount_val.length) {
+    // if (discount_val.length) {
     //   discount_val.find('input[type="checkbox"]').prop('checked', false);
-      $(ticket).find('.edit-discount').removeClass('hide');
-    }
+      // $(ticket).find('.edit-discount').removeClass('hide');
+    // }
 
     $(this).closest('.hidden-fields').removeClass('visible');
     $(ticket).find('.edit-guest').removeClass('hide');
@@ -454,15 +471,29 @@ jQuery(document).ready(function($) {
 
 
   // Set conditional fields to display if checked on init
-  $('.validation-checkbox input[type="checkbox"]').each(function() {
-    if ($(this).is(':checked')) {
-      $(this).siblings('.edit-discount').removeClass('hide');
+  $('.ticket-details').each(function() {
+    $(this).find('.validation-checkbox input[type="checkbox"]').each(function() {
+      if ($(this).is(':checked')) {
+        $(this).closest('.validation-checkbox').siblings('.conditional-fields').addClass('visible');
+      } else {
+        $(this).closest('.validation-checkbox').siblings('.conditional-fields').removeClass('visible');
+      }
+    });
+
+    var category = $(this).attr('data-category'),
+        teacher = $(this).find('input[name$="_teacher"]').val(),
+        gaa_member = $(this).find('input[name$="_gaa"]').val();
+
+    if (guest_can_gaa_disc(category, teacher, gaa_member)) {
+      $(this).find('.gaa-opt-in').addClass('visible');
+    } else {
+      $(this).find('.gaa-opt-in').removeClass('visible');
     }
   });
 
   // Show/hide conditional fields
   $('.validation-checkbox input[type="checkbox"]').on('change', function() {
-    var hidden_fields = $(this).closest('.discount-validation').children('.hidden-fields');
+    var hidden_fields = $(this).closest('.discount-validation').children('.conditional-fields');
 
     if ($(this).is(':checked')) {
       hidden_fields.addClass('visible');
@@ -470,16 +501,16 @@ jQuery(document).ready(function($) {
     } else {
       hidden_fields.removeClass('visible');
       hidden_fields.children('.form-row').removeClass('validate-required');
-      $(this).siblings('.edit-discount').addClass('hide');
+      // $(this).siblings('.edit-discount').addClass('hide');
     }
   });
 
-  $('.woocommerce-cart-form .discount-validation a.edit-discount').on('click', function(e) {
-    e.preventDefault();
-
-    $(this).closest('.discount-validation').children('.hidden-fields').addClass('visible');
-    $(this).addClass('hide');
-  });
+  // $('.woocommerce-cart-form .discount-validation a.edit-discount').on('click', function(e) {
+  //   e.preventDefault();
+  //
+  //   $(this).closest('.discount-validation').children('.hidden-fields').addClass('visible');
+  //   $(this).addClass('hide');
+  // });
 
   // Inline validation
   $('.woocommerce-cart-form').on( 'input validate change', '.input-text, select, input:checkbox', function( e ) {
@@ -559,23 +590,21 @@ jQuery(document).ready(function($) {
       var $gaa_checkbox = $(this).find('input[name$="_gaa"]');
       if ($gaa_checkbox.is(':checked')) {
         meta['gaa'] = $gaa_checkbox.val();
+        meta['gaa_type'] = $(this).find('select[name$="_gaa_type"]').val();
 
         var $gaa_discount_seminar = $(this).find('input[name$="_gaa_discount_seminar"]');
         if ($gaa_discount_seminar.is(':checked')) {
           meta['gaa_discount_seminar'] = $gaa_discount_seminar.val();
-          meta['gaa_type'] = $(this).find('select[name$="_gaa_type"]').val();
         }
 
         var $gaa_discount_flyleaf = $(this).find('input[name$="_gaa_discount_flyleaf"]');
         if ($gaa_discount_flyleaf.is(':checked')) {
           meta['gaa_discount_flyleaf'] = $gaa_discount_flyleaf.val();
-          meta['gaa_type'] = $(this).find('select[name$="_gaa_type"]').val();
         }
 
         var $gaa_discount_bulk_flyleaf = $(this).find('input[name$="_gaa_discount_bulk_flyleaf"]');
         if ($gaa_discount_bulk_flyleaf.is(':checked')) {
           meta['gaa_discount_bulk_flyleaf'] = $gaa_discount_bulk_flyleaf.val();
-          meta['gaa_type'] = $(this).find('select[name$="_gaa_type"]').val();
         }
       }
 

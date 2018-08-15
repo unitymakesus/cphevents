@@ -469,21 +469,23 @@ ol.checkout-progress li:first-child::after {
   font-weight: bold;
 }
 
-.ticket-details .hidden-fields {
+.ticket-details .hidden-fields,
+.ticket-details .conditional-fields {
   display: none;
   margin-bottom: 1em;
 }
 
-.ticket-details .hidden-fields.visible {
+.ticket-details .hidden-fields.visible,
+.ticket-details .conditional-fields.visible {
   display: block;
   border: none;
 }
 
-.discount-validation label .optional {
+.ticket-details label .optional {
   display: none;
 }
 
-.discount-validation .hidden-fields p.info {
+.ticket-details p.info {
   background: #FFD96A;
   padding: 10px;
   border: 1px solid #FFC03F;
