@@ -19,6 +19,7 @@ function cph_calculate_fees( $checkout ) {
   $teacher_count = 0;
   $weekendseminar_count = 0;
   $dialogue_sets = 0;
+  $thursday_sets = 0;
 
   // Loop through each event in cart and get saved ticket data
   foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {

@@ -307,6 +307,96 @@ if ( storefront_is_woocommerce_activated() ) {
 
 
   /*****************************************************************************
+  * GUEST DETAILS - MY ACCOUNT
+  *****************************************************************************/
+
+  /**
+   * Register new endpoint to use inside My Account page.
+   *
+   * @see https://developer.wordpress.org/reference/functions/add_rewrite_endpoint/
+   */
+  function cph_guests() {
+  	add_rewrite_endpoint( 'guests', EP_ROOT | EP_PAGES );
+  }
+  add_action( 'init', 'cph_guests' );
+
+  /**
+   * Add new query var.
+   *
+   * @param array $vars
+   * @return array
+   */
+  function cph_guests_query_vars( $vars ) {
+  	$vars[] = 'guests';
+
+  	return $vars;
+  }
+  add_filter( 'query_vars', 'cph_guests_query_vars', 0 );
+
+  /**
+   * Insert the new endpoint into the My Account menu.
+   *
+   * @param array $items
+   * @return array
+   */
+  function cph_guests_account_menu_items( $items ) {
+  	// Remove the logout menu item.
+  	$logout = $items['customer-logout'];
+  	unset( $items['customer-logout'] );
+
+  	// Insert your custom endpoint.
+  	$items['guests'] = __( 'Guests', 'woocommerce' );
+
+  	// Insert back the logout item.
+  	$items['customer-logout'] = $logout;
+
+  	return $items;
+  }
+  add_filter( 'woocommerce_account_menu_items', 'cph_guests_account_menu_items' );
+
+  /**
+   * Endpoint HTML content.
+   */
+  function cph_guests_endpoint_content() {
+    $userID = get_current_user_id();
+
+    acf_form_head();
+  	echo '<p>The following guests are available during registration. You may add, remove, or edit guests below.</p>';
+
+    acf_form(array(
+      'field_groups' => array('group_5b71bb8636f4f'), // the ID of the field group (group not field name or key, the entire field group)
+      'post_id' => 'user_'.$userID, // To populate the front end form fields with saved data
+      'updated_message' => __("Guests updated", 'acf'),
+      // 'form' => false // Don't load the full acf form, just load the fields into my html form
+    ));
+  }
+  add_action( 'woocommerce_account_guests_endpoint', 'cph_guests_endpoint_content' );
+
+  /*
+   * Change endpoint title.
+   *
+   * @param string $title
+   * @return string
+   */
+  function cph_custom_endpoint_title( $title ) {
+  	global $wp_query;
+
+  	$is_endpoint = isset( $wp_query->query_vars['guests'] );
+
+  	if ( $is_endpoint && ! is_admin() && is_main_query() && in_the_loop() && is_account_page() ) {
+  		$title = __( 'Guests', 'woocommerce' );
+  		remove_filter( 'the_title', 'cph_custom_endpoint_title' );
+  	} elseif ( ! is_user_logged_in() && ! is_admin() && is_main_query() && in_the_loop() && is_account_page() ) {
+      $title = __( 'Event Registration System', 'woocommerce' );
+      remove_filter( 'the_title', 'cph_custom_endpoint_title' );
+    }
+
+  	return $title;
+  }
+
+  add_filter( 'the_title', 'cph_custom_endpoint_title' );
+
+  /*****************************************************************************
   * REPORTING
   *****************************************************************************/
 
