@@ -610,6 +610,18 @@ button.secondary:hover, button.secondary:focus, button.secondary:active {
   border-top: #EEEEEE solid 1px;
 }
 
+.woocommerce-account .acf-repeater .acf-row > td {
+  border-bottom: 20px solid #DFDFDF;
+}
+
+.woocommerce-account .acf-repeater .acf-row-handle.remove .acf-icon.-minus {
+  display: block !important;
+}
+
+.woocommerce-account .acf-repeater .acf-row-handle.remove .acf-icon.-plus {
+  display: none !important;
+}
+
 .woocommerce-account .acf-fields > .acf-field.acf-field-repeater .acf-field label,
 .woocommerce-account .acf-fields > .acf-field.acf-field-repeater .acf-field-true-false .acf-input {
   padding-top: .6180469716em;
