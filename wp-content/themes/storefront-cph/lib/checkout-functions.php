@@ -299,7 +299,7 @@ function cph_custom_checkout_field_update_order_meta( $order_id ) {
 
           foreach ($guests as $row => $guest) {
             if ($field_data['first_name'] == $guest['first_name'] && $field_data['last_name'] == $guest['last_name']) {
-              update_row('guests', $field_data, $row, "user_{$user_id}");
+              update_row('guests', $row, $field_data, "user_{$user_id}");
               $updated = true;
             }
           }

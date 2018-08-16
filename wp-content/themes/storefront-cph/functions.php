@@ -4,7 +4,8 @@
  */
 add_action('init', function() {
   // wp_enqueue_script('validate', get_stylesheet_directory_uri() . '/jquery.validate.min.js', array('jquery'), '1.17.0', true);
-  wp_enqueue_script('cph-scripts', get_stylesheet_directory_uri() . '/scripts.js', array('jquery'), null, true);
+  wp_enqueue_script('sticky', get_stylesheet_directory_uri() . '/jquery.sticky.js', array('jquery'), null, true);
+  wp_enqueue_script('cph-scripts', get_stylesheet_directory_uri() . '/scripts.js', array('jquery', 'sticky'), null, true);
   wp_localize_script( 'cph-scripts', 'cphajax', array(
 	   'ajaxurl' => admin_url( 'admin-ajax.php' ),
   ));
@@ -47,7 +48,11 @@ if ( storefront_is_woocommerce_activated() ) {
   add_action('init', function() {
     // Get rid of search in header
     remove_action( 'storefront_header', 'storefront_product_search', 40 );
+    // Modify cart widget
     remove_action( 'storefront_header', 'storefront_header_cart',    60 );
+    add_action( 'storefront_header', 'storefront_header_cart',    45 );
+    remove_action( 'woocommerce_widget_shopping_cart_buttons', 'woocommerce_widget_shopping_cart_button_view_cart', 10 );
+    remove_action( 'woocommerce_widget_shopping_cart_buttons', 'woocommerce_widget_shopping_cart_proceed_to_checkout', 20 );
     // Remove breadcrumbs
     add_filter( 'woocommerce_get_breadcrumb', '__return_false' );
     // Remove duplicate navigation for desktop and mobile
@@ -77,6 +82,16 @@ if ( storefront_is_woocommerce_activated() ) {
     remove_action( 'woocommerce_cart_collaterals',       'woocommerce_cart_totals',                  10 );
   });
 
+  add_action( 'woocommerce_widget_shopping_cart_buttons', function() {
+    echo '<a href="' . esc_url( wc_get_cart_url() ) . '" class="button wc-forward">' . esc_html__( 'Checkout', 'woocommerce' ) . '</a>';
+  }, 10 );
+
+  add_action( 'storefront_header', function() {
+    if (is_user_logged_in()) {
+      echo '<a href="'. get_permalink( get_option('woocommerce_myaccount_page_id') ) . '" class="account-link">My Account</a>';
+    }
+  }, 30 );
+
   add_action( 'storefront_header', function() {
     if (is_user_logged_in()) :
   		?>
@@ -102,6 +117,16 @@ if ( storefront_is_woocommerce_activated() ) {
   		</div><!-- .site-info -->
 		<?php
   }, 20);
+
+  // Remove cart item permalink and thumbnail in mini-cart widget
+  add_filter( 'woocommerce_cart_item_permalink', function($permalink) {
+    $permalink = '';
+    return $permalink;
+  } );
+  add_filter( 'woocommerce_cart_item_thumbnail', function($thumbnail) {
+    $thumbnail = '';
+    return $thumbnail;
+  } );
 
 
   /*****************************************************************************
@@ -307,7 +332,7 @@ if ( storefront_is_woocommerce_activated() ) {
 
 
   /*****************************************************************************
-  * GUEST DETAILS - MY ACCOUNT
+  * MY ACCOUNT
   *****************************************************************************/
 
   /**
@@ -367,10 +392,19 @@ if ( storefront_is_woocommerce_activated() ) {
       'field_groups' => array('group_5b71bb8636f4f'), // the ID of the field group (group not field name or key, the entire field group)
       'post_id' => 'user_'.$userID, // To populate the front end form fields with saved data
       'updated_message' => __("Guests updated", 'acf'),
+      'return' => '',
       // 'form' => false // Don't load the full acf form, just load the fields into my html form
     ));
   }
   add_action( 'woocommerce_account_guests_endpoint', 'cph_guests_endpoint_content' );
+
+  /**
+   * Save ACF fields in Edit Account
+   */
+  function cph_account_save_acf_fields($user_id) {
+    do_action('acf/save_post', "user_{$user_id}");
+  }
+  add_action( 'woocommerce_save_account_details', 'cph_account_save_acf_fields' );
 
   /*
    * Change endpoint title.

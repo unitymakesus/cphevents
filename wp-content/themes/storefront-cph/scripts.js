@@ -7,6 +7,8 @@ jQuery(document).ready(function($) {
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
   };
 
+  $(".storefront-primary-navigation").sticky({topSpacing:0});
+
   /*****************************************************************************
   * EVENT LIST PAGE
   *****************************************************************************/
@@ -388,6 +390,17 @@ jQuery(document).ready(function($) {
           }
         } else {
           $(this).find('[name$=' + field[1] + ']').val(guest.attr('data-' + field[1]));
+        }
+
+        // Show conditional fields
+        if ($(this).hasClass('validation-checkbox')) {
+          $(this).find('input[type="checkbox"]').each(function() {
+            if ($(this).is(':checked')) {
+              $(this).closest('.validation-checkbox').siblings('.conditional-fields').addClass('visible');
+            } else {
+              $(this).closest('.validation-checkbox').siblings('.conditional-fields').removeClass('visible');
+            }
+          });
         }
 
       }

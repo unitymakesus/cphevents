@@ -4,9 +4,9 @@
     "fields": [
         {
             "key": "field_5b71c6c0000e7",
-            "label": "Special Needs",
+            "label": "Please indicate any accommodations and\/or services you require.",
             "name": "special_needs",
-            "type": "text",
+            "type": "textarea",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -17,13 +17,13 @@
             },
             "default_value": "",
             "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "maxlength": "",
+            "rows": "",
+            "new_lines": ""
         },
         {
             "key": "field_5b71c6c8000e8",
-            "label": "Teacher",
+            "label": "Teacher?",
             "name": "teacher",
             "type": "true_false",
             "instructions": "",
@@ -34,7 +34,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "",
+            "message": "I am a teacher\/educator.",
             "default_value": 0,
             "ui": 0,
             "ui_on_text": "",
@@ -71,8 +71,8 @@
             "allow_null": 1,
             "multiple": 0,
             "ui": 0,
-            "ajax": 0,
             "return_format": "value",
+            "ajax": 0,
             "placeholder": ""
         },
         {
@@ -131,7 +131,7 @@
         },
         {
             "key": "field_5b71c76c000ec",
-            "label": "GAA Member",
+            "label": "GAA Member?",
             "name": "gaa",
             "type": "true_false",
             "instructions": "",
@@ -142,7 +142,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "",
+            "message": "I am a member of the UNC General Alumni Association.",
             "default_value": 0,
             "ui": 0,
             "ui_on_text": "",
@@ -194,10 +194,10 @@
     "menu_order": 0,
     "position": "normal",
     "style": "default",
-    "label_placement": "top",
+    "label_placement": "left",
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1534290949
+    "modified": 1534383160
 }

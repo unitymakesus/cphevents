@@ -73,7 +73,7 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "placeholder": "",
+                    "placeholder": "House number and street name",
                     "prepend": "",
                     "append": "",
                     "maxlength": ""
@@ -92,14 +92,14 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "placeholder": "",
+                    "placeholder": "Apartment, suite, unity etc. (optional)",
                     "prepend": "",
                     "append": "",
                     "maxlength": ""
                 },
                 {
                     "key": "field_5b71bbb253b1e",
-                    "label": "City",
+                    "label": "Town \/ City",
                     "name": "city",
                     "type": "text",
                     "instructions": "",
@@ -133,11 +133,11 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
-                    "maxlength": ""
+                    "maxlength": 2
                 },
                 {
                     "key": "field_5b71bbc053b20",
-                    "label": "Postcode",
+                    "label": "ZIP",
                     "name": "postcode",
                     "type": "text",
                     "instructions": "",
@@ -175,7 +175,7 @@
                 },
                 {
                     "key": "field_5b71bbca53b22",
-                    "label": "Email",
+                    "label": "Email address",
                     "name": "email",
                     "type": "text",
                     "instructions": "",
@@ -194,9 +194,9 @@
                 },
                 {
                     "key": "field_5b71bbce53b23",
-                    "label": "Special Needs",
+                    "label": "Please indicate any accommodations and\/or services this guest requires.",
                     "name": "special_needs",
-                    "type": "text",
+                    "type": "textarea",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -207,13 +207,13 @@
                     },
                     "default_value": "",
                     "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
+                    "maxlength": "",
+                    "rows": "",
+                    "new_lines": ""
                 },
                 {
                     "key": "field_5b71bbd353b24",
-                    "label": "Teacher",
+                    "label": "Teacher?",
                     "name": "teacher",
                     "type": "true_false",
                     "instructions": "",
@@ -224,7 +224,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "message": "",
+                    "message": "This guest is a teacher\/educator.",
                     "default_value": 0,
                     "ui": 0,
                     "ui_on_text": "",
@@ -321,7 +321,7 @@
                 },
                 {
                     "key": "field_5b71bc083835a",
-                    "label": "GAA Member",
+                    "label": "GAA Member?",
                     "name": "gaa",
                     "type": "true_false",
                     "instructions": "",
@@ -332,7 +332,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "message": "",
+                    "message": "This guest is a member of the UNC General Alumni Association.",
                     "default_value": 0,
                     "ui": 0,
                     "ui_on_text": "",
@@ -340,7 +340,7 @@
                 },
                 {
                     "key": "field_5b71bc153835b",
-                    "label": "GAA Type",
+                    "label": "GAA Membership Type",
                     "name": "gaa_type",
                     "type": "select",
                     "instructions": "",
@@ -367,8 +367,8 @@
                     "allow_null": 1,
                     "multiple": 0,
                     "ui": 0,
-                    "ajax": 0,
                     "return_format": "value",
+                    "ajax": 0,
                     "placeholder": ""
                 }
             ]
@@ -391,5 +391,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1534359839
+    "modified": 1534383190
 }
