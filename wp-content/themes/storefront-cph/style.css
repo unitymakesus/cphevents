@@ -616,6 +616,14 @@ button.secondary:hover, button.secondary:focus, button.secondary:active {
 
 .woocommerce-account .acf-repeater .acf-row-handle.remove .acf-icon.-minus {
   display: block !important;
+  top: -10px !important;
+  left: 8px;
+  background: #F55E4F;
+  color: #FFF;
+  border-color: #FFF;
+  margin: 0;
+  height: 20px;
+  width: 20px;
 }
 
 .woocommerce-account .acf-repeater .acf-row-handle.remove .acf-icon.-plus {

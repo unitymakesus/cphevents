@@ -50,7 +50,6 @@ if ( storefront_is_woocommerce_activated() ) {
     remove_action( 'storefront_header', 'storefront_product_search', 40 );
     // Modify cart widget
     remove_action( 'storefront_header', 'storefront_header_cart',    60 );
-    add_action( 'storefront_header', 'storefront_header_cart',    45 );
     remove_action( 'woocommerce_widget_shopping_cart_buttons', 'woocommerce_widget_shopping_cart_button_view_cart', 10 );
     remove_action( 'woocommerce_widget_shopping_cart_buttons', 'woocommerce_widget_shopping_cart_proceed_to_checkout', 20 );
     // Remove breadcrumbs
@@ -94,6 +93,7 @@ if ( storefront_is_woocommerce_activated() ) {
 
   add_action( 'storefront_header', function() {
     if (is_user_logged_in()) :
+      storefront_header_cart();
   		?>
   		<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_html_e( 'Primary Navigation', 'storefront' ); ?>">
   		<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false"><span><?php echo esc_attr( apply_filters( 'storefront_menu_toggle_text', __( 'Menu', 'storefront' ) ) ); ?></span></button>
