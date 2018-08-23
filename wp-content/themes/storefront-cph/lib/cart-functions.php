@@ -296,22 +296,16 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
         </div>
 
         <?php
-        // Show GAA discount opt-in if this is an Adventures in Ideas Seminar, Dialogues Seminar, or Flyleaf Lecture (humanities-in-action):
+        // Show GAA discount opt-in if this is an Adventures in Ideas Seminar or Dialogues Seminar:
         $matches = false;
-        $bulk = false;
 
         foreach ($terms as $term) {
           $cats = [
             'adventures-in-ideas-seminar',
             'dialogues-seminar',
-            'humanities-in-action'
           ];
           if (in_array($term->slug, $cats)) {
             $matches[0] = $term->slug;
-          }
-
-          if ($term->slug == 'season-pass') {
-            $bulk = true;
           }
         }
 
@@ -319,45 +313,17 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
           ?>
           <div class="gaa-opt-in conditional-fields">
             <?php
-              if ($matches[0] == 'humanities-in-action') {
-                if ($bulk == true) {
-                  echo '<p class="info">Eligible GAA Members may opt-in to receive $35 off their Flyleaf Season Pass.</p>';
+              echo '<p class="info">Eligible GAA Members may opt-in to receive $15 off their ticket for one Adventure in Ideas Seminar <span style="text-decoration: underline;">or</span> one Dialogues Seminar per semester.</p>';
 
-                  woocommerce_form_field( $field_prefix . '_gaa_discount_bulk_flyleaf',
-                    array(
-                      'type'          => 'checkbox',
-                      'class'         => array('form-row-wide'),
-                      'label'         => __('Check this box to claim the GAA Discount.'),
-                      'required'      => false,
-                    ),
-                    ( isset($field_data['gaa_discount_bulk_flyleaf']) ? $field_data['gaa_discount_bulk_flyleaf'] : '' )
-                  );
-                } else {
-                  echo '<p class="info">Eligible GAA Members may opt-in to receive $5 off their ticket to a Humanities in Action series event.</p>';
-
-                  woocommerce_form_field( $field_prefix . '_gaa_discount_flyleaf',
-                    array(
-                      'type'          => 'checkbox',
-                      'class'         => array('form-row-wide'),
-                      'label'         => __('Check this box to claim the GAA Discount.'),
-                      'required'      => false,
-                    ),
-                    ( isset($field_data['gaa_discount_flyleaf']) ? $field_data['gaa_discount_flyleaf'] : '' )
-                  );
-                }
-              } else {
-                echo '<p class="info">Eligible GAA Members may opt-in to receive $15 off their ticket for one Adventure in Ideas Seminar or Dialogues Seminar per semester.</p>';
-
-                woocommerce_form_field( $field_prefix . '_gaa_discount_seminar',
-                  array(
-                    'type'          => 'checkbox',
-                    'class'         => array('form-row-wide'),
-                    'label'         => __('Check this box to claim the one-time GAA Discount.'),
-                    'required'      => false,
-                  ),
-                  ( isset($field_data['gaa_discount_seminar']) ? $field_data['gaa_discount_seminar'] : '' )
-                );
-              }
+              woocommerce_form_field( $field_prefix . '_gaa_discount_seminar',
+                array(
+                  'type'          => 'checkbox',
+                  'class'         => array('form-row-wide'),
+                  'label'         => __('Check this box to claim the one-time GAA Discount.'),
+                  'required'      => false,
+                ),
+                ( isset($field_data['gaa_discount_seminar']) ? $field_data['gaa_discount_seminar'] : '' )
+              );
             ?>
           </div>
         <?php } ?>

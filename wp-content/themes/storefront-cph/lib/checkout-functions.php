@@ -35,20 +35,42 @@ function cph_calculate_fees( $checkout ) {
         $terms = wp_get_post_terms($_product->get_ID(), 'product_cat');
       }
 
+      // Determine if this is a category that qualifies for discounts
+      $matches = false;
+      $bulk = false;
+
+      foreach ($terms as $term) {
+        $cats = [
+          'adventures-in-ideas-seminar',
+          'dialogues-seminar',
+          'humanities-in-action'
+        ];
+        if (in_array($term->slug, $cats)) {
+          $matches = $term->slug;
+        }
+
+        if ($term->slug == 'season-pass') {
+          $bulk = true;
+        }
+      }
+
       // Loop through each ticket and check for teachers and GAA members, increase count if found
       if (!empty($tickets)) {
         foreach ($tickets as $ticket) {
           $full_name = $ticket['first_name'] . '-' . $ticket['last_name'];
 
-          // Only allow one GAA discount per person
+          // Determine auto discounts for GAA members at Flyleaf events
+          if ( !empty( $ticket['gaa'] ) && !empty( $ticket['gaa_type'] ) && $matches == 'humanities-in-action') {
+            if ($bulk == true) {
+              $gaa_flyleaf_bulk[$full_name] = 1;
+            } else {
+              $gaa_flyleaf_guests[$full_name] = 1;
+            }
+          }
+
+          // Only allow one GAA discount for seminars per person
           if (isset($ticket['gaa_discount_seminar']) && $ticket['gaa_discount_seminar'] == 1) {
             $gaa_seminar_guests[$full_name] = 1;
-          }
-          if (isset($ticket['gaa_discount_bulk_flyleaf']) && $ticket['gaa_discount_bulk_flyleaf'] == 1) {
-            $gaa_flyleaf_bulk[$full_name] = 1;
-          }
-          if (isset($ticket['gaa_discount_flyleaf']) && $ticket['gaa_discount_flyleaf'] == 1) {
-            $gaa_flyleaf_guests[$full_name] = 1;
           }
 
           if (isset($terms[0]->slug) && $terms[0]->slug == 'dialogues-seminar') {

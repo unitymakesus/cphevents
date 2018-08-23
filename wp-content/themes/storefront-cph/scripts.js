@@ -396,9 +396,9 @@ jQuery(document).ready(function($) {
         if ($(this).hasClass('validation-checkbox')) {
           $(this).find('input[type="checkbox"]').each(function() {
             if ($(this).is(':checked')) {
-              $(this).closest('.validation-checkbox').siblings('.conditional-fields').addClass('visible');
+              $(this).closest('.ticket-details').find('.conditional-fields').addClass('visible');
             } else {
-              $(this).closest('.validation-checkbox').siblings('.conditional-fields').removeClass('visible');
+              $(this).closest('.ticket-details').find('.conditional-fields').removeClass('visible');
             }
           });
         }
@@ -482,7 +482,6 @@ jQuery(document).ready(function($) {
     $(ticket).find('.edit-guest').removeClass('hide');
   });
 
-
   // Set conditional fields to display if checked on init
   $('.ticket-details').each(function() {
     $(this).find('.validation-checkbox input[type="checkbox"]').each(function() {
@@ -517,13 +516,6 @@ jQuery(document).ready(function($) {
       // $(this).siblings('.edit-discount').addClass('hide');
     }
   });
-
-  // $('.woocommerce-cart-form .discount-validation a.edit-discount').on('click', function(e) {
-  //   e.preventDefault();
-  //
-  //   $(this).closest('.discount-validation').children('.hidden-fields').addClass('visible');
-  //   $(this).addClass('hide');
-  // });
 
   // Inline validation
   $('.woocommerce-cart-form').on( 'input validate change', '.input-text, select, input:checkbox', function( e ) {
