@@ -64,16 +64,18 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
             <select id="<?php echo $field_prefix; ?>_ticket_name" class="copy-data">
               <option>--Select One--</option>
               <?php
-                // Session Prefill For Customer
-                if ($customer_name == $full_name) {
-                  $selected = 'selected="selected"';
-                } else {
-                  $selected = '';
+                if (!empty($customer['first_name'])) {
+                    // Session Prefill For Customer
+                    if ($customer_name == $full_name) {
+                      $selected = 'selected="selected"';
+                    } else {
+                      $selected = '';
+                    }
+                  ?>
+                  <option <?php echo $selected; ?> value="<?php echo sanitize_title_with_dashes($customer_name); ?>"><?php echo $customer_name; ?></option>
+                  <?php
                 }
-              ?>
-              <option <?php echo $selected; ?> value="<?php echo sanitize_title_with_dashes($customer_name); ?>"><?php echo $customer_name; ?></option>
 
-              <?php
                 if (have_rows('guests', "user_{$user_id}")) {
         					while (have_rows('guests', "user_{$user_id}")) {
         						the_row();
