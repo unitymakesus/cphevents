@@ -317,16 +317,18 @@ function cph_custom_checkout_field_update_order_meta( $order_id ) {
         } else {
           // If this is a guest ticket...
           $guests = get_field('guests', "user_{$user_id}");
-          $updated = false;
+          $updated = 0;
 
-          foreach ($guests as $row => $guest) {
-            if ($field_data['first_name'] == $guest['first_name'] && $field_data['last_name'] == $guest['last_name']) {
-              update_row('guests', $row, $field_data, "user_{$user_id}");
-              $updated = true;
+          if (!empty($guests)) {
+            foreach ($guests as $row => $guest) {
+              if ($field_data['first_name'] == $guest['first_name'] && $field_data['last_name'] == $guest['last_name'] && $field_data['email'] == $guest['email']) {
+                update_row('guests', $row + 1, $field_data, "user_{$user_id}");
+                $updated = 1;
+              }
             }
           }
 
-          if ($updated == false) {
+          if ($updated == 0) {
             add_row('guests', $field_data, "user_{$user_id}");
           }
         }

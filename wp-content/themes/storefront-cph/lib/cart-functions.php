@@ -29,6 +29,7 @@ function cph_custom_product_fields( $cart_item, $cart_item_key ) {
     }
 
     $field_prefix = $_product->get_id() . '_ticket_' . $i;
+    $full_name = '';
 
     // If session data exists for this ticket...
     if (isset($session_data[$field_prefix])) {
