@@ -7,7 +7,6 @@
 function cph_calculate_fees( $checkout ) {
 
   $gaa_seminar_guests = array();
-  $gaa_flyleaf_guests = array();
   $gaa_flyleaf_bulk = array();
 
   $teacher_tickets = array();
@@ -16,6 +15,7 @@ function cph_calculate_fees( $checkout ) {
   $flyleaf = array();
   $names = array();
 
+  $gaa_flyleaf_count = 0;
   $teacher_count = 0;
   $weekendseminar_count = 0;
   $dialogue_sets = 0;
@@ -59,14 +59,23 @@ function cph_calculate_fees( $checkout ) {
         foreach ($tickets as $ticket) {
           $full_name = $ticket['first_name'] . '-' . $ticket['last_name'];
 
-          // Determine auto discounts for GAA members at Flyleaf events
+          // Determine auto discounts for GAA members at Humanities in Action events
           if ( !empty( $ticket['gaa'] ) && !empty( $ticket['gaa_type'] ) && $matches == 'humanities-in-action') {
             if ($bulk == true) {
               $gaa_flyleaf_bulk[$full_name] = 1;
             } else {
-              $gaa_flyleaf_guests[$full_name] = 1;
+              $gaa_flyleaf_count ++;
             }
           }
+
+          // // Determine auto discounts for GAA members at Cinema events
+          // if ( !empty( $ticket['gaa'] ) && !empty( $ticket['gaa_type'] ) && $matches == 'cinema-school') {
+          //   if ($bulk == true) {
+          //     $gaa_flyleaf_bulk[$full_name] = 1;
+          //   } else {
+          //     $gaa_flyleaf_guests[$full_name] = 1;
+          //   }
+          // }
 
           // Only allow one GAA discount for seminars per person
           if (isset($ticket['gaa_discount_seminar']) && $ticket['gaa_discount_seminar'] == 1) {
@@ -146,10 +155,10 @@ function cph_calculate_fees( $checkout ) {
   }
 
   // Apply GAA Humanities in Action discounts to cart
-  if ($gaa_flyfleaf_count = count($gaa_flyleaf_guests) > 0) {
-    $gaa_flyleaf_discount = -($gaa_flyfleaf_count * 5);
+  if ($gaa_flyleaf_count > 0) {
+    $gaa_flyleaf_discount = -($gaa_flyleaf_count * 5);
 
-    WC()->cart->add_fee('GAA Discount ($5 off Humanities in Action series events) x ' . $gaa_flyfleaf_count, $gaa_flyleaf_discount);
+    WC()->cart->add_fee('GAA Discount ($5 off Humanities in Action series events) x ' . $gaa_flyleaf_count, $gaa_flyleaf_discount);
   }
 
   // Apply GAA Humanities in Action season pass discounts to cart
@@ -172,22 +181,23 @@ function cph_calculate_fees( $checkout ) {
 
   // Discount for a semester worth of Dialogues
   // (there were 2 in Fall 2018)
-  $dialogues_this_semester = 2;
-  foreach ($dialogues as $dia_guest) {
-    if ($dia_guest >= $dialogues_this_semester) {
-      $dialogue_sets ++;
-    }
-  }
-  if ($dialogue_sets > 0) {
-    $dialogues_off = $dialogues_this_semester * 15;
-    $dialogues_discount = -($dialogues_discount * $dialogue_sets);
-    WC()->cart->add_fee('Bulk Discount ($' . $dialogues_off . ' off a full semester of Dialogues) x ' . $dialogue_sets, $dialogues_discount);
-  }
+  // $dialogues_this_semester = 2;
+  // foreach ($dialogues as $dia_guest) {
+  //   if ($dia_guest >= $dialogues_this_semester) {
+  //     $dialogue_sets ++;
+  //   }
+  // }
+  // if ($dialogue_sets > 0) {
+  //   $dialogues_off = $dialogues_this_semester * 15;
+  //   $dialogues_discount = -($dialogues_discount * $dialogue_sets);
+  //   WC()->cart->add_fee('Bulk Discount ($' . $dialogues_off . ' off a full semester of Dialogues) x ' . $dialogue_sets, $dialogues_discount);
+  // }
 
   // Bulk Dialogues and Teacher discounts overrides the 3 or more.
   // So only apply the 3 or more discount if there are
   // 3 or more weekend seminars (Adventures in Ideas and Dialogues) BEYOND those registered by teachers and any bulk Dialogues!
-  $weekendseminar_total = $weekendseminar_count - $teacher_count - ($dialogue_sets * $dialogues_this_semester);
+  // $weekendseminar_total = $weekendseminar_count - $teacher_count - ($dialogue_sets * $dialogues_this_semester);
+  $weekendseminar_total = $weekendseminar_count - $teacher_count;
   if ($weekendseminar_total > 2) {
     $weekendseminar_discount = -($weekendseminar_total * 10);
     WC()->cart->add_fee('Bulk Discount ($10 off each Adventure in Ideas or Dialogues Seminar) x ' . $weekendseminar_total, $weekendseminar_discount);
