@@ -92,8 +92,9 @@ class WC_Webhook extends WC_Legacy_Webhook {
 	 * Process the webhook for delivery by verifying that it should be delivered.
 	 * and scheduling the delivery (in the background by default, or immediately).
 	 *
-	 * @since 2.2.0
-	 * @param mixed $arg The first argument provided from the associated hooks.
+	 * @since  2.2.0
+	 * @param  mixed $arg The first argument provided from the associated hooks.
+	 * @return mixed $arg Returns the argument in case the webhook was hooked into a filter.
 	 */
 	public function process( $arg ) {
 
@@ -109,6 +110,8 @@ class WC_Webhook extends WC_Legacy_Webhook {
 		 * @hooked wc_webhook_process_delivery - 10
 		 */
 		do_action( 'woocommerce_webhook_process_delivery', $this, $arg );
+
+		return $arg;
 	}
 
 	/**
@@ -164,6 +167,10 @@ class WC_Webhook extends WC_Legacy_Webhook {
 			} elseif ( 'updated' === $this->get_event() && $resource_created ) {
 				$should_deliver = false;
 			}
+		}
+
+		if ( ! wc_is_webhook_valid_topic( $this->get_topic() ) ) {
+			$should_deliver = false;
 		}
 
 		/*
@@ -280,7 +287,8 @@ class WC_Webhook extends WC_Legacy_Webhook {
 	 * @return array
 	 */
 	private function get_wp_api_payload( $resource, $resource_id, $event ) {
-		$version_suffix = 'wp_api_v1' === $this->get_api_version() ? '_V1' : '';
+		$rest_api_versions = wc_get_webhook_rest_api_versions();
+		$version_suffix    = end( $rest_api_versions ) !== $this->get_api_version() ? strtoupper( str_replace( 'wp_api', '', $this->get_api_version() ) ) : '';
 
 		switch ( $resource ) {
 			case 'coupon':
@@ -340,7 +348,7 @@ class WC_Webhook extends WC_Legacy_Webhook {
 				'id' => $resource_id,
 			);
 		} else {
-			if ( in_array( $this->get_api_version(), array( 'wp_api_v1', 'wp_api_v2' ), true ) ) {
+			if ( in_array( $this->get_api_version(), wc_get_webhook_rest_api_versions(), true ) ) {
 				$payload = $this->get_wp_api_payload( $resource, $resource_id, $event );
 			} else {
 				$payload = $this->get_legacy_api_payload( $resource, $resource_id, $event );
@@ -365,7 +373,7 @@ class WC_Webhook extends WC_Legacy_Webhook {
 	public function generate_signature( $payload ) {
 		$hash_algo = apply_filters( 'woocommerce_webhook_hash_algorithm', 'sha256', $payload, $this->get_id() );
 
-		return base64_encode( hash_hmac( $hash_algo, $payload, $this->get_secret(), true ) );
+		return base64_encode( hash_hmac( $hash_algo, $payload, wp_specialchars_decode( $this->get_secret(), ENT_QUOTES ), true ) );
 	}
 
 	/**
@@ -442,7 +450,8 @@ class WC_Webhook extends WC_Legacy_Webhook {
 		);
 
 		// Track failures.
-		if ( intval( $response_code ) >= 200 && intval( $response_code ) < 300 ) {
+		// Check for a success, which is a 2xx, 301 or 302 Response Code.
+		if ( intval( $response_code ) >= 200 && intval( $response_code ) < 303 ) {
 			$this->set_failure_count( 0 );
 			$this->save();
 		} else {
@@ -859,6 +868,7 @@ class WC_Webhook extends WC_Legacy_Webhook {
 			'order.updated'    => array(
 				'woocommerce_process_shop_order_meta',
 				'woocommerce_update_order',
+				'woocommerce_order_refunded',
 			),
 			'order.deleted'    => array(
 				'wp_trash_post',

@@ -1,159 +1,134 @@
 <?php
 
-if ( ! defined( 'WPINC' ) ) exit;
+defined( 'ABSPATH' ) || exit;
 
-class Woo_Login_Redirect_Settings {
-	/**
-	 * Constructor method
-	 */
-	public function __construct() {
-		$this->init_hooks();
-	}
-
-	public function init_hooks() {
-        add_filter( 'woocommerce_settings_tabs_array', array( $this, 'register_tab' ), 99 );
-        add_action( 'woocommerce_settings_login_redirect', array( $this, 'woo_login_redirect_settings' ) );
-        add_action( 'woocommerce_update_options_login_redirect', array( $this, 'save_settings' ) );
-	}
-
+class Woo_Login_Redirect_Settings_Vue {
     /**
-     * Regeister the settings feilds
-     *
-     * @since 1.0
-     *
-     * @return void;
+     * Constructor method
      */
-    public function woo_login_redirect_settings() {
-        woocommerce_admin_fields( $this->get_settings() );
+    public function __construct() {
+        $this->init_hooks();
     }
 
-    /**
-     * Get all the settings fields
-     *
-     * @return array
-     */
-    public function get_settings() {
-        $settings = array(
-            'section_title' => array(
-                'name' => __( 'Login Redirect Settings', 'wlr' ),
-                'type' => 'section',
-                'desc' => 'des',
-                'id'   => 'woo_login_reg_redirect_section'
-            ),           
-            array(
-                'title'     => __( 'Woo Login Redirect Settings', 'wlr' ),
-                'id'        => 'woo_login_redirect_settings',
-                'type'      => 'title',
-            ),
-            array(
-                'title'     => __( 'Enable', 'wlr' ),
-                'desc'      => __( 'Enable Login Redirect.', 'wlr' ),
-                'id'        => 'woo_login_redirect_enable',
-                'type'      => 'checkbox',
-                'options'   => array( 'yes' ),
-                'desc_tip'  => true,
-                'default'   => 'yes'
-            ),             
-            array(
-                'type'   => 'sectionend',
-                'id' => 'woo_login_reg_redirect_section'
-            ),
-
-            'section_title' => array(
-                'name' => __( 'Login Redirect Customer Section', 'wlr' ),
-                'type' => 'section',
-                'desc' => 'des',
-                'id'   => 'woo_login_redirect_section'
-            ),           
-            array(
-                'title'		=> __( 'Woo Login Redirect', 'wlr' ),
-                'id'        => 'woo_login_redirect_customer_settings',
-                'type'      => 'title',
-            ),
-            array(
-                'title'    => __( 'Customer Login Redirect', 'woocommerce' ),
-                'desc'     => __( 'Redirect customer after login', 'woocommerce' ),
-                'id'       => 'customer_login_redirect_page_id',
-                'type'     => 'single_select_page',
-                'default'  => '',
-                'class'    => 'wc-enhanced-select',
-                'css'      => 'min-width:300px;',
-                'desc_tip' => true
-            ),
-            array(
-                'title'    => __( 'Shop Manager Login Redirect', 'woocommerce' ),
-                'desc'     => __( 'Redirect shop manager after registration', 'woocommerce' ),
-                'id'       => 'shop_manager_login_redirect_page_id',
-                'type'     => 'single_select_page',
-                'default'  => '',
-                'class'    => 'wc-enhanced-select',
-                'css'      => 'min-width:300px;',
-                'desc_tip' => true
-            ),
-            array(
-                'type'   => 'sectionend',
-                'id' => 'woo_login_redirect_section'
-            ),
-
-            array(
-                'title'     => __( 'Woo Registration Redirect', 'wlr' ),
-                'id'        => 'woo_reg_redirect_settings',
-                'type'      => 'title',
-            ),
-            'section_title' => array(
-                'name' => __( 'Registration Redirect Section', 'wlr' ),
-                'type' => 'section',
-                'desc' => 'des',
-                'id'   => 'woo_reg_redirect_section'
-            ),
-            array(
-                'title'    => __( 'Registration Redirect', 'woocommerce' ),
-                'desc'     => __( 'Redirect user after registration', 'woocommerce' ),
-                'id'       => 'reg_redirect_page_id',
-                'type'     => 'single_select_page',
-                'default'  => '',
-                'class'    => 'wc-enhanced-select',
-                'css'      => 'min-width:300px;',
-                'desc_tip' => true
-            ),
-            array(
-                'type'   => 'sectionend',
-                'id' => 'woo_reg_redirect_section'
-            ),
-        );
-
-        return apply_filters( 'woo_login_redirect_settings', $settings );
+    public function init_hooks() {
+        add_action( 'wp_ajax_save_role_based',                  array( $this, 'save_role_based' ) );
+        add_action( 'wp_ajax_get_role_based_redirects',         array( $this, 'get_role_based_redirects' ) );
+        add_action( 'wp_ajax_get_all_user_roles',               array( $this, 'get_all_user_roles' ) );
+        add_action( 'wp_ajax_get_all_pages',                    array( $this, 'get_all_pages' ) );
+        add_action( 'wp_ajax_save_registration',                array( $this, 'save_registration' ) );
+        add_action( 'wp_ajax_get_registration_based_redirect',  array( $this, 'get_registration_based_redirect' ) );
+        add_action( 'wp_ajax_is_pro_installed',                 array( $this, 'is_pro_installed' ) );
     }
 
-    /**
-     * Save the settings
-     *
-     * @return void;
-     */
-    public function save_settings() {
-        woocommerce_update_options( $this->get_settings() );
+    public function is_pro_installed() {
+        $is_installed = WLR_Helper::is_pro_installed();
+
+        if ( ! $is_installed ) {
+            return wp_send_json_success( 'Pro is not installed', 200 );
+        }
+
+        wp_send_json_success( 'pro_is_installed', 200 );
+        exit;
     }
 
-    /**
-     * Register the login redirect tab
-     *
-     * @param $tabs
-     *
-     * @return mixed
-     */
-    public function register_tab( $tabs ) {
-        $tabs['login_redirect'] = __( 'Login Redirect', 'wlr' );
+    public function get_all_pages() {
+        $pages = WLR_Helper::get_pages();
 
-        return $tabs;
-    }	
+        if ( ! $pages || is_wp_error( $pages ) ) {
+            wp_send_json_error( __( 'Something went wrong', 'wlr' ), 404 );
+        }
 
-	public static function init() {
-		$instance = false;
+        return wp_send_json_success( $pages, 200 );
+    }
 
-		if ( ! $instance ) {
-			$instance = new static;
-		}
+    public function get_all_user_roles() {
+        if ( ! isset( $_GET['action'] ) || $_GET['action'] !== 'get_all_user_roles' ) {
+            return;
+        }
 
-		return $instance;
-	}
+        $roles = WLR_Helper::get_user_roles();
+
+        if ( ! $roles || is_wp_error( $roles ) ) {
+            wp_send_json_error( __( 'Something went wrong', 'wlr' ), 404 );
+        }
+
+        wp_send_json_success( $roles, 200 );
+    }
+
+    public function get_role_based_redirects() {
+        if ( ! isset( $_GET['action'] ) || $_GET['action'] !== 'get_role_based_redirects' ) {
+            return;
+        }
+
+        $settings = get_option( 'wlr_role_based_redirect' );
+
+        return wp_send_json_success( $settings, 200 );
+    }
+
+    public function save_role_based() {
+        if ( ! isset( $_POST['action'] ) || $_POST['action'] !== 'save_role_based' ) {
+            return;
+        }
+
+        if ( ! current_user_can( 'manage_options' ) ) {
+            return;
+        }
+
+        if ( ! isset( $_POST['settings'] ) || empty( $_POST['settings'] ) ) {
+            return;
+        }
+
+        $settings         = $_POST['settings'];
+        $settings_to_save = array();
+
+        foreach ( $settings as $setting ) {
+            if ( ! isset( $setting['role'], $setting['url'] ) || empty( $setting['role'] ) || empty( $setting['url'] ) ) {
+                continue;
+            }
+
+            array_push( $settings_to_save, $setting );
+        }
+
+        update_option( 'wlr_role_based_redirect', $settings_to_save );
+        wp_send_json_success( 'Data is saved successfully', 201 );
+        exit;
+    }
+
+    public function save_registration() {
+        if ( ! current_user_can( 'manage_options' ) ) {
+            return;
+        }
+
+        $settings = isset( $_POST['settings'] ) ? $_POST['settings'] : '';
+
+        if ( ! $settings ) {
+            wp_send_json_error( 'Something went wrong', 404 );
+        }
+
+        update_option( 'reg_redirect_page_id', $settings );
+
+        wp_send_json_success( 'Data is saved successfully', 201 );
+        exit;
+    }
+
+
+    public function get_registration_based_redirect() {
+        if ( ! current_user_can( 'manage_options' ) ) {
+            return;
+        }
+
+        $pages = get_option( 'reg_redirect_page_id' );
+
+        wp_send_json_success( $pages, 200 );
+    }
+
+    public static function init() {
+        $instance = false;
+
+        if ( ! $instance ) {
+            $instance = new static;
+        }
+
+        return $instance;
+    }
 }

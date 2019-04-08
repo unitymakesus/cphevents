@@ -1,12 +1,12 @@
 <?php
 /**
 * Plugin Name: Abandoned Cart Reports For WooCommerce
-* Description: A simple plugin to see how many and what carts your customers are abandoning
-* Version: 2.4.0
+* Description: A simple plugin to see how many carts and which products your customers are abandoning
+* Version: 2.5.1
 * Author: Small Fish Analytics
 * Email: mike@smallfishanalytics.com
 * WC requires at least: 3.0.0
-* WC tested up to: 3.3.4
+* WC tested up to: 3.5.0
 */
 
 if ( !defined( 'ABSPATH' ) ) { 

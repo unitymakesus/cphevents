@@ -74,6 +74,7 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 		'stock_quantity'     => null,
 		'stock_status'       => 'instock',
 		'backorders'         => 'no',
+		'low_stock_amount'   => '',
 		'sold_individually'  => false,
 		'weight'             => '',
 		'length'             => '',
@@ -387,6 +388,17 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 	 */
 	public function get_backorders( $context = 'view' ) {
 		return $this->get_prop( 'backorders', $context );
+	}
+
+	/**
+	 * Get low stock amount.
+	 *
+	 * @param  string $context What the value is for. Valid values are view and edit.
+	 * @since  3.5.0
+	 * @return int|string Returns empty string if value not set
+	 */
+	public function get_low_stock_amount( $context = 'view' ) {
+		return $this->get_prop( 'low_stock_amount', $context );
 	}
 
 	/**
@@ -902,7 +914,7 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 		$class         = 'standard' === $class ? '' : $class;
 		$valid_classes = $this->get_valid_tax_classes();
 
-		if ( ! in_array( $class, $valid_classes ) ) {
+		if ( ! in_array( $class, $valid_classes, true ) ) {
 			$class = '';
 		}
 
@@ -961,6 +973,16 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 	 */
 	public function set_backorders( $backorders ) {
 		$this->set_prop( 'backorders', $backorders );
+	}
+
+	/**
+	 * Set low stock amount.
+	 *
+	 * @param int|string $amount Empty string if value not set.
+	 * @since 3.5.0
+	 */
+	public function set_low_stock_amount( $amount ) {
+		$this->set_prop( 'low_stock_amount', '' === $amount ? '' : absint( $amount ) );
 	}
 
 	/**
@@ -1091,14 +1113,13 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 	}
 
 	/**
-	 * Set default attributes.
+	 * Set default attributes. These will be saved as strings and should map to attribute values.
 	 *
 	 * @since 3.0.0
 	 * @param array $default_attributes List of default attributes.
 	 */
 	public function set_default_attributes( $default_attributes ) {
-		$this->set_prop( 'default_attributes',
-		array_filter( (array) $default_attributes, 'wc_array_filter_default_attributes' ) );
+		$this->set_prop( 'default_attributes', array_map( 'strval', array_filter( (array) $default_attributes, 'wc_array_filter_default_attributes' ) ) );
 	}
 
 	/**
@@ -1300,10 +1321,11 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 	 * @since 3.0.0
 	 */
 	public function validate_props() {
-		// Before updating, ensure stock props are all aligned. Qty and backorders are not needed if not stock managed.
+		// Before updating, ensure stock props are all aligned. Qty, backorders and low stock amount are not needed if not stock managed.
 		if ( ! $this->get_manage_stock() ) {
 			$this->set_stock_quantity( '' );
 			$this->set_backorders( 'no' );
+			$this->set_low_stock_amount( '' );
 
 			// If we are stock managing and we don't have stock, force out of stock status.
 		} elseif ( $this->get_stock_quantity() <= get_option( 'woocommerce_notify_no_stock_amount', 0 ) && 'no' === $this->get_backorders() ) {
@@ -1360,7 +1382,7 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 	 * @since 2.5.0
 	 */
 	public function supports( $feature ) {
-		return apply_filters( 'woocommerce_product_supports', in_array( $feature, $this->supports ), $feature, $this );
+		return apply_filters( 'woocommerce_product_supports', in_array( $feature, $this->supports, true ), $feature, $this );
 	}
 
 	/**
@@ -1381,7 +1403,7 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 	 * @return bool
 	 */
 	public function is_type( $type ) {
-		return ( $this->get_type() === $type || ( is_array( $type ) && in_array( $this->get_type(), $type ) ) );
+		return ( $this->get_type() === $type || ( is_array( $type ) && in_array( $this->get_type(), $type, true ) ) );
 	}
 
 	/**
@@ -1472,7 +1494,7 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 				$on_sale = false;
 			}
 
-			if ( $this->get_date_on_sale_to( $context ) && $this->get_date_on_sale_to( $context )->getTimestamp() < current_time( 'timestamp', true ) ) {
+			if ( $this->get_date_on_sale_to( $context ) && $this->get_date_on_sale_to( $context )->getTimestamp() + DAY_IN_SECONDS < current_time( 'timestamp', true ) ) {
 				$on_sale = false;
 			}
 		} else {
@@ -1799,14 +1821,18 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 	 * @return string
 	 */
 	public function get_image( $size = 'woocommerce_thumbnail', $attr = array(), $placeholder = true ) {
-		if ( has_post_thumbnail( $this->get_id() ) ) {
-			$image = get_the_post_thumbnail( $this->get_id(), $size, $attr );
-		} elseif ( ( $parent_id = wp_get_post_parent_id( $this->get_id() ) ) && has_post_thumbnail( $parent_id ) ) { // @phpcs:ignore Squiz.PHP.DisallowMultipleAssignments.Found
-			$image = get_the_post_thumbnail( $parent_id, $size, $attr );
-		} elseif ( $placeholder ) {
+		$image = '';
+		if ( $this->get_image_id() ) {
+			$image = wp_get_attachment_image( $this->get_image_id(), $size, false, $attr );
+		} elseif ( $this->get_parent_id() ) {
+			$parent_product = wc_get_product( $this->get_parent_id() );
+			if ( $parent_product ) {
+				$image = $parent_product->get_image( $size, $attr, $placeholder );
+			}
+		}
+
+		if ( ! $image && $placeholder ) {
 			$image = wc_placeholder_img( $size );
-		} else {
-			$image = '';
 		}
 
 		return apply_filters( 'woocommerce_product_get_image', $image, $this, $size, $attr, $placeholder, $image );
@@ -1818,7 +1844,7 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 	 * @return string
 	 */
 	public function get_shipping_class() {
-		if ( $class_id = $this->get_shipping_class_id() ) { // @phpcs:ignore Squiz.PHP.DisallowMultipleAssignments.Found
+		if ( $class_id = $this->get_shipping_class_id() ) { // @phpcs:ignore Squiz.PHP.DisallowMultipleAssignments.Found, WordPress.CodeAnalysis.AssignmentInCondition.Found
 			$term = get_term_by( 'id', $class_id, 'product_shipping_class' );
 
 			if ( $term && ! is_wp_error( $term ) ) {
@@ -1910,7 +1936,7 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 	public function get_price_suffix( $price = '', $qty = 1 ) {
 		$html = '';
 
-		if ( ( $suffix = get_option( 'woocommerce_price_display_suffix' ) ) && wc_tax_enabled() && 'taxable' === $this->get_tax_status() ) { // @phpcs:ignore Squiz.PHP.DisallowMultipleAssignments.Found
+		if ( ( $suffix = get_option( 'woocommerce_price_display_suffix' ) ) && wc_tax_enabled() && 'taxable' === $this->get_tax_status() ) { // @phpcs:ignore Squiz.PHP.DisallowMultipleAssignments.Found, WordPress.CodeAnalysis.AssignmentInCondition.Found
 			if ( '' === $price ) {
 				$price = $this->get_price();
 			}
@@ -1918,7 +1944,7 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 				'{price_including_tax}' => wc_price( wc_get_price_including_tax( $this, array( 'qty' => $qty, 'price' => $price ) ) ), // @phpcs:ignore WordPress.Arrays.ArrayDeclarationSpacing.ArrayItemNoNewLine, WordPress.Arrays.ArrayDeclarationSpacing.AssociativeArrayFound
 				'{price_excluding_tax}' => wc_price( wc_get_price_excluding_tax( $this, array( 'qty' => $qty, 'price' => $price ) ) ), // @phpcs:ignore WordPress.Arrays.ArrayDeclarationSpacing.AssociativeArrayFound
 			);
-			$html = str_replace( array_keys( $replacements ), array_values( $replacements ), ' <small class="woocommerce-price-suffix">' . wp_kses_post( $suffix ) . '</small>' );
+			$html         = str_replace( array_keys( $replacements ), array_values( $replacements ), ' <small class="woocommerce-price-suffix">' . wp_kses_post( $suffix ) . '</small>' );
 		}
 		return apply_filters( 'woocommerce_get_price_suffix', $html, $this, $price, $qty );
 	}
@@ -1929,10 +1955,14 @@ class WC_Product extends WC_Abstract_Legacy_Product {
 	 * @return string[]
 	 */
 	public function get_availability() {
-		return apply_filters( 'woocommerce_get_availability', array(
-			'availability' => $this->get_availability_text(),
-			'class'        => $this->get_availability_class(),
-		), $this );
+		return apply_filters(
+			'woocommerce_get_availability',
+			array(
+				'availability' => $this->get_availability_text(),
+				'class'        => $this->get_availability_class(),
+			),
+			$this
+		);
 	}
 
 	/**

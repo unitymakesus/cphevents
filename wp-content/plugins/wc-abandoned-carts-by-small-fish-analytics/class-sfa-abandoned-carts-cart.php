@@ -53,7 +53,12 @@ class SFA_Abandoned_Carts_Cart
 			$total = $this->raw_data['cart_total'];
 		}
 		
-		return money_format('%i', $total);
+		if (function_exists('money_format')) {
+			return money_format('%i', $total);
+		}
+		else {
+			return sprintf('%01.2f', $total);
+		}
 	}
 	
 	public function get_cart_id() {

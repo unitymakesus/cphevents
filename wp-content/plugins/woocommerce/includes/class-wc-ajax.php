@@ -2,8 +2,8 @@
 /**
  * WooCommerce WC_AJAX. AJAX Event Handlers.
  *
- * @class    WC_AJAX
- * @package  WooCommerce/Classes
+ * @class   WC_AJAX
+ * @package WooCommerce/Classes
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -25,11 +25,12 @@ class WC_AJAX {
 	/**
 	 * Get WC Ajax Endpoint.
 	 *
-	 * @param  string $request Optional.
+	 * @param string $request Optional.
+	 *
 	 * @return string
 	 */
 	public static function get_endpoint( $request = '' ) {
-		return esc_url_raw( apply_filters( 'woocommerce_ajax_get_endpoint', add_query_arg( 'wc-ajax', $request, remove_query_arg( array( 'remove_item', 'add-to-cart', 'added-to-cart' ), home_url( '/', 'relative' ) ) ), $request ) );
+		return esc_url_raw( apply_filters( 'woocommerce_ajax_get_endpoint', add_query_arg( 'wc-ajax', $request, remove_query_arg( array( 'remove_item', 'add-to-cart', 'added-to-cart', 'order_again', '_wpnonce' ), home_url( '/', 'relative' ) ) ), $request ) );
 	}
 
 	/**
@@ -274,7 +275,7 @@ class WC_AJAX {
 
 		wc_maybe_define_constant( 'WOOCOMMERCE_CHECKOUT', true );
 
-		if ( WC()->cart->is_empty() && ! is_customize_preview() ) {
+		if ( WC()->cart->is_empty() && ! is_customize_preview() && apply_filters( 'woocommerce_checkout_update_order_review_expired', true ) ) {
 			self::update_order_review_expired();
 		}
 
@@ -345,11 +346,10 @@ class WC_AJAX {
 		$woocommerce_checkout_payment = ob_get_clean();
 
 		// Get messages if reload checkout is not true
-		$messages = '';
 		if ( ! isset( WC()->session->reload_checkout ) ) {
-			ob_start();
-			wc_print_notices();
-			$messages = ob_get_clean();
+			$messages = wc_print_notices( true );
+		} else {
+			$messages = '';
 		}
 
 		unset( WC()->session->refresh_totals, WC()->session->reload_checkout );
@@ -613,16 +613,46 @@ class WC_AJAX {
 			wp_die( -1 );
 		}
 
-		parse_str( $_POST['data'], $data );
+		try {
+			parse_str( $_POST['data'], $data );
 
-		$attributes   = WC_Meta_Box_Product_Data::prepare_attributes( $data );
-		$product_id   = absint( $_POST['post_id'] );
-		$product_type = ! empty( $_POST['product_type'] ) ? wc_clean( $_POST['product_type'] ) : 'simple';
-		$classname    = WC_Product_Factory::get_product_classname( $product_id, $product_type );
-		$product      = new $classname( $product_id );
+			$attributes   = WC_Meta_Box_Product_Data::prepare_attributes( $data );
+			$product_id   = absint( $_POST['post_id'] );
+			$product_type = ! empty( $_POST['product_type'] ) ? wc_clean( $_POST['product_type'] ) : 'simple';
+			$classname    = WC_Product_Factory::get_product_classname( $product_id, $product_type );
+			$product      = new $classname( $product_id );
 
-		$product->set_attributes( $attributes );
-		$product->save();
+			$product->set_attributes( $attributes );
+			$product->save();
+
+			$response = array();
+
+			ob_start();
+			$attributes = $product->get_attributes( 'edit' );
+			$i          = -1;
+
+			foreach ( $data['attribute_names'] as $attribute_name ) {
+				$attribute = isset( $attributes[ sanitize_title( $attribute_name ) ] ) ? $attributes[ sanitize_title( $attribute_name ) ] : false;
+				if ( ! $attribute ) {
+					continue;
+				}
+				$i++;
+				$metabox_class = array();
+
+				if ( $attribute->is_taxonomy() ) {
+					$metabox_class[] = 'taxonomy';
+					$metabox_class[] = $attribute->get_name();
+				}
+
+				include( 'admin/meta-boxes/views/html-product-attribute.php' );
+			}
+
+			$response['html'] = ob_get_clean();
+
+			wp_send_json_success( $response );
+		} catch ( Exception $e ) {
+			wp_send_json_error( array( 'error' => $e->getMessage() ) );
+		}
 		wp_die();
 	}
 
@@ -647,7 +677,7 @@ class WC_AJAX {
 		$variation_object->set_attributes( array_fill_keys( array_map( 'sanitize_title', array_keys( $product_object->get_variation_attributes() ) ), '' ) );
 		$variation_id   = $variation_object->save();
 		$variation      = get_post( $variation_id );
-		$variation_data = array_merge( array_map( 'maybe_unserialize', get_post_custom( $variation_id ) ), wc_get_product_variation_attributes( $variation_id ) ); // kept for BW compatibility.
+		$variation_data = array_merge( get_post_custom( $variation_id ), wc_get_product_variation_attributes( $variation_id ) ); // kept for BW compatibility.
 		include 'admin/meta-boxes/views/html-variation-admin.php';
 		wp_die();
 	}
@@ -773,6 +803,7 @@ class WC_AJAX {
 						if ( $file->get_name() ) {
 							$file_count = $file->get_name();
 						} else {
+							/* translators: %d file count */
 							$file_count = sprintf( __( 'File %d', 'woocommerce' ), $file_counter );
 						}
 						include 'admin/meta-boxes/views/html-order-download-permission.php';
@@ -819,17 +850,20 @@ class WC_AJAX {
 		}
 
 		try {
-			$order_id     = absint( $_POST['order_id'] );
+			if ( ! isset( $_POST['order_id'] ) ) {
+				throw new Exception( __( 'Invalid order', 'woocommerce' ) );
+			}
+
+			$order_id     = absint( wp_unslash( $_POST['order_id'] ) ); // WPCS: input var ok.
 			$order        = wc_get_order( $order_id );
-			$items_to_add = wp_parse_id_list( is_array( $_POST['item_to_add'] ) ? $_POST['item_to_add'] : array( $_POST['item_to_add'] ) );
-			$items        = ( ! empty( $_POST['items'] ) ) ? $_POST['items'] : '';
-			$added_items  = array();
 
 			if ( ! $order ) {
 				throw new Exception( __( 'Invalid order', 'woocommerce' ) );
 			}
 
 			// If we passed through items it means we need to save first before adding a new one.
+			$items = ( ! empty( $_POST['items'] ) ) ? $_POST['items'] : '';
+
 			if ( ! empty( $items ) ) {
 				$save_items = array();
 				parse_str( $items, $save_items );
@@ -837,22 +871,27 @@ class WC_AJAX {
 				wc_save_order_items( $order->get_id(), $save_items );
 			}
 
-			foreach ( $items_to_add as $item_to_add ) {
+			$items_to_add = array_filter( wp_unslash( (array) $_POST['data'] ) );
 
-				if ( ! in_array( get_post_type( $item_to_add ), array( 'product', 'product_variation' ) ) ) {
+			// Add items to order.
+			foreach ( $items_to_add as $item ) {
+				if ( ! isset( $item['id'], $item['qty'] ) || empty( $item['id'] ) ) {
 					continue;
 				}
+				$product_id = absint( $item['id'] );
+				$qty        = wc_stock_amount( $item['qty'] );
+				$product    = wc_get_product( $product_id );
 
-				$item_id = $order->add_product( wc_get_product( $item_to_add ) );
-				$item    = apply_filters( 'woocommerce_ajax_order_item', $order->get_item( $item_id ), $item_id );
+				if ( ! $product ) {
+					throw new Exception( __( 'Invalid product ID', 'woocommerce' ) . ' ' . $product_id );
+				}
 
+				$item_id                 = $order->add_product( $product, $qty );
+				$item                    = apply_filters( 'woocommerce_ajax_order_item', $order->get_item( $item_id ), $item_id );
 				$added_items[ $item_id ] = $item;
 
 				do_action( 'woocommerce_ajax_add_order_item_meta', $item_id, $item, $order );
 			}
-
-			$last_item = ! empty( $added_items ) ? end( $added_items ) : null;
-			wc_do_deprecated_action( 'woocommerce_ajax_added_order_items', array( is_a( $last_item, 'WC_Order_Item' ) ? $last_item->get_id() : null, $last_item, $order ), '3.4', 'woocommerce_ajax_order_items_added action instead.' );
 
 			do_action( 'woocommerce_ajax_order_items_added', $added_items, $order );
 
@@ -907,7 +946,8 @@ class WC_AJAX {
 			$fee = new WC_Order_Item_Fee();
 			$fee->set_amount( $amount );
 			$fee->set_total( $amount );
-			$fee->set_name( sprintf( __( '%s fee', 'woocommerce' ), $formatted_amount ) );
+			/* translators: %s fee amount */
+			$fee->set_name( sprintf( __( '%s fee', 'woocommerce' ), wc_clean( $formatted_amount ) ) );
 
 			$order->add_item( $fee );
 			$order->calculate_taxes( $calculate_tax_args );
@@ -1013,7 +1053,7 @@ class WC_AJAX {
 			$result   = $order->apply_coupon( wc_clean( $_POST['coupon'] ) );
 
 			if ( is_wp_error( $result ) ) {
-				throw new Exception( $result->get_error_message() );
+				throw new Exception( html_entity_decode( wp_strip_all_tags( $result->get_error_message() ) ) );
 			}
 
 			ob_start();
@@ -1147,96 +1187,6 @@ class WC_AJAX {
 	}
 
 	/**
-	 * Reduce order item stock.
-	 */
-	public static function reduce_order_item_stock() {
-		check_ajax_referer( 'order-item', 'security' );
-		if ( ! current_user_can( 'edit_shop_orders' ) ) {
-			wp_die( -1 );
-		}
-		$order_id       = absint( $_POST['order_id'] );
-		$order_item_ids = isset( $_POST['order_item_ids'] ) ? $_POST['order_item_ids'] : array();
-		$order_item_qty = isset( $_POST['order_item_qty'] ) ? $_POST['order_item_qty'] : array();
-		$order          = wc_get_order( $order_id );
-		$order_items    = $order->get_items();
-		$return         = array();
-		if ( $order && ! empty( $order_items ) && sizeof( $order_item_ids ) > 0 ) {
-			foreach ( $order_items as $item_id => $order_item ) {
-				// Only reduce checked items
-				if ( ! in_array( $item_id, $order_item_ids ) ) {
-					continue;
-				}
-				$_product = $order_item->get_product();
-				if ( $_product && $_product->exists() && $_product->managing_stock() && isset( $order_item_qty[ $item_id ] ) && $order_item_qty[ $item_id ] > 0 ) {
-					$stock_change = apply_filters( 'woocommerce_reduce_order_stock_quantity', $order_item_qty[ $item_id ], $item_id );
-					$new_stock    = wc_update_product_stock( $_product, $stock_change, 'decrease' );
-					$item_name    = $_product->get_formatted_name();
-					$return[]     = array(
-						'note'    => sprintf( wp_kses_post( __( '%1$s stock reduced from %2$s to %3$s.', 'woocommerce' ) ), $item_name, $new_stock + $stock_change, $new_stock ),
-						'success' => true,
-					);
-				}
-			}
-			do_action( 'woocommerce_reduce_order_stock', $order );
-
-			if ( empty( $return ) ) {
-				$return[] = array(
-					'note'    => wp_kses_post( __( 'No products had their stock reduced - they may not have stock management enabled.', 'woocommerce' ) ),
-					'success' => false,
-				);
-			}
-
-			wp_send_json_success( $return );
-		}
-		wp_send_json_error();
-	}
-
-	/**
-	 * Increase order item stock.
-	 */
-	public static function increase_order_item_stock() {
-		check_ajax_referer( 'order-item', 'security' );
-		if ( ! current_user_can( 'edit_shop_orders' ) ) {
-			wp_die( -1 );
-		}
-		$order_id       = absint( $_POST['order_id'] );
-		$order_item_ids = isset( $_POST['order_item_ids'] ) ? $_POST['order_item_ids'] : array();
-		$order_item_qty = isset( $_POST['order_item_qty'] ) ? $_POST['order_item_qty'] : array();
-		$order          = wc_get_order( $order_id );
-		$order_items    = $order->get_items();
-		$return         = array();
-		if ( $order && ! empty( $order_items ) && sizeof( $order_item_ids ) > 0 ) {
-			foreach ( $order_items as $item_id => $order_item ) {
-				// Only reduce checked items
-				if ( ! in_array( $item_id, $order_item_ids ) ) {
-					continue;
-				}
-				$_product = $order_item->get_product();
-				if ( $_product && $_product->exists() && $_product->managing_stock() && isset( $order_item_qty[ $item_id ] ) && $order_item_qty[ $item_id ] > 0 ) {
-					$old_stock    = $_product->get_stock_quantity();
-					$stock_change = apply_filters( 'woocommerce_restore_order_stock_quantity', $order_item_qty[ $item_id ], $item_id );
-					$new_quantity = wc_update_product_stock( $_product, $stock_change, 'increase' );
-					$item_name    = $_product->get_formatted_name();
-					$return[]     = array(
-						'note'    => sprintf( wp_kses_post( __( '%1$s stock increased from %2$s to %3$s.', 'woocommerce' ) ), $item_name, $old_stock, $new_quantity ),
-						'success' => true,
-					);
-				}
-			}
-			do_action( 'woocommerce_restore_order_stock', $order );
-			if ( empty( $return ) ) {
-				$return[] = array(
-					'note'    => wp_kses_post( __( 'No products had their stock increased - they may not have stock management enabled.', 'woocommerce' ) ),
-					'success' => false,
-				);
-			}
-
-			wp_send_json_success( $return );
-		}
-		wp_send_json_error();
-	}
-
-	/**
 	 * Calc line tax.
 	 */
 	public static function calc_line_taxes() {
@@ -1344,7 +1294,10 @@ class WC_AJAX {
 				</div>
 				<p class="meta">
 					<abbr class="exact-date" title="<?php echo $note->date_created->date( 'y-m-d h:i:s' ); ?>">
-						<?php printf( __( 'added on %1$s at %2$s', 'woocommerce' ), $note->date_created->date_i18n( wc_date_format() ), $note->date_created->date_i18n( wc_time_format() ) ); ?>
+						<?php
+						/* translators: $1: Date created, $2 Time created */
+						printf( __( 'added on %1$s at %2$s', 'woocommerce' ), $note->date_created->date_i18n( wc_date_format() ), $note->date_created->date_i18n( wc_time_format() ) );
+						?>
 					</abbr>
 					<?php
 					if ( 'system' !== $note->added_by ) :
@@ -1393,8 +1346,14 @@ class WC_AJAX {
 			wp_die();
 		}
 
+		if ( ! empty( $_GET['limit'] ) ) {
+			$limit = absint( $_GET['limit'] );
+		} else {
+			$limit = absint( apply_filters( 'woocommerce_json_search_limit', 30 ) );
+		}
+
 		$data_store = WC_Data_Store::load( 'product' );
-		$ids        = $data_store->search_products( $term, '', (bool) $include_variations );
+		$ids        = $data_store->search_products( $term, '', (bool) $include_variations, false, $limit );
 
 		if ( ! empty( $_GET['exclude'] ) ) {
 			$ids = array_diff( $ids, (array) $_GET['exclude'] );
@@ -1404,15 +1363,18 @@ class WC_AJAX {
 			$ids = array_intersect( $ids, (array) $_GET['include'] );
 		}
 
-		if ( ! empty( $_GET['limit'] ) ) {
-			$ids = array_slice( $ids, 0, absint( $_GET['limit'] ) );
-		}
-
 		$product_objects = array_filter( array_map( 'wc_get_product', $ids ), 'wc_products_array_filter_readable' );
 		$products        = array();
 
 		foreach ( $product_objects as $product_object ) {
-			$products[ $product_object->get_id() ] = rawurldecode( $product_object->get_formatted_name() );
+			$formatted_name = $product_object->get_formatted_name();
+			$managing_stock = $product_object->managing_stock();
+
+			if ( $managing_stock && ! empty( $_GET['display_stock'] ) ) {
+				$formatted_name .= ' &ndash; ' . wc_format_stock_for_display( $product_object );
+			}
+
+			$products[ $product_object->get_id() ] = rawurldecode( $formatted_name );
 		}
 
 		wp_send_json( apply_filters( 'woocommerce_json_search_found_products', $products ) );
@@ -1514,6 +1476,7 @@ class WC_AJAX {
 			$customer = new WC_Customer( $id );
 			/* translators: 1: user display name 2: user ID 3: user email */
 			$found_customers[ $id ] = sprintf(
+				/* translators: $1: customer name, $2 customer id, $3: customer email */
 				esc_html__( '%1$s (#%2$s &ndash; %3$s)', 'woocommerce' ),
 				$customer->get_first_name() . ' ' . $customer->get_last_name(),
 				$customer->get_id(),
@@ -1803,6 +1766,13 @@ class WC_AJAX {
 			$permissions = ( in_array( $_POST['permissions'], array( 'read', 'write', 'read_write' ) ) ) ? sanitize_text_field( $_POST['permissions'] ) : 'read';
 			$user_id     = absint( $_POST['user'] );
 
+			// Check if current user can edit other users.
+			if ( $user_id && ! current_user_can( 'edit_user', $user_id ) ) {
+				if ( get_current_user_id() !== $user_id ) {
+					throw new Exception( __( 'You do not have permission to assign API Keys to the selected user.', 'woocommerce' ) );
+				}
+			}
+
 			if ( 0 < $key_id ) {
 				$data = array(
 					'user_id'     => $user_id,
@@ -1904,7 +1874,7 @@ class WC_AJAX {
 			foreach ( $variations as $variation_object ) {
 				$variation_id   = $variation_object->get_id();
 				$variation      = get_post( $variation_id );
-				$variation_data = array_merge( array_map( 'maybe_unserialize', get_post_custom( $variation_id ) ), wc_get_product_variation_attributes( $variation_id ) ); // kept for BW compatibility.
+				$variation_data = array_merge( get_post_custom( $variation_id ), wc_get_product_variation_attributes( $variation_id ) ); // kept for BW compatibility.
 				include 'admin/meta-boxes/views/html-variation-admin.php';
 				$loop++;
 			}
@@ -1950,10 +1920,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Toggle Enabled.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_toggle_enabled( $variations, $data ) {
 		foreach ( $variations as $variation_id ) {
@@ -1966,10 +1936,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Toggle Downloadable Checkbox.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_toggle_downloadable( $variations, $data ) {
 		self::variation_bulk_toggle( $variations, 'downloadable' );
@@ -1978,10 +1948,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Toggle Virtual Checkbox.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_toggle_virtual( $variations, $data ) {
 		self::variation_bulk_toggle( $variations, 'virtual' );
@@ -1990,10 +1960,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Toggle Manage Stock Checkbox.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_toggle_manage_stock( $variations, $data ) {
 		self::variation_bulk_toggle( $variations, 'manage_stock' );
@@ -2002,10 +1972,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Set Regular Prices.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_variable_regular_price( $variations, $data ) {
 		self::variation_bulk_set( $variations, 'regular_price', $data['value'] );
@@ -2014,10 +1984,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Set Sale Prices.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_variable_sale_price( $variations, $data ) {
 		self::variation_bulk_set( $variations, 'sale_price', $data['value'] );
@@ -2026,10 +1996,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Set Stock Status as In Stock.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_variable_stock_status_instock( $variations, $data ) {
 		self::variation_bulk_set( $variations, 'stock_status', 'instock' );
@@ -2038,10 +2008,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Set Stock Status as Out of Stock.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_variable_stock_status_outofstock( $variations, $data ) {
 		self::variation_bulk_set( $variations, 'stock_status', 'outofstock' );
@@ -2050,10 +2020,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Set Stock Status as On Backorder.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_variable_stock_status_onbackorder( $variations, $data ) {
 		self::variation_bulk_set( $variations, 'stock_status', 'onbackorder' );
@@ -2062,10 +2032,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Set Stock.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_variable_stock( $variations, $data ) {
 		if ( ! isset( $data['value'] ) ) {
@@ -2088,10 +2058,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Set Weight.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_variable_weight( $variations, $data ) {
 		self::variation_bulk_set( $variations, 'weight', $data['value'] );
@@ -2100,10 +2070,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Set Length.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_variable_length( $variations, $data ) {
 		self::variation_bulk_set( $variations, 'length', $data['value'] );
@@ -2112,10 +2082,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Set Width.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_variable_width( $variations, $data ) {
 		self::variation_bulk_set( $variations, 'width', $data['value'] );
@@ -2124,10 +2094,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Set Height.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_variable_height( $variations, $data ) {
 		self::variation_bulk_set( $variations, 'height', $data['value'] );
@@ -2136,10 +2106,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Set Download Limit.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_variable_download_limit( $variations, $data ) {
 		self::variation_bulk_set( $variations, 'download_limit', $data['value'] );
@@ -2148,10 +2118,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Set Download Expiry.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_variable_download_expiry( $variations, $data ) {
 		self::variation_bulk_set( $variations, 'download_expiry', $data['value'] );
@@ -2160,10 +2130,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Delete all.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_delete_all( $variations, $data ) {
 		if ( isset( $data['allowed'] ) && 'true' === $data['allowed'] ) {
@@ -2177,10 +2147,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Sale Schedule.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_variable_sale_schedule( $variations, $data ) {
 		if ( ! isset( $data['date_from'] ) && ! isset( $data['date_to'] ) ) {
@@ -2205,10 +2175,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Increase Regular Prices.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_variable_regular_price_increase( $variations, $data ) {
 		self::variation_bulk_adjust_price( $variations, 'regular_price', '+', wc_clean( $data['value'] ) );
@@ -2217,10 +2187,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Decrease Regular Prices.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_variable_regular_price_decrease( $variations, $data ) {
 		self::variation_bulk_adjust_price( $variations, 'regular_price', '-', wc_clean( $data['value'] ) );
@@ -2229,10 +2199,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Increase Sale Prices.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_variable_sale_price_increase( $variations, $data ) {
 		self::variation_bulk_adjust_price( $variations, 'sale_price', '+', wc_clean( $data['value'] ) );
@@ -2241,10 +2211,10 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Decrease Sale Prices.
 	 *
-	 * @access private
+	 * @param array $variations
+	 * @param array $data
+	 *
 	 * @used-by bulk_edit_variations
-	 * @param  array $variations
-	 * @param  array $data
 	 */
 	private static function variation_bulk_action_variable_sale_price_decrease( $variations, $data ) {
 		self::variation_bulk_adjust_price( $variations, 'sale_price', '-', wc_clean( $data['value'] ) );
@@ -2253,12 +2223,12 @@ class WC_AJAX {
 	/**
 	 * Bulk action - Set Price.
 	 *
-	 * @access private
-	 * @used-by bulk_edit_variations
 	 * @param array  $variations
 	 * @param string $operator + or -
 	 * @param string $field price being adjusted _regular_price or _sale_price
 	 * @param string $value Price or Percent
+	 *
+	 * @used-by bulk_edit_variations
 	 */
 	private static function variation_bulk_adjust_price( $variations, $field, $operator, $value ) {
 		foreach ( $variations as $variation_id ) {
@@ -2267,7 +2237,7 @@ class WC_AJAX {
 
 			if ( '%' === substr( $value, -1 ) ) {
 				$percent      = wc_format_decimal( substr( $value, 0, -1 ) );
-				$field_value += ( ( $field_value / 100 ) * $percent ) * "{$operator}1";
+				$field_value += round( ( $field_value / 100 ) * $percent, wc_get_price_decimals() ) * "{$operator}1";
 			} else {
 				$field_value += $value * "{$operator}1";
 			}
@@ -2280,7 +2250,6 @@ class WC_AJAX {
 	/**
 	 * Bulk set convenience function.
 	 *
-	 * @access private
 	 * @param array  $variations
 	 * @param string $field
 	 * @param string $value
@@ -2296,7 +2265,6 @@ class WC_AJAX {
 	/**
 	 * Bulk toggle convenience function.
 	 *
-	 * @access private
 	 * @param array  $variations
 	 * @param string $field
 	 */
@@ -2397,7 +2365,7 @@ class WC_AJAX {
 			wp_die();
 		}
 
-		$changes = $_POST['changes'];
+		$changes = stripslashes_deep( $_POST['changes'] );
 		foreach ( $changes as $tax_rate_id => $data ) {
 			if ( isset( $data['deleted'] ) ) {
 				if ( isset( $data['newRow'] ) ) {
@@ -2438,7 +2406,7 @@ class WC_AJAX {
 				WC_Tax::_update_tax_rate_postcodes( $tax_rate_id, $postcode );
 			}
 			if ( isset( $data['city'] ) ) {
-				WC_Tax::_update_tax_rate_cities( $tax_rate_id, array_map( 'wc_clean', $data['city'] ) );
+				WC_Tax::_update_tax_rate_cities( $tax_rate_id, array_map( 'wc_clean', array_map( 'wp_unslash', $data['city'] ) ) );
 			}
 		}
 

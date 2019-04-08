@@ -1,13 +1,13 @@
 === Abandoned Cart Reports For WooCommerce ===
 Contributors: smallfishes
-Tags: woocommerce, reporting, abandoned carts, analytics
+Tags: abandoned carts, abandoned cart report, cart abandonment, recover abandoned carts, woocommerce
 Requires at least: 3.0.1
-Tested up to: 4.9
+Tested up to: 5.0
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-A simple plugin to see how many and what carts your customers are abandoning
+A simple plugin to see how many carts and which products your customers are abandoning
 
 == Description ==
 
@@ -19,7 +19,7 @@ The plugin starts recording carts as soon as anyone adds an item to their cart.
 
 The plugin will do as much as possible to associate carts with users so you can see their email address for manual follow up and recovery. Even if the plugin can't associate the cart with an email address it will at least show the IP address of the cart on the data page.
 
-Each cart starts in the 'In Progress' state on the data page. If a shopper hasn't updated their cart for 15 minutes it will then show as 'Abandoned'. If the shopper comes back and later completes their cart it will change to 'Recovered' and be associated with the order.
+Each cart starts in the 'In Progress' state on the data page. If a customer hasn't updated their cart for 15 minutes it will then show as 'Abandoned'. If the shopper comes back and later completes their cart it will change to 'Recovered' and be associated with the order.
 
 = Where Do I Get Support? =
 
@@ -59,6 +59,19 @@ We'd love to hear from you! We're currently looking at ways to better report on 
 5. Top Abandoned Products
 
 == Changelog ==
+
+= 2.5.1 =
+* Declare support for WordPress 5
+* Declare support for WooCommerce 3.5
+* Fix a bug with money_format not being available on Windows hosts
+* Added additional null check to fix a reported bug
+* Updated crawler detection code
+
+= 2.5.0 =
+* Added a warning if there are too many carts being returned by the reports
+
+= 2.4.1 =
+* Declare support for WooCommerce version 3.4
 
 = 2.4.0 =
 * Stored cart totals on the cart line for better report performance

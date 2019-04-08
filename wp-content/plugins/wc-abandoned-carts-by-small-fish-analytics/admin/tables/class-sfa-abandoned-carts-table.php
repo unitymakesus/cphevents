@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class SFA_Abandoned_Carts_Table extends SFA_WP_List_Table
 {
-	function __construct($start_date, $end_date, $show_funnel_carts) {
+	function __construct($start_date, $end_date, $show_funnel_carts, $limit = null) {
 		parent::__construct(array(
 			'ajax' => false
 		));
@@ -14,12 +14,14 @@ class SFA_Abandoned_Carts_Table extends SFA_WP_List_Table
 		$this->start_date = $start_date;
 		$this->end_date = $end_date;
 		$this->show_funnel_carts = $show_funnel_carts;
+		$this->limit = $limit;
 	}
 	
 	public $carts;
 	public $start_date;
 	public $end_date;
 	private $show_funnel_carts;
+	private $limit;
 	
 	function prepare_items() {
 		$sortable = $this->get_sortable_columns();
@@ -38,9 +40,8 @@ class SFA_Abandoned_Carts_Table extends SFA_WP_List_Table
 
 		$start_date_filter = new DateTime($this->start_date);
 		$end_date_filter = new DateTime($this->end_date);
-		
-		$data = $wpdb->get_results(
-		'SELECT id, cart_expiry, cart_contents, cart_is_recovered, NULL as cart_value, customer_key, ip_address, order_id, viewed_checkout, cart_total
+
+		$query = 'SELECT id, cart_expiry, cart_contents, cart_is_recovered, NULL as cart_value, customer_key, ip_address, order_id, viewed_checkout, cart_total
 		FROM ' . $table_name . ' 
 		WHERE cart_contents <> \'a:0:{}\''
 			. $cart_filter .
@@ -62,7 +63,13 @@ class SFA_Abandoned_Carts_Table extends SFA_WP_List_Table
 				WHERE ip_address IS NULL
 			) 
 			AND cart_expiry >= ' . $start_date_filter->getTimestamp() . ' AND cart_expiry <= ' . ($end_date_filter->getTimestamp() + 86400) . '
-		ORDER BY cart_expiry DESC', 'ARRAY_A');
+		ORDER BY cart_expiry DESC';
+
+		if (isset($this->limit)) {
+			$query = $query . ' LIMIT ' . $this->limit;
+		}
+		
+		$data = $wpdb->get_results($query, 'ARRAY_A');
 
 		//Turn database data into cart objects
 		$cart_objects = [];
@@ -155,7 +162,12 @@ class SFA_Abandoned_Carts_Table extends SFA_WP_List_Table
 	}
 	
 	function column_cart_value($item) {
-		return money_format('%i', $item->get_cart_total());
+		if (function_exists('money_format')) {
+			return money_format('%i', $item->get_cart_total());
+		}
+		else {
+			return sprintf('%01.2f', $item->get_cart_total());
+		}
 	}
 }
 ?>

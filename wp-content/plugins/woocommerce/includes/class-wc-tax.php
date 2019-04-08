@@ -409,7 +409,7 @@ class WC_Tax {
 			}
 
 			$matched_tax_rates[ $found_rate->tax_rate_id ] = array(
-				'rate'     => $found_rate->tax_rate,
+				'rate'     => (float) $found_rate->tax_rate,
 				'label'    => $found_rate->tax_rate_name,
 				'shipping' => $found_rate->tax_rate_shipping ? 'yes' : 'no',
 				'compound' => $found_rate->tax_rate_compound ? 'yes' : 'no',
@@ -829,11 +829,13 @@ class WC_Tax {
 
 		$wpdb->insert( $wpdb->prefix . 'woocommerce_tax_rates', self::prepare_tax_rate( $tax_rate ) );
 
+		$tax_rate_id = $wpdb->insert_id;
+
 		WC_Cache_Helper::incr_cache_prefix( 'taxes' );
 
-		do_action( 'woocommerce_tax_rate_added', $wpdb->insert_id, $tax_rate );
+		do_action( 'woocommerce_tax_rate_added', $tax_rate_id, $tax_rate );
 
-		return $wpdb->insert_id;
+		return $tax_rate_id;
 	}
 
 	/**

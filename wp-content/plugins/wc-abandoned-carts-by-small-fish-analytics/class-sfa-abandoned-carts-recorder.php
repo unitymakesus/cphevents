@@ -35,6 +35,11 @@ class SFA_Abandoned_Carts_Recorder
 			$customer_id = get_current_user_id();
 		}
 		else {
+			//Can't look up the customer in this situation.
+			if (!isset($woocommerce->session)) {
+				return;
+			}
+
 			$customer_id = $woocommerce->session->get_customer_id();
 		}
 	
@@ -94,6 +99,11 @@ class SFA_Abandoned_Carts_Recorder
 		
 		//Don't create a record unless a user is logging in with something in their cart
 		if (!$woocommerce->cart->cart_contents) {
+			return;
+		}
+
+		//Can't look up the customer in this situation.
+		if (!isset($woocommerce->session)) {
 			return;
 		}
 		
@@ -164,6 +174,11 @@ class SFA_Abandoned_Carts_Recorder
 			$customer_id = get_current_user_id();
 		}
 		else {
+			//Can't look up the customer in this situation.
+			if (!isset($woocommerce->session)) {
+				return;
+			}
+
 			$customer_id = $woocommerce->session->get_customer_id();
 		}
 	

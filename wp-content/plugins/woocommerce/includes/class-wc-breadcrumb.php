@@ -140,12 +140,19 @@ class WC_Breadcrumb {
 			$post = get_post( $post_id ); // WPCS: override ok.
 		}
 
+		if ( ! $permalink ) {
+			$permalink = get_permalink( $post );
+		}
+
 		if ( 'product' === get_post_type( $post ) ) {
 			$this->prepend_shop_page();
 
 			$terms = wc_get_product_terms(
-				$post->ID, 'product_cat', apply_filters(
-					'woocommerce_breadcrumb_product_terms_args', array(
+				$post->ID,
+				'product_cat',
+				apply_filters(
+					'woocommerce_breadcrumb_product_terms_args',
+					array(
 						'orderby' => 'parent',
 						'order'   => 'DESC',
 					)
@@ -209,7 +216,7 @@ class WC_Breadcrumb {
 
 		$this->prepend_shop_page();
 		$this->term_ancestors( $current_term->term_id, 'product_cat' );
-		$this->add_crumb( $current_term->name );
+		$this->add_crumb( $current_term->name, get_term_link( $current_term, 'product_cat' ) );
 	}
 
 	/**
@@ -221,7 +228,7 @@ class WC_Breadcrumb {
 		$this->prepend_shop_page();
 
 		/* translators: %s: product tag */
-		$this->add_crumb( sprintf( __( 'Products tagged &ldquo;%s&rdquo;', 'woocommerce' ), $current_term->name ) );
+		$this->add_crumb( sprintf( __( 'Products tagged &ldquo;%s&rdquo;', 'woocommerce' ), $current_term->name ), get_term_link( $current_term, 'product_tag' ) );
 	}
 
 	/**
@@ -236,7 +243,7 @@ class WC_Breadcrumb {
 
 		if ( ! $_name ) {
 			$product_post_type = get_post_type_object( 'product' );
-			$_name             = $product_post_type->labels->singular_name;
+			$_name             = $product_post_type->labels->name;
 		}
 
 		$this->add_crumb( $_name, get_post_type_archive_link( 'product' ) );
@@ -249,7 +256,7 @@ class WC_Breadcrumb {
 		$post_type = get_post_type_object( get_post_type() );
 
 		if ( $post_type ) {
-			$this->add_crumb( $post_type->labels->singular_name, get_post_type_archive_link( get_post_type() ) );
+			$this->add_crumb( $post_type->labels->name, get_post_type_archive_link( get_post_type() ) );
 		}
 	}
 

@@ -275,7 +275,7 @@ if ( ! class_exists( 'WC_Admin_Dashboard', false ) ) :
 				"FROM {$wpdb->comments} comments
 				LEFT JOIN {$wpdb->posts} posts ON (comments.comment_post_ID = posts.ID)
 				WHERE comments.comment_approved = '1'
-				AND comments.comment_type = ''
+				AND comments.comment_type = 'review'
 				AND posts.post_password = ''
 				AND posts.post_type = 'product'
 				AND comments.comment_parent = 0
@@ -329,7 +329,7 @@ if ( ! class_exists( 'WC_Admin_Dashboard', false ) ) :
 				'wc-network-orders', 'woocommerce_network_orders', array(
 					'nonce'          => wp_create_nonce( 'wp_rest' ),
 					'sites'          => array_values( $blog_ids ),
-					'order_endpoint' => get_rest_url( null, 'wc/v2/orders/network' ),
+					'order_endpoint' => get_rest_url( null, 'wc/v3/orders/network' ),
 				)
 			);
 			?>

@@ -8,7 +8,8 @@ class SFA_Abandoned_Products_Table extends SFA_WP_List_Table
 {
     private $carts;
     protected $start_date;
-    protected $end_date;
+	protected $end_date;
+	private $total_carts;
 
     function __construct($start_date, $end_date) {
         parent::__construct(array(
@@ -28,8 +29,9 @@ class SFA_Abandoned_Products_Table extends SFA_WP_List_Table
         $sortable = $this->get_sortable_columns();
 		$this->_column_headers = array($this->get_columns(), array(), $sortable);
 
-		$data = new SFA_Abandoned_Carts_Table($this->start_date, $this->end_date, false);
+		$data = new SFA_Abandoned_Carts_Table($this->start_date, $this->end_date, false, 3000);
 		$data->prepare_items();
+		$this->total_carts = count($data->carts);
 
         $bucketed_data = array();
 
@@ -114,7 +116,17 @@ class SFA_Abandoned_Products_Table extends SFA_WP_List_Table
 
     private function render() {
         ?>
-        <div class="sfa_wrap">	
+        <div class="sfa_wrap">
+			<?php 
+				if ($this->total_carts >= 3000) {
+					?>
+					<div id="sfa_too_much_data_warning">
+						The date ranges you've selected contain too many carts. <br> <br>
+						For accurate results please narrow the range or email <a href="mailto:mike@smallfishanalytics.com">mike@smallfishanalytics.com</a> for help.
+					</div>
+			<?php
+				}
+			?>
 			<div id="sfa_chart_title" style="float: left;">
 				<h2>Abandoned Products Data</h2>		
 			</div>
